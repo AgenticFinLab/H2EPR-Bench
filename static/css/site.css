@@ -1229,7 +1229,7 @@ figcaption {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1.15rem;
-  align-items: start;
+  align-items: stretch;
   margin-top: 1.15rem;
 }
 
@@ -1263,6 +1263,18 @@ figcaption {
 
 .diagnostic-frame-balanced {
   aspect-ratio: 16 / 11;
+}
+
+.diagnostic-grid-two .diagnostic-card {
+  height: 100%;
+}
+
+.diagnostic-grid-two .diagnostic-image-frame {
+  aspect-ratio: 16 / 10.2;
+}
+
+.diagnostic-grid-two .diagnostic-note {
+  min-height: 6.15rem;
 }
 
 .diagnostic-frame-profile {
