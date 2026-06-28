@@ -1182,7 +1182,7 @@ figcaption {
   display: grid;
   grid-template-columns: minmax(0, 1.08fr) minmax(20rem, 0.92fr);
   gap: 1.15rem;
-  align-items: stretch;
+  align-items: start;
   margin-top: 2rem;
 }
 
@@ -1214,6 +1214,12 @@ figcaption {
   aspect-ratio: 16 / 8.4;
 }
 
+.diagnostic-frame-spread {
+  aspect-ratio: 2092 / 3043;
+  background:
+    linear-gradient(180deg, #ffffff, #fbfdfc);
+}
+
 .diagnostic-frame-compact {
   aspect-ratio: 16 / 8.8;
 }
@@ -1234,12 +1240,13 @@ figcaption {
   display: grid;
   grid-template-columns: 1fr;
   gap: 1.15rem;
-  align-items: stretch;
+  align-content: start;
+  align-items: start;
 }
 
 .diagnostic-companion-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1.15rem;
   align-items: stretch;
   margin-top: 1.15rem;

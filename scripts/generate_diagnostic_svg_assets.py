@@ -119,8 +119,8 @@ def main() -> None:
     </style>
   </defs>
   <rect width="960" height="560" fill="#ffffff"/>
-  <text x="64" y="48" class="title">Evidence is easier to preserve than process structure</text>
-  <text x="64" y="74" class="subtitle">Direct LLM baselines retain source support more reliably than temporal and mechanistic organization.</text>
+  <text x="64" y="48" class="title">Evidence score vs. process organization</text>
+  <text x="64" y="74" class="subtitle">Each point is one direct reconstruction baseline; process organization averages temporal and mechanistic scores.</text>
   <rect x="96" y="124" width="724" height="190" fill="#e8f1ee" opacity="0.78"/>
   <text x="116" y="150" class="zone-label">high evidence, lower process organization</text>
   {"".join(grid)}

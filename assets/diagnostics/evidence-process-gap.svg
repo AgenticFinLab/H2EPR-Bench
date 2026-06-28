@@ -15,8 +15,8 @@
     </style>
   </defs>
   <rect width="960" height="560" fill="#ffffff"/>
-  <text x="64" y="48" class="title">Evidence is easier to preserve than process structure</text>
-  <text x="64" y="74" class="subtitle">Direct LLM baselines retain source support more reliably than temporal and mechanistic organization.</text>
+  <text x="64" y="48" class="title">Evidence score vs. process organization</text>
+  <text x="64" y="74" class="subtitle">Each point is one direct reconstruction baseline; process organization averages temporal and mechanistic scores.</text>
   <rect x="96" y="124" width="724" height="190" fill="#e8f1ee" opacity="0.78"/>
   <text x="116" y="150" class="zone-label">high evidence, lower process organization</text>
   <line x1="96.0" y1="124" x2="96.0" y2="438" class="grid"/><text x="96.0" y="468" class="tick" text-anchor="middle">15</text><line x1="308.9" y1="124" x2="308.9" y2="438" class="grid"/><text x="308.9" y="468" class="tick" text-anchor="middle">20</text><line x1="521.9" y1="124" x2="521.9" y2="438" class="grid"/><text x="521.9" y="468" class="tick" text-anchor="middle">25</text><line x1="734.8" y1="124" x2="734.8" y2="438" class="grid"/><text x="734.8" y="468" class="tick" text-anchor="middle">30</text><line x1="96" y1="416.5" x2="820" y2="416.5" class="grid"/><text x="76" y="421.5" class="tick" text-anchor="end">20</text><line x1="96" y1="330.5" x2="820" y2="330.5" class="grid"/><text x="76" y="335.5" class="tick" text-anchor="end">40</text><line x1="96" y1="244.4" x2="820" y2="244.4" class="grid"/><text x="76" y="249.4" class="tick" text-anchor="end">60</text><line x1="96" y1="158.4" x2="820" y2="158.4" class="grid"/><text x="76" y="163.4" class="tick" text-anchor="end">80</text>

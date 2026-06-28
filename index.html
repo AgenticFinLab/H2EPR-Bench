@@ -373,8 +373,15 @@
                 <img src="assets/diagnostics/evidence-process-gap.svg" alt="Scatter plot comparing evidence score and process organization score">
               </div>
               <figcaption class="diagnostic-note">
-                <strong>Evidence/process gap.</strong>
-                <span>Most systems preserve source support better than temporal and mechanistic organization.</span>
+                <strong>Evidence/process profile.</strong>
+                <span>This view compares evidence scores with process organization, where process organization averages temporal and mechanistic subscores.</span>
+              </figcaption>
+              <div class="diagnostic-image-frame diagnostic-frame-spread">
+                <img src="assets/diagnostics/quality-distribution-by-model.png" alt="Per-instance QualityScore distributions by model">
+              </div>
+              <figcaption class="diagnostic-note">
+                <strong>Instance spread.</strong>
+                <span>Sorted per-instance curves show how much variation remains within each model across the 1,000 benchmark events.</span>
               </figcaption>
             </figure>
             <div class="diagnostic-secondary">
@@ -400,15 +407,6 @@
           </div>
 
           <div class="diagnostic-companion-grid" aria-label="Companion diagnostics">
-            <figure class="figure-block diagnostic-card">
-              <div class="diagnostic-image-frame diagnostic-frame-tall">
-                <img src="assets/diagnostics/quality-distribution-by-model.png" alt="Per-instance QualityScore distributions by model">
-              </div>
-              <figcaption class="diagnostic-note">
-                <strong>Instance spread.</strong>
-                <span>Sorted per-instance curves show that average scores hide substantial within-model variation.</span>
-              </figcaption>
-            </figure>
             <figure class="figure-block diagnostic-card">
               <div class="diagnostic-image-frame diagnostic-frame-tall">
                 <img src="assets/diagnostics/valid-only-dumbbell.png" alt="Valid-only sensitivity diagnostic">
