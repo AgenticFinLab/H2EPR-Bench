@@ -584,7 +584,8 @@ p {
 }
 
 .world-model-figure {
-  max-width: 1060px;
+  width: 100%;
+  max-width: none;
   margin: 0 auto;
   padding: 0.7rem;
   border: 1px solid var(--border);
@@ -595,9 +596,11 @@ p {
 
 .world-model-figure img {
   width: 100%;
+  aspect-ratio: 1916 / 821;
   border: 0;
   border-radius: 8px;
   background: #fff;
+  object-fit: contain;
 }
 
 .contrib-list {
@@ -1197,10 +1200,6 @@ figcaption {
   box-shadow: var(--shadow-soft);
 }
 
-.diagnostic-lead {
-  min-height: 100%;
-}
-
 .diagnostic-image-frame {
   display: grid;
   place-items: center;
@@ -1244,12 +1243,35 @@ figcaption {
   align-items: start;
 }
 
-.diagnostic-companion-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 1.15rem;
-  align-items: stretch;
-  margin-top: 1.15rem;
+.diagnostic-text-card {
+  gap: 0.46rem;
+  padding: 1rem 1.05rem;
+  background:
+    linear-gradient(135deg, rgba(238, 248, 247, 0.86), rgba(255, 247, 229, 0.46)),
+    #fff;
+}
+
+.diagnostic-text-card span {
+  color: var(--accent);
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.diagnostic-text-card strong {
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-size: 1.22rem;
+  line-height: 1.2;
+}
+
+.diagnostic-text-card p {
+  margin: 0;
+  color: var(--ink-2);
+  font-size: 0.9rem;
+  line-height: 1.52;
 }
 
 .diagnostic-note {
@@ -1510,7 +1532,6 @@ tbody tr:hover td {
 
   .figure-grid-three,
   .diagnostic-secondary,
-  .diagnostic-companion-grid,
   .background-primer,
   .background-usecase-switcher,
   .evaluation-framework,
@@ -1541,10 +1562,6 @@ tbody tr:hover td {
     order: -1;
     position: static;
     min-height: 0;
-  }
-
-  .diagnostic-companion-grid .figure-block:first-child {
-    grid-row: auto;
   }
 
   .usecase-copy-panel {
