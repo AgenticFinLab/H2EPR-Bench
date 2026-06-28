@@ -409,10 +409,10 @@
             </div>
           </div>
 
-          <div class="diagnostic-grid-three">
+          <div class="diagnostic-grid-two">
               <figure class="figure-block diagnostic-card">
-                <div class="diagnostic-image-frame diagnostic-frame-row">
-                  <img class="diagnostic-img-zoom diagnostic-img-zoom-domain" src="assets/diagnostics/domain-quality-dotplot.png" alt="Domain quality dotplot">
+                <div class="diagnostic-image-frame diagnostic-frame-compact">
+                  <img src="assets/diagnostics/domain-quality-dotplot.png" alt="Domain quality dotplot">
                 </div>
                 <figcaption class="diagnostic-note">
                   <strong>Domain variation.</strong>
@@ -420,8 +420,8 @@
                 </figcaption>
               </figure>
               <figure class="figure-block diagnostic-card">
-                <div class="diagnostic-image-frame diagnostic-frame-row">
-                  <img class="diagnostic-img-zoom diagnostic-img-zoom-heatmap" src="assets/diagnostics/failure-mode-heatmap.png" alt="Failure-mode heatmap">
+                <div class="diagnostic-image-frame diagnostic-frame-compact">
+                  <img src="assets/diagnostics/failure-mode-heatmap.png" alt="Failure-mode heatmap">
                 </div>
                 <figcaption class="diagnostic-note">
                   <strong>Failure modes.</strong>
@@ -429,12 +429,21 @@
                 </figcaption>
               </figure>
               <figure class="figure-block diagnostic-card">
-                <div class="diagnostic-image-frame diagnostic-frame-row">
-                  <img class="diagnostic-img-zoom diagnostic-img-zoom-dumbbell" src="assets/diagnostics/valid-only-dumbbell.png" alt="Valid-only sensitivity diagnostic">
+                <div class="diagnostic-image-frame diagnostic-frame-balanced">
+                  <img src="assets/diagnostics/valid-only-dumbbell.png" alt="Valid-only sensitivity diagnostic">
                 </div>
                 <figcaption class="diagnostic-note">
                   <strong>Valid-only sensitivity.</strong>
                   <span>Filtering to schema-valid outputs improves several systems but does not close the reconstruction gap.</span>
+                </figcaption>
+              </figure>
+              <figure class="figure-block diagnostic-card">
+                <div class="diagnostic-image-frame diagnostic-frame-balanced">
+                  <img src="assets/diagnostics/token-quality-scatter.png" alt="Token length versus reconstruction quality companion diagnostic">
+                </div>
+                <figcaption class="diagnostic-note">
+                  <strong>Token use.</strong>
+                  <span>Longer outputs are not a substitute for reconstructing event-process structure.</span>
                 </figcaption>
               </figure>
           </div>
