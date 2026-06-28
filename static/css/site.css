@@ -369,6 +369,28 @@ tbody tr:last-child td {
   white-space: nowrap;
 }
 
+#leaderboard-table td.numeric {
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+}
+
+.sort-button {
+  width: 100%;
+  padding: 0;
+  border: 0;
+  color: inherit;
+  background: transparent;
+  font: inherit;
+  font-weight: 800;
+  text-align: left;
+  text-transform: inherit;
+  cursor: pointer;
+}
+
+.sort-button.active {
+  color: var(--teal-dark);
+}
+
 .chart-grid,
 .diagnostic-grid,
 .access-grid {
