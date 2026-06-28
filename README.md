@@ -2,6 +2,12 @@
 
 This repository contains the static GitHub Pages website for H²EPR-Bench.
 
+Repository identity note: this local folder is named
+`H2EPR-Bench.github.io`, but it deploys to the project-site repository
+`AgenticFinLab/H2EPR-Bench`, whose Pages URL is
+https://agenticfinlab.github.io/H2EPR-Bench/. See
+`docs/repository-identity.md` for the canonical local/remote mapping.
+
 Public benchmark links:
 
 - Public dataset: https://huggingface.co/datasets/AgenticFinLab/H2EPR-Bench
