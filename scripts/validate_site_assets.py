@@ -23,11 +23,13 @@ REQUIRED_FILES = [
 
 REQUIRED_TEXT = [
     "H²EPR-Bench",
-    "Official scoring uses the gated Gold companion",
-    "Public FinalCascade and Gantt artifacts",
+    "Official scores are computed against gated Gold references.",
+    "FinalCascade-derived event timelines.",
+    "Visual asset roadmap",
     "https://huggingface.co/datasets/AgenticFinLab/H2EPR-Bench",
     "https://huggingface.co/datasets/AgenticFinLab/H2EPR-Bench-Gold",
     "https://huggingface.co/spaces/AgenticFinLab/H2EPR-Bench-Explorer",
+    "https://github.com/AgenticFinLab/H2EPR-Bench",
 ]
 
 FORBIDDEN_TEXT = [
@@ -36,6 +38,7 @@ FORBIDDEN_TEXT = [
     "simulation benchmark",
     "RAG benchmark",
     "agent benchmark",
+    "They are inspection views, not official scoring references.",
 ]
 
 
