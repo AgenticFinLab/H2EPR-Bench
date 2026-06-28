@@ -39,7 +39,7 @@
       <section class="hero">
         <div class="container hero-inner">
           <p class="kicker">Core-1000 benchmark release</p>
-          <h1>H²EPR-Bench</h1>
+          <h1>H²EPR-<wbr>Bench</h1>
           <p class="subtitle">An evidence-traceable benchmark for event-process reconstruction.</p>
           <p class="hero-summary">
             H²EPR-Bench evaluates whether models can reconstruct hierarchical heterogeneous Event-Process Graphs from fixed evidence contexts.
@@ -135,14 +135,6 @@
             </div>
             <a class="link-chip dark" href="https://huggingface.co/spaces/AgenticFinLab/H2EPR-Bench-Explorer">Open Explorer</a>
           </div>
-          <div class="asset-roadmap">
-            <h3>Visual asset roadmap</h3>
-            <ul>
-              <li>Explorer screenshot: required for the next visual pass.</li>
-              <li>Redrawn construction figure: required before final paper-linked release.</li>
-              <li>Larger event-process panel: current previews are used as interim assets.</li>
-            </ul>
-          </div>
         </div>
       </section>
 
@@ -152,6 +144,10 @@
           <p>
             Core-1000 spans six domains and twenty-six event categories, with stage-level records and public inspection artifacts aligned by canonical event IDs.
           </p>
+          <figure class="figure-block figure-large summary-panel">
+            <img src="assets/summary/dataset-summary-panel.png" alt="Dataset summary panel for Core-1000, including event count, domain mix, category distribution, stage rows, process graphs, gated Gold references, and LLM baselines">
+            <figcaption>Dataset summary panel.</figcaption>
+          </figure>
           <div class="figure-grid figure-grid-three">
             <figure class="figure-block">
               <img src="assets/charts/domain-distribution.png" alt="Domain distribution for Core-1000">
@@ -172,21 +168,56 @@
       <section class="section" id="events">
         <div class="container reading-wide">
           <h2 class="section-heading">Representative Event Processes</h2>
-          <p class="section-lead">FinalCascade-derived event timelines.</p>
+          <p class="section-lead">FinalCascade-derived event timelines across multiple domains.</p>
 
-          <div class="event-showcase">
-            <figure class="figure-block event-figure">
-              <img src="assets/gantt/gantt-rajaratnam.png" alt="Timeline preview for Raj Rajaratnam and Galleon insider trading">
-              <figcaption><strong>P1000-0346.</strong> Raj Rajaratnam / Galleon Insider Trading.</figcaption>
+          <div class="gantt-hd-gallery" aria-label="Representative Gantt timeline gallery">
+            <figure class="figure-block event-figure event-figure-primary">
+              <img id="gantt-main-image" src="assets/gantt/hd/P1000-0552_gantt_hd.png" alt="Example event-process timeline for Angola Yellow Fever Outbreak of 2016">
+              <figcaption id="gantt-main-caption"><strong>P1000-0552.</strong> Angola Yellow Fever Outbreak of 2016.</figcaption>
             </figure>
-            <figure class="figure-block event-figure">
-              <img src="assets/gantt/gantt-cum-ex.png" alt="Timeline preview for the Cum-Ex tax scandal">
-              <figcaption><strong>P1000-0409.</strong> Cum-Ex Tax Scandal.</figcaption>
-            </figure>
-            <figure class="figure-block event-figure">
-              <img src="assets/gantt/gantt-laiki.png" alt="Timeline preview for the Laiki Bank collapse">
-              <figcaption><strong>P1000-0718.</strong> Laiki Bank Collapse.</figcaption>
-            </figure>
+
+            <div class="gantt-thumb-grid" role="list" aria-label="Select a representative event timeline">
+              <button class="gantt-thumb is-active" type="button" role="listitem" data-src="assets/gantt/hd/P1000-0552_gantt_hd.png" data-alt="Example event-process timeline for Angola Yellow Fever Outbreak of 2016" data-caption="<strong>P1000-0552.</strong> Angola Yellow Fever Outbreak of 2016.">
+                <span>P1000-0552</span>
+                <strong>Yellow Fever Outbreak</strong>
+                <em>Public health</em>
+              </button>
+              <button class="gantt-thumb" type="button" role="listitem" data-src="assets/gantt/hd/P1000-0346_gantt_hd.png" data-alt="Example event-process timeline for SEC case against Raj Rajaratnam and Galleon insider trading" data-caption="<strong>P1000-0346.</strong> Raj Rajaratnam / Galleon Insider Trading.">
+                <span>P1000-0346</span>
+                <strong>Galleon Insider Trading</strong>
+                <em>Finance</em>
+              </button>
+              <button class="gantt-thumb" type="button" role="listitem" data-src="assets/gantt/hd/P1000-0409_gantt_hd.png" data-alt="Example event-process timeline for the Cum-Ex tax scandal" data-caption="<strong>P1000-0409.</strong> Cum-Ex Tax Scandal.">
+                <span>P1000-0409</span>
+                <strong>Cum-Ex Tax Scandal</strong>
+                <em>Finance</em>
+              </button>
+              <button class="gantt-thumb" type="button" role="listitem" data-src="assets/gantt/hd/P1000-0536_gantt_hd.png" data-alt="Example event-process timeline for DNC Hack and 2016 Election Interference" data-caption="<strong>P1000-0536.</strong> DNC Hack and 2016 Election Interference.">
+                <span>P1000-0536</span>
+                <strong>DNC Hack</strong>
+                <em>Cyber / tech</em>
+              </button>
+              <button class="gantt-thumb" type="button" role="listitem" data-src="assets/gantt/hd/P1000-0641_gantt_hd.png" data-alt="Example event-process timeline for Samut Prakan Radiation Accident" data-caption="<strong>P1000-0641.</strong> Samut Prakan Radiation Accident.">
+                <span>P1000-0641</span>
+                <strong>Radiation Accident</strong>
+                <em>Energy</em>
+              </button>
+              <button class="gantt-thumb" type="button" role="listitem" data-src="assets/gantt/hd/P1000-0901_gantt_hd.png" data-alt="Example event-process timeline for the Crimean War" data-caption="<strong>P1000-0901.</strong> Crimean War.">
+                <span>P1000-0901</span>
+                <strong>Crimean War</strong>
+                <em>Geopolitics</em>
+              </button>
+              <button class="gantt-thumb" type="button" role="listitem" data-src="assets/gantt/hd/P1000-0909_gantt_hd.png" data-alt="Example event-process timeline for War in Donbas" data-caption="<strong>P1000-0909.</strong> War in Donbas.">
+                <span>P1000-0909</span>
+                <strong>War in Donbas</strong>
+                <em>Geopolitics</em>
+              </button>
+              <button class="gantt-thumb" type="button" role="listitem" data-src="assets/gantt/hd/P1000-0991_gantt_hd.png" data-alt="Example event-process timeline for Francesca Gino Data Integrity Scandal" data-caption="<strong>P1000-0991.</strong> Francesca Gino Data Integrity Scandal.">
+                <span>P1000-0991</span>
+                <strong>Data Integrity Scandal</strong>
+                <em>Science</em>
+              </button>
+            </div>
           </div>
         </div>
       </section>
@@ -219,19 +250,21 @@
             </table>
           </div>
 
-          <div class="figure-grid diagnostics-grid">
-            <figure class="figure-block">
+          <div class="diagnostics-layout">
+            <figure class="figure-block diagnostic-lead">
               <img src="assets/diagnostics/evidence-process-gap.png" alt="Evidence-process diagnostic scatter plot">
               <figcaption>Evidence-process gap.</figcaption>
             </figure>
-            <figure class="figure-block">
-              <img src="assets/diagnostics/domain-quality-dotplot.png" alt="Domain quality dotplot">
-              <figcaption>Domain-level quality variation.</figcaption>
-            </figure>
-            <figure class="figure-block">
-              <img src="assets/diagnostics/failure-mode-heatmap.png" alt="Failure-mode heatmap">
-              <figcaption>Recurring failure modes.</figcaption>
-            </figure>
+            <div class="diagnostic-secondary">
+              <figure class="figure-block">
+                <img src="assets/diagnostics/domain-quality-dotplot.png" alt="Domain quality dotplot">
+                <figcaption>Domain-level quality variation.</figcaption>
+              </figure>
+              <figure class="figure-block">
+                <img src="assets/diagnostics/failure-mode-heatmap.png" alt="Failure-mode heatmap">
+                <figcaption>Recurring failure modes.</figcaption>
+              </figure>
+            </div>
           </div>
         </div>
       </section>
