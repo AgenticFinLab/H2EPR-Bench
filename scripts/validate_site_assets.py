@@ -33,7 +33,12 @@ REQUIRED_FILES = [
     "assets/diagnostics/evidence-process-gap.png",
     "assets/diagnostics/domain-quality-dotplot.png",
     "assets/diagnostics/failure-mode-heatmap.png",
+    "assets/diagnostics/quality-distribution-by-model.png",
+    "assets/diagnostics/valid-only-dumbbell.png",
+    "assets/diagnostics/token-quality-scatter.png",
     "data/direct_llm_16model_main_results.json",
+    "data/direct_llm_16model_diagnostics.json",
+    "static/js/results-diagnostics.js",
 ]
 
 REQUIRED_TEXT = [
@@ -44,6 +49,7 @@ REQUIRED_TEXT = [
     "background-primer",
     "background-usecase-switcher",
     "usecase-main-image",
+    "data-view=\"reconstruction\"",
     "From simplified event outputs to structured event-process graph reconstruction.",
     "prediction and simulation",
     "Societal world model",
@@ -54,12 +60,20 @@ REQUIRED_TEXT = [
     "Example event-process timeline",
     "FinalCascade-derived event timelines across multiple domains.",
     "gantt-hd-gallery",
+    "construction-boundary-figure",
+    "evaluation-framework",
+    "result-snapshot",
+    "model-card-grid",
+    "model-detail-panel",
     "diagnostics-layout",
     "diagnostic-secondary",
+    "diagnostic-companion-grid",
+    "Full numeric table",
     "https://huggingface.co/datasets/AgenticFinLab/H2EPR-Bench",
     "https://huggingface.co/datasets/AgenticFinLab/H2EPR-Bench-Gold",
     "https://huggingface.co/spaces/AgenticFinLab/H2EPR-Bench-Explorer",
     "https://github.com/AgenticFinLab/H2EPR-Bench",
+    "static/js/results-diagnostics.js",
 ]
 
 FORBIDDEN_TEXT = [
@@ -89,6 +103,30 @@ def main():
     rows = json.loads((ROOT / "data/direct_llm_16model_main_results.json").read_text(encoding="utf-8"))
     if len(rows) != 16:
         raise SystemExit(f"expected 16 leaderboard rows, found {len(rows)}")
+    diagnostics = json.loads((ROOT / "data/direct_llm_16model_diagnostics.json").read_text(encoding="utf-8"))
+    models = diagnostics.get("models", [])
+    if diagnostics.get("schema_version") != "h2epr_results_diagnostics_r1":
+        raise SystemExit("unexpected diagnostics schema version")
+    if len(models) != 16:
+        raise SystemExit(f"expected 16 diagnostics models, found {len(models)}")
+    required_model_keys = {
+        "QualityScore",
+        "S_structure",
+        "S_temporal",
+        "S_mechanistic",
+        "S_evidence",
+        "failure_modes",
+        "evidence_process_gap",
+        "valid_only_delta_Q",
+        "token_total_k_per_event",
+    }
+    missing_model_keys = [
+        model.get("system", "<unknown>")
+        for model in models
+        if not required_model_keys.issubset(model)
+    ]
+    if missing_model_keys:
+        raise SystemExit(f"diagnostics models missing required keys: {missing_model_keys}")
     print("site validation passed")
 
 

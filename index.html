@@ -102,7 +102,7 @@
 
           <div class="background-usecase-switcher" aria-label="H²EPR-Bench downstream use-case switcher">
             <figure class="usecase-main-figure">
-              <img id="usecase-main-image" src="assets/usecases/reconstruction.png" alt="Reconstruction evaluation with evidence, graph recovery, and diagnostic scoring">
+              <img id="usecase-main-image" data-view="reconstruction" src="assets/usecases/reconstruction.png" alt="Reconstruction evaluation with evidence, graph recovery, and diagnostic scoring">
             </figure>
             <aside class="usecase-copy-panel">
               <span id="usecase-kicker">Use case 01</span>
@@ -111,9 +111,9 @@
                 Evaluate whether a system can recover the staged event process, actor actions, temporal order, action-result logic, and evidence links from fixed evidence.
               </p>
               <div class="usecase-button-row" role="list" aria-label="Switch use-case panel">
-                <button class="usecase-switch is-active" type="button" role="listitem" data-src="assets/usecases/reconstruction.png" data-alt="Reconstruction evaluation with evidence, graph recovery, and diagnostic scoring" data-kicker="Use case 01" data-title="Reconstruction Evaluation" data-copy="Evaluate whether a system can recover the staged event process, actor actions, temporal order, action-result logic, and evidence links from fixed evidence.">Reconstruction</button>
-                <button class="usecase-switch" type="button" role="listitem" data-src="assets/usecases/analysis.png" data-alt="Event-process analysis across domains, categories, and graph patterns" data-kicker="Use case 02" data-title="Event-Process Analysis" data-copy="Compare structured event patterns across domains, categories, and recurring market or social processes without flattening events into one narrative paragraph.">Analysis</button>
-                <button class="usecase-switch" type="button" role="listitem" data-src="assets/usecases/prediction-simulation.png" data-alt="Prediction and simulation scenarios from partially observed event-process graphs" data-kicker="Use case 03" data-title="Prediction and Simulation" data-copy="Use partially observed or linked event graphs to define controlled continuation, prediction, and simulation scenarios.">Prediction / Simulation</button>
+                <button class="usecase-switch is-active" type="button" role="listitem" data-view="reconstruction" data-src="assets/usecases/reconstruction.png" data-alt="Reconstruction evaluation with evidence, graph recovery, and diagnostic scoring" data-kicker="Use case 01" data-title="Reconstruction Evaluation" data-copy="Evaluate whether a system can recover the staged event process, actor actions, temporal order, action-result logic, and evidence links from fixed evidence.">Reconstruction</button>
+                <button class="usecase-switch" type="button" role="listitem" data-view="analysis" data-src="assets/usecases/analysis.png" data-alt="Event-process analysis across domains, categories, and graph patterns" data-kicker="Use case 02" data-title="Event-Process Analysis" data-copy="Compare structured event patterns across domains, categories, and recurring market or social processes without flattening events into one narrative paragraph.">Analysis</button>
+                <button class="usecase-switch" type="button" role="listitem" data-view="prediction" data-src="assets/usecases/prediction-simulation.png" data-alt="Prediction and simulation scenarios from partially observed event-process graphs" data-kicker="Use case 03" data-title="Prediction and Simulation" data-copy="Use partially observed or linked event graphs to define controlled continuation, prediction, and simulation scenarios.">Prediction / Simulation</button>
               </div>
             </aside>
           </div>
@@ -287,28 +287,74 @@
         <div class="container reading-wide">
           <h2 class="section-heading">Results &amp; Diagnostics</h2>
           <p class="section-lead">
-            Direct reconstruction results show that preserving evidence-bearing content is easier than reconstructing temporal and mechanistic process structure.
+            Direct reconstruction results expose a consistent gap between evidence retention and structured event-process recovery.
           </p>
 
-          <div class="leaderboard-container">
-            <table id="leaderboard-table" aria-label="Direct LLM baseline leaderboard">
-              <thead>
-                <tr>
-                  <th>System</th>
-                  <th>Valid outputs (%)</th>
-                  <th>QualityScore</th>
-                  <th>Structure</th>
-                  <th>Temporal</th>
-                  <th>Mechanistic</th>
-                  <th>Evidence</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td colspan="7">Loading leaderboard data...</td>
-                </tr>
-              </tbody>
-            </table>
+          <div class="evaluation-framework" aria-label="H2EPR-Bench evaluation framework">
+            <div class="framework-step">
+              <span>01</span>
+              <strong>Fixed evidence</strong>
+              <p>Each system receives the same event descriptor and evidence context.</p>
+            </div>
+            <div class="framework-step">
+              <span>02</span>
+              <strong>Graph output</strong>
+              <p>The model returns a hierarchical heterogeneous event-process graph.</p>
+            </div>
+            <div class="framework-step">
+              <span>03</span>
+              <strong>Schema gate</strong>
+              <p>Invalid normalized outputs remain part of the official all-instance score.</p>
+            </div>
+            <div class="framework-step">
+              <span>04</span>
+              <strong>Graph matching</strong>
+              <p>Outputs are compared against gated medium-granularity Gold references.</p>
+            </div>
+            <div class="framework-step">
+              <span>05</span>
+              <strong>Diagnostics</strong>
+              <p>Scores separate structure, temporal order, action-result logic, and evidence.</p>
+            </div>
+          </div>
+
+          <div class="result-snapshot" aria-label="Direct reconstruction result snapshot">
+            <div>
+              <strong>16</strong>
+              <span>direct LLM systems</span>
+            </div>
+            <div>
+              <strong>1,000</strong>
+              <span>events per system</span>
+            </div>
+            <div>
+              <strong>44.29</strong>
+              <span>best QualityScore</span>
+            </div>
+            <div>
+              <strong>13 / 16</strong>
+              <span>systems above 90% schema-valid outputs</span>
+            </div>
+          </div>
+
+          <div class="results-thesis">
+            <strong>Schema validity is not enough.</strong>
+            <span>Even mostly valid graph outputs remain weak on temporal ordering and action-result organization.</span>
+          </div>
+
+          <div class="model-trace-layout">
+            <div>
+              <div class="subsection-heading">
+                <span>Model traces</span>
+                <p>Each card summarizes one direct reconstruction baseline across the official score and diagnostic subscores.</p>
+              </div>
+              <div class="model-card-grid" id="model-card-grid" aria-label="Direct LLM model diagnostic cards">
+                <p class="loading-note">Loading model diagnostics...</p>
+              </div>
+            </div>
+            <aside class="model-detail-panel" id="model-detail-panel" aria-live="polite">
+              <p class="loading-note">Select a model to inspect its diagnostic profile.</p>
+            </aside>
           </div>
 
           <div class="diagnostics-layout">
@@ -325,6 +371,48 @@
                 <img src="assets/diagnostics/failure-mode-heatmap.png" alt="Failure-mode heatmap">
                 <figcaption>Recurring failure modes.</figcaption>
               </figure>
+            </div>
+          </div>
+
+          <div class="diagnostic-companion-grid" aria-label="Companion diagnostics">
+            <figure class="figure-block">
+              <img src="assets/diagnostics/quality-distribution-by-model.png" alt="Per-instance QualityScore distributions by model">
+              <figcaption>Per-instance score distributions.</figcaption>
+            </figure>
+            <figure class="figure-block">
+              <img src="assets/diagnostics/valid-only-dumbbell.png" alt="Valid-only sensitivity diagnostic">
+              <figcaption>Valid-only sensitivity.</figcaption>
+            </figure>
+            <figure class="figure-block">
+              <img src="assets/diagnostics/token-quality-scatter.png" alt="Token length versus reconstruction quality companion diagnostic">
+              <figcaption>Token length companion diagnostic.</figcaption>
+            </figure>
+          </div>
+
+          <div class="full-table-block">
+            <div class="subsection-heading">
+              <span>Full numeric table</span>
+              <p>Sortable all-instance results for the 16 direct reconstruction baselines.</p>
+            </div>
+            <div class="leaderboard-container">
+              <table id="leaderboard-table" aria-label="Direct LLM baseline leaderboard">
+                <thead>
+                  <tr>
+                    <th>System</th>
+                    <th>Valid outputs (%)</th>
+                    <th>QualityScore</th>
+                    <th>Structure</th>
+                    <th>Temporal</th>
+                    <th>Mechanistic</th>
+                    <th>Evidence</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td colspan="7">Loading leaderboard data...</td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
           </div>
         </div>
@@ -371,5 +459,6 @@
 
     <script src="static/js/site.js"></script>
     <script src="static/js/leaderboard.js"></script>
+    <script src="static/js/results-diagnostics.js"></script>
   </body>
 </html>

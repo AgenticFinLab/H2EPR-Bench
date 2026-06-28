@@ -21,10 +21,12 @@ usecaseButtons.forEach((button) => {
     const kicker = button.dataset.kicker;
     const title = button.dataset.title;
     const copy = button.dataset.copy;
-    if (!src || !alt || !kicker || !title || !copy) return;
+    const view = button.dataset.view;
+    if (!src || !alt || !kicker || !title || !copy || !view) return;
 
     usecaseMainImage.src = src;
     usecaseMainImage.alt = alt;
+    usecaseMainImage.dataset.view = view;
     usecaseKicker.textContent = kicker;
     usecaseTitle.textContent = title;
     usecaseCopy.textContent = copy;
