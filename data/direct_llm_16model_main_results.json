@@ -1,0 +1,178 @@
+[
+  {
+    "system": "Doubao Seed 2.0 Pro",
+    "scored_count": 1000,
+    "schema_valid_rate": 0.984,
+    "schema_valid_rate_pct": 98.4,
+    "QualityScore": 44.29,
+    "S_structure": 48.57,
+    "S_temporal": 24.36,
+    "S_mechanistic": 34.41,
+    "S_evidence": 81.18
+  },
+  {
+    "system": "Doubao Seed 2.0 Mini",
+    "scored_count": 1000,
+    "schema_valid_rate": 0.992,
+    "schema_valid_rate_pct": 99.2,
+    "QualityScore": 43.41,
+    "S_structure": 46.57,
+    "S_temporal": 23.53,
+    "S_mechanistic": 33.48,
+    "S_evidence": 81.7
+  },
+  {
+    "system": "Doubao Seed 2.0 Lite",
+    "scored_count": 1000,
+    "schema_valid_rate": 0.968,
+    "schema_valid_rate_pct": 96.8,
+    "QualityScore": 42.69,
+    "S_structure": 46.73,
+    "S_temporal": 22.24,
+    "S_mechanistic": 33.11,
+    "S_evidence": 80.28
+  },
+  {
+    "system": "Doubao Seed 1.8",
+    "scored_count": 1000,
+    "schema_valid_rate": 0.994,
+    "schema_valid_rate_pct": 99.4,
+    "QualityScore": 42.43,
+    "S_structure": 45.85,
+    "S_temporal": 21.14,
+    "S_mechanistic": 33.28,
+    "S_evidence": 81.51
+  },
+  {
+    "system": "DeepSeek-V3.2",
+    "scored_count": 1000,
+    "schema_valid_rate": 0.989,
+    "schema_valid_rate_pct": 98.9,
+    "QualityScore": 41.25,
+    "S_structure": 43.69,
+    "S_temporal": 18.76,
+    "S_mechanistic": 33.58,
+    "S_evidence": 81.52
+  },
+  {
+    "system": "DeepSeek-V4-Flash",
+    "scored_count": 1000,
+    "schema_valid_rate": 0.951,
+    "schema_valid_rate_pct": 95.1,
+    "QualityScore": 40.48,
+    "S_structure": 42.89,
+    "S_temporal": 20.65,
+    "S_mechanistic": 31.94,
+    "S_evidence": 77.9
+  },
+  {
+    "system": "GLM-5",
+    "scored_count": 1000,
+    "schema_valid_rate": 0.948,
+    "schema_valid_rate_pct": 94.8,
+    "QualityScore": 40.47,
+    "S_structure": 40.57,
+    "S_temporal": 21.06,
+    "S_mechanistic": 33.35,
+    "S_evidence": 78.36
+  },
+  {
+    "system": "DeepSeek-V3.1-Terminus",
+    "scored_count": 1000,
+    "schema_valid_rate": 0.945,
+    "schema_valid_rate_pct": 94.5,
+    "QualityScore": 40.03,
+    "S_structure": 42.9,
+    "S_temporal": 20.25,
+    "S_mechanistic": 30.96,
+    "S_evidence": 77.46
+  },
+  {
+    "system": "Hy3 preview",
+    "scored_count": 1000,
+    "schema_valid_rate": 0.916,
+    "schema_valid_rate_pct": 91.6,
+    "QualityScore": 39.45,
+    "S_structure": 41.63,
+    "S_temporal": 20.46,
+    "S_mechanistic": 31.84,
+    "S_evidence": 74.73
+  },
+  {
+    "system": "GLM-5.1",
+    "scored_count": 1000,
+    "schema_valid_rate": 0.923,
+    "schema_valid_rate_pct": 92.3,
+    "QualityScore": 39.44,
+    "S_structure": 38.79,
+    "S_temporal": 20.61,
+    "S_mechanistic": 33.43,
+    "S_evidence": 76.0
+  },
+  {
+    "system": "DeepSeek-R1-0528",
+    "scored_count": 1000,
+    "schema_valid_rate": 0.942,
+    "schema_valid_rate_pct": 94.2,
+    "QualityScore": 39.44,
+    "S_structure": 42.57,
+    "S_temporal": 20.29,
+    "S_mechanistic": 29.95,
+    "S_evidence": 76.12
+  },
+  {
+    "system": "HY 2.0 Think",
+    "scored_count": 1000,
+    "schema_valid_rate": 0.934,
+    "schema_valid_rate_pct": 93.4,
+    "QualityScore": 38.13,
+    "S_structure": 41.32,
+    "S_temporal": 17.95,
+    "S_mechanistic": 29.65,
+    "S_evidence": 75.01
+  },
+  {
+    "system": "HY 2.0 Instruct",
+    "scored_count": 1000,
+    "schema_valid_rate": 0.916,
+    "schema_valid_rate_pct": 91.6,
+    "QualityScore": 37.46,
+    "S_structure": 40.05,
+    "S_temporal": 16.88,
+    "S_mechanistic": 30.39,
+    "S_evidence": 73.89
+  },
+  {
+    "system": "MiniMax-M2.7",
+    "scored_count": 1000,
+    "schema_valid_rate": 0.851,
+    "schema_valid_rate_pct": 85.1,
+    "QualityScore": 36.79,
+    "S_structure": 36.34,
+    "S_temporal": 19.67,
+    "S_mechanistic": 31.08,
+    "S_evidence": 70.15
+  },
+  {
+    "system": "GLM-4.7",
+    "scored_count": 1000,
+    "schema_valid_rate": 0.541,
+    "schema_valid_rate_pct": 54.1,
+    "QualityScore": 25.52,
+    "S_structure": 25.07,
+    "S_temporal": 16.05,
+    "S_mechanistic": 21.9,
+    "S_evidence": 44.81
+  },
+  {
+    "system": "MiniMax-M2.5",
+    "scored_count": 1000,
+    "schema_valid_rate": 0.338,
+    "schema_valid_rate_pct": 33.8,
+    "QualityScore": 18.28,
+    "S_structure": 15.1,
+    "S_temporal": 15.03,
+    "S_mechanistic": 18.27,
+    "S_evidence": 27.12
+  }
+]
