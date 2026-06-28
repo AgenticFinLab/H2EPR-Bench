@@ -115,8 +115,9 @@ p {
 h1 {
   margin: 0;
   font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(48px, 8vw, 96px);
+  font-size: clamp(46px, 6.4vw, 84px);
   line-height: 0.94;
+  white-space: nowrap;
 }
 
 h2 {
@@ -490,6 +491,10 @@ tbody tr:last-child td {
 
   .hero-section {
     padding-top: 42px;
+  }
+
+  h1 {
+    white-space: normal;
   }
 
   .fact-grid,
