@@ -169,10 +169,21 @@
             </div>
           </div>
 
-          <figure class="figure-block figure-large construction-boundary-figure">
-            <img src="assets/release-boundary.png" alt="Public artifacts and gated Gold release boundary">
-            <figcaption>Public artifacts and gated Gold references are separated by release role.</figcaption>
-          </figure>
+          <div class="boundary-showcase">
+            <div class="boundary-strip" aria-label="Release asset roles">
+              <span>Public release</span>
+              <strong>catalog · stages · FinalCascade · Gantt views</strong>
+              <b aria-hidden="true">→</b>
+              <span>Gated Gold</span>
+              <strong>official scoring references</strong>
+            </div>
+            <figure class="figure-block construction-boundary-figure">
+              <img src="assets/release-boundary.png" alt="Public artifacts and gated Gold release boundary">
+            </figure>
+            <p class="boundary-copy">
+              The public repository is designed for browsing, reuse, and inspection. Official benchmark scoring is tied to the gated Gold references, so release artifacts remain useful without exposing answer keys in the open dataset.
+            </p>
+          </div>
 
         </div>
       </section>
@@ -358,34 +369,64 @@
           </div>
 
           <div class="diagnostics-layout">
-            <figure class="figure-block diagnostic-lead">
-              <img src="assets/diagnostics/evidence-process-gap.png" alt="Evidence-process diagnostic scatter plot">
-              <figcaption>Evidence-process gap.</figcaption>
+            <figure class="figure-block diagnostic-card diagnostic-lead">
+              <div class="diagnostic-image-frame diagnostic-frame-wide">
+                <img src="assets/diagnostics/evidence-process-gap.svg" alt="Scatter plot comparing evidence score and process organization score">
+              </div>
+              <figcaption class="diagnostic-note">
+                <strong>Evidence/process gap.</strong>
+                <span>Most systems preserve source support better than temporal and mechanistic organization.</span>
+              </figcaption>
             </figure>
             <div class="diagnostic-secondary">
-              <figure class="figure-block">
-                <img src="assets/diagnostics/domain-quality-dotplot.png" alt="Domain quality dotplot">
-                <figcaption>Domain-level quality variation.</figcaption>
+              <figure class="figure-block diagnostic-card">
+                <div class="diagnostic-image-frame diagnostic-frame-compact">
+                  <img src="assets/diagnostics/domain-quality-dotplot.png" alt="Domain quality dotplot">
+                </div>
+                <figcaption class="diagnostic-note">
+                  <strong>Domain variation.</strong>
+                  <span>Quality remains bounded across domains, with visible drops in harder event families.</span>
+                </figcaption>
               </figure>
-              <figure class="figure-block">
-                <img src="assets/diagnostics/failure-mode-heatmap.png" alt="Failure-mode heatmap">
-                <figcaption>Recurring failure modes.</figcaption>
+              <figure class="figure-block diagnostic-card">
+                <div class="diagnostic-image-frame diagnostic-frame-compact">
+                  <img src="assets/diagnostics/failure-mode-heatmap.png" alt="Failure-mode heatmap">
+                </div>
+                <figcaption class="diagnostic-note">
+                  <strong>Failure modes.</strong>
+                  <span>Weak temporal ordering and weak mechanistic links dominate the direct reconstruction setting.</span>
+                </figcaption>
               </figure>
             </div>
           </div>
 
           <div class="diagnostic-companion-grid" aria-label="Companion diagnostics">
-            <figure class="figure-block">
-              <img src="assets/diagnostics/quality-distribution-by-model.png" alt="Per-instance QualityScore distributions by model">
-              <figcaption>Per-instance score distributions.</figcaption>
+            <figure class="figure-block diagnostic-card">
+              <div class="diagnostic-image-frame diagnostic-frame-tall">
+                <img src="assets/diagnostics/quality-distribution-by-model.png" alt="Per-instance QualityScore distributions by model">
+              </div>
+              <figcaption class="diagnostic-note">
+                <strong>Instance spread.</strong>
+                <span>Sorted per-instance curves show that average scores hide substantial within-model variation.</span>
+              </figcaption>
             </figure>
-            <figure class="figure-block">
-              <img src="assets/diagnostics/valid-only-dumbbell.png" alt="Valid-only sensitivity diagnostic">
-              <figcaption>Valid-only sensitivity.</figcaption>
+            <figure class="figure-block diagnostic-card">
+              <div class="diagnostic-image-frame diagnostic-frame-tall">
+                <img src="assets/diagnostics/valid-only-dumbbell.png" alt="Valid-only sensitivity diagnostic">
+              </div>
+              <figcaption class="diagnostic-note">
+                <strong>Valid-only sensitivity.</strong>
+                <span>Filtering to schema-valid outputs improves several systems but does not close the reconstruction gap.</span>
+              </figcaption>
             </figure>
-            <figure class="figure-block">
-              <img src="assets/diagnostics/token-quality-scatter.png" alt="Token length versus reconstruction quality companion diagnostic">
-              <figcaption>Token length companion diagnostic.</figcaption>
+            <figure class="figure-block diagnostic-card">
+              <div class="diagnostic-image-frame diagnostic-frame-tall">
+                <img src="assets/diagnostics/token-quality-scatter.png" alt="Token length versus reconstruction quality companion diagnostic">
+              </div>
+              <figcaption class="diagnostic-note">
+                <strong>Token use.</strong>
+                <span>Longer outputs are not a substitute for reconstructing event-process structure.</span>
+              </figcaption>
             </figure>
           </div>
 

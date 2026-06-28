@@ -31,6 +31,7 @@ REQUIRED_FILES = [
     "assets/gantt/hd/P1000-0991_gantt_hd.png",
     "assets/gantt/hd/gantt_hd_manifest.csv",
     "assets/diagnostics/evidence-process-gap.png",
+    "assets/diagnostics/evidence-process-gap.svg",
     "assets/diagnostics/domain-quality-dotplot.png",
     "assets/diagnostics/failure-mode-heatmap.png",
     "assets/diagnostics/quality-distribution-by-model.png",

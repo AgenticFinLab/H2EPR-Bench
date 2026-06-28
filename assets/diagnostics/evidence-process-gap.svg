@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 560" role="img" aria-labelledby="title desc">
+  <title id="title">Evidence retention and process organization in direct reconstruction</title>
+  <desc id="desc">Scatter plot comparing evidence score and process organization score for 16 direct reconstruction baselines.</desc>
+  <defs>
+    <style>
+      .title { font: 700 30px Georgia, serif; fill: #182323; }
+      .subtitle { font: 500 14px sans-serif; fill: #536160; }
+      .axis { stroke: #202928; stroke-width: 2.2; }
+      .grid { stroke: #e7eeeb; stroke-width: 1.2; }
+      .tick { font: 13px sans-serif; fill: #596663; }
+      .axis-label { font: 700 15px sans-serif; fill: #24302f; }
+      .label { font: 700 14px sans-serif; fill: #293333; }
+      .zone-label { font: 700 14px sans-serif; fill: #2d6559; }
+      .note { font: 500 13px sans-serif; fill: #5a6765; }
+    </style>
+  </defs>
+  <rect width="960" height="560" fill="#ffffff"/>
+  <text x="64" y="48" class="title">Evidence is easier to preserve than process structure</text>
+  <text x="64" y="74" class="subtitle">Direct LLM baselines retain source support more reliably than temporal and mechanistic organization.</text>
+  <rect x="96" y="124" width="724" height="190" fill="#e8f1ee" opacity="0.78"/>
+  <text x="116" y="150" class="zone-label">high evidence, lower process organization</text>
+  <line x1="96.0" y1="124" x2="96.0" y2="438" class="grid"/><text x="96.0" y="468" class="tick" text-anchor="middle">15</text><line x1="308.9" y1="124" x2="308.9" y2="438" class="grid"/><text x="308.9" y="468" class="tick" text-anchor="middle">20</text><line x1="521.9" y1="124" x2="521.9" y2="438" class="grid"/><text x="521.9" y="468" class="tick" text-anchor="middle">25</text><line x1="734.8" y1="124" x2="734.8" y2="438" class="grid"/><text x="734.8" y="468" class="tick" text-anchor="middle">30</text><line x1="96" y1="416.5" x2="820" y2="416.5" class="grid"/><text x="76" y="421.5" class="tick" text-anchor="end">20</text><line x1="96" y1="330.5" x2="820" y2="330.5" class="grid"/><text x="76" y="335.5" class="tick" text-anchor="end">40</text><line x1="96" y1="244.4" x2="820" y2="244.4" class="grid"/><text x="76" y="249.4" class="tick" text-anchor="end">60</text><line x1="96" y1="158.4" x2="820" y2="158.4" class="grid"/><text x="76" y="163.4" class="tick" text-anchor="end">80</text>
+  <line x1="96" y1="438" x2="820" y2="438" class="axis"/>
+  <line x1="96" y1="124" x2="96" y2="438" class="axis"/>
+  <circle cx="708.4" cy="153.3" r="17.6" fill="rgb(214,172,66)" stroke="#ffffff" stroke-width="2.5"><title>Doubao Seed 2.0 Pro: QualityScore 44.29</title></circle><circle cx="670.9" cy="151.1" r="17.8" fill="rgb(208,170,69)" stroke="#ffffff" stroke-width="2.5"><title>Doubao Seed 2.0 Mini: QualityScore 43.41</title></circle><circle cx="635.6" cy="157.2" r="17.2" fill="rgb(203,168,71)" stroke="#ffffff" stroke-width="2.5"><title>Doubao Seed 2.0 Lite: QualityScore 42.69</title></circle><circle cx="616.0" cy="151.9" r="17.9" fill="rgb(202,167,71)" stroke="#ffffff" stroke-width="2.5"><title>Doubao Seed 1.8: QualityScore 42.43</title></circle><circle cx="571.7" cy="151.9" r="17.7" fill="rgb(194,164,75)" stroke="#ffffff" stroke-width="2.5"><title>DeepSeek-V3.2: QualityScore 41.25</title></circle><circle cx="577.2" cy="167.4" r="16.8" fill="rgb(189,162,77)" stroke="#ffffff" stroke-width="2.5"><title>DeepSeek-V4-Flash: QualityScore 40.48</title></circle><circle cx="615.6" cy="165.5" r="16.7" fill="rgb(189,162,77)" stroke="#ffffff" stroke-width="2.5"><title>GLM-5: QualityScore 40.47</title></circle><circle cx="547.4" cy="169.3" r="16.6" fill="rgb(187,161,78)" stroke="#ffffff" stroke-width="2.5"><title>DeepSeek-V3.1-Terminus: QualityScore 40.03</title></circle><circle cx="570.9" cy="181.1" r="15.9" fill="rgb(183,160,80)" stroke="#ffffff" stroke-width="2.5"><title>Hy3 preview: QualityScore 39.45</title></circle><circle cx="607.9" cy="175.6" r="16.1" fill="rgb(183,160,80)" stroke="#ffffff" stroke-width="2.5"><title>GLM-5.1: QualityScore 39.44</title></circle><circle cx="527.0" cy="175.1" r="16.6" fill="rgb(183,160,80)" stroke="#ffffff" stroke-width="2.5"><title>DeepSeek-R1-0528: QualityScore 39.44</title></circle><circle cx="470.8" cy="179.9" r="16.4" fill="rgb(174,156,84)" stroke="#ffffff" stroke-width="2.5"><title>HY 2.0 Think: QualityScore 38.13</title></circle><circle cx="464.0" cy="184.7" r="15.9" fill="rgb(170,155,86)" stroke="#ffffff" stroke-width="2.5"><title>HY 2.0 Instruct: QualityScore 37.46</title></circle><circle cx="538.1" cy="200.8" r="14.3" fill="rgb(166,153,88)" stroke="#ffffff" stroke-width="2.5"><title>MiniMax-M2.7: QualityScore 36.79</title></circle><circle cx="265.5" cy="309.8" r="8.0" fill="rgb(95,124,120)" stroke="#ffffff" stroke-width="2.5"><title>GLM-4.7: QualityScore 25.52</title></circle><circle cx="166.3" cy="385.9" r="8.0" fill="rgb(49,106,141)" stroke="#ffffff" stroke-width="2.5"><title>MiniMax-M2.5: QualityScore 18.28</title></circle>
+  <line x1="571.7" y1="151.9" x2="483.7" y2="110.9" stroke="#7b858b" stroke-width="1.2"/><text x="489.7" y="105.9" class="label">DeepSeek V3.2</text><line x1="538.1" y1="200.8" x2="550.1" y2="245.8" stroke="#7b858b" stroke-width="1.2"/><text x="556.1" y="240.8" class="label">MiniMax M2.7</text><line x1="265.5" y1="309.8" x2="283.5" y2="292.8" stroke="#7b858b" stroke-width="1.2"/><text x="289.5" y="287.8" class="label">GLM 4.7</text><line x1="166.3" y1="385.9" x2="180.3" y2="378.9" stroke="#7b858b" stroke-width="1.2"/><text x="186.3" y="373.9" class="label">MiniMax M2.5</text>
+  <text x="458" y="522" class="axis-label" text-anchor="middle">Process organization score</text>
+  <text x="28" y="282" class="axis-label" text-anchor="middle" transform="rotate(-90 28 282)">Evidence score</text>
+  <g transform="translate(850 144)">
+    <text x="0" y="0" class="note">QualityScore</text>
+    <rect x="0" y="16" width="24" height="130" fill="#2f698e"/>
+    <rect x="0" y="16" width="24" height="65" fill="#daa940" opacity="0.9"/>
+    <text x="34" y="28" class="tick">high</text>
+    <text x="34" y="148" class="tick">low</text>
+  </g>
+  <text x="96" y="500" class="note">Process organization is the mean of temporal and mechanistic scores. Circle size reflects schema-valid output rate.</text>
+</svg>
