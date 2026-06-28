@@ -470,13 +470,11 @@ p {
 .usecase-main-figure img {
   width: 100%;
   height: 100%;
-  max-height: 25rem;
   border: 0;
   border-radius: 8px;
   background: #fff;
   object-fit: cover;
   transform-origin: center;
-  transform: scale(1.055);
   transition: opacity 0.18s ease;
 }
 
@@ -1603,7 +1601,7 @@ tbody tr:hover td {
   }
 
   .usecase-main-figure img {
-    max-height: 14rem;
+    height: 100%;
   }
 
   .usecase-button-row {
