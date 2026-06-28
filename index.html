@@ -1,0 +1,280 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="H²EPR-Bench is an evidence-traceable benchmark for fixed-evidence event-process graph reconstruction.">
+    <title>H²EPR-Bench</title>
+    <link rel="stylesheet" href="static/css/site.css">
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="#overview" aria-label="H²EPR-Bench home">H²EPR-Bench</a>
+      <nav class="site-nav" aria-label="Primary navigation">
+        <a href="#release">Release</a>
+        <a href="#task">Task</a>
+        <a href="#examples">Examples</a>
+        <a href="#leaderboard">Leaderboard</a>
+        <a href="#diagnostics">Diagnostics</a>
+        <a href="#access">Access</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero-section" id="overview">
+        <div class="hero-copy">
+          <p class="eyebrow">Core-1000 benchmark release</p>
+          <h1>H²EPR-Bench</h1>
+          <p class="subtitle">An evidence-traceable benchmark for reconstructing hierarchical heterogeneous event-process graphs from fixed evidence contexts.</p>
+          <p class="lead">H²EPR-Bench evaluates whether language models can reconstruct structured event processes, including stages, actors, temporal relations, actions, outcomes, and evidence links, from the same fixed evidence provided to every system.</p>
+          <div class="hero-actions" aria-label="Primary links">
+            <span class="button muted" aria-disabled="true">Paper forthcoming</span>
+            <a class="button primary" href="https://huggingface.co/datasets/AgenticFinLab/H2EPR-Bench">Public Dataset</a>
+            <a class="button gold" href="https://huggingface.co/datasets/AgenticFinLab/H2EPR-Bench-Gold">Request Gold Access</a>
+            <a class="button outline" href="https://huggingface.co/spaces/AgenticFinLab/H2EPR-Bench-Explorer">Launch Explorer</a>
+          </div>
+          <div class="release-note">
+            Official scoring uses the gated Gold companion. Public FinalCascade and Gantt artifacts are released for inspection and reuse, but they are not Gold references and should not be treated as scoring targets.
+          </div>
+        </div>
+        <figure class="hero-figure">
+          <img src="assets/h2epr-overview.png" alt="Overview of H²EPR-Bench event-process reconstruction and public release assets">
+          <figcaption>Fixed evidence contexts are used to evaluate event-process graph reconstruction, while public inspection assets and gated scoring references remain separate.</figcaption>
+        </figure>
+      </section>
+
+      <section class="section boundary-section" id="release">
+        <div class="section-heading">
+          <p class="eyebrow">Release model</p>
+          <h2>Public inspection artifacts, gated scoring references</h2>
+          <p>H²EPR-Bench separates public exploration from official scoring. This boundary is part of the benchmark design, not a file-management detail.</p>
+        </div>
+        <div class="release-grid">
+          <figure class="wide-figure">
+            <img src="assets/release-boundary.png" alt="Release boundary between public artifacts and gated Gold references">
+          </figure>
+          <div class="boundary-table-wrap">
+            <table class="boundary-table">
+              <thead>
+                <tr>
+                  <th>Component</th>
+                  <th>Access</th>
+                  <th>Role</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Event catalog and stage tables</td>
+                  <td>Public</td>
+                  <td>Discovery, filtering, and dataset analysis.</td>
+                </tr>
+                <tr>
+                  <td>Sanitized FinalCascade artifacts</td>
+                  <td>Public</td>
+                  <td>Inspection and reuse artifacts derived from the construction workflow.</td>
+                </tr>
+                <tr>
+                  <td>Gantt visualizations</td>
+                  <td>Public</td>
+                  <td>Timeline views derived from public FinalCascade artifacts.</td>
+                </tr>
+                <tr>
+                  <td>Gold references</td>
+                  <td>Manual gated</td>
+                  <td>Official medium-granularity scoring references.</td>
+                </tr>
+                <tr>
+                  <td>Raw evidence text, traces, local paths</td>
+                  <td>Not public</td>
+                  <td>Internal-only material excluded from the website and public release.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <section class="section facts-section" id="facts">
+        <div class="fact-grid" aria-label="Benchmark facts">
+          <div class="fact"><strong>1,000</strong><span>event instances</span></div>
+          <div class="fact"><strong>6</strong><span>domains</span></div>
+          <div class="fact"><strong>26</strong><span>event categories</span></div>
+          <div class="fact"><strong>3,038</strong><span>stage rows</span></div>
+          <div class="fact"><strong>1,000</strong><span>public FinalCascade artifacts</span></div>
+          <div class="fact"><strong>1,000</strong><span>Gantt visualizations</span></div>
+          <div class="fact"><strong>16</strong><span>direct LLM baselines</span></div>
+          <div class="fact gold-fact"><strong>Gated</strong><span>Gold scoring references</span></div>
+        </div>
+      </section>
+
+      <section class="section task-section" id="task">
+        <div class="section-heading">
+          <p class="eyebrow">Task</p>
+          <h2>Fixed-evidence event-process graph reconstruction</h2>
+        </div>
+        <div class="task-grid">
+          <article>
+            <h3>Input</h3>
+            <p>Each system receives the same event descriptor and fixed public evidence context.</p>
+          </article>
+          <article>
+            <h3>Output</h3>
+            <p>The system reconstructs a hierarchical heterogeneous Event-Process Graph with stages, episodes, actors, actions, relations, temporal anchors, and evidence links.</p>
+          </article>
+          <article>
+            <h3>Evaluation</h3>
+            <p>Graph matching compares reconstructions with gated Gold references across structural fidelity, temporal consistency, action-result logic, and evidence traceability.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section examples-section" id="examples">
+        <div class="section-heading">
+          <p class="eyebrow">Representative event processes</p>
+          <h2>From market events to structured timelines</h2>
+          <p>These public previews show FinalCascade-derived timelines. They are inspection views, not official scoring references.</p>
+        </div>
+        <div class="example-grid">
+          <article class="example-card">
+            <img src="assets/gantt/gantt-rajaratnam.png" alt="Gantt preview for Raj Rajaratnam and Galleon insider trading">
+            <div>
+              <p class="example-id">P1000-0346</p>
+              <h3>Raj Rajaratnam / Galleon Insider Trading</h3>
+              <p>Finance · market manipulation and trading disruption.</p>
+              <a href="https://huggingface.co/spaces/AgenticFinLab/H2EPR-Bench-Explorer">View in Explorer</a>
+            </div>
+          </article>
+          <article class="example-card">
+            <img src="assets/gantt/gantt-cum-ex.png" alt="Gantt preview for the Cum-Ex tax scandal">
+            <div>
+              <p class="example-id">P1000-0409</p>
+              <h3>Cum-Ex Tax Scandal</h3>
+              <p>Finance · compliance, AML, and tax evasion.</p>
+              <a href="https://huggingface.co/spaces/AgenticFinLab/H2EPR-Bench-Explorer">View in Explorer</a>
+            </div>
+          </article>
+          <article class="example-card">
+            <img src="assets/gantt/gantt-laiki.png" alt="Gantt preview for the Laiki Bank collapse">
+            <div>
+              <p class="example-id">P1000-0718</p>
+              <h3>Laiki Bank Collapse</h3>
+              <p>Finance · institutional crisis and liquidity run.</p>
+              <a href="https://huggingface.co/spaces/AgenticFinLab/H2EPR-Bench-Explorer">View in Explorer</a>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section leaderboard-section" id="leaderboard">
+        <div class="section-heading">
+          <p class="eyebrow">Direct LLM baselines</p>
+          <h2>Leaderboard</h2>
+          <p>Direct reconstruction setting; official scoring uses gated Gold references.</p>
+        </div>
+        <div class="table-scroll">
+          <table id="leaderboard-table" aria-label="Direct LLM baseline leaderboard">
+            <thead>
+              <tr>
+                <th>System</th>
+                <th>Valid outputs (%)</th>
+                <th>QualityScore</th>
+                <th>Structure</th>
+                <th>Temporal</th>
+                <th>Mechanistic</th>
+                <th>Evidence</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td colspan="7">Loading leaderboard data...</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="section composition-section" id="composition">
+        <div class="section-heading">
+          <p class="eyebrow">Core-1000 dataset composition</p>
+          <h2>Coverage across domains, categories, and stages</h2>
+        </div>
+        <div class="chart-grid">
+          <figure>
+            <img src="assets/charts/domain-distribution.png" alt="Event instances by domain">
+            <figcaption>Event instances by domain.</figcaption>
+          </figure>
+          <figure>
+            <img src="assets/charts/category-distribution-top12.png" alt="Top event categories">
+            <figcaption>Top event categories.</figcaption>
+          </figure>
+          <figure>
+            <img src="assets/charts/stage-count-distribution.png" alt="Distribution of stage counts per event">
+            <figcaption>Stage counts per event.</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="section diagnostics-section" id="diagnostics">
+        <div class="section-heading">
+          <p class="eyebrow">Diagnostic analysis</p>
+          <h2>Where reconstruction remains difficult</h2>
+          <p>H²EPR-Bench exposes process-level gaps that are not captured by evidence overlap alone.</p>
+        </div>
+        <div class="diagnostic-grid">
+          <figure>
+            <img src="assets/diagnostics/evidence-process-gap.png" alt="Evidence-process diagnostic scatter plot">
+            <figcaption>Evidence-bearing content is easier to preserve than temporal and mechanistic structure.</figcaption>
+          </figure>
+          <figure>
+            <img src="assets/diagnostics/domain-quality-dotplot.png" alt="Domain quality dotplot for direct LLM baselines">
+            <figcaption>Performance varies across domains under direct reconstruction.</figcaption>
+          </figure>
+          <figure>
+            <img src="assets/diagnostics/failure-mode-heatmap.png" alt="Failure-mode heatmap for direct LLM baselines">
+            <figcaption>Failure modes reveal recurring process-reconstruction bottlenecks.</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="section access-section" id="access">
+        <div class="section-heading">
+          <p class="eyebrow">Access the release</p>
+          <h2>Choose the right entry point</h2>
+        </div>
+        <div class="access-grid">
+          <a class="access-card" href="https://huggingface.co/datasets/AgenticFinLab/H2EPR-Bench">
+            <strong>Public Dataset</strong>
+            <span>Metadata, public tables, sanitized FinalCascade artifacts, Gantt visualizations, schemas, and manifests.</span>
+          </a>
+          <a class="access-card gold-card" href="https://huggingface.co/datasets/AgenticFinLab/H2EPR-Bench-Gold">
+            <strong>Gated Gold Companion</strong>
+            <span>Official medium-granularity scoring references under controlled access.</span>
+          </a>
+          <a class="access-card" href="https://huggingface.co/spaces/AgenticFinLab/H2EPR-Bench-Explorer">
+            <strong>Explorer Space</strong>
+            <span>Interactive browsing for public event metadata, stage tables, timelines, and public graph summaries.</span>
+          </a>
+        </div>
+      </section>
+
+      <section class="section citation-section" id="citation">
+        <div class="section-heading">
+          <p class="eyebrow">Citation</p>
+          <h2>Cite H²EPR-Bench</h2>
+        </div>
+        <pre class="bibtex"><code>@misc{h2eprbench2026,
+  title = {H²EPR-Bench: An Evidence-Traceable Benchmark for Event-Process Reconstruction},
+  author = {AgenticFinLab},
+  year = {2026},
+  note = {Forthcoming}
+}</code></pre>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>H²EPR-Bench Core-1000 · Public dataset, gated Gold references, and Explorer are maintained by AgenticFinLab.</p>
+    </footer>
+
+    <script src="static/js/site.js"></script>
+  </body>
+</html>
