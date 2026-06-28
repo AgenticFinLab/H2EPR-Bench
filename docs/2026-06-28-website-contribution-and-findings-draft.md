@@ -9,7 +9,7 @@ Status: partially adopted. The hero overview image, hero summary, teaser contrib
 The website layout issues have been resolved for the current pass. The current stable page has:
 
 - A project-site identity aligned with `AgenticFinLab/H2EPR-Bench`.
-- A polished hero with primary links, release-scale facts, and a new overview image.
+- A polished hero with primary links, release-scale facts, and a new overview image published from `assets/hero/h2epr-benchmark-overview.png`.
 - A Background & Motivation section with use-case switching and the world-model vision.
 - Benchmark Construction, Dataset Overview, Interactive Explorer, Representative Event Processes, and Results & Diagnostics sections.
 - A 2-by-2 diagnostics figure grid whose image frames and captions have been normalized.
@@ -26,7 +26,7 @@ Hero summary:
 
 Hero teaser:
 
-> The release connects real-world evidence, structured event-process data, gated Gold references, diagnostic LLM baselines, and public exploration assets into one benchmark for event analysis, prediction, and simulation.
+> Built from real-world events, H²EPR-Bench packages evidence contexts, structured process data, gated Gold references, baseline diagnostics, and an interactive explorer for event analysis, prediction, and simulation.
 
 Findings section title:
 
@@ -81,11 +81,11 @@ Current line:
 
 Problem: This is technically correct, but it reads like a metric description rather than a contribution claim.
 
-Recommended replacement:
+Adopted replacement:
 
-> The release connects real-world evidence, structured event-process data, gated Gold references, diagnostic LLM baselines, and public exploration assets into one benchmark for event analysis, prediction, and simulation.
+> Built from real-world events, H²EPR-Bench packages evidence contexts, structured process data, gated Gold references, baseline diagnostics, and an interactive explorer for event analysis, prediction, and simulation.
 
-More assertive candidate:
+Alternative assertive candidate:
 
 > H²EPR-Bench turns real-world event understanding into a measurable benchmark, pairing fixed evidence with structured process data, gated Gold references, diagnostic scoring, and public exploration assets.
 
@@ -95,7 +95,7 @@ More application-facing candidate:
 
 Preferred adoption note:
 
-The first recommended replacement is the most balanced for the website. It names the concrete assets and avoids making the opening sound like only a graph-method page.
+The adopted line is shorter than the earlier "release connects..." version and reads more like a public benchmark page. It keeps the concrete release assets while avoiding an overpacked sentence.
 
 ## Contribution Blocks
 
@@ -163,31 +163,25 @@ The section should use short finding cards, not long paragraphs. Each card shoul
 
 ### Finding 1: Valid Graphs Are Not Enough
 
-> Many systems produce schema-valid outputs, but validity does not imply successful event-process reconstruction. The main gap lies in recovering temporal order, process structure, and action-result logic.
+> Schema-valid outputs still miss temporal order, process structure, and action-result logic.
 
 Grounding: supported by the valid-output rate and diagnostic subscore pattern.
 
-### Finding 2: Evidence Is Easier Than Process
+### Finding 2: Process Is the Bottleneck
 
-> Models tend to preserve evidence-bearing content more reliably than they organize that content into coherent event processes. This makes H²EPR-Bench useful for separating source grounding from process understanding.
+> Models often retain facts, but struggle to organize them into coherent staged event processes.
 
-Grounding: supported by evidence subscore being higher than temporal/mechanistic subscores. Wording should remain careful because this claim can sound too broad if detached from the direct-reconstruction setting.
+Grounding: supported by process-related diagnostic subscores and manual analysis of direct reconstruction failures. This wording is less likely to overclaim than "evidence is easier than process."
 
 ### Finding 3: Failure Modes Are Systematic
 
-> The same bottlenecks recur across model families: weak temporal sequencing, missing event-type operations, and shallow links between actions and outcomes. These errors are diagnostic signals, not isolated formatting failures.
+> Weak sequencing, missing event-type operations, and shallow action-outcome links recur across model families.
 
 Grounding: supported by the failure-mode heatmap and model cards.
 
-### Finding 4: Event Understanding Needs Structured Targets
+### Finding 4: Beyond Reconstruction
 
-> Summaries and timelines are useful but insufficient for measuring how models understand evolving events. H²EPR-Bench makes stages, actors, relations, evidence, and process logic explicit enough to score and inspect.
-
-Grounding: connects Background & Motivation to the benchmark task.
-
-### Finding 5: A Substrate for Prediction and Simulation
-
-> Structured event-process data enables more than reconstruction: future experiments can mask later stages, ask agents to continue partially observed events, compare predicted trajectories with Gold references, and link multiple events into larger market or social-process simulations.
+> The same event-process substrate supports continuation prediction, agent evaluation, and simulation studies.
 
 Grounding: this is a forward-looking value claim. It should be presented as enabled future work, not as a completed evaluation in Core-1000.
 
@@ -197,18 +191,13 @@ Proposed layout:
 
 - A short intro sentence:
 
-> H²EPR-Bench is designed to reveal where event understanding breaks, and to provide reusable structure for the next generation of event prediction and simulation tasks.
+> H²EPR-Bench exposes where current systems lose event structure, and turns those errors into reusable diagnostics for reconstruction, prediction, and simulation.
 
-- Five cards in a responsive grid:
+- Four cards in a 2-by-2 responsive grid:
   - Valid Graphs Are Not Enough
-  - Evidence Is Easier Than Process
+  - Process Is the Bottleneck
   - Failure Modes Are Systematic
-  - Event Understanding Needs Structured Targets
-  - A Substrate for Prediction and Simulation
-
-- Optional small callout under the cards:
-
-> The current release focuses on fixed-evidence event-process reconstruction. Prediction, simulation, and linked world-model studies are natural extensions built on the same structured event substrate.
+  - Beyond Reconstruction
 
 ## Recommended Immediate Adoption Set
 
@@ -220,15 +209,15 @@ If adopting in the next website pass, use:
 
 2. Replace the teaser line with:
 
-> The release connects real-world evidence, structured event-process data, gated Gold references, diagnostic LLM baselines, and public exploration assets into one benchmark for event analysis, prediction, and simulation.
+> Built from real-world events, H²EPR-Bench packages evidence contexts, structured process data, gated Gold references, baseline diagnostics, and an interactive explorer for event analysis, prediction, and simulation.
 
 3. Add a `Key Findings` section between `Results & Diagnostics` and `Access`.
 
-4. Use the five finding cards above, with a visual style closer to result takeaways than to a dense paper paragraph.
+4. Use the four finding cards above in a 2-by-2 layout, with low-saturation color variation across cards.
 
 ## Self-Review Notes
 
-- No page text has been adopted yet, except for the hero overview image.
+- Page text has adopted the compact hero summary, the revised teaser line, and the four-card Key Findings section.
 - Claims about prediction, simulation, and world models are framed as supported directions or enabled future work unless the line explicitly says benchmark/data resource.
 - The draft avoids presenting FinalCascade as Gold.
 - The draft keeps the current release centered on Core-1000 and fixed-evidence reconstruction while allowing broader positioning.

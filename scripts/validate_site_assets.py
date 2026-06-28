@@ -7,7 +7,7 @@ ROOT = Path(__file__).resolve().parents[1]
 
 REQUIRED_FILES = [
     "index.html",
-    "assets/figureFromImage2/总览图.png",
+    "assets/hero/h2epr-benchmark-overview.png",
     "assets/h2epr-overview.png",
     "assets/usecases/reconstruction.png",
     "assets/usecases/analysis.png",
@@ -48,7 +48,7 @@ REQUIRED_TEXT = [
     "H²EPR-Bench",
     "hero-overview-figure",
     "H²EPR-Bench evaluates real-world event understanding across summarization, event-process reconstruction, prediction, and simulation from fixed evidence contexts.",
-    "structured event-process data, gated Gold references, diagnostic LLM baselines",
+    "Built from real-world events, H²EPR-Bench packages evidence contexts, structured process data, gated Gold references, baseline diagnostics, and an interactive explorer",
     "Official scores are computed against gated Gold references.",
     "expansion and follow-up studies",
     "Real-world events are not static text objects.",
@@ -82,7 +82,8 @@ REQUIRED_TEXT = [
     "Full numeric table",
     "Key Findings",
     "Valid Graphs Are Not Enough",
-    "A Substrate for Prediction and Simulation",
+    "Process Is the Bottleneck",
+    "Beyond Reconstruction",
     "https://huggingface.co/datasets/AgenticFinLab/H2EPR-Bench",
     "https://huggingface.co/datasets/AgenticFinLab/H2EPR-Bench-Gold",
     "https://huggingface.co/spaces/AgenticFinLab/H2EPR-Bench-Explorer",

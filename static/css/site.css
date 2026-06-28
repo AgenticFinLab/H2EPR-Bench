@@ -1393,24 +1393,34 @@ figcaption {
 
 .findings-grid {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 0.86rem;
-  margin-top: 1.6rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  margin-top: 1.7rem;
 }
 
 .finding-card {
-  min-height: 13rem;
-  padding: 1rem 1rem 1.05rem;
-  border: 1px solid var(--border);
-  border-radius: 10px;
+  min-height: 10.5rem;
+  padding: 1.12rem 1.15rem 1.18rem;
+  border: 1px solid rgba(16, 24, 32, 0.08);
+  border-radius: 12px;
   background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(248, 252, 251, 0.94));
+    linear-gradient(180deg, rgba(255, 255, 255, 0.82), rgba(232, 246, 242, 0.78));
   box-shadow: var(--shadow-card);
 }
 
-.finding-card:nth-child(2n) {
+.finding-card:nth-child(2) {
   background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(255, 247, 229, 0.62));
+    linear-gradient(180deg, rgba(255, 255, 255, 0.86), rgba(255, 246, 222, 0.82));
+}
+
+.finding-card:nth-child(3) {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.86), rgba(235, 242, 250, 0.84));
+}
+
+.finding-card:nth-child(4) {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.86), rgba(244, 238, 249, 0.78));
 }
 
 .finding-card span {
@@ -1436,42 +1446,6 @@ figcaption {
   color: var(--ink-2);
   font-size: 0.92rem;
   line-height: 1.48;
-}
-
-.finding-card-wide {
-  grid-column: span 4;
-  display: grid;
-  grid-template-columns: 9rem minmax(0, 0.48fr) minmax(0, 1fr);
-  gap: 1rem;
-  align-items: center;
-  min-height: 0;
-}
-
-.finding-card-wide span {
-  margin: 0;
-}
-
-.finding-card-wide h3,
-.finding-card-wide p {
-  margin: 0;
-}
-
-.findings-callout {
-  display: flex;
-  gap: 0.55rem;
-  align-items: baseline;
-  margin-top: 1rem;
-  padding: 0.95rem 1rem;
-  border-left: 4px solid var(--accent);
-  background:
-    linear-gradient(90deg, var(--teal-panel), rgba(255, 255, 255, 0.92));
-  color: var(--ink-2);
-  box-shadow: var(--shadow-card);
-}
-
-.findings-callout strong {
-  color: var(--accent-2);
-  white-space: nowrap;
 }
 
 .loading-note {
@@ -1705,7 +1679,6 @@ tbody tr:hover td {
   .diagnostic-overview-grid,
   .diagnostic-grid-two,
   .findings-grid,
-  .finding-card-wide,
   .background-primer,
   .background-usecase-switcher,
   .evaluation-framework,
@@ -1725,19 +1698,6 @@ tbody tr:hover td {
 
   .results-thesis {
     display: block;
-  }
-
-  .finding-card-wide {
-    min-height: 13rem;
-  }
-
-  .findings-callout {
-    display: block;
-  }
-
-  .findings-callout span {
-    display: block;
-    margin-top: 0.25rem;
   }
 
   .results-thesis span {
