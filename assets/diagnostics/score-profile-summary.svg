@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 470" role="img" aria-labelledby="title desc">
+  <title id="title">Average diagnostic subscore profile across 16 direct reconstruction baselines</title>
+  <desc id="desc">Horizontal bar chart showing mean evidence, structure, mechanistic, and temporal subscores.</desc>
+  <defs>
+    <style>
+      .title { font: 700 30px Georgia, serif; fill: #172323; }
+      .subtitle { font: 500 15px sans-serif; fill: #536160; }
+      .bar-label { font: 700 18px sans-serif; fill: #253231; }
+      .bar-value { font: 800 18px monospace; fill: #253231; }
+      .bar-track { fill: #eaf1ef; }
+      .axis-note { font: 500 13px sans-serif; fill: #65716f; }
+      .rule { stroke: #d8e4e1; stroke-width: 1.2; }
+    </style>
+  </defs>
+  <rect width="900" height="470" fill="#ffffff"/>
+  <text x="58" y="56" class="title">Average diagnostic subscore profile</text>
+  <text x="58" y="86" class="subtitle">Mean scores across 16 direct reconstruction baselines.</text>
+  <line x1="220" y1="114" x2="760" y2="114" class="rule"/>
+  <text x="220" y="106" class="axis-note">0</text>
+  <text x="746" y="106" class="axis-note">100</text>
+  <text x="74" y="163" class="bar-label">Evidence</text><rect x="220" y="142" width="540" height="28" rx="14" class="bar-track"/><rect x="220" y="142" width="390.7" height="28" rx="14" fill="#2f6fb5"/><text x="626.7" y="163" class="bar-value">72.4</text><text x="74" y="235" class="bar-label">Structure</text><rect x="220" y="214" width="540" height="28" rx="14" class="bar-track"/><rect x="220" y="214" width="215.5" height="28" rx="14" fill="#12806f"/><text x="451.5" y="235" class="bar-value">39.9</text><text x="74" y="307" class="bar-label">Mechanistic</text><rect x="220" y="286" width="540" height="28" rx="14" class="bar-track"/><rect x="220" y="286" width="165.6" height="28" rx="14" fill="#c88519"/><text x="401.6" y="307" class="bar-value">30.7</text><text x="74" y="379" class="bar-label">Temporal</text><rect x="220" y="358" width="540" height="28" rx="14" class="bar-track"/><rect x="220" y="358" width="107.6" height="28" rx="14" fill="#8b5fb5"/><text x="343.6" y="379" class="bar-value">19.9</text>
+  <text x="58" y="430" class="axis-note">Evidence is measured separately from process organization; lower temporal and mechanistic scores explain much of the reconstruction bottleneck.</text>
+</svg>

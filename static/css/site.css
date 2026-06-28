@@ -1181,12 +1181,56 @@ figcaption {
   background: white;
 }
 
-.diagnostics-layout {
+.diagnostic-section-intro {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 1rem;
+  margin: 2.15rem 0 1rem;
+  padding: 0.9rem 1rem;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background:
+    linear-gradient(135deg, rgba(238, 248, 247, 0.76), rgba(255, 247, 229, 0.4)),
+    #fff;
+}
+
+.diagnostic-section-intro span {
+  color: var(--accent);
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  font-weight: 850;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.diagnostic-section-intro p {
+  max-width: 44rem;
+  margin: 0;
+  color: var(--ink-2);
+  font-size: 0.92rem;
+  line-height: 1.46;
+}
+
+.diagnostic-overview-grid {
   display: grid;
   grid-template-columns: minmax(0, 1.08fr) minmax(20rem, 0.92fr);
   gap: 1.15rem;
   align-items: start;
-  margin-top: 2rem;
+}
+
+.diagnostic-overview-side {
+  display: grid;
+  gap: 1.15rem;
+  align-content: start;
+}
+
+.diagnostic-grid-two {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.15rem;
+  align-items: start;
+  margin-top: 1.15rem;
 }
 
 .diagnostic-card {
@@ -1213,18 +1257,22 @@ figcaption {
   aspect-ratio: 16 / 8.4;
 }
 
-.diagnostic-frame-spread {
-  aspect-ratio: 2092 / 3043;
-  background:
-    linear-gradient(180deg, #ffffff, #fbfdfc);
-}
-
 .diagnostic-frame-compact {
   aspect-ratio: 16 / 8.8;
 }
 
-.diagnostic-frame-tall {
-  aspect-ratio: 1 / 1.08;
+.diagnostic-frame-balanced {
+  aspect-ratio: 16 / 11;
+}
+
+.diagnostic-frame-profile {
+  aspect-ratio: 900 / 470;
+}
+
+.diagnostic-frame-spread-wide {
+  aspect-ratio: 2092 / 3043;
+  background:
+    linear-gradient(180deg, #ffffff, #fbfdfc);
 }
 
 .diagnostic-image-frame img {
@@ -1233,14 +1281,6 @@ figcaption {
   border: 0;
   border-radius: 0;
   object-fit: contain;
-}
-
-.diagnostic-secondary {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 1.15rem;
-  align-content: start;
-  align-items: start;
 }
 
 .diagnostic-text-card {
@@ -1272,6 +1312,11 @@ figcaption {
   color: var(--ink-2);
   font-size: 0.9rem;
   line-height: 1.52;
+}
+
+.diagnostic-spread-card {
+  width: min(100%, 980px);
+  margin: 1.15rem auto 0;
 }
 
 .diagnostic-note {
@@ -1531,7 +1576,8 @@ tbody tr:hover td {
   }
 
   .figure-grid-three,
-  .diagnostic-secondary,
+  .diagnostic-overview-grid,
+  .diagnostic-grid-two,
   .background-primer,
   .background-usecase-switcher,
   .evaluation-framework,

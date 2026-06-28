@@ -2,12 +2,15 @@
 from __future__ import annotations
 
 import csv
+import json
 from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[1]
 SOURCE = ROOT.parent / "EventMycelium/results/direct_llm_16model/tables/evidence_vs_process_gap.csv"
 OUTPUT = ROOT / "assets/diagnostics/evidence-process-gap.svg"
+DIAGNOSTICS_SOURCE = ROOT / "data/direct_llm_16model_diagnostics.json"
+SCORE_PROFILE_OUTPUT = ROOT / "assets/diagnostics/score-profile-summary.svg"
 
 
 def read_rows() -> list[dict[str, str]]:
@@ -42,7 +45,7 @@ def label_for(system: str) -> str:
     return replacements.get(system, system)
 
 
-def main() -> None:
+def build_evidence_process_gap() -> None:
     rows = read_rows()
     points = []
     for row in rows:
@@ -142,6 +145,65 @@ def main() -> None:
 """
     OUTPUT.write_text(svg, encoding="utf-8")
     print(OUTPUT)
+
+
+def build_score_profile_summary() -> None:
+    payload = json.loads(DIAGNOSTICS_SOURCE.read_text(encoding="utf-8"))
+    models = payload["models"]
+    metrics = [
+        ("Evidence", "S_evidence", "#2f6fb5"),
+        ("Structure", "S_structure", "#12806f"),
+        ("Mechanistic", "S_mechanistic", "#c88519"),
+        ("Temporal", "S_temporal", "#8b5fb5"),
+    ]
+    means = []
+    for label, key, color_value in metrics:
+        value = sum(float(model[key]) for model in models) / len(models)
+        means.append((label, value, color_value))
+
+    max_width = 540
+    bars = []
+    for idx, (label, value, color_value) in enumerate(means):
+        y = 142 + idx * 72
+        width = value / 100 * max_width
+        bars.append(
+            f'<text x="74" y="{y + 21}" class="bar-label">{label}</text>'
+            f'<rect x="220" y="{y}" width="{max_width}" height="28" rx="14" class="bar-track"/>'
+            f'<rect x="220" y="{y}" width="{width:.1f}" height="28" rx="14" fill="{color_value}"/>'
+            f'<text x="{220 + width + 16:.1f}" y="{y + 21}" class="bar-value">{value:.1f}</text>'
+        )
+
+    svg = f"""<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 470" role="img" aria-labelledby="title desc">
+  <title id="title">Average diagnostic subscore profile across 16 direct reconstruction baselines</title>
+  <desc id="desc">Horizontal bar chart showing mean evidence, structure, mechanistic, and temporal subscores.</desc>
+  <defs>
+    <style>
+      .title {{ font: 700 30px Georgia, serif; fill: #172323; }}
+      .subtitle {{ font: 500 15px sans-serif; fill: #536160; }}
+      .bar-label {{ font: 700 18px sans-serif; fill: #253231; }}
+      .bar-value {{ font: 800 18px monospace; fill: #253231; }}
+      .bar-track {{ fill: #eaf1ef; }}
+      .axis-note {{ font: 500 13px sans-serif; fill: #65716f; }}
+      .rule {{ stroke: #d8e4e1; stroke-width: 1.2; }}
+    </style>
+  </defs>
+  <rect width="900" height="470" fill="#ffffff"/>
+  <text x="58" y="56" class="title">Average diagnostic subscore profile</text>
+  <text x="58" y="86" class="subtitle">Mean scores across 16 direct reconstruction baselines.</text>
+  <line x1="220" y1="114" x2="760" y2="114" class="rule"/>
+  <text x="220" y="106" class="axis-note">0</text>
+  <text x="746" y="106" class="axis-note">100</text>
+  {"".join(bars)}
+  <text x="58" y="430" class="axis-note">Evidence is measured separately from process organization; lower temporal and mechanistic scores explain much of the reconstruction bottleneck.</text>
+</svg>
+"""
+    SCORE_PROFILE_OUTPUT.write_text(svg, encoding="utf-8")
+    print(SCORE_PROFILE_OUTPUT)
+
+
+def main() -> None:
+    build_evidence_process_gap()
+    build_score_profile_summary()
 
 
 if __name__ == "__main__":

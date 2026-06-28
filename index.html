@@ -367,25 +367,40 @@
             </aside>
           </div>
 
-          <div class="diagnostics-layout">
-            <figure class="figure-block diagnostic-card diagnostic-lead">
+          <div class="diagnostic-section-intro">
+            <span>Diagnostic views</span>
+            <p>Aggregate charts are grouped by purpose: score profile first, failure and sensitivity checks second, instance-level spread last.</p>
+          </div>
+
+          <div class="diagnostic-overview-grid">
+            <figure class="figure-block diagnostic-card">
               <div class="diagnostic-image-frame diagnostic-frame-wide">
                 <img src="assets/diagnostics/evidence-process-gap.svg" alt="Scatter plot comparing evidence score and process organization score">
               </div>
-              <div class="diagnostic-image-frame diagnostic-frame-spread">
-                <img src="assets/diagnostics/quality-distribution-by-model.png" alt="Per-instance QualityScore distributions by model">
-              </div>
               <figcaption class="diagnostic-note">
-                <strong>Instance spread.</strong>
-                <span>Sorted per-instance curves show how much variation remains within each model across the 1,000 benchmark events.</span>
+                <strong>Evidence/process profile.</strong>
+                <span>Evidence score is plotted against process organization, defined as the mean of temporal and mechanistic subscores.</span>
               </figcaption>
             </figure>
-            <div class="diagnostic-secondary">
+            <div class="diagnostic-overview-side">
               <div class="diagnostic-card diagnostic-text-card">
                 <span>Diagnostic readout</span>
-                <strong>Evidence/process profile.</strong>
-                <p>Evidence score is plotted against process organization, defined as the mean of temporal and mechanistic subscores. The paired instance-spread panel shows how this aggregate pattern varies across events.</p>
+                <strong>Aggregate scores hide the bottleneck.</strong>
+                <p>The mean subscore profile separates source support from process reconstruction. Temporal order and action-result organization remain the weakest parts of direct reconstruction.</p>
               </div>
+              <figure class="figure-block diagnostic-card">
+                <div class="diagnostic-image-frame diagnostic-frame-profile">
+                  <img src="assets/diagnostics/score-profile-summary.svg" alt="Average diagnostic subscore profile across 16 direct reconstruction baselines">
+                </div>
+                <figcaption class="diagnostic-note">
+                  <strong>Subscore profile.</strong>
+                  <span>Mean diagnostic subscores across the 16 direct reconstruction baselines.</span>
+                </figcaption>
+              </figure>
+            </div>
+          </div>
+
+          <div class="diagnostic-grid-two">
               <figure class="figure-block diagnostic-card">
                 <div class="diagnostic-image-frame diagnostic-frame-compact">
                   <img src="assets/diagnostics/domain-quality-dotplot.png" alt="Domain quality dotplot">
@@ -405,7 +420,7 @@
                 </figcaption>
               </figure>
               <figure class="figure-block diagnostic-card">
-                <div class="diagnostic-image-frame diagnostic-frame-tall">
+                <div class="diagnostic-image-frame diagnostic-frame-balanced">
                   <img src="assets/diagnostics/valid-only-dumbbell.png" alt="Valid-only sensitivity diagnostic">
                 </div>
                 <figcaption class="diagnostic-note">
@@ -414,7 +429,7 @@
                 </figcaption>
               </figure>
               <figure class="figure-block diagnostic-card">
-                <div class="diagnostic-image-frame diagnostic-frame-tall">
+                <div class="diagnostic-image-frame diagnostic-frame-balanced">
                   <img src="assets/diagnostics/token-quality-scatter.png" alt="Token length versus reconstruction quality companion diagnostic">
                 </div>
                 <figcaption class="diagnostic-note">
@@ -422,8 +437,17 @@
                   <span>Longer outputs are not a substitute for reconstructing event-process structure.</span>
                 </figcaption>
               </figure>
-            </div>
           </div>
+
+          <figure class="figure-block diagnostic-card diagnostic-spread-card">
+            <div class="diagnostic-image-frame diagnostic-frame-spread-wide">
+              <img src="assets/diagnostics/quality-distribution-by-model.png" alt="Per-instance QualityScore distributions by model">
+            </div>
+            <figcaption class="diagnostic-note">
+              <strong>Instance spread.</strong>
+              <span>Sorted per-instance curves show how much variation remains within each model across the 1,000 benchmark events.</span>
+            </figcaption>
+          </figure>
 
           <div class="full-table-block">
             <div class="subsection-heading">
