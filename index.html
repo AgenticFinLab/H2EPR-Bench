@@ -21,6 +21,7 @@
       <a href="#explorer">Explorer</a>
       <a href="#events">Events</a>
       <a href="#results">Results</a>
+      <a href="#findings">Findings</a>
       <a href="#access">Access</a>
     </nav>
 
@@ -41,7 +42,7 @@
           <h1>H²EPR-<wbr>Bench</h1>
           <p class="subtitle">An evidence-traceable benchmark for event-process reconstruction.</p>
           <p class="hero-summary">
-            H²EPR-Bench evaluates whether models can reconstruct hierarchical heterogeneous Event-Process Graphs from fixed evidence contexts.
+            H²EPR-Bench evaluates real-world event understanding across summarization, event-process reconstruction, prediction, and simulation from fixed evidence contexts.
           </p>
 
           <div class="publication-links" aria-label="Primary links">
@@ -61,9 +62,13 @@
             <div class="spec-line-note"><strong>Ongoing</strong><span>expansion and follow-up studies</span></div>
           </div>
 
+          <figure class="hero-overview-figure" aria-label="H2EPR-Bench overview">
+            <img src="assets/figureFromImage2/总览图.png" alt="Overview of H2EPR-Bench supporting reconstruction evaluation, event-process analysis, prediction, simulation, and longer-term world-model construction">
+          </figure>
+
           <div class="teaser-banner">
             <p>
-              The benchmark targets structured process understanding: stage progression, actor actions, temporal order, action-result logic, and evidence traceability.
+              The release connects real-world evidence, structured event-process data, gated Gold references, diagnostic LLM baselines, and public exploration assets into one benchmark for event analysis, prediction, and simulation.
             </p>
           </div>
         </div>
@@ -473,6 +478,48 @@
                 </tbody>
               </table>
             </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="findings">
+        <div class="container reading-wide">
+          <h2 class="section-heading">Key Findings</h2>
+          <p class="section-lead">
+            H²EPR-Bench is designed to reveal where real-world event understanding breaks, and to provide reusable structure for event prediction and simulation studies.
+          </p>
+
+          <div class="findings-grid" aria-label="H2EPR-Bench key findings">
+            <article class="finding-card">
+              <span>Finding 01</span>
+              <h3>Valid Graphs Are Not Enough</h3>
+              <p>Many systems produce schema-valid outputs, but validity does not imply successful event-process reconstruction. The main gap lies in temporal order, process structure, and action-result logic.</p>
+            </article>
+            <article class="finding-card">
+              <span>Finding 02</span>
+              <h3>Evidence Is Easier Than Process</h3>
+              <p>Models preserve evidence-bearing content more reliably than they organize that content into coherent event processes, separating source grounding from process understanding.</p>
+            </article>
+            <article class="finding-card">
+              <span>Finding 03</span>
+              <h3>Failure Modes Are Systematic</h3>
+              <p>The same bottlenecks recur across model families: weak temporal sequencing, missing event-type operations, and shallow links between actions and outcomes.</p>
+            </article>
+            <article class="finding-card">
+              <span>Finding 04</span>
+              <h3>Structured Targets Matter</h3>
+              <p>Summaries and timelines are useful, but they do not fully measure how models understand evolving events. H²EPR-Bench makes stages, actors, relations, evidence, and process logic scoreable.</p>
+            </article>
+            <article class="finding-card finding-card-wide">
+              <span>Finding 05</span>
+              <h3>A Substrate for Prediction and Simulation</h3>
+              <p>Structured event-process data supports continuation prediction, agent-system evaluation, event-driven simulation, and future work on linked market and social-process models.</p>
+            </article>
+          </div>
+
+          <div class="findings-callout">
+            <strong>Current release focus:</strong>
+            <span>Core-1000 centers on fixed-evidence event-process reconstruction; prediction, simulation, and linked world-model studies are natural extensions built on the same structured event substrate.</span>
           </div>
         </div>
       </section>

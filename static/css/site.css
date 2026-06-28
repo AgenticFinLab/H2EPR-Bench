@@ -332,6 +332,24 @@ p {
   line-height: 1.25;
 }
 
+.hero-overview-figure {
+  width: min(100%, 980px);
+  margin: 1.45rem auto 0;
+  padding: 0.65rem;
+  border: 1px solid rgba(18, 106, 112, 0.18);
+  border-radius: 12px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.94), rgba(247, 250, 249, 0.9));
+  box-shadow: var(--shadow-soft);
+}
+
+.hero-overview-figure img {
+  width: 100%;
+  border: 0;
+  border-radius: 8px;
+  background: #fff;
+}
+
 .teaser-banner {
   max-width: 880px;
   margin: 1.6rem auto 0;
@@ -1373,6 +1391,89 @@ figcaption {
   margin-top: 2.2rem;
 }
 
+.findings-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.86rem;
+  margin-top: 1.6rem;
+}
+
+.finding-card {
+  min-height: 13rem;
+  padding: 1rem 1rem 1.05rem;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(248, 252, 251, 0.94));
+  box-shadow: var(--shadow-card);
+}
+
+.finding-card:nth-child(2n) {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(255, 247, 229, 0.62));
+}
+
+.finding-card span {
+  display: block;
+  margin-bottom: 0.62rem;
+  color: var(--accent);
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  font-weight: 850;
+  text-transform: uppercase;
+}
+
+.finding-card h3 {
+  margin: 0 0 0.55rem;
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-size: 1.18rem;
+  line-height: 1.12;
+}
+
+.finding-card p {
+  margin: 0;
+  color: var(--ink-2);
+  font-size: 0.92rem;
+  line-height: 1.48;
+}
+
+.finding-card-wide {
+  grid-column: span 4;
+  display: grid;
+  grid-template-columns: 9rem minmax(0, 0.48fr) minmax(0, 1fr);
+  gap: 1rem;
+  align-items: center;
+  min-height: 0;
+}
+
+.finding-card-wide span {
+  margin: 0;
+}
+
+.finding-card-wide h3,
+.finding-card-wide p {
+  margin: 0;
+}
+
+.findings-callout {
+  display: flex;
+  gap: 0.55rem;
+  align-items: baseline;
+  margin-top: 1rem;
+  padding: 0.95rem 1rem;
+  border-left: 4px solid var(--accent);
+  background:
+    linear-gradient(90deg, var(--teal-panel), rgba(255, 255, 255, 0.92));
+  color: var(--ink-2);
+  box-shadow: var(--shadow-card);
+}
+
+.findings-callout strong {
+  color: var(--accent-2);
+  white-space: nowrap;
+}
+
 .loading-note {
   margin: 0;
   color: var(--muted);
@@ -1603,6 +1704,8 @@ tbody tr:hover td {
   .figure-grid-three,
   .diagnostic-overview-grid,
   .diagnostic-grid-two,
+  .findings-grid,
+  .finding-card-wide,
   .background-primer,
   .background-usecase-switcher,
   .evaluation-framework,
@@ -1622,6 +1725,19 @@ tbody tr:hover td {
 
   .results-thesis {
     display: block;
+  }
+
+  .finding-card-wide {
+    min-height: 13rem;
+  }
+
+  .findings-callout {
+    display: block;
+  }
+
+  .findings-callout span {
+    display: block;
+    margin-top: 0.25rem;
   }
 
   .results-thesis span {
