@@ -281,9 +281,9 @@ p {
 
 .spec-line {
   display: grid;
-  grid-template-columns: repeat(5, minmax(7.5rem, 1fr));
+  grid-template-columns: repeat(6, minmax(0, 1fr));
   gap: 0.7rem;
-  max-width: 900px;
+  max-width: 980px;
   margin: 2rem auto 0;
   padding: 1rem;
   border: 1px solid var(--border);
@@ -308,6 +308,21 @@ p {
   display: block;
   color: var(--muted);
   font-size: 0.8rem;
+}
+
+.spec-line-note strong {
+  color: var(--muted);
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  font-weight: 800;
+  line-height: 1.25;
+}
+
+.spec-line-note span {
+  max-width: 8.4rem;
+  margin: 0.15rem auto 0;
+  font-size: 0.75rem;
+  line-height: 1.25;
 }
 
 .teaser-banner {
@@ -354,6 +369,206 @@ p {
   max-width: 860px;
   color: var(--muted);
   font-size: 1.02rem;
+}
+
+.background-primer {
+  display: grid;
+  grid-template-columns: minmax(0, 1.8fr) minmax(16rem, 0.85fr);
+  gap: 1.2rem;
+  align-items: center;
+  margin: 1.8rem 0 2rem;
+}
+
+.background-comparison-figure {
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.background-comparison-figure img {
+  display: block;
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: var(--shadow-soft);
+}
+
+.background-comparison-figure {
+  max-width: 820px;
+}
+
+.background-primer-copy {
+  padding: 1.15rem 1.2rem;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--surface-2);
+}
+
+.background-primer-copy span {
+  display: block;
+  margin-bottom: 0.55rem;
+  color: var(--accent);
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.background-primer-copy p {
+  margin-bottom: 0.85rem;
+  color: var(--ink-2);
+  font-size: 0.95rem;
+  line-height: 1.58;
+}
+
+.background-primer-copy p:last-child {
+  margin-bottom: 0;
+}
+
+.background-usecase-switcher {
+  display: grid;
+  grid-template-columns: minmax(0, 1.42fr) minmax(18rem, 0.78fr);
+  gap: 1.1rem;
+  align-items: stretch;
+  margin-top: 2rem;
+  padding: 0.8rem;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: var(--shadow-soft);
+}
+
+.usecase-main-figure {
+  margin: 0;
+}
+
+.usecase-main-figure img {
+  width: 100%;
+  height: 100%;
+  min-height: 25rem;
+  border: 0;
+  border-radius: 8px;
+  background: #fff;
+  object-fit: contain;
+}
+
+.usecase-copy-panel {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 1.3rem;
+  border-left: 1px solid var(--border);
+}
+
+.usecase-copy-panel span {
+  color: var(--accent);
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.usecase-copy-panel h3 {
+  margin-top: 0.35rem;
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-size: clamp(1.35rem, 2.4vw, 1.9rem);
+  line-height: 1.12;
+}
+
+.usecase-copy-panel p {
+  margin-top: 0.7rem;
+  color: var(--ink-2);
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.usecase-button-row {
+  display: grid;
+  gap: 0.48rem;
+  margin-top: 1.25rem;
+}
+
+.usecase-switch {
+  min-height: 2.35rem;
+  padding: 0.54rem 0.72rem;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  color: var(--ink-2);
+  background: var(--surface);
+  font: inherit;
+  font-size: 0.88rem;
+  font-weight: 750;
+  text-align: left;
+  cursor: pointer;
+  transition: background 0.16s, border-color 0.16s, color 0.16s, transform 0.16s;
+}
+
+.usecase-switch:hover,
+.usecase-switch:focus-visible,
+.usecase-switch.is-active {
+  border-color: var(--accent);
+  color: var(--accent-2);
+  background: var(--accent-wash);
+  outline: none;
+}
+
+.usecase-switch:hover,
+.usecase-switch:focus-visible {
+  transform: translateX(2px);
+}
+
+.vision-flow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.48rem;
+  margin: 2.25rem auto 1.25rem;
+  color: var(--muted);
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.vision-flow span,
+.vision-flow strong {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2rem;
+  padding: 0.34rem 0.72rem;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: #fff;
+  line-height: 1;
+}
+
+.vision-flow b {
+  color: var(--accent);
+  font-family: var(--font-mono);
+  font-weight: 800;
+}
+
+.vision-flow strong {
+  border-color: rgba(22, 107, 112, 0.34);
+  color: var(--accent-2);
+  background: var(--accent-wash);
+}
+
+.world-model-figure {
+  max-width: 1060px;
+  margin: 0 auto;
+  padding: 0.7rem;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: var(--shadow-soft);
+}
+
+.world-model-figure img {
+  width: 100%;
+  border: 0;
+  border-radius: 8px;
+  background: #fff;
 }
 
 .contrib-list {
@@ -405,7 +620,7 @@ figcaption {
   align-items: center;
   justify-content: space-between;
   gap: 1.5rem;
-  margin: 1.5rem 0;
+  margin: 1rem 0 0;
   padding: 1.1rem 1.25rem;
   border: 1px solid var(--border);
   border-radius: 8px;
@@ -420,6 +635,25 @@ figcaption {
 .explorer-callout span {
   color: var(--muted);
   font-size: 0.92rem;
+}
+
+.explorer-showcase {
+  display: grid;
+  gap: 1rem;
+  margin-top: 1.6rem;
+}
+
+.explorer-screenshot {
+  padding: 0.75rem;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: white;
+  box-shadow: var(--shadow-soft);
+}
+
+.explorer-screenshot img {
+  border: 0;
+  border-radius: 8px;
 }
 
 .figure-grid {
@@ -720,8 +954,23 @@ tbody tr:hover td {
   }
 
   .figure-grid-three,
-  .diagnostic-secondary {
+  .diagnostic-secondary,
+  .background-primer,
+  .background-usecase-switcher {
     grid-template-columns: 1fr;
+  }
+
+  .usecase-copy-panel {
+    border-top: 1px solid var(--border);
+    border-left: 0;
+  }
+
+  .usecase-button-row {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .usecase-switch {
+    text-align: center;
   }
 
   .gantt-thumb-grid {
@@ -755,6 +1004,23 @@ tbody tr:hover td {
 
   .section {
     padding: 3rem 0;
+  }
+
+  .vision-flow {
+    justify-content: flex-start;
+  }
+
+  .background-primer-copy,
+  .usecase-copy-panel {
+    padding: 1rem;
+  }
+
+  .usecase-main-figure img {
+    min-height: 14rem;
+  }
+
+  .usecase-button-row {
+    grid-template-columns: 1fr;
   }
 
   .spec-line {

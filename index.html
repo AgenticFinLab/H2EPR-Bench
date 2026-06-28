@@ -17,8 +17,8 @@
     <nav class="section-nav" aria-label="Page sections">
       <a href="#background">Background</a>
       <a href="#construction">Construction</a>
-      <a href="#explorer">Explorer</a>
       <a href="#data">Data</a>
+      <a href="#explorer">Explorer</a>
       <a href="#events">Events</a>
       <a href="#results">Results</a>
       <a href="#access">Access</a>
@@ -59,6 +59,7 @@
             <div><strong>26</strong><span>event categories</span></div>
             <div><strong>3,038</strong><span>stage rows</span></div>
             <div><strong>16</strong><span>direct LLM baselines</span></div>
+            <div class="spec-line-note"><strong>Ongoing</strong><span>expansion and follow-up studies</span></div>
           </div>
 
           <div class="teaser-banner">
@@ -70,14 +71,67 @@
       </section>
 
       <section class="section" id="background">
-        <div class="container reading">
+        <div class="container reading-wide">
           <h2 class="section-heading">Background &amp; Motivation</h2>
           <p>
-            Real-world events rarely unfold as single summaries or flat timelines. They involve staged development, participants entering at different times, actions that trigger responses, and evidence that supports different components of the process.
+            Real-world events are not static text objects. They unfold through stages, actors, actions, dependencies, outcomes, and evidence distributed across sources. Evaluating whether a model understands such events therefore requires more than summaries, timelines, or isolated extraction targets.
+          </p>
+
+          <div class="background-primer">
+            <figure class="figure-block background-comparison-figure">
+              <img src="assets/h2epr-overview.png" alt="Comparison between narrative summaries, sequential timelines, and event-process graphs">
+              <figcaption>From simplified event outputs to structured event-process graph reconstruction.</figcaption>
+            </figure>
+            <div class="background-primer-copy">
+              <span>Why process graphs?</span>
+              <p>
+                Event-process graphs keep stage order, actor interactions, operations, relations, and evidence links visible in the same representation.
+              </p>
+              <p>
+                This turns event understanding into a structured reconstruction problem rather than a single text-generation target.
+              </p>
+            </div>
+          </div>
+
+          <p>
+            H²EPR-Bench treats events as structured process objects. Starting from fixed evidence contexts, each event is represented as a hierarchical heterogeneous Event-Process Graph that makes stage progression, actor interactions, temporal dependencies, action-result logic, and evidence links explicit.
           </p>
           <p>
-            H²EPR-Bench focuses on fixed-evidence event-process graph reconstruction: given the same evidence context, a model must recover what happened, how the process evolved, and how event components are supported.
+            This representation makes the benchmark useful beyond leaderboard scoring. It can evaluate event-process reconstruction, support analysis of recurring event patterns, and provide structured event substrates for prediction and simulation settings, such as masking future stages, continuing partially observed events, or connecting multiple events into larger market or social-process scenarios.
           </p>
+
+          <div class="background-usecase-switcher" aria-label="H²EPR-Bench downstream use-case switcher">
+            <figure class="usecase-main-figure">
+              <img id="usecase-main-image" src="assets/usecases/reconstruction.png" alt="Reconstruction evaluation with evidence, graph recovery, and diagnostic scoring">
+            </figure>
+            <aside class="usecase-copy-panel">
+              <span id="usecase-kicker">Use case 01</span>
+              <h3 id="usecase-title">Reconstruction Evaluation</h3>
+              <p id="usecase-copy">
+                Evaluate whether a system can recover the staged event process, actor actions, temporal order, action-result logic, and evidence links from fixed evidence.
+              </p>
+              <div class="usecase-button-row" role="list" aria-label="Switch use-case panel">
+                <button class="usecase-switch is-active" type="button" role="listitem" data-src="assets/usecases/reconstruction.png" data-alt="Reconstruction evaluation with evidence, graph recovery, and diagnostic scoring" data-kicker="Use case 01" data-title="Reconstruction Evaluation" data-copy="Evaluate whether a system can recover the staged event process, actor actions, temporal order, action-result logic, and evidence links from fixed evidence.">Reconstruction</button>
+                <button class="usecase-switch" type="button" role="listitem" data-src="assets/usecases/analysis.png" data-alt="Event-process analysis across domains, categories, and graph patterns" data-kicker="Use case 02" data-title="Event-Process Analysis" data-copy="Compare structured event patterns across domains, categories, and recurring market or social processes without flattening events into one narrative paragraph.">Analysis</button>
+                <button class="usecase-switch" type="button" role="listitem" data-src="assets/usecases/prediction-simulation.png" data-alt="Prediction and simulation scenarios from partially observed event-process graphs" data-kicker="Use case 03" data-title="Prediction and Simulation" data-copy="Use partially observed or linked event graphs to define controlled continuation, prediction, and simulation scenarios.">Prediction / Simulation</button>
+              </div>
+            </aside>
+          </div>
+
+          <div class="vision-flow" aria-label="From event graphs to world models">
+            <span>Event graphs</span>
+            <b aria-hidden="true">→</b>
+            <span>Linked processes</span>
+            <b aria-hidden="true">→</b>
+            <span>Scenario simulation</span>
+            <b aria-hidden="true">→</b>
+            <strong>Societal world model</strong>
+          </div>
+
+          <figure class="world-model-figure">
+            <img src="assets/usecases/societal-world-model.png" alt="Long-term vision of linked event-process graphs supporting societal world models">
+            <figcaption>Long-term direction: linking structured events into larger market and social-process world models.</figcaption>
+          </figure>
         </div>
       </section>
 
@@ -115,26 +169,11 @@
             </div>
           </div>
 
-          <figure class="figure-block figure-large">
-            <img src="assets/h2epr-overview.png" alt="H²EPR-Bench overview: fixed evidence, event-process graph reconstruction, and benchmark evaluation">
-            <figcaption>Overview of fixed-evidence event-process graph reconstruction.</figcaption>
+          <figure class="figure-block figure-large construction-boundary-figure">
+            <img src="assets/release-boundary.png" alt="Public artifacts and gated Gold release boundary">
+            <figcaption>Public artifacts and gated Gold references are separated by release role.</figcaption>
           </figure>
-        </div>
-      </section>
 
-      <section class="section section-tinted" id="explorer">
-        <div class="container reading">
-          <h2 class="section-heading">Interactive Explorer</h2>
-          <p>
-            The Explorer provides the public browsing layer for event metadata, stage tables, timeline views, and sanitized graph artifacts.
-          </p>
-          <div class="explorer-callout">
-            <div>
-              <strong>Browse events, stages, and public graph summaries.</strong>
-              <span>Use the Explorer for event-level inspection instead of navigating raw files.</span>
-            </div>
-            <a class="link-chip dark" href="https://huggingface.co/spaces/AgenticFinLab/H2EPR-Bench-Explorer">Open Explorer</a>
-          </div>
         </div>
       </section>
 
@@ -161,6 +200,28 @@
               <img src="assets/charts/stage-count-distribution.png" alt="Stage-count distribution in Core-1000">
               <figcaption>Stage-count distribution.</figcaption>
             </figure>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-tinted" id="explorer">
+        <div class="container reading-wide">
+          <h2 class="section-heading">Interactive Explorer</h2>
+          <p class="section-lead">
+            The Explorer is the browsing layer for event metadata, stage tables, timeline views, and public graph summaries.
+          </p>
+          <div class="explorer-showcase">
+            <figure class="explorer-screenshot figure-block">
+              <img src="assets/screenshots/explorer.png" alt="Screenshot of the H2EPR-Bench interactive explorer">
+              <figcaption>Interactive event-process graph browser.</figcaption>
+            </figure>
+            <div class="explorer-callout">
+              <div>
+                <strong>Inspect events without navigating raw files.</strong>
+                <span>Filter the catalog, open an event profile, inspect stage rows, view timelines, and jump to public artifacts.</span>
+              </div>
+              <a class="link-chip dark" href="https://huggingface.co/spaces/AgenticFinLab/H2EPR-Bench-Explorer">Open Explorer</a>
+            </div>
           </div>
         </div>
       </section>
@@ -286,11 +347,6 @@
               <strong>Interactive browsing for event-level inspection.</strong>
             </a>
           </div>
-
-          <figure class="figure-block figure-large">
-            <img src="assets/release-boundary.png" alt="Public artifacts and gated Gold release boundary">
-            <figcaption>Public artifacts and gated Gold references are separated by release role.</figcaption>
-          </figure>
         </div>
       </section>
 

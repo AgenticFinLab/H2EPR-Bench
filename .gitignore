@@ -8,3 +8,7 @@ __pycache__/
 .venv/
 node_modules/
 dist/
+
+# Local visual drafts; published assets should be moved into assets/usecases/ or assets/screenshots/.
+assets/figureFromImage2/
+assets/截图/
