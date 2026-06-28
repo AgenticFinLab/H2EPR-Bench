@@ -28,6 +28,8 @@ Hero teaser:
 
 > H²EPR-Bench maps real-world events into hierarchical heterogeneous Event-Process Graphs for reconstruction, analysis, prediction, and simulation.
 
+Presentation note: the website renders this as two centered lines. The first line ends with `for`; the second line isolates `reconstruction, analysis, prediction, and simulation.` to match the overview figure and reduce line-length pressure.
+
 Findings section title:
 
 > Key Findings
