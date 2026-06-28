@@ -289,13 +289,14 @@ p {
   display: grid;
   grid-template-columns: repeat(6, minmax(0, 1fr));
   gap: 0.7rem;
-  max-width: 1080px;
-  margin: 2rem auto 0;
+  width: min(100%, 1040px);
+  margin: 1.85rem auto 0;
   padding: 1rem;
   border: 1px solid var(--border);
-  border-radius: 8px;
+  border-radius: 12px;
   background:
     linear-gradient(90deg, rgba(234, 246, 243, 0.76), rgba(255, 247, 229, 0.54));
+  box-shadow: 0 8px 22px rgba(16, 24, 32, 0.035);
 }
 
 .spec-line div {
@@ -333,9 +334,9 @@ p {
 }
 
 .hero-overview-figure {
-  width: min(100%, 980px);
-  margin: 1.45rem auto 0;
-  padding: 0.65rem;
+  width: min(100%, 1040px);
+  margin: 1.1rem auto 0;
+  padding: 0.58rem;
   border: 1px solid rgba(18, 106, 112, 0.18);
   border-radius: 12px;
   background:
@@ -351,18 +352,24 @@ p {
 }
 
 .teaser-banner {
-  max-width: 880px;
-  margin: 1.6rem auto 0;
-  padding: 1rem 1.25rem;
-  border-left: 3px solid var(--accent);
-  background: var(--accent-wash);
-  text-align: left;
+  width: min(100%, 1040px);
+  margin: 1.05rem auto 0;
+  padding: 0.9rem 1.15rem;
+  border: 1px solid rgba(18, 106, 112, 0.18);
+  border-top: 3px solid var(--accent);
+  border-radius: 12px;
+  background:
+    linear-gradient(90deg, rgba(234, 246, 243, 0.78), rgba(255, 247, 229, 0.5));
+  text-align: center;
+  box-shadow: 0 8px 22px rgba(16, 24, 32, 0.035);
 }
 
 .teaser-banner p {
   margin: 0;
   color: var(--ink-2);
-  font-weight: 600;
+  font-size: 1.01rem;
+  font-weight: 700;
+  line-height: 1.48;
 }
 
 .section {

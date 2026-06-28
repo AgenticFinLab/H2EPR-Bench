@@ -26,7 +26,7 @@ Hero summary:
 
 Hero teaser:
 
-> Built from real-world events, H²EPR-Bench packages evidence contexts, structured process data, gated Gold references, baseline diagnostics, and an interactive explorer for event analysis, prediction, and simulation.
+> H²EPR-Bench maps real-world events into hierarchical heterogeneous Event-Process Graphs for reconstruction, analysis, prediction, and simulation.
 
 Findings section title:
 
@@ -83,7 +83,7 @@ Problem: This is technically correct, but it reads like a metric description rat
 
 Adopted replacement:
 
-> Built from real-world events, H²EPR-Bench packages evidence contexts, structured process data, gated Gold references, baseline diagnostics, and an interactive explorer for event analysis, prediction, and simulation.
+> H²EPR-Bench maps real-world events into hierarchical heterogeneous Event-Process Graphs for reconstruction, analysis, prediction, and simulation.
 
 Alternative assertive candidate:
 
@@ -95,7 +95,7 @@ More application-facing candidate:
 
 Preferred adoption note:
 
-The adopted line is shorter than the earlier "release connects..." version and reads more like a public benchmark page. It keeps the concrete release assets while avoiding an overpacked sentence.
+The adopted line follows the overview figure directly: real-world events are represented as hierarchical heterogeneous Event-Process Graphs and used for reconstruction, analysis, prediction, and simulation. It avoids listing implementation assets in the hero.
 
 ## Contribution Blocks
 
@@ -209,7 +209,7 @@ If adopting in the next website pass, use:
 
 2. Replace the teaser line with:
 
-> Built from real-world events, H²EPR-Bench packages evidence contexts, structured process data, gated Gold references, baseline diagnostics, and an interactive explorer for event analysis, prediction, and simulation.
+> H²EPR-Bench maps real-world events into hierarchical heterogeneous Event-Process Graphs for reconstruction, analysis, prediction, and simulation.
 
 3. Add a `Key Findings` section between `Results & Diagnostics` and `Access`.
 

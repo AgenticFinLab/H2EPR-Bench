@@ -48,7 +48,7 @@ REQUIRED_TEXT = [
     "H²EPR-Bench",
     "hero-overview-figure",
     "H²EPR-Bench evaluates real-world event understanding across summarization, event-process reconstruction, prediction, and simulation from fixed evidence contexts.",
-    "Built from real-world events, H²EPR-Bench packages evidence contexts, structured process data, gated Gold references, baseline diagnostics, and an interactive explorer",
+    "H²EPR-Bench maps real-world events into hierarchical heterogeneous Event-Process Graphs for reconstruction, analysis, prediction, and simulation.",
     "Official scores are computed against gated Gold references.",
     "expansion and follow-up studies",
     "Real-world events are not static text objects.",
