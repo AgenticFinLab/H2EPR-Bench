@@ -369,17 +369,17 @@
 
           <div class="diagnostic-section-intro">
             <span>Diagnostic views</span>
-            <p>Aggregate charts are grouped by purpose: score profile first, failure and sensitivity checks second, instance-level spread last.</p>
+            <p>Instance-level spread anchors the diagnostic panel; aggregate readouts and companion checks sit beside and below it.</p>
           </div>
 
           <div class="diagnostic-overview-grid">
-            <figure class="figure-block diagnostic-card">
-              <div class="diagnostic-image-frame diagnostic-frame-wide">
-                <img src="assets/diagnostics/evidence-process-gap.svg" alt="Scatter plot comparing evidence score and process organization score">
+            <figure class="figure-block diagnostic-card diagnostic-instance-card">
+              <div class="diagnostic-image-frame diagnostic-frame-spread-wide">
+                <img src="assets/diagnostics/quality-distribution-by-model.png" alt="Per-instance QualityScore distributions by model">
               </div>
               <figcaption class="diagnostic-note">
-                <strong>Evidence/process profile.</strong>
-                <span>Evidence score is plotted against process organization, defined as the mean of temporal and mechanistic subscores.</span>
+                <strong>Instance spread.</strong>
+                <span>Sorted per-instance curves show how much variation remains within each model across the 1,000 benchmark events.</span>
               </figcaption>
             </figure>
             <div class="diagnostic-overview-side">
@@ -388,6 +388,15 @@
                 <strong>Aggregate scores hide the bottleneck.</strong>
                 <p>The mean subscore profile separates source support from process reconstruction. Temporal order and action-result organization remain the weakest parts of direct reconstruction.</p>
               </div>
+              <figure class="figure-block diagnostic-card">
+                <div class="diagnostic-image-frame diagnostic-frame-wide">
+                  <img src="assets/diagnostics/evidence-process-gap.svg" alt="Scatter plot comparing evidence score and process organization score">
+                </div>
+                <figcaption class="diagnostic-note">
+                  <strong>Evidence/process profile.</strong>
+                  <span>Evidence score is plotted against process organization, defined as the mean of temporal and mechanistic subscores.</span>
+                </figcaption>
+              </figure>
               <figure class="figure-block diagnostic-card">
                 <div class="diagnostic-image-frame diagnostic-frame-profile">
                   <img src="assets/diagnostics/score-profile-summary.svg" alt="Average diagnostic subscore profile across 16 direct reconstruction baselines">
@@ -400,10 +409,10 @@
             </div>
           </div>
 
-          <div class="diagnostic-grid-two">
+          <div class="diagnostic-grid-three">
               <figure class="figure-block diagnostic-card">
-                <div class="diagnostic-image-frame diagnostic-frame-compact">
-                  <img src="assets/diagnostics/domain-quality-dotplot.png" alt="Domain quality dotplot">
+                <div class="diagnostic-image-frame diagnostic-frame-row">
+                  <img class="diagnostic-img-zoom diagnostic-img-zoom-domain" src="assets/diagnostics/domain-quality-dotplot.png" alt="Domain quality dotplot">
                 </div>
                 <figcaption class="diagnostic-note">
                   <strong>Domain variation.</strong>
@@ -411,8 +420,8 @@
                 </figcaption>
               </figure>
               <figure class="figure-block diagnostic-card">
-                <div class="diagnostic-image-frame diagnostic-frame-compact">
-                  <img src="assets/diagnostics/failure-mode-heatmap.png" alt="Failure-mode heatmap">
+                <div class="diagnostic-image-frame diagnostic-frame-row">
+                  <img class="diagnostic-img-zoom diagnostic-img-zoom-heatmap" src="assets/diagnostics/failure-mode-heatmap.png" alt="Failure-mode heatmap">
                 </div>
                 <figcaption class="diagnostic-note">
                   <strong>Failure modes.</strong>
@@ -420,34 +429,15 @@
                 </figcaption>
               </figure>
               <figure class="figure-block diagnostic-card">
-                <div class="diagnostic-image-frame diagnostic-frame-balanced">
-                  <img src="assets/diagnostics/valid-only-dumbbell.png" alt="Valid-only sensitivity diagnostic">
+                <div class="diagnostic-image-frame diagnostic-frame-row">
+                  <img class="diagnostic-img-zoom diagnostic-img-zoom-dumbbell" src="assets/diagnostics/valid-only-dumbbell.png" alt="Valid-only sensitivity diagnostic">
                 </div>
                 <figcaption class="diagnostic-note">
                   <strong>Valid-only sensitivity.</strong>
                   <span>Filtering to schema-valid outputs improves several systems but does not close the reconstruction gap.</span>
                 </figcaption>
               </figure>
-              <figure class="figure-block diagnostic-card">
-                <div class="diagnostic-image-frame diagnostic-frame-balanced">
-                  <img src="assets/diagnostics/token-quality-scatter.png" alt="Token length versus reconstruction quality companion diagnostic">
-                </div>
-                <figcaption class="diagnostic-note">
-                  <strong>Token use.</strong>
-                  <span>Longer outputs are not a substitute for reconstructing event-process structure.</span>
-                </figcaption>
-              </figure>
           </div>
-
-          <figure class="figure-block diagnostic-card diagnostic-spread-card">
-            <div class="diagnostic-image-frame diagnostic-frame-spread-wide">
-              <img src="assets/diagnostics/quality-distribution-by-model.png" alt="Per-instance QualityScore distributions by model">
-            </div>
-            <figcaption class="diagnostic-note">
-              <strong>Instance spread.</strong>
-              <span>Sorted per-instance curves show how much variation remains within each model across the 1,000 benchmark events.</span>
-            </figcaption>
-          </figure>
 
           <div class="full-table-block">
             <div class="subsection-heading">

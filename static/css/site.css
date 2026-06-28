@@ -1214,20 +1214,20 @@ figcaption {
 
 .diagnostic-overview-grid {
   display: grid;
-  grid-template-columns: minmax(0, 1.08fr) minmax(20rem, 0.92fr);
+  grid-template-columns: minmax(0, 1.04fr) minmax(22rem, 0.96fr);
   gap: 1.15rem;
   align-items: start;
 }
 
 .diagnostic-overview-side {
   display: grid;
-  gap: 1.15rem;
+  gap: 0.95rem;
   align-content: start;
 }
 
-.diagnostic-grid-two {
+.diagnostic-grid-three {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 1.15rem;
   align-items: start;
   margin-top: 1.15rem;
@@ -1265,6 +1265,10 @@ figcaption {
   aspect-ratio: 16 / 11;
 }
 
+.diagnostic-frame-row {
+  aspect-ratio: 16 / 11.3;
+}
+
 .diagnostic-frame-profile {
   aspect-ratio: 900 / 470;
 }
@@ -1281,6 +1285,22 @@ figcaption {
   border: 0;
   border-radius: 0;
   object-fit: contain;
+}
+
+.diagnostic-img-zoom {
+  transform-origin: center;
+}
+
+.diagnostic-img-zoom-domain {
+  transform: scale(1.15);
+}
+
+.diagnostic-img-zoom-heatmap {
+  transform: scale(1.05);
+}
+
+.diagnostic-img-zoom-dumbbell {
+  transform: scale(1.13);
 }
 
 .diagnostic-text-card {
@@ -1314,9 +1334,8 @@ figcaption {
   line-height: 1.52;
 }
 
-.diagnostic-spread-card {
-  width: min(100%, 980px);
-  margin: 1.15rem auto 0;
+.diagnostic-instance-card {
+  padding: 0.86rem;
 }
 
 .diagnostic-note {
@@ -1577,7 +1596,7 @@ tbody tr:hover td {
 
   .figure-grid-three,
   .diagnostic-overview-grid,
-  .diagnostic-grid-two,
+  .diagnostic-grid-three,
   .background-primer,
   .background-usecase-switcher,
   .evaluation-framework,
