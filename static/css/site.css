@@ -351,9 +351,25 @@ p {
   background: #fff;
 }
 
+.hero-findings {
+  width: min(100%, 1040px);
+  margin: 2.05rem auto 0;
+}
+
+.hero-findings h2 {
+  margin: 0;
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-size: clamp(2.15rem, 4vw, 3.25rem);
+  font-weight: 900;
+  letter-spacing: 0;
+  line-height: 1;
+  text-align: center;
+}
+
 .teaser-banner {
   width: min(100%, 1040px);
-  margin: 1.05rem auto 0;
+  margin: 1.35rem auto 0;
   padding: 0.9rem 1.15rem;
   border: 1px solid rgba(18, 106, 112, 0.18);
   border-top: 3px solid var(--accent);
@@ -1420,58 +1436,82 @@ figcaption {
 .findings-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 1rem;
-  margin-top: 1.7rem;
+  gap: 1.2rem;
+  margin-top: 1.55rem;
 }
 
 .finding-card {
-  min-height: 10.5rem;
-  padding: 1.12rem 1.15rem 1.18rem;
-  border: 1px solid rgba(16, 24, 32, 0.08);
+  min-height: 12.1rem;
+  padding: 1.35rem 1.45rem 1.42rem;
+  border: 1px solid rgba(187, 67, 67, 0.18);
   border-radius: 12px;
   background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.82), rgba(232, 246, 242, 0.78));
+    linear-gradient(180deg, rgba(255, 255, 255, 0.86), rgba(255, 238, 238, 0.82));
   box-shadow: var(--shadow-card);
 }
 
 .finding-card:nth-child(2) {
+  border-color: rgba(43, 126, 186, 0.2);
   background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.86), rgba(255, 246, 222, 0.82));
+    linear-gradient(180deg, rgba(255, 255, 255, 0.86), rgba(229, 243, 252, 0.88));
 }
 
 .finding-card:nth-child(3) {
+  border-color: rgba(60, 153, 93, 0.2);
   background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.86), rgba(235, 242, 250, 0.84));
+    linear-gradient(180deg, rgba(255, 255, 255, 0.86), rgba(232, 247, 236, 0.86));
 }
 
 .finding-card:nth-child(4) {
+  border-color: rgba(203, 125, 45, 0.22);
   background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.86), rgba(244, 238, 249, 0.78));
+    linear-gradient(180deg, rgba(255, 255, 255, 0.88), rgba(255, 242, 225, 0.86));
 }
 
 .finding-card span {
-  display: block;
-  margin-bottom: 0.62rem;
-  color: var(--accent);
+  display: inline-flex;
+  align-items: center;
+  min-height: 1.68rem;
+  margin-bottom: 0.82rem;
+  padding: 0.28rem 0.68rem;
+  border-radius: 999px;
+  color: #7a1d23;
+  background: rgba(255, 181, 185, 0.62);
   font-family: var(--font-mono);
-  font-size: 0.74rem;
+  font-size: 0.72rem;
   font-weight: 850;
+  letter-spacing: 0.02em;
   text-transform: uppercase;
 }
 
+.finding-card:nth-child(2) span {
+  color: #164c83;
+  background: rgba(159, 211, 252, 0.72);
+}
+
+.finding-card:nth-child(3) span {
+  color: #145b32;
+  background: rgba(152, 224, 171, 0.7);
+}
+
+.finding-card:nth-child(4) span {
+  color: #71360c;
+  background: rgba(255, 203, 151, 0.76);
+}
+
 .finding-card h3 {
-  margin: 0 0 0.55rem;
+  margin: 0 0 0.64rem;
   color: var(--ink);
   font-family: var(--font-display);
-  font-size: 1.18rem;
-  line-height: 1.12;
+  font-size: 1.26rem;
+  line-height: 1.14;
 }
 
 .finding-card p {
   margin: 0;
   color: var(--ink-2);
-  font-size: 0.92rem;
-  line-height: 1.48;
+  font-size: 1.01rem;
+  line-height: 1.52;
 }
 
 .loading-note {
