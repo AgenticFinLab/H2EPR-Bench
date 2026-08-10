@@ -1807,8 +1807,11 @@ tbody tr:hover td {
   }
 
   h1 {
-    font-size: clamp(2.35rem, 11vw, 3rem);
+    max-width: 100%;
+    font-size: 2.35rem;
     line-height: 1.04;
+    overflow-wrap: anywhere;
+    text-wrap: wrap;
   }
 
   .hero-inner {
@@ -1818,6 +1821,9 @@ tbody tr:hover td {
   .subtitle,
   .hero-summary {
     max-width: 100%;
+    padding-inline: 0.35rem;
+    overflow-wrap: anywhere;
+    text-wrap: wrap;
   }
 
   .section {

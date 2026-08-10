@@ -53,11 +53,11 @@
           </div>
 
           <div class="spec-line" aria-label="Benchmark facts">
-            <div><strong>1,000</strong><span>event instances</span></div>
+            <div><strong>3,000</strong><span>event instances</span></div>
             <div><strong>6</strong><span>domains</span></div>
             <div><strong>26</strong><span>event categories</span></div>
-            <div><strong>3,038</strong><span>stage rows</span></div>
-            <div><strong>16</strong><span>direct LLM baselines</span></div>
+            <div><strong>11,333</strong><span>reference stages</span></div>
+            <div><strong>21</strong><span>direct LLM systems</span></div>
             <div class="spec-line-note"><strong>Ongoing</strong><span>expansion and follow-up studies</span></div>
           </div>
 
@@ -222,23 +222,23 @@
         <div class="container reading-wide">
           <h2 class="section-heading">Dataset Overview</h2>
           <p>
-            Core-1000 spans six domains and twenty-six event categories, with stage-level records and public inspection artifacts aligned by canonical event IDs.
+            Unified-3000 covers 3,000 events from 1629 to 2025 across six domains and twenty-six categories. Its frozen evidence packages retain 25,814 verified documents from 84,693 candidate source records, with public artifacts aligned by canonical event IDs.
           </p>
           <figure class="figure-block figure-large summary-panel">
-            <img src="assets/summary/dataset-summary-panel.png" alt="Dataset summary panel for Core-1000, including event count, domain mix, category distribution, stage rows, process graphs, gated Gold references, and LLM baselines">
+            <img src="assets/summary/dataset-summary-panel.png" alt="Dataset summary panel for Unified-3000, including event count, domain mix, category distribution, graph scale, reference EPGs, and LLM systems">
             <figcaption>Dataset summary panel.</figcaption>
           </figure>
           <div class="figure-grid figure-grid-three">
             <figure class="figure-block">
-              <img src="assets/charts/domain-distribution.png" alt="Domain distribution for Core-1000">
+              <img src="assets/charts/domain-distribution.png" alt="Domain distribution for Unified-3000">
               <figcaption>Domain distribution.</figcaption>
             </figure>
             <figure class="figure-block">
-              <img src="assets/charts/category-distribution-top12.png" alt="Top event categories in Core-1000">
+              <img src="assets/charts/category-distribution-top12.png" alt="Top event categories in Unified-3000">
               <figcaption>Top event categories.</figcaption>
             </figure>
             <figure class="figure-block">
-              <img src="assets/charts/stage-count-distribution.png" alt="Stage-count distribution in Core-1000">
+              <img src="assets/charts/stage-count-distribution.png" alt="Stage-count distribution in Unified-3000 reference EPGs">
               <figcaption>Stage-count distribution.</figcaption>
             </figure>
           </div>
@@ -270,52 +270,42 @@
       <section class="section" id="events">
         <div class="container reading-wide">
           <h2 class="section-heading">Representative Event Processes</h2>
-          <p class="section-lead">FinalCascade-derived event timelines across multiple domains.</p>
+          <p class="section-lead">FinMycelium draft-EPG timelines from the Unified-3000 event collection.</p>
 
           <div class="gantt-hd-gallery" aria-label="Representative Gantt timeline gallery">
             <figure class="figure-block event-figure event-figure-primary">
-              <img id="gantt-main-image" src="assets/gantt/hd/P1000-0552_gantt_hd.png" alt="Example event-process timeline for Angola Yellow Fever Outbreak of 2016">
-              <figcaption id="gantt-main-caption"><strong>P1000-0552.</strong> Angola Yellow Fever Outbreak of 2016.</figcaption>
+              <img id="gantt-main-image" src="assets/gantt/hd/H2EPR-0346_draft_gantt.png" alt="FinMycelium draft event-process timeline for the SEC case against Raj Rajaratnam and Galleon insider trading">
+              <figcaption id="gantt-main-caption"><strong>H2EPR-0346.</strong> SEC Case Against Raj Rajaratnam and Galleon Insider Trading.</figcaption>
             </figure>
 
             <div class="gantt-thumb-grid" role="list" aria-label="Select a representative event timeline">
-              <button class="gantt-thumb is-active" type="button" role="listitem" data-src="assets/gantt/hd/P1000-0552_gantt_hd.png" data-alt="Example event-process timeline for Angola Yellow Fever Outbreak of 2016" data-caption="<strong>P1000-0552.</strong> Angola Yellow Fever Outbreak of 2016.">
-                <span>P1000-0552</span>
-                <strong>Yellow Fever Outbreak</strong>
-                <em>Public health</em>
-              </button>
-              <button class="gantt-thumb" type="button" role="listitem" data-src="assets/gantt/hd/P1000-0346_gantt_hd.png" data-alt="Example event-process timeline for SEC case against Raj Rajaratnam and Galleon insider trading" data-caption="<strong>P1000-0346.</strong> Raj Rajaratnam / Galleon Insider Trading.">
-                <span>P1000-0346</span>
+              <button class="gantt-thumb is-active" type="button" role="listitem" data-src="assets/gantt/hd/H2EPR-0346_draft_gantt.png" data-alt="FinMycelium draft event-process timeline for SEC case against Raj Rajaratnam and Galleon insider trading" data-caption="<strong>H2EPR-0346.</strong> SEC Case Against Raj Rajaratnam and Galleon Insider Trading.">
+                <span>H2EPR-0346</span>
                 <strong>Galleon Insider Trading</strong>
                 <em>Finance</em>
               </button>
-              <button class="gantt-thumb" type="button" role="listitem" data-src="assets/gantt/hd/P1000-0409_gantt_hd.png" data-alt="Example event-process timeline for the Cum-Ex tax scandal" data-caption="<strong>P1000-0409.</strong> Cum-Ex Tax Scandal.">
-                <span>P1000-0409</span>
+              <button class="gantt-thumb" type="button" role="listitem" data-src="assets/gantt/hd/H2EPR-0408_draft_gantt.png" data-alt="FinMycelium draft event-process timeline for the Cum-Ex tax scandal" data-caption="<strong>H2EPR-0408.</strong> Cum-Ex Tax Scandal.">
+                <span>H2EPR-0408</span>
                 <strong>Cum-Ex Tax Scandal</strong>
                 <em>Finance</em>
               </button>
-              <button class="gantt-thumb" type="button" role="listitem" data-src="assets/gantt/hd/P1000-0536_gantt_hd.png" data-alt="Example event-process timeline for DNC Hack and 2016 Election Interference" data-caption="<strong>P1000-0536.</strong> DNC Hack and 2016 Election Interference.">
-                <span>P1000-0536</span>
+              <button class="gantt-thumb" type="button" role="listitem" data-src="assets/gantt/hd/H2EPR-0535_draft_gantt.png" data-alt="FinMycelium draft event-process timeline for DNC Hack and 2016 Election Interference" data-caption="<strong>H2EPR-0535.</strong> DNC Hack and 2016 Election Interference.">
+                <span>H2EPR-0535</span>
                 <strong>DNC Hack</strong>
                 <em>Cyber / tech</em>
               </button>
-              <button class="gantt-thumb" type="button" role="listitem" data-src="assets/gantt/hd/P1000-0641_gantt_hd.png" data-alt="Example event-process timeline for Samut Prakan Radiation Accident" data-caption="<strong>P1000-0641.</strong> Samut Prakan Radiation Accident.">
-                <span>P1000-0641</span>
-                <strong>Radiation Accident</strong>
-                <em>Energy</em>
-              </button>
-              <button class="gantt-thumb" type="button" role="listitem" data-src="assets/gantt/hd/P1000-0901_gantt_hd.png" data-alt="Example event-process timeline for the Crimean War" data-caption="<strong>P1000-0901.</strong> Crimean War.">
-                <span>P1000-0901</span>
+              <button class="gantt-thumb" type="button" role="listitem" data-src="assets/gantt/hd/H2EPR-0900_draft_gantt.png" data-alt="FinMycelium draft event-process timeline for the Crimean War" data-caption="<strong>H2EPR-0900.</strong> Crimean War.">
+                <span>H2EPR-0900</span>
                 <strong>Crimean War</strong>
                 <em>Geopolitics</em>
               </button>
-              <button class="gantt-thumb" type="button" role="listitem" data-src="assets/gantt/hd/P1000-0909_gantt_hd.png" data-alt="Example event-process timeline for War in Donbas" data-caption="<strong>P1000-0909.</strong> War in Donbas.">
-                <span>P1000-0909</span>
+              <button class="gantt-thumb" type="button" role="listitem" data-src="assets/gantt/hd/H2EPR-0908_draft_gantt.png" data-alt="FinMycelium draft event-process timeline for War in Donbas" data-caption="<strong>H2EPR-0908.</strong> War in Donbas.">
+                <span>H2EPR-0908</span>
                 <strong>War in Donbas</strong>
                 <em>Geopolitics</em>
               </button>
-              <button class="gantt-thumb" type="button" role="listitem" data-src="assets/gantt/hd/P1000-0991_gantt_hd.png" data-alt="Example event-process timeline for Francesca Gino Data Integrity Scandal" data-caption="<strong>P1000-0991.</strong> Francesca Gino Data Integrity Scandal.">
-                <span>P1000-0991</span>
+              <button class="gantt-thumb" type="button" role="listitem" data-src="assets/gantt/hd/H2EPR-0990_draft_gantt.png" data-alt="FinMycelium draft event-process timeline for the Francesca Gino data integrity scandal" data-caption="<strong>H2EPR-0990.</strong> Francesca Gino Data Integrity Scandal.">
+                <span>H2EPR-0990</span>
                 <strong>Data Integrity Scandal</strong>
                 <em>Science</em>
               </button>
@@ -355,32 +345,32 @@
             <div class="framework-step">
               <span>05</span>
               <strong>Diagnostics</strong>
-              <p>Scores separate structure, temporal order, action-result logic, and evidence.</p>
+              <p>Scores separate structural, temporal, causal, and evidence fidelity.</p>
             </div>
           </div>
 
           <div class="result-snapshot" aria-label="Direct reconstruction result snapshot">
             <div>
-              <strong>16</strong>
+              <strong>21</strong>
               <span>direct LLM systems</span>
             </div>
             <div>
-              <strong>1,000</strong>
+              <strong>3,000</strong>
               <span>events per system</span>
             </div>
             <div>
-              <strong>44.29</strong>
-              <span>best QualityScore</span>
+              <strong>53.00</strong>
+              <span>best H²EPRScore</span>
             </div>
             <div>
-              <strong>13 / 16</strong>
-              <span>systems above 90% schema-valid outputs</span>
+              <strong>14 / 21</strong>
+              <span>systems above 90% valid outputs</span>
             </div>
           </div>
 
           <div class="results-thesis">
             <strong>Schema validity is not enough.</strong>
-            <span>Even mostly valid graph outputs remain weak on temporal ordering and action-result organization.</span>
+            <span>Even mostly valid graph outputs remain weak on causal and mechanism reconstruction.</span>
           </div>
 
           <div class="model-trace-layout">
@@ -406,35 +396,35 @@
           <div class="diagnostic-overview-grid">
             <figure class="figure-block diagnostic-card diagnostic-instance-card">
               <div class="diagnostic-image-frame diagnostic-frame-spread-wide">
-                <img src="assets/diagnostics/quality-distribution-by-model.png" alt="Per-instance QualityScore distributions by model">
+                <img src="assets/diagnostics/quality-distribution-by-model.png" alt="Event-level Absolute Fidelity distributions by model">
               </div>
               <figcaption class="diagnostic-note">
                 <strong>Instance spread.</strong>
-                <span>Sorted per-instance curves show how much variation remains within each model across the 1,000 benchmark events.</span>
+                <span>Sorted event-level curves show how much variation remains within each model across the 3,000 benchmark events.</span>
               </figcaption>
             </figure>
             <div class="diagnostic-overview-side">
               <div class="diagnostic-card diagnostic-text-card">
                 <span>Diagnostic readout</span>
                 <strong>Aggregate scores hide the bottleneck.</strong>
-                <p>The mean subscore profile separates source support from process reconstruction. Temporal order and action-result organization remain the weakest parts of direct reconstruction.</p>
+                <p>The mean fidelity profile separates source support from process reconstruction. Causal and mechanism recovery remains the most pronounced bottleneck.</p>
               </div>
               <figure class="figure-block diagnostic-card">
                 <div class="diagnostic-image-frame diagnostic-frame-wide">
-                  <img src="assets/diagnostics/evidence-process-gap.svg" alt="Scatter plot comparing evidence score and process organization score">
+                  <img src="assets/diagnostics/evidence-process-gap.png" alt="Scatter plot comparing evidence fidelity and process organization">
                 </div>
                 <figcaption class="diagnostic-note">
                   <strong>Evidence/process profile.</strong>
-                  <span>Evidence score is plotted against process organization, defined as the mean of temporal and mechanistic subscores.</span>
+                  <span>Evidence fidelity is plotted against the mean of structural, temporal, and causal fidelity.</span>
                 </figcaption>
               </figure>
               <figure class="figure-block diagnostic-card">
                 <div class="diagnostic-image-frame diagnostic-frame-profile">
-                  <img src="assets/diagnostics/score-profile-summary.svg" alt="Average diagnostic subscore profile across 16 direct reconstruction baselines">
+                  <img src="assets/diagnostics/score-profile-summary.png" alt="Average diagnostic profile across systems with valid graph output">
                 </div>
                 <figcaption class="diagnostic-note">
                   <strong>Subscore profile.</strong>
-                  <span>Mean diagnostic subscores across the 16 direct reconstruction baselines.</span>
+                  <span>Mean four-dimensional fidelity across the 20 systems with valid graph output.</span>
                 </figcaption>
               </figure>
             </div>
@@ -456,7 +446,7 @@
                 </div>
                 <figcaption class="diagnostic-note">
                   <strong>Failure modes.</strong>
-                  <span>Weak temporal ordering and weak mechanistic links dominate the direct reconstruction setting.</span>
+                  <span>Format, schema, endpoint, evidence-reference, and response-envelope failures vary substantially by system.</span>
                 </figcaption>
               </figure>
               <figure class="figure-block diagnostic-card">
@@ -464,8 +454,8 @@
                   <img src="assets/diagnostics/valid-only-dumbbell.png" alt="Valid-only sensitivity diagnostic">
                 </div>
                 <figcaption class="diagnostic-note">
-                  <strong>Valid-only sensitivity.</strong>
-                  <span>Filtering to schema-valid outputs improves several systems but does not close the reconstruction gap.</span>
+                  <strong>Candidate-output sensitivity.</strong>
+                  <span>Candidate-output fidelity improves for several systems, but does not close the all-slot reconstruction gap.</span>
                 </figcaption>
               </figure>
               <figure class="figure-block diagnostic-card">
@@ -482,7 +472,7 @@
           <div class="full-table-block">
             <div class="subsection-heading">
               <span>Full numeric table</span>
-              <p>Sortable all-instance results for the 16 direct reconstruction baselines.</p>
+              <p>Sortable all-instance results for 21 direct reconstruction systems across 3,000 events.</p>
             </div>
             <div class="leaderboard-container">
               <table id="leaderboard-table" aria-label="Direct LLM baseline leaderboard">
@@ -490,16 +480,17 @@
                   <tr>
                     <th>System</th>
                     <th>Valid outputs (%)</th>
-                    <th>QualityScore</th>
+                    <th>H²EPRScore</th>
+                    <th>Absolute</th>
                     <th>Structure</th>
                     <th>Temporal</th>
-                    <th>Mechanistic</th>
+                    <th>Causal</th>
                     <th>Evidence</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
-                    <td colspan="7">Loading leaderboard data...</td>
+                    <td colspan="8">Loading leaderboard data...</td>
                   </tr>
                 </tbody>
               </table>
@@ -543,7 +534,7 @@
 
     <footer class="site-footer">
       <div class="container">
-        <p>H²EPR-Bench Core-1000 · AgenticFinLab</p>
+        <p>H²EPR-Bench Unified-3000 · AgenticFinLab</p>
       </div>
     </footer>
 

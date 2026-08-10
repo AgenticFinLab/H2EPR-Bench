@@ -3,16 +3,17 @@ const leaderboardBody = leaderboardTable?.querySelector("tbody");
 
 const columns = [
   { key: "system", label: "System", type: "text" },
-  { key: "schema_valid_rate_pct", label: "Valid outputs (%)", type: "number", decimals: 1 },
-  { key: "QualityScore", label: "QualityScore", type: "number", decimals: 2 },
-  { key: "S_structure", label: "Structure", type: "number", decimals: 2 },
-  { key: "S_temporal", label: "Temporal", type: "number", decimals: 2 },
-  { key: "S_mechanistic", label: "Mechanistic", type: "number", decimals: 2 },
-  { key: "S_evidence", label: "Evidence", type: "number", decimals: 2 },
+  { key: "output_validity_pct", label: "Valid outputs (%)", type: "number", decimals: 1 },
+  { key: "h2epr_score", label: "H²EPRScore", type: "number", decimals: 2 },
+  { key: "absolute_fidelity", label: "Absolute", type: "number", decimals: 2 },
+  { key: "structural_fidelity", label: "Structure", type: "number", decimals: 2 },
+  { key: "temporal_fidelity", label: "Temporal", type: "number", decimals: 2 },
+  { key: "causal_fidelity", label: "Causal", type: "number", decimals: 2 },
+  { key: "evidence_fidelity", label: "Evidence", type: "number", decimals: 2 },
 ];
 
 let leaderboardRows = [];
-let sortState = { key: "QualityScore", direction: "desc" };
+let sortState = { key: "h2epr_score", direction: "desc" };
 
 function formatValue(column, value) {
   if (column.type === "number") {
@@ -97,7 +98,7 @@ async function loadLeaderboard() {
   }
 
   try {
-    const response = await fetch("data/direct_llm_16model_main_results.json");
+    const response = await fetch("data/unified3000_21model_main_results.json");
     if (!response.ok) {
       throw new Error(`HTTP ${response.status}`);
     }

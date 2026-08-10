@@ -1,30 +1,42 @@
 # Website Asset Provenance
 
-| Website file | Source path | Source role | Website section | Boundary note |
-|---|---|---|---|---|
-| `assets/h2epr-overview.png` | `../EventMycelium-Research/assets/huggingface/hero_eventmycelium_overview.png` | Public release asset | Hero / task overview | Public overview figure. |
-| `assets/release-boundary.png` | `../EventMycelium-Research/assets/huggingface/asset_boundary_reference_construction.png` | Public release asset | Release model | Distinguishes public artifacts from gated Gold. |
-| `assets/charts/domain-distribution.png` | `../EventMycelium-Research/assets/huggingface/charts/domain_distribution.png` | Public release chart | Dataset composition | Public catalog-derived chart. |
-| `assets/charts/category-distribution-top12.png` | `../EventMycelium-Research/assets/huggingface/charts/category_distribution_top12.png` | Public release chart | Dataset composition | Public catalog-derived chart. |
-| `assets/charts/stage-count-distribution.png` | `../EventMycelium-Research/assets/huggingface/charts/stage_count_distribution.png` | Public release chart | Dataset composition | Public catalog-derived chart. |
-| `assets/summary/dataset-summary-panel.png` | `scripts/generate_visual_assets.py`; source summaries from `../EventMycelium-Research/manifests/v1_1000/release/dataset_card_tables_full1000/` | Website-native derived summary panel | Dataset overview | Public catalog-derived chart; no Gold content copied. |
-| `assets/gantt/gantt-rajaratnam.png` | `../EventMycelium-Research/assets/huggingface/gantt_previews/P1000-0346_gantt_preview.png` | Public FinalCascade-derived preview | Representative examples | Not Gold and not a scoring reference. |
-| `assets/gantt/gantt-cum-ex.png` | `../EventMycelium-Research/assets/huggingface/gantt_previews/P1000-0409_gantt_preview.png` | Public FinalCascade-derived preview | Representative examples | Not Gold and not a scoring reference. |
-| `assets/gantt/gantt-laiki.png` | `../EventMycelium-Research/assets/huggingface/gantt_previews/P1000-0718_gantt_preview.png` | Public FinalCascade-derived preview | Representative examples | Not Gold and not a scoring reference. |
-| `assets/gantt/hd/P1000-0552_gantt_hd.png` | `scripts/generate_visual_assets.py`; source HTML `../EventMycelium-Research/build/hf_dataset_repo_staging/eventmycelium-v1_1000-public/visualizations/gantt_full1000_v1/html/P1000-0552_gantt.html` | Public FinalCascade-derived HD candidate | Representative examples, pending selection | Candidate image for user review; not Gold and not a scoring reference. |
-| `assets/gantt/hd/P1000-0346_gantt_hd.png` | `scripts/generate_visual_assets.py`; source HTML `../EventMycelium-Research/build/hf_dataset_repo_staging/eventmycelium-v1_1000-public/visualizations/gantt_full1000_v1/html/P1000-0346_gantt.html` | Public FinalCascade-derived HD candidate | Representative examples, pending selection | Candidate image for user review; not Gold and not a scoring reference. |
-| `assets/gantt/hd/P1000-0409_gantt_hd.png` | `scripts/generate_visual_assets.py`; source HTML `../EventMycelium-Research/build/hf_dataset_repo_staging/eventmycelium-v1_1000-public/visualizations/gantt_full1000_v1/html/P1000-0409_gantt.html` | Public FinalCascade-derived HD candidate | Representative examples, pending selection | Candidate image for user review; not Gold and not a scoring reference. |
-| `assets/gantt/hd/P1000-0718_gantt_hd.png` | `scripts/generate_visual_assets.py`; source HTML `../EventMycelium-Research/build/hf_dataset_repo_staging/eventmycelium-v1_1000-public/visualizations/gantt_full1000_v1/html/P1000-0718_gantt.html` | Public FinalCascade-derived HD candidate | Representative examples, pending selection | Candidate image for user review; not Gold and not a scoring reference. |
-| `assets/gantt/hd/P1000-0536_gantt_hd.png` | `scripts/generate_visual_assets.py`; source HTML `../EventMycelium-Research/build/hf_dataset_repo_staging/eventmycelium-v1_1000-public/visualizations/gantt_full1000_v1/html/P1000-0536_gantt.html` | Public FinalCascade-derived HD candidate | Representative examples, pending selection | Candidate image for user review; not Gold and not a scoring reference. |
-| `assets/gantt/hd/P1000-0641_gantt_hd.png` | `scripts/generate_visual_assets.py`; source HTML `../EventMycelium-Research/build/hf_dataset_repo_staging/eventmycelium-v1_1000-public/visualizations/gantt_full1000_v1/html/P1000-0641_gantt.html` | Public FinalCascade-derived HD candidate | Representative examples, pending selection | Candidate image for user review; not Gold and not a scoring reference. |
-| `assets/gantt/hd/P1000-0901_gantt_hd.png` | `scripts/generate_visual_assets.py`; source HTML `../EventMycelium-Research/build/hf_dataset_repo_staging/eventmycelium-v1_1000-public/visualizations/gantt_full1000_v1/html/P1000-0901_gantt.html` | Public FinalCascade-derived HD candidate | Representative examples, pending selection | Candidate image for user review; not Gold and not a scoring reference. |
-| `assets/gantt/hd/P1000-0909_gantt_hd.png` | `scripts/generate_visual_assets.py`; source HTML `../EventMycelium-Research/build/hf_dataset_repo_staging/eventmycelium-v1_1000-public/visualizations/gantt_full1000_v1/html/P1000-0909_gantt.html` | Public FinalCascade-derived HD candidate | Representative examples, pending selection | Candidate image for user review; not Gold and not a scoring reference. |
-| `assets/gantt/hd/P1000-0991_gantt_hd.png` | `scripts/generate_visual_assets.py`; source HTML `../EventMycelium-Research/build/hf_dataset_repo_staging/eventmycelium-v1_1000-public/visualizations/gantt_full1000_v1/html/P1000-0991_gantt.html` | Public FinalCascade-derived HD candidate | Representative examples, pending selection | Candidate image for user review; not Gold and not a scoring reference. |
-| `assets/gantt/hd/P1000-0403_gantt_hd.png` | `scripts/generate_visual_assets.py`; source HTML `../EventMycelium-Research/build/hf_dataset_repo_staging/eventmycelium-v1_1000-public/visualizations/gantt_full1000_v1/html/P1000-0403_gantt.html` | Public FinalCascade-derived HD candidate | Representative examples, pending selection | Candidate image for user review; not Gold and not a scoring reference. |
-| `assets/gantt/hd/gantt_hd_contact_sheet.png` | `scripts/generate_visual_assets.py`; derived from the ten HD Gantt candidates | Review aid | Internal/public asset selection | Candidate overview for user selection; not intended as final website section image. |
-| `assets/gantt/hd/gantt_hd_manifest.csv` | `scripts/generate_visual_assets.py`; event metadata from full1000 public catalog | Provenance manifest | Asset review | Records event names, source HTML files, output dimensions, and export x-axis ranges. |
-| `assets/diagnostics/evidence-process-gap.png` | `../EventMycelium/results/direct_llm_16model/figures/fig_evidence_process_scatter.png` | Public direct-LLM diagnostic figure | Diagnostic analysis | Direct reconstruction setting. |
-| `assets/diagnostics/evidence-process-gap.svg` | `scripts/generate_diagnostic_svg_assets.py`; source table `../EventMycelium/results/direct_llm_16model/tables/evidence_vs_process_gap.csv` | Website redraw of direct-LLM diagnostic figure | Results & Diagnostics lead chart | Uses the same aggregate data as the PNG with website-specific title and annotation. |
-| `assets/diagnostics/score-profile-summary.svg` | `scripts/generate_diagnostic_svg_assets.py`; source data `data/direct_llm_16model_diagnostics.json` | Website summary of mean diagnostic subscores | Results & Diagnostics readout | Compact companion chart for evidence, structure, mechanistic, and temporal subscores. |
-| `assets/diagnostics/domain-quality-dotplot.png` | `../EventMycelium/results/direct_llm_16model/figures/fig_domain_quality_dotplot.png` | Public direct-LLM diagnostic figure | Diagnostic analysis | Direct reconstruction setting. |
-| `assets/diagnostics/failure-mode-heatmap.png` | `../EventMycelium/results/direct_llm_16model/figures/fig_failure_mode_heatmap.png` | Public direct-LLM diagnostic figure | Diagnostic analysis | Direct reconstruction setting. |
+The static website keeps release-safe copies of figures and aggregate result
+tables. It does not include reference EPG JSON, frozen evidence text, raw model
+outputs, provider traces, or internal construction logs.
+
+## Stable project visuals
+
+The hero, background, use-case, release-boundary, and Explorer images preserve
+the established H²EPR-Bench website presentation. They are intentionally not
+regenerated by the Unified-3000 data refresh.
+
+## Unified-3000 dataset and result visuals
+
+The following files are generated by
+`scripts/build_unified3000_site_release.py` from the sibling
+`EventMycelium-Research` repository:
+
+| Website files | Frozen source role |
+|---|---|
+| `assets/summary/dataset-summary-panel.png` | Unified-3000 benchmark totals, domain/category distributions, and release structure |
+| `assets/charts/*.png` | Unified-3000 domain, category, and reference-stage distributions |
+| `assets/diagnostics/*.png` | v7 21-system aggregate and event-level reconstruction results |
+| `data/unified3000_21model_main_results.json` | Website projection of `system_summary_v7.csv` |
+| `data/unified3000_21model_diagnostics.json` | Website diagnostic projection with output failures and token metadata |
+
+Primary local sources:
+
+- `paper/AAAI_assets/01_基准与Gold统计/表/`
+- `paper/AAAI_assets/02_主实验结果/表/`
+- `paper/AAAI_assets/08_成本效率与失败分析/表/`
+- `paper/AAAI_assets/09_补充源表/event_features_v1.csv`
+- `paper/supplementary_aaai27/code_data_package/h2epr_bench_anonymous/data/results/main/event_level_scores.csv`
+
+## Representative event timelines
+
+The six displayed `H2EPR-*_draft_gantt.png` files are copied from:
+
+`EventMycelium-Research/paper/submission_aaai27/supplement/figures/Gantt/`
+
+They visualize FinMycelium-generated draft EPGs. They are not reference EPGs
+or official scoring targets.

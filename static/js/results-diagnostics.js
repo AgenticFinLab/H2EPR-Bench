@@ -2,21 +2,21 @@ const modelCardGrid = document.querySelector("#model-card-grid");
 const modelDetailPanel = document.querySelector("#model-detail-panel");
 
 let diagnosticsPayload = null;
-let selectedSystem = "Doubao Seed 2.0 Pro";
+let selectedSystem = "GLM-5.1";
 
 const scoreMetrics = [
-  ["S_structure", "Struct"],
-  ["S_temporal", "Temp"],
-  ["S_mechanistic", "Mech"],
-  ["S_evidence", "Evid"],
+  ["structural_fidelity", "Struct"],
+  ["temporal_fidelity", "Temp"],
+  ["causal_fidelity", "Causal"],
+  ["evidence_fidelity", "Evid"],
 ];
 
 const failureLabels = [
-  ["schema_invalid", "Schema invalid"],
-  ["primary_missing_operation", "Primary operation missing"],
-  ["weak_temporal", "Weak temporal"],
-  ["weak_mechanistic", "Weak mechanistic"],
-  ["weak_evidence", "Weak evidence"],
+  ["invalid_json", "Invalid JSON"],
+  ["old_schema_invalid", "Schema mismatch"],
+  ["unresolved_relation_endpoint", "Unresolved relation endpoint"],
+  ["unknown_evidence_source", "Unknown evidence source"],
+  ["unsupported_response_envelope", "Unsupported response envelope"],
 ];
 
 function escapeHtml(value) {
@@ -61,11 +61,11 @@ function renderModelCard(model) {
       </div>
       <div class="model-score-row">
         <div>
-          <strong>${formatScore(model.QualityScore)}</strong>
-          <span>QualityScore</span>
+          <strong>${formatScore(model.h2epr_score)}</strong>
+          <span>H²EPRScore</span>
         </div>
         <div>
-          <strong>${percent(model.schema_valid_rate_pct)}</strong>
+          <strong>${percent(model.output_validity_pct)}</strong>
           <span>Valid outputs</span>
         </div>
       </div>
@@ -84,19 +84,19 @@ function renderDetail(model) {
     <h3>${escapeHtml(model.system)}</h3>
     <div class="detail-metric-grid">
       <div>
-        <strong>${formatScore(model.QualityScore)}</strong>
-        <span>QualityScore</span>
+        <strong>${formatScore(model.h2epr_score)}</strong>
+        <span>H²EPRScore</span>
       </div>
       <div>
-        <strong>${percent(model.schema_valid_rate_pct)}</strong>
+        <strong>${percent(model.output_validity_pct)}</strong>
         <span>Valid outputs</span>
       </div>
       <div>
-        <strong>${formatScore(model.evidence_process_gap)}</strong>
-        <span>Evidence-process gap</span>
+        <strong>${formatScore(model.absolute_fidelity)}</strong>
+        <span>Absolute Fidelity</span>
       </div>
       <div>
-        <strong>${formatScore(model.token_total_k_per_event, 1)}k</strong>
+        <strong>${formatScore(model.mean_tokens_per_event / 1000, 1)}k</strong>
         <span>Tokens / event</span>
       </div>
     </div>
@@ -121,8 +121,8 @@ function renderDetail(model) {
     </div>
 
     <div class="results-thesis model-detail-note">
-      <strong>Valid-only Q ${formatScore(model.valid_only_Q)}</strong>
-      <span>Delta over all-instance scoring: +${formatScore(model.valid_only_delta_Q)}. Token usage is companion metadata.</span>
+      <strong>95% CI [${formatScore(model.ci95_lower)}, ${formatScore(model.ci95_upper)}]</strong>
+      <span>Candidate-output Absolute Fidelity: ${formatScore(model.candidate_terminal_absolute_fidelity)}. Token usage is companion metadata.</span>
     </div>
   `;
 }
@@ -160,7 +160,7 @@ async function loadDiagnostics() {
   }
 
   try {
-    const response = await fetch("data/direct_llm_16model_diagnostics.json");
+    const response = await fetch("data/unified3000_21model_diagnostics.json");
     if (!response.ok) {
       throw new Error(`HTTP ${response.status}`);
     }
