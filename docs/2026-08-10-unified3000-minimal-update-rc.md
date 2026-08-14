@@ -39,7 +39,8 @@ Preserved surfaces:
 ## Result Sources
 
 The deterministic builder `scripts/build_unified3000_site_release.py` reads the
-following frozen local sources from the sibling research repository:
+following frozen aggregate inputs from an operator-supplied `--source-root`.
+The source root is private and is never embedded in generated public assets:
 
 | Source | SHA-256 |
 |---|---|

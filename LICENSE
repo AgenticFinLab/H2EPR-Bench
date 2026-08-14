@@ -1,0 +1,10 @@
+H2EPR-Bench is distributed under a path-based multi-license policy.
+
+Source code and executable configuration are licensed under the Apache
+License, Version 2.0. Data, documentation and website content, schemas,
+synthetic fixtures, and visual assets are licensed under the Creative Commons
+Attribution-NonCommercial 4.0 International License (CC BY-NC 4.0).
+
+The exact path classification, license texts, third-party limitations, and
+precedence rules are in LICENSES/README.md. This is a path-based policy, not a
+requirement that every file satisfy both licenses simultaneously.

@@ -1,57 +1,43 @@
-# H2EPR-Bench Website Repository Identity
+# H2EPR-Bench repository identity
 
-Date: 2026-06-28
+Date: 2026-08-14
 
-This document records the local and remote identity of the H2EPR-Bench static
-website repository.
+## Canonical public source
 
-## Canonical Mapping
+| Role | Identity |
+| --- | --- |
+| GitHub source monorepo | `AgenticFinLab/H2EPR-Bench` |
+| Protected integration branch | `main` |
+| GitHub Pages project site | `https://agenticfinlab.github.io/H2EPR-Bench/` |
+| Public Dataset distribution | `AgenticFinLab/H2EPR-Bench` on Hugging Face |
+| Manual-gated reference distribution | `AgenticFinLab/H2EPR-Bench-Gold` on Hugging Face |
+| Explorer runtime distribution | `AgenticFinLab/H2EPR-Bench-Explorer` on Hugging Face |
 
-| Role | Value |
-|---|---|
-| Local repository path | `/home/lenovo/projects/AgenticFinLab/H2EPR-Bench.github.io` |
-| Local branch | `main` |
-| Git remote name | `origin` |
-| Git remote URL | `https://github.com/AgenticFinLab/H2EPR-Bench.git` |
-| GitHub repository | `AgenticFinLab/H2EPR-Bench` |
-| GitHub Pages URL | `https://agenticfinlab.github.io/H2EPR-Bench/` |
+The same short name is intentionally used for the GitHub source monorepo and
+the public Hugging Face Dataset. Their host and repository type distinguish
+them. GitHub is the public source/review system; Hugging Face is the versioned
+Dataset and runtime distribution system.
 
-## Naming Decision
+## Source-of-truth boundaries
 
-The local directory remains named `H2EPR-Bench.github.io` because the website
-work started as a local GitHub Pages project directory. The public remote
-repository is intentionally named `AgenticFinLab/H2EPR-Bench`, not
-`AgenticFinLab/H2EPR-Bench.github.io`, so that the deployed project-site URL is
-concise:
+- GitHub owns public website source, Explorer source, public release
+  contracts/validators, and public-safe reference schema/interface source.
+- The public Hugging Face Dataset owns the released tables and Draft EPG
+  artifacts. Source code fixes do not silently create a new Dataset revision.
+- The gated Hugging Face companion owns real reference EPGs. No real Gold or
+  evidence record is copied into this repository or ordinary CI.
+- The Explorer Space runs an explicitly reviewed subtree promoted from this
+  monorepo only after separate deployment authorization and runtime testing.
+- Private construction inputs, adjudication material, evidence, and provider
+  outputs remain outside the public release system.
 
-```text
-https://agenticfinlab.github.io/H2EPR-Bench/
-```
+## Change flow
 
-This is a GitHub project site, not a user or organization root site.
+Significant changes use a focused feature branch. `main` changes only through
+a Pull Request following the AgenticFin Lab commit and review guidance. A PR
+may validate deployable content but does not itself publish to Hugging Face.
+Downstream promotion records the exact reviewed Git commit, subtree, Dataset
+revision, and rollback point.
 
-## Push Policy
-
-For this website repository, the intended push target is:
-
-```bash
-git push origin main
-```
-
-where `origin` resolves to:
-
-```text
-https://github.com/AgenticFinLab/H2EPR-Bench.git
-```
-
-Do not create or push to `AgenticFinLab/H2EPR-Bench.github.io` for this project
-unless a future governance decision explicitly changes the website repository
-strategy. A read-only check on 2026-06-28 found no accessible repository at
-`https://github.com/AgenticFinLab/H2EPR-Bench.github.io.git`.
-
-## Related Release Repositories
-
-- Public dataset: `https://huggingface.co/datasets/AgenticFinLab/H2EPR-Bench`
-- Gated Gold companion: `https://huggingface.co/datasets/AgenticFinLab/H2EPR-Bench-Gold`
-- Explorer Space: `https://huggingface.co/spaces/AgenticFinLab/H2EPR-Bench-Explorer`
-
+No force push or history rewrite is part of the release process. Failed public
+changes are corrected with ordinary follow-up or revert commits.

@@ -1,0 +1,76 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "draft_asset": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "draft_record_index": {
+      "minimum": 1,
+      "type": [
+        "integer",
+        "null"
+      ]
+    },
+    "draft_schema": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "draft_sha256": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "draft_source_kind": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "draft_status": {
+      "enum": [
+        "draft_available",
+        "draft_unavailable"
+      ]
+    },
+    "has_reference_epg": {
+      "const": true
+    },
+    "public_event_id": {
+      "pattern": "^H2EPR-[0-9]{4}$",
+      "type": "string"
+    },
+    "source_payload_sha256": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "unavailable_reason": {
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  },
+  "required": [
+    "public_event_id",
+    "draft_status",
+    "unavailable_reason",
+    "draft_source_kind",
+    "draft_schema",
+    "draft_asset",
+    "draft_record_index",
+    "draft_sha256",
+    "source_payload_sha256",
+    "has_reference_epg"
+  ],
+  "title": "H2EPR-Bench Unified-3000 draft availability row",
+  "type": "object"
+}

@@ -1,0 +1,34 @@
+{
+  "policy_version": 1,
+  "ordinary_file_max_bytes": 1000000,
+  "hard_file_max_bytes": 10000000,
+  "tree_max_bytes": 104857600,
+  "fixture_file_max_bytes": 262144,
+  "fixture_total_max_bytes": 2097152,
+  "legacy_oversize_files": {
+    "assets/hero/h2epr-benchmark-overview.png": {
+      "bytes": 1126538,
+      "sha256": "c580b8a320b474630b86ec448965a94f928f9f255068c6dc8e8a2e8d69400b25"
+    },
+    "assets/release-boundary.png": {
+      "bytes": 1043275,
+      "sha256": "491ecff00fd333577492312b0b79e44e08b949433ccff3f0bd3c30b2f24423e1"
+    },
+    "assets/usecases/analysis.png": {
+      "bytes": 1200753,
+      "sha256": "1b18bfccc9fe0e48be50cff192a5ff79ad3d34e2f20aae3a3fa18ef78dd1f39a"
+    },
+    "assets/usecases/prediction-simulation.png": {
+      "bytes": 1212559,
+      "sha256": "6bd56e3d06484b306d75b07446bfe2e013183527b10e2abdfd6aa294179dbb60"
+    },
+    "assets/usecases/reconstruction.png": {
+      "bytes": 1068622,
+      "sha256": "4fc6cc85bae6ab42f70bff376f5f5d38e05db9a1ab1d84570e103b489a6540cd"
+    },
+    "assets/usecases/societal-world-model.png": {
+      "bytes": 1456129,
+      "sha256": "83949cf4d64bb4b360681265c9414e3647b217b423be2e049cd1970a77adac98"
+    }
+  }
+}

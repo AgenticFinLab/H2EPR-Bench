@@ -1,0 +1,128 @@
+{
+  "public_event_id": "H2EPR-0001",
+  "canonical_event": {
+    "name": "SYNTHETIC VALIDATION FIXTURE — NOT A BENCHMARK RECORD",
+    "domain": "Synthetic domain",
+    "category": "Synthetic category",
+    "aliases": [
+      "Synthetic interface example"
+    ],
+    "event_type": "synthetic_test_only",
+    "summary": "Fabricated content used only to test the public schema and validator.",
+    "time_range": {
+      "start": null,
+      "end": null,
+      "precision": null,
+      "note": "No real event time."
+    }
+  },
+  "scope_boundary": {
+    "include": "Only the fabricated validator example.",
+    "exclude": "All real events, evidence, and reference records."
+  },
+  "stages": [
+    {
+      "id": "S1",
+      "label": "Synthetic stage",
+      "sequence_index": 1,
+      "summary": "A fabricated stage.",
+      "time_range": {
+        "start": null,
+        "end": null,
+        "precision": null,
+        "note": "Synthetic."
+      }
+    }
+  ],
+  "episodes": [
+    {
+      "id": "E1",
+      "label": "Synthetic episode",
+      "stage_id": "S1",
+      "sequence_index": 1,
+      "summary": "A fabricated episode."
+    }
+  ],
+  "participants": [
+    {
+      "id": "P_ACTOR",
+      "label": "Synthetic actor",
+      "type": "synthetic",
+      "role": "actor"
+    },
+    {
+      "id": "P_TARGET",
+      "label": "Synthetic target",
+      "type": "synthetic",
+      "role": "target"
+    }
+  ],
+  "actions": [
+    {
+      "id": "A1",
+      "label": "Perform a synthetic action",
+      "episode_id": "E1",
+      "actor_ids": [
+        "P_ACTOR"
+      ],
+      "target_ids": [
+        "P_TARGET"
+      ],
+      "description": "No real-world action is represented."
+    }
+  ],
+  "outcomes": [
+    {
+      "id": "O1",
+      "label": "Synthetic outcome",
+      "producer_action_ids": [
+        "A1"
+      ],
+      "episode_id": "E1",
+      "description": "A fabricated outcome."
+    }
+  ],
+  "structural_relations": [
+    {
+      "id": "R1",
+      "from_id": "A1",
+      "to_id": "O1",
+      "label": "synthetically produces",
+      "description": "A fabricated relation."
+    }
+  ],
+  "temporal_relations": [],
+  "causal_relations": [],
+  "mechanism_paths": [
+    {
+      "id": "M1",
+      "label": "Synthetic mechanism",
+      "node_ids": [
+        "A1",
+        "O1"
+      ],
+      "relation_ids": [
+        "R1"
+      ]
+    }
+  ],
+  "evidence_graph": {
+    "evidence_nodes": [
+      {
+        "id": "EV1",
+        "source_id": "SYNTHETIC-SOURCE",
+        "passage_id": "SYNTHETIC-PASSAGE",
+        "passage_sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+      }
+    ],
+    "support_edges": [
+      {
+        "target_id": "A1",
+        "target_type": "action",
+        "evidence_ids": [
+          "EV1"
+        ]
+      }
+    ]
+  }
+}

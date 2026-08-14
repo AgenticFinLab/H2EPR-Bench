@@ -1,0 +1,167 @@
+{
+  "contract_version": "h2epr-unified3000-public-release-v1",
+  "dataset_repo": "AgenticFinLab/H2EPR-Bench",
+  "dataset_revision": "1d01f3649ace0301ac3bbe9ee875eea660347a29",
+  "event_identity": {
+    "pattern": "^H2EPR-[0-9]{4}$",
+    "first": 1,
+    "last": 3000
+  },
+  "counts": {
+    "events": 3000,
+    "draft_available": 2876,
+    "draft_unavailable": 124,
+    "stage_rows": 8500,
+    "stage_events": 2876
+  },
+  "paths": {
+    "draft_epg": "draft_events/{event_id}/draft_epg.json",
+    "draft_unavailable": "draft_events/{event_id}/draft_unavailable.json"
+  },
+  "arrow_types": {
+    "default": "string",
+    "bool": [
+      "has_gold_reference",
+      "has_finalcascade",
+      "relative_order_available",
+      "has_reference_epg"
+    ],
+    "int64": [
+      "stage_count",
+      "episode_count",
+      "participant_count",
+      "action_count",
+      "transaction_count",
+      "relation_count",
+      "stage_index",
+      "known_action_time_anchor_count",
+      "draft_record_index"
+    ]
+  },
+  "tables": {
+    "event_gallery": {
+      "path": "data/viewer_mirrors/event_gallery.parquet",
+      "sha256": "df7527429ea3b66c6cf28e9ac79d6a398653ed94363b527a1a3887cc4c6504e5",
+      "rows": 3000,
+      "columns": [
+        "public_event_id",
+        "title",
+        "domain",
+        "category",
+        "event_descriptor",
+        "draft_status"
+      ]
+    },
+    "event_catalog": {
+      "path": "data/viewer_mirrors/event_catalog.parquet",
+      "sha256": "07a5d888f00a0793468877c02069b118e6a0e0cc80b45a8d960501ccb3180c7e",
+      "rows": 3000,
+      "columns": [
+        "public_event_id",
+        "event_id",
+        "title",
+        "display_name",
+        "event_descriptor",
+        "domain",
+        "category",
+        "keywords",
+        "release_split",
+        "version",
+        "schema_version",
+        "draft_status",
+        "has_gold_reference"
+      ]
+    },
+    "event_instances": {
+      "path": "data/viewer_mirrors/event_instances.parquet",
+      "sha256": "b6a5413ca553cfc72e768d4589753534f7c4828b7ca2d5ab31d72bb4abd6728e",
+      "rows": 3000,
+      "columns": [
+        "public_event_id",
+        "event_id",
+        "title",
+        "display_name",
+        "event_descriptor",
+        "domain",
+        "category",
+        "keywords",
+        "release_split",
+        "version",
+        "schema_version",
+        "has_finalcascade",
+        "draft_status",
+        "has_gold_reference",
+        "finalcascade_access_level",
+        "gold_reference_access_level",
+        "evidence_context_access_level"
+      ]
+    },
+    "event_stages": {
+      "path": "data/viewer_mirrors/event_stages.parquet",
+      "sha256": "c0114c5009f6f1b9e9f8c1af5e77ce35482f704c4b03ab66d1bb72bf5944020c",
+      "rows": 8500,
+      "columns": [
+        "public_event_id",
+        "event_id",
+        "stage_id",
+        "stage_index",
+        "stage_title",
+        "stage_start_time",
+        "stage_end_time",
+        "stage_boundary_time_status",
+        "episode_count",
+        "participant_count",
+        "action_count",
+        "transaction_count",
+        "relation_count",
+        "known_action_time_anchor_count",
+        "known_action_time_anchors",
+        "relative_order_available",
+        "release_split",
+        "version",
+        "schema_version"
+      ]
+    },
+    "finalcascade_summary": {
+      "path": "data/viewer_mirrors/finalcascade_summary.parquet",
+      "sha256": "1ae9d720066bfb55bb5bafc60f0e4a4b8fa17e73497259a074a7aa63f96d58fe",
+      "rows": 3000,
+      "columns": [
+        "public_event_id",
+        "event_id",
+        "title",
+        "domain",
+        "category",
+        "draft_status",
+        "stage_count",
+        "episode_count",
+        "participant_count",
+        "action_count",
+        "transaction_count",
+        "relation_count",
+        "event_start_time",
+        "event_end_time",
+        "event_boundary_time_status",
+        "known_action_time_anchor_count",
+        "known_action_time_anchors",
+        "relative_order_available"
+      ]
+    },
+    "draft_availability": {
+      "path": "data/viewer_mirrors/draft_availability.parquet",
+      "sha256": "b2af0370739c66069c8f2a377b375b7bb962eb6e7da4d35ac5fb4b9c32dfa2ac",
+      "rows": 3000,
+      "columns": [
+        "public_event_id",
+        "draft_status",
+        "draft_source_kind",
+        "draft_schema",
+        "draft_asset",
+        "draft_record_index",
+        "draft_sha256",
+        "source_payload_sha256",
+        "has_reference_epg"
+      ]
+    }
+  }
+}
