@@ -14,7 +14,9 @@ import pandas as pd
 REPO_ROOT = Path(__file__).resolve().parents[1]
 SPACE_ROOT = REPO_ROOT / "spaces" / "h2epr_bench_explorer"
 DATASET_ROOT = (
-    REPO_ROOT
+    Path(os.environ["H2EPR_TEST_DATASET_DIR"]).expanduser().resolve()
+    if os.environ.get("H2EPR_TEST_DATASET_DIR")
+    else REPO_ROOT
     / "build"
     / "hf_unified3000_inplace_upgrade_rc_v3_dataset_card"
     / "H2EPR-Bench"
@@ -44,6 +46,7 @@ class H2EPRExplorerSpaceTests(unittest.TestCase):
         readme = (SPACE_ROOT / "README.md").read_text(encoding="utf-8")
 
         self.assertIn("sdk: docker", readme)
+        self.assertIn("license: apache-2.0", readme)
         self.assertIn("Streamlit", readme)
         self.assertIn("Unified-3000", readme)
         self.assertIn("3,000", readme)

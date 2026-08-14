@@ -4,7 +4,7 @@ colorFrom: gray
 colorTo: blue
 sdk: docker
 pinned: false
-license: cc-by-nc-4.0
+license: apache-2.0
 ---
 
 # H²EPR-Bench Explorer
@@ -22,6 +22,9 @@ empty state because no public Draft EPG is available for them in this release.
 artifacts. Official benchmark scoring uses expert-adjudicated reference EPGs in
 the [manual-gated companion](https://huggingface.co/datasets/AgenticFinLab/H2EPR-Bench-Gold).
 The Explorer does not load reference EPGs or frozen evidence packages.
+
+The Explorer source code is Apache-2.0. Dataset content displayed by the app,
+including public Draft EPGs, remains CC BY-NC 4.0 under the Dataset release.
 
 ## Public data contract
 

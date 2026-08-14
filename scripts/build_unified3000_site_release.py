@@ -3,6 +3,7 @@
 
 from __future__ import annotations
 
+import argparse
 import csv
 import json
 import os
@@ -20,26 +21,23 @@ from PIL import Image, ImageDraw, ImageFont
 
 
 ROOT = Path(__file__).resolve().parents[1]
-RESEARCH = ROOT.parent / "EventMycelium-Research"
-PAPER_ASSETS = RESEARCH / "paper/AAAI_assets"
-SUPPLEMENT = RESEARCH / "paper/supplementary_aaai27/code_data_package/h2epr_bench_anonymous/data"
-
-SYSTEM_SUMMARY = PAPER_ASSETS / "02_主实验结果/表/system_summary_v7.csv"
-EVENT_SCORES = SUPPLEMENT / "results/main/event_level_scores.csv"
-DOMAIN_RESULTS = PAPER_ASSETS / "02_主实验结果/表/domain_summary_v7.csv"
-DOMAIN_DISTRIBUTION = PAPER_ASSETS / "01_基准与Gold统计/表/domain_distribution_v1.csv"
-CATEGORY_DISTRIBUTION = PAPER_ASSETS / "01_基准与Gold统计/表/category_distribution_v1.csv"
-EVENT_FEATURES = PAPER_ASSETS / "09_补充源表/event_features_v1.csv"
-RESOURCE_SUMMARY = PAPER_ASSETS / "08_成本效率与失败分析/表/directllm_system_resource_summary_v1.csv"
-ADAPTATION_FAILURES = PAPER_ASSETS / "08_成本效率与失败分析/表/adaptation_failures_by_system_v1.csv"
+SYSTEM_SUMMARY: Path
+EVENT_SCORES: Path
+DOMAIN_RESULTS: Path
+DOMAIN_DISTRIBUTION: Path
+CATEGORY_DISTRIBUTION: Path
+EVENT_FEATURES: Path
+RESOURCE_SUMMARY: Path
+ADAPTATION_FAILURES: Path
 
 DATA_DIR = ROOT / "data"
 CHART_DIR = ROOT / "assets/charts"
 DIAGNOSTIC_DIR = ROOT / "assets/diagnostics"
 SUMMARY_OUTPUT = ROOT / "assets/summary/dataset-summary-panel.png"
 
-FONT_REGULAR = Path("/usr/share/fonts/truetype/liberation/LiberationSans-Regular.ttf")
-FONT_BOLD = Path("/usr/share/fonts/truetype/liberation/LiberationSans-Bold.ttf")
+MATPLOTLIB_FONTS = Path(matplotlib.get_data_path()) / "fonts" / "ttf"
+FONT_REGULAR = MATPLOTLIB_FONTS / "DejaVuSans.ttf"
+FONT_BOLD = MATPLOTLIB_FONTS / "DejaVuSans-Bold.ttf"
 
 INK = "#152323"
 INK_2 = "#30403F"
@@ -54,6 +52,38 @@ CORAL = "#C4583C"
 PURPLE = "#7557A6"
 GREEN = "#4C7A45"
 PALETTE = [BLUE, TEAL, GOLD, CORAL, PURPLE, GREEN]
+
+
+def configure_source_root(source_root: Path) -> None:
+    """Bind the approved private aggregate source tree named by the operator."""
+
+    resolved = source_root.expanduser().resolve()
+    paper_assets = resolved / "paper" / "AAAI_assets"
+    supplement = (
+        resolved
+        / "paper"
+        / "supplementary_aaai27"
+        / "code_data_package"
+        / "h2epr_bench_anonymous"
+        / "data"
+    )
+    sources = {
+        "SYSTEM_SUMMARY": paper_assets / "02_主实验结果/表/system_summary_v7.csv",
+        "EVENT_SCORES": supplement / "results/main/event_level_scores.csv",
+        "DOMAIN_RESULTS": paper_assets / "02_主实验结果/表/domain_summary_v7.csv",
+        "DOMAIN_DISTRIBUTION": paper_assets / "01_基准与Gold统计/表/domain_distribution_v1.csv",
+        "CATEGORY_DISTRIBUTION": paper_assets
+        / "01_基准与Gold统计/表/category_distribution_v1.csv",
+        "EVENT_FEATURES": paper_assets / "09_补充源表/event_features_v1.csv",
+        "RESOURCE_SUMMARY": paper_assets
+        / "08_成本效率与失败分析/表/directllm_system_resource_summary_v1.csv",
+        "ADAPTATION_FAILURES": paper_assets
+        / "08_成本效率与失败分析/表/adaptation_failures_by_system_v1.csv",
+    }
+    missing = [name for name, path in sources.items() if not path.is_file()]
+    if missing:
+        raise SystemExit(f"approved source root is missing required aggregate inputs: {missing}")
+    globals().update(sources)
 
 DISPLAY_NAMES = {
     "deepseek-v3-2": "DeepSeek V3.2",
@@ -530,6 +560,15 @@ def build_summary_panel() -> None:
 
 
 def main() -> None:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument(
+        "--source-root",
+        required=True,
+        type=Path,
+        help="approved source tree containing the public aggregate release inputs",
+    )
+    args = parser.parse_args()
+    configure_source_root(args.source_root)
     for path in [DATA_DIR, CHART_DIR, DIAGNOSTIC_DIR, SUMMARY_OUTPUT.parent]:
         path.mkdir(parents=True, exist_ok=True)
     rows = build_result_data()

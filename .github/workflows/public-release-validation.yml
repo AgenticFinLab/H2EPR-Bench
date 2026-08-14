@@ -1,0 +1,55 @@
+name: public release validation
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+concurrency:
+  group: public-release-validation-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - name: Check out reviewed source
+        uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
+        with:
+          persist-credentials: false
+
+      - name: Set up Python
+        uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: spaces/h2epr_bench_explorer/requirements.txt
+
+      - name: Install declared Explorer dependencies
+        run: python -m pip install --disable-pip-version-check -r spaces/h2epr_bench_explorer/requirements.txt
+
+      - name: Prepare pinned public Dataset test cache
+        run: python scripts/prepare_public_dataset_test_cache.py --output .cache/h2epr-public-dataset
+
+      - name: Run public unit and contract tests
+        env:
+          H2EPR_TEST_DATASET_DIR: .cache/h2epr-public-dataset
+        run: python -m unittest discover -s tests -v
+
+      - name: Validate website and public repository boundary
+        run: |
+          python scripts/validate_site_assets.py
+          python scripts/check_public_release_boundary.py
+          python scripts/check_explorer_source_manifest.py
+          python -m compileall -q scripts spaces datasets tests
+          node --check static/js/leaderboard.js
+          node --check static/js/results-diagnostics.js
+          node --check static/js/site.js
+
+      - name: Confirm tests did not modify tracked files
+        run: git diff --exit-code
