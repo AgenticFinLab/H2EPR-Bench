@@ -1,5 +1,13 @@
 # H2EPR-Bench public Dataset release contract
 
+[Website](https://agenticfinlab.github.io/H2EPR-Bench/) ·
+[Code](https://github.com/AgenticFinLab/H2EPR-Bench) ·
+[Public Dataset](https://huggingface.co/datasets/AgenticFinLab/H2EPR-Bench) ·
+[Explorer](https://huggingface.co/spaces/AgenticFinLab/H2EPR-Bench-Explorer) ·
+[FinMycelium](https://github.com/AgenticFinLab/FinMycelium) ·
+[Gated Gold](https://huggingface.co/datasets/AgenticFinLab/H2EPR-Bench-Gold) ·
+[AgenticFinLab](https://agenticfinlab.github.io/)
+
 This directory maintains the public source contract and local validator for
 the H2EPR-Bench Unified-3000 Dataset release. The released tables and Draft
 EPG records remain on Hugging Face and are intentionally not duplicated in

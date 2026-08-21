@@ -178,6 +178,11 @@ p {
   font-size: 0.88rem;
 }
 
+.topbar-links a,
+.paper-status {
+  white-space: nowrap;
+}
+
 .paper-status {
   color: var(--faint);
 }
@@ -283,6 +288,18 @@ p {
   border-color: var(--accent-2);
   color: #fff;
   background: var(--accent-2);
+}
+
+.link-chip.resource-system {
+  border-color: rgba(42, 127, 98, 0.42);
+  color: #1f654e;
+  background: #eef8f3;
+}
+
+.link-chip.resource-system:hover {
+  border-color: #2a7f62;
+  color: #164b3a;
+  background: #e4f4ec;
 }
 
 .spec-line {
@@ -1720,6 +1737,11 @@ tbody tr:hover td {
   margin: 0;
 }
 
+.site-footer a {
+  color: var(--accent-2);
+  font-weight: 650;
+}
+
 @media (max-width: 900px) {
   .section-nav {
     justify-content: flex-start;
@@ -1729,6 +1751,10 @@ tbody tr:hover td {
   .topbar {
     align-items: flex-start;
     flex-direction: column;
+  }
+
+  .topbar-links {
+    justify-content: flex-start;
   }
 
   .spec-line {

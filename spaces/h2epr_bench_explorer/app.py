@@ -15,11 +15,16 @@ import streamlit as st
 from h2epr_explorer.constants import (
     CATALOG_COLUMNS,
     DRAFT_UNAVAILABLE_MESSAGE,
+    FINMYCELIUM_URL,
     GOLD_COMPANION_REPO,
+    GOLD_COMPANION_URL,
     PROFILE_COLUMNS,
     PUBLIC_DATASET_REPO,
     PUBLIC_DATASET_REVISION,
+    PUBLIC_DATASET_REVISION_URL,
+    PROJECT_WEBSITE_URL,
     RELEASE_BOUNDARY_NOTICE,
+    SOURCE_REPOSITORY_URL,
 )
 from h2epr_explorer.data_loader import (
     DatasetTransportError,
@@ -158,14 +163,30 @@ with st.sidebar:
         width="stretch",
     )
     st.divider()
+    st.subheader("Project links")
+    st.link_button(
+        "Project website",
+        PROJECT_WEBSITE_URL,
+        width="stretch",
+    )
+    st.link_button(
+        "Source code",
+        SOURCE_REPOSITORY_URL,
+        width="stretch",
+    )
     st.link_button(
         "Dataset repository",
-        f"https://huggingface.co/datasets/{PUBLIC_DATASET_REPO}/tree/{PUBLIC_DATASET_REVISION}",
+        PUBLIC_DATASET_REVISION_URL,
+        width="stretch",
+    )
+    st.link_button(
+        "FinMycelium system",
+        FINMYCELIUM_URL,
         width="stretch",
     )
     st.link_button(
         "Reference EPG access",
-        f"https://huggingface.co/datasets/{GOLD_COMPANION_REPO}",
+        GOLD_COMPANION_URL,
         width="stretch",
     )
 
@@ -302,8 +323,11 @@ with tabs[5]:
         f"""
 ### Release boundary
 
-- Public dataset: [`{PUBLIC_DATASET_REPO}`](https://huggingface.co/datasets/{PUBLIC_DATASET_REPO}/tree/{PUBLIC_DATASET_REVISION}) at `{PUBLIC_DATASET_REVISION}`.
-- Manual-gated reference EPG companion: [`{GOLD_COMPANION_REPO}`](https://huggingface.co/datasets/{GOLD_COMPANION_REPO}).
+- Project website: [H²EPR-Bench]({PROJECT_WEBSITE_URL}).
+- Source code: [`AgenticFinLab/H2EPR-Bench`]({SOURCE_REPOSITORY_URL}).
+- Public dataset: [`{PUBLIC_DATASET_REPO}`]({PUBLIC_DATASET_REVISION_URL}) at `{PUBLIC_DATASET_REVISION}`.
+- FinMycelium: [multi-agent event reconstruction system]({FINMYCELIUM_URL}).
+- Manual-gated reference EPG companion: [`{GOLD_COMPANION_REPO}`]({GOLD_COMPANION_URL}).
 - Public Draft EPGs are sanitized FinMycelium construction artifacts, not scoring references.
 - Official benchmark scoring uses expert-adjudicated reference EPGs in the gated companion.
 - This Explorer loads neither reference EPGs nor frozen evidence packages.

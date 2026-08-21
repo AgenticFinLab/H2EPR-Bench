@@ -7,6 +7,15 @@ pinned: false
 license: apache-2.0
 ---
 
+[![Website](https://img.shields.io/badge/Website-H2EPR--Bench-0D5159?style=flat-square)](https://agenticfinlab.github.io/H2EPR-Bench/)
+[![Code](https://img.shields.io/badge/Code-GitHub-24292F?style=flat-square)](https://github.com/AgenticFinLab/H2EPR-Bench)
+[![Public Dataset](https://img.shields.io/badge/Dataset-Unified--3000-D99A20?style=flat-square)](https://huggingface.co/datasets/AgenticFinLab/H2EPR-Bench)
+[![Explorer](https://img.shields.io/badge/Explorer-Open-126A70?style=flat-square)](https://huggingface.co/spaces/AgenticFinLab/H2EPR-Bench-Explorer)
+[![FinMycelium](https://img.shields.io/badge/System-FinMycelium-2A7F62?style=flat-square)](https://github.com/AgenticFinLab/FinMycelium)
+[![Gated Gold](https://img.shields.io/badge/Reference_EPGs-Gated_Gold-9A6A16?style=flat-square)](https://huggingface.co/datasets/AgenticFinLab/H2EPR-Bench-Gold)
+[![AgenticFinLab](https://img.shields.io/badge/Lab-AgenticFinLab-51606A?style=flat-square)](https://agenticfinlab.github.io/)
+![Paper forthcoming](https://img.shields.io/badge/Paper-forthcoming-87939B?style=flat-square)
+
 # H²EPR-Bench Explorer
 
 H²EPR-Bench Explorer is the interactive browsing layer for the Unified-3000
