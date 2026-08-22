@@ -18,12 +18,11 @@ class PublicResourceLinkTests(unittest.TestCase):
     def test_canonical_public_identities(self):
         expected = {
             "website": "https://agenticfinlab.github.io/H2EPR-Bench/",
-            "code": "https://github.com/AgenticFinLab/H2EPR-Bench",
+            "release_repository": "https://github.com/AgenticFinLab/H2EPR-Bench",
             "public_dataset": "https://huggingface.co/datasets/AgenticFinLab/H2EPR-Bench",
             "explorer": "https://huggingface.co/spaces/AgenticFinLab/H2EPR-Bench-Explorer",
             "finmycelium": "https://github.com/AgenticFinLab/FinMycelium",
             "gated_gold": "https://huggingface.co/datasets/AgenticFinLab/H2EPR-Bench-Gold",
-            "agenticfinlab": "https://agenticfinlab.github.io/",
         }
         self.assertEqual(
             {resource_id: resource["url"] for resource_id, resource in self.resources.items()},
@@ -31,10 +30,32 @@ class PublicResourceLinkTests(unittest.TestCase):
         )
         self.assertEqual(self.manifest["paper"]["status"], "forthcoming")
         self.assertIsNone(self.manifest["paper"]["url"])
+        self.assertEqual(
+            {resource_id: resource["label"] for resource_id, resource in self.resources.items()},
+            {
+                "website": "Project Website",
+                "release_repository": "Release Repository",
+                "public_dataset": "Public Dataset",
+                "explorer": "Event Explorer",
+                "finmycelium": "FinMycelium System",
+                "gated_gold": "Reference EPGs (Gated)",
+            },
+        )
 
     def test_every_public_surface_contains_required_links_in_order(self):
         validate_surfaces(self.manifest, self.resources)
         self.assertEqual(len(SURFACE_PATHS), 6)
+        self.assertNotIn("release_repository", self.manifest["surface_order"]["github_readme"])
+        self.assertNotIn("public_dataset", self.manifest["surface_order"]["public_dataset_card"])
+        self.assertNotIn("gated_gold", self.manifest["surface_order"]["gold_card"])
+        self.assertNotIn("explorer", self.manifest["surface_order"]["explorer_card"])
+
+    def test_resource_groups_exclude_lab_and_noninteractive_paper_badges(self):
+        self.assertNotIn("agenticfinlab", self.resources)
+        for paths in SURFACE_PATHS.values():
+            text = "\n".join(path.read_text(encoding="utf-8") for path in paths)
+            self.assertNotIn("Lab-AgenticFinLab", text)
+            self.assertNotIn("Paper-forthcoming", text)
 
     def test_hugging_face_card_sources_pin_current_remote_baselines(self):
         validate_card_sources(self.manifest)

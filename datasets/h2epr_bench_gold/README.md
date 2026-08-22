@@ -1,12 +1,10 @@
 # H2EPR-Bench Gold public interface
 
-[Website](https://agenticfinlab.github.io/H2EPR-Bench/) ·
-[Code](https://github.com/AgenticFinLab/H2EPR-Bench) ·
+[Project Website](https://agenticfinlab.github.io/H2EPR-Bench/) ·
 [Public Dataset](https://huggingface.co/datasets/AgenticFinLab/H2EPR-Bench) ·
-[Explorer](https://huggingface.co/spaces/AgenticFinLab/H2EPR-Bench-Explorer) ·
-[FinMycelium](https://github.com/AgenticFinLab/FinMycelium) ·
-[Gated Gold](https://huggingface.co/datasets/AgenticFinLab/H2EPR-Bench-Gold) ·
-[AgenticFinLab](https://agenticfinlab.github.io/)
+[Event Explorer](https://huggingface.co/spaces/AgenticFinLab/H2EPR-Bench-Explorer) ·
+[FinMycelium System](https://github.com/AgenticFinLab/FinMycelium) ·
+[Release Repository](https://github.com/AgenticFinLab/H2EPR-Bench)
 
 This directory contains only the public schema and offline validation
 interface for H2EPR-Bench reference EPGs. It contains no real reference EPG,

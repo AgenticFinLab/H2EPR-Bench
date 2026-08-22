@@ -1,13 +1,10 @@
 # H²EPR-Bench
 
-[![Website](https://img.shields.io/badge/Website-H2EPR--Bench-0D5159?style=flat-square)](https://agenticfinlab.github.io/H2EPR-Bench/)
-[![Code](https://img.shields.io/badge/Code-GitHub-24292F?style=flat-square)](https://github.com/AgenticFinLab/H2EPR-Bench)
-[![Public Dataset](https://img.shields.io/badge/Dataset-Unified--3000-D99A20?style=flat-square)](https://huggingface.co/datasets/AgenticFinLab/H2EPR-Bench)
-[![Explorer](https://img.shields.io/badge/Explorer-Open-126A70?style=flat-square)](https://huggingface.co/spaces/AgenticFinLab/H2EPR-Bench-Explorer)
-[![FinMycelium](https://img.shields.io/badge/System-FinMycelium-2A7F62?style=flat-square)](https://github.com/AgenticFinLab/FinMycelium)
-[![Gated Gold](https://img.shields.io/badge/Reference_EPGs-Gated_Gold-9A6A16?style=flat-square)](https://huggingface.co/datasets/AgenticFinLab/H2EPR-Bench-Gold)
-[![AgenticFinLab](https://img.shields.io/badge/Lab-AgenticFinLab-51606A?style=flat-square)](https://agenticfinlab.github.io/)
-![Paper forthcoming](https://img.shields.io/badge/Paper-forthcoming-87939B?style=flat-square)
+[![Project Website](https://img.shields.io/badge/Project_Website-Visit-176B70?style=flat-square)](https://agenticfinlab.github.io/H2EPR-Bench/)
+[![Public Dataset](https://img.shields.io/badge/Public_Dataset-Unified--3000-176B70?style=flat-square)](https://huggingface.co/datasets/AgenticFinLab/H2EPR-Bench)
+[![Event Explorer](https://img.shields.io/badge/Event_Explorer-Browse-176B70?style=flat-square)](https://huggingface.co/spaces/AgenticFinLab/H2EPR-Bench-Explorer)
+[![FinMycelium System](https://img.shields.io/badge/FinMycelium-System-176B70?style=flat-square)](https://github.com/AgenticFinLab/FinMycelium)
+[![Reference EPGs (Gated)](https://img.shields.io/badge/Reference_EPGs-Gated-176B70?style=flat-square)](https://huggingface.co/datasets/AgenticFinLab/H2EPR-Bench-Gold)
 
 This is the canonical public source monorepo for the H²EPR-Bench release. It
 maintains the GitHub Pages website, the deployable Explorer source, the public
@@ -35,13 +32,12 @@ in `manifests/public_resource_links.json`.
 
 ## Release endpoints
 
-- Website: https://agenticfinlab.github.io/H2EPR-Bench/
-- Source code: https://github.com/AgenticFinLab/H2EPR-Bench
+- Project Website: https://agenticfinlab.github.io/H2EPR-Bench/
+- Release Repository: https://github.com/AgenticFinLab/H2EPR-Bench
 - Public Dataset: https://huggingface.co/datasets/AgenticFinLab/H2EPR-Bench
-- Explorer: https://huggingface.co/spaces/AgenticFinLab/H2EPR-Bench-Explorer
-- FinMycelium reconstruction system: https://github.com/AgenticFinLab/FinMycelium
-- Manual-gated Gold companion: https://huggingface.co/datasets/AgenticFinLab/H2EPR-Bench-Gold
-- AgenticFinLab: https://agenticfinlab.github.io/
+- Event Explorer: https://huggingface.co/spaces/AgenticFinLab/H2EPR-Bench-Explorer
+- FinMycelium System: https://github.com/AgenticFinLab/FinMycelium
+- Reference EPGs (Gated): https://huggingface.co/datasets/AgenticFinLab/H2EPR-Bench-Gold
 - Paper: forthcoming; no public URL is asserted yet.
 
 The public Dataset contract is fixed to revision

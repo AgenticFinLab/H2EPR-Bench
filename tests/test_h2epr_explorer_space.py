@@ -141,11 +141,11 @@ class H2EPRExplorerSpaceTests(unittest.TestCase):
     def test_explorer_exposes_canonical_project_links(self):
         app = (SPACE_ROOT / "app.py").read_text(encoding="utf-8")
         expected_labels = (
-            "Project website",
-            "Source code",
-            "Dataset repository",
-            "FinMycelium system",
-            "Reference EPG access",
+            "Project Website",
+            "Public Dataset",
+            "FinMycelium System",
+            "Reference EPGs (Gated)",
+            "Release Repository",
         )
         positions = [app.index(f'"{label}"') for label in expected_labels]
         self.assertEqual(positions, sorted(positions))
@@ -157,6 +157,8 @@ class H2EPRExplorerSpaceTests(unittest.TestCase):
             "GOLD_COMPANION_URL",
         ):
             self.assertIn(constant, app)
+        for misleading_label in ("Source code", "Dataset repository", "Gated Gold"):
+            self.assertNotIn(f'"{misleading_label}"', app)
 
     def test_full_local_release_contract_and_join(self):
         from h2epr_explorer.constants import GRAPH_COUNT_COLUMNS

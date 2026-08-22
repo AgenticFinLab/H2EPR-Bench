@@ -7,6 +7,7 @@ from html.parser import HTMLParser
 import hashlib
 import json
 from pathlib import Path
+import re
 from urllib.parse import urlparse
 
 
@@ -23,6 +24,31 @@ SURFACE_PATHS: dict[str, tuple[Path, ...]] = {
         ROOT / "spaces" / "h2epr_bench_explorer" / "app.py",
         ROOT / "spaces" / "h2epr_bench_explorer" / "src" / "h2epr_explorer" / "constants.py",
     ),
+}
+
+README_BADGE_SURFACES = {
+    "github_readme",
+    "public_dataset_card",
+    "gold_card",
+    "explorer_card",
+}
+
+EXPECTED_SURFACE_ORDER = {
+    "website": ["explorer", "public_dataset", "finmycelium", "gated_gold", "release_repository"],
+    "github_readme": ["website", "public_dataset", "explorer", "finmycelium", "gated_gold"],
+    "public_dataset_card": ["website", "explorer", "finmycelium", "gated_gold", "release_repository"],
+    "gold_card": ["website", "public_dataset", "explorer", "finmycelium", "release_repository"],
+    "explorer_card": ["website", "public_dataset", "finmycelium", "gated_gold", "release_repository"],
+    "explorer_app": ["website", "public_dataset", "finmycelium", "gated_gold", "release_repository"],
+}
+
+EXPECTED_RESOURCE_LABELS = {
+    "website": "Project Website",
+    "release_repository": "Release Repository",
+    "public_dataset": "Public Dataset",
+    "explorer": "Event Explorer",
+    "finmycelium": "FinMycelium System",
+    "gated_gold": "Reference EPGs (Gated)",
 }
 
 
@@ -58,6 +84,11 @@ def validate_manifest(manifest: dict) -> dict[str, dict]:
     by_id = {resource.get("id"): resource for resource in resources}
     if len(by_id) != len(resources) or None in by_id:
         raise SystemExit("public-resource IDs must be present and unique")
+    if set(by_id) != set(EXPECTED_RESOURCE_LABELS):
+        raise SystemExit("public-resource IDs do not match the reader-facing contract")
+    labels = {resource_id: resource["label"] for resource_id, resource in by_id.items()}
+    if labels != EXPECTED_RESOURCE_LABELS:
+        raise SystemExit("public-resource labels do not match the reader-facing contract")
 
     urls = [resource.get("url") for resource in resources]
     if len(set(urls)) != len(urls):
@@ -88,6 +119,10 @@ def validate_surfaces(manifest: dict, resources: dict[str, dict]) -> None:
     configured_surfaces = set(manifest.get("surface_order", {}))
     if configured_surfaces != expected_surfaces:
         raise SystemExit("surface_order keys do not match the validated public surfaces")
+    if manifest["surface_order"] != EXPECTED_SURFACE_ORDER:
+        raise SystemExit("surface_order does not match the task-first, self-link-free contract")
+    if set(manifest.get("surface_labels", {})) != expected_surfaces:
+        raise SystemExit("surface_labels keys do not match the validated public surfaces")
 
     for surface, paths in SURFACE_PATHS.items():
         missing = [path.relative_to(ROOT) for path in paths if not path.is_file()]
@@ -96,6 +131,9 @@ def validate_surfaces(manifest: dict, resources: dict[str, dict]) -> None:
         text = "\n".join(path.read_text(encoding="utf-8") for path in paths)
         if "FinMycelium_O1" in text:
             raise SystemExit(f"non-canonical FinMycelium_O1 link found in {surface}")
+        labels = manifest["surface_labels"][surface]
+        if list(labels) != manifest["surface_order"][surface]:
+            raise SystemExit(f"{surface} labels do not follow its canonical resource order")
         positions: list[int] = []
         for resource_id in manifest["surface_order"][surface]:
             if resource_id not in resources:
@@ -105,16 +143,43 @@ def validate_surfaces(manifest: dict, resources: dict[str, dict]) -> None:
             if position < 0:
                 raise SystemExit(f"{surface} is missing {resource_id}: {url}")
             positions.append(position)
+            if labels[resource_id] not in text:
+                raise SystemExit(f"{surface} is missing visible label {labels[resource_id]!r}")
         if positions != sorted(positions):
             raise SystemExit(f"{surface} resource links do not follow the canonical order")
+        if "Paper-forthcoming" in text or "Lab-AgenticFinLab" in text:
+            raise SystemExit(f"{surface} contains a non-resource status or lab badge")
+
+        if surface in README_BADGE_SURFACES:
+            badges = re.findall(
+                r"\[!\[([^\]]+)\]\((https://img\.shields\.io/badge/[^)]+)\)\]\((https://[^)]+)\)",
+                text,
+            )
+            expected_ids = manifest["surface_order"][surface]
+            expected_labels = [labels[resource_id] for resource_id in expected_ids]
+            expected_urls = [resources[resource_id]["url"] for resource_id in expected_ids]
+            if [badge[0] for badge in badges] != expected_labels:
+                raise SystemExit(f"{surface} badge labels do not match its public-resource contract")
+            if [badge[2] for badge in badges] != expected_urls:
+                raise SystemExit(f"{surface} badge targets do not match its public-resource contract")
+            if any("-176B70?style=flat-square" not in badge[1] for badge in badges):
+                raise SystemExit(f"{surface} badges do not use the uniform public-resource style")
 
     website = SURFACE_PATHS["website"][0].read_text(encoding="utf-8")
     parser = _AnchorCollector()
     parser.feed(website)
-    code_url = resources["code"]["url"]
-    mislabeled = [label for href, label in parser.anchors if href == code_url and label == "Website"]
+    release_url = resources["release_repository"]["url"]
+    mislabeled = [
+        label
+        for href, label in parser.anchors
+        if href == release_url and label in {"Code", "GitHub", "Source", "Source code", "Website"}
+    ]
     if mislabeled:
-        raise SystemExit("the GitHub destination is mislabeled as Website")
+        raise SystemExit("the release monorepo has a misleading generic label")
+    for resource_id, label in manifest["surface_labels"]["website"].items():
+        target = resources[resource_id]["url"]
+        if (target, label) not in parser.anchors:
+            raise SystemExit(f"website does not pair {label!r} with its canonical URL")
 
 
 def validate_card_sources(manifest: dict) -> None:

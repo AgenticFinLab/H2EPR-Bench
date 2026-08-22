@@ -51,6 +51,19 @@ REQUIRED_TEXT = [
     "Background &amp; Motivation",
     "Benchmark Construction",
     "Interactive Explorer",
+    "Explore Events",
+    "Public Dataset",
+    "Benchmark Results",
+    "FinMycelium System",
+    "Reference EPGs (Gated)",
+    "Release Repository",
+    'class="icon-sprite"',
+    'id="icon-explore"',
+    'id="icon-dataset"',
+    'id="icon-results"',
+    'id="icon-system"',
+    'id="icon-reference"',
+    'id="icon-repository"',
     "Prediction / Simulation",
     "Key Findings",
     "Results &amp; Diagnostics",
@@ -72,6 +85,12 @@ FORBIDDEN_PUBLIC_TEXT = [
     "16 direct reconstruction",
     "1,000 benchmark events",
     ">Website</a>",
+    ">Code</a>",
+    'data-resource-id="code"',
+    'data-resource-id="agenticfinlab"',
+    'class="link-chip dark"',
+    'class="link-chip resource-system"',
+    'class="paper-status"',
 ]
 
 REQUIRED_MODEL_KEYS = {
@@ -118,6 +137,11 @@ def main() -> None:
     forbidden = [text for text in FORBIDDEN_PUBLIC_TEXT if text.lower() in html.lower()]
     if forbidden:
         raise SystemExit(f"stale public wording found: {forbidden}")
+    css = (ROOT / "static" / "css" / "site.css").read_text(encoding="utf-8")
+    if ".link-chip.dark" in css or ".link-chip.resource-system" in css:
+        raise SystemExit("resource buttons still contain mixed fill-style variants")
+    if "border-radius: 6px" not in css or ".link-chip svg" not in css:
+        raise SystemExit("resource buttons are missing the unified outline/icon treatment")
     validate_local_references(html)
 
     rows = json.loads((ROOT / "data/unified3000_21model_main_results.json").read_text(encoding="utf-8"))

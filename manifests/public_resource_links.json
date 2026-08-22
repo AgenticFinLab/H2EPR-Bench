@@ -9,14 +9,14 @@
   "resources": [
     {
       "id": "website",
-      "label": "Website",
+      "label": "Project Website",
       "url": "https://agenticfinlab.github.io/H2EPR-Bench/",
       "role": "Canonical H2EPR-Bench project website",
       "tier": "primary"
     },
     {
-      "id": "code",
-      "label": "Code",
+      "id": "release_repository",
+      "label": "Release Repository",
       "url": "https://github.com/AgenticFinLab/H2EPR-Bench",
       "role": "Canonical public source and review monorepo",
       "tier": "primary"
@@ -30,85 +30,113 @@
     },
     {
       "id": "explorer",
-      "label": "Explorer",
+      "label": "Event Explorer",
       "url": "https://huggingface.co/spaces/AgenticFinLab/H2EPR-Bench-Explorer",
       "role": "Interactive public Draft EPG browser",
       "tier": "primary"
     },
     {
       "id": "finmycelium",
-      "label": "FinMycelium",
+      "label": "FinMycelium System",
       "url": "https://github.com/AgenticFinLab/FinMycelium",
       "role": "Multi-agent event reconstruction system used to construct public drafts",
       "tier": "primary"
     },
     {
       "id": "gated_gold",
-      "label": "Gated Gold",
+      "label": "Reference EPGs (Gated)",
       "url": "https://huggingface.co/datasets/AgenticFinLab/H2EPR-Bench-Gold",
       "role": "Manual-gated reference EPG distribution for official scoring",
-      "tier": "secondary"
-    },
-    {
-      "id": "agenticfinlab",
-      "label": "AgenticFinLab",
-      "url": "https://agenticfinlab.github.io/",
-      "role": "Agentic Finance Lab public website",
       "tier": "secondary"
     }
   ],
   "surface_order": {
     "website": [
-      "public_dataset",
       "explorer",
+      "public_dataset",
       "finmycelium",
-      "code",
       "gated_gold",
-      "agenticfinlab"
+      "release_repository"
     ],
     "github_readme": [
       "website",
-      "code",
       "public_dataset",
       "explorer",
       "finmycelium",
-      "gated_gold",
-      "agenticfinlab"
+      "gated_gold"
     ],
     "public_dataset_card": [
       "website",
-      "code",
-      "public_dataset",
       "explorer",
       "finmycelium",
       "gated_gold",
-      "agenticfinlab"
+      "release_repository"
     ],
     "gold_card": [
       "website",
-      "code",
       "public_dataset",
       "explorer",
       "finmycelium",
-      "gated_gold",
-      "agenticfinlab"
+      "release_repository"
     ],
     "explorer_card": [
       "website",
-      "code",
       "public_dataset",
-      "explorer",
       "finmycelium",
       "gated_gold",
-      "agenticfinlab"
+      "release_repository"
     ],
     "explorer_app": [
       "website",
-      "code",
       "public_dataset",
       "finmycelium",
-      "gated_gold"
+      "gated_gold",
+      "release_repository"
     ]
+  },
+  "surface_labels": {
+    "website": {
+      "explorer": "Explore Events",
+      "public_dataset": "Public Dataset",
+      "finmycelium": "FinMycelium System",
+      "gated_gold": "Reference EPGs (Gated)",
+      "release_repository": "Release Repository"
+    },
+    "github_readme": {
+      "website": "Project Website",
+      "public_dataset": "Public Dataset",
+      "explorer": "Event Explorer",
+      "finmycelium": "FinMycelium System",
+      "gated_gold": "Reference EPGs (Gated)"
+    },
+    "public_dataset_card": {
+      "website": "Project Website",
+      "explorer": "Event Explorer",
+      "finmycelium": "FinMycelium System",
+      "gated_gold": "Reference EPGs (Gated)",
+      "release_repository": "Release Repository"
+    },
+    "gold_card": {
+      "website": "Project Website",
+      "public_dataset": "Public Dataset",
+      "explorer": "Event Explorer",
+      "finmycelium": "FinMycelium System",
+      "release_repository": "Release Repository"
+    },
+    "explorer_card": {
+      "website": "Project Website",
+      "public_dataset": "Public Dataset",
+      "finmycelium": "FinMycelium System",
+      "gated_gold": "Reference EPGs (Gated)",
+      "release_repository": "Release Repository"
+    },
+    "explorer_app": {
+      "website": "Project Website",
+      "public_dataset": "Public Dataset",
+      "finmycelium": "FinMycelium System",
+      "gated_gold": "Reference EPGs (Gated)",
+      "release_repository": "Release Repository"
+    }
   },
   "hugging_face_card_sources": {
     "public_dataset_card": {
@@ -117,7 +145,7 @@
       "target_path": "README.md",
       "baseline_revision": "1d01f3649ace0301ac3bbe9ee875eea660347a29",
       "baseline_readme_sha256": "f094009f9df385f7db24f0999ba2b0a3f5e61993b18b710cdd335efd1bce949d",
-      "source_readme_sha256": "ba3b2bff72d962a7adcf4cb619a683f0e138b287736ca75667dcca6e6605a277",
+      "source_readme_sha256": "eddcdf45193a50578c6856f264e28bdc208cc59668b461192084a289a3cc87c2",
       "change_scope": "badge_block_only"
     },
     "gold_card": {
@@ -126,7 +154,7 @@
       "target_path": "README.md",
       "baseline_revision": "48041e35e000e036b85dfd0d8f1273a85d027159",
       "baseline_readme_sha256": "369edfffd8456d0f53b085f208b623d2db04c0faa5b4d0568d5d84b92f9716b0",
-      "source_readme_sha256": "1a1b51a1579dd76dae61603fbc3ece4e291b429d7e42a47aed5ac2266ea5ef95",
+      "source_readme_sha256": "c8d639cd6b0db0084c24a02c5de4ecf6fdf4ee2350db0de1f89131efadc8913e",
       "change_scope": "badge_block_only"
     },
     "explorer_card": {
@@ -135,7 +163,7 @@
       "target_path": "README.md",
       "baseline_revision": "a1cf81783396bb52328ed0ebe7a43da32a447f46",
       "baseline_readme_sha256": "ac752d5cb99318c8992eb094a35ff4b34ad05cc3c29d230c6275cf4ea65a9e57",
-      "source_readme_sha256": "6659dd54d177492d561454e3301f11eca7d200b7f5db26c9b68e83ed6d2b406c",
+      "source_readme_sha256": "42770432c3f831f4a7e1977768cf19c7c50e60a48d29e2333c2b05e65df9892c",
       "change_scope": "reviewed_space_source"
     }
   }

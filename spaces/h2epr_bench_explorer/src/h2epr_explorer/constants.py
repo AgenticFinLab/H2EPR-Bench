@@ -4,11 +4,11 @@ PUBLIC_DATASET_REPO = "AgenticFinLab/H2EPR-Bench"
 GOLD_COMPANION_REPO = "AgenticFinLab/H2EPR-Bench-Gold"
 
 PROJECT_WEBSITE_URL = "https://agenticfinlab.github.io/H2EPR-Bench/"
-SOURCE_REPOSITORY_URL = "https://github.com/AgenticFinLab/H2EPR-Bench"
 PUBLIC_DATASET_URL = "https://huggingface.co/datasets/AgenticFinLab/H2EPR-Bench"
 EXPLORER_URL = "https://huggingface.co/spaces/AgenticFinLab/H2EPR-Bench-Explorer"
 FINMYCELIUM_URL = "https://github.com/AgenticFinLab/FinMycelium"
 GOLD_COMPANION_URL = "https://huggingface.co/datasets/AgenticFinLab/H2EPR-Bench-Gold"
+SOURCE_REPOSITORY_URL = "https://github.com/AgenticFinLab/H2EPR-Bench"
 AGENTICFINLAB_URL = "https://agenticfinlab.github.io/"
 
 DEFAULT_PUBLIC_DATASET_REVISION = "1d01f3649ace0301ac3bbe9ee875eea660347a29"

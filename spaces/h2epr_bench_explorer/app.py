@@ -163,30 +163,30 @@ with st.sidebar:
         width="stretch",
     )
     st.divider()
-    st.subheader("Project links")
+    st.subheader("Public resources")
     st.link_button(
-        "Project website",
+        "Project Website",
         PROJECT_WEBSITE_URL,
         width="stretch",
     )
     st.link_button(
-        "Source code",
-        SOURCE_REPOSITORY_URL,
-        width="stretch",
-    )
-    st.link_button(
-        "Dataset repository",
+        "Public Dataset",
         PUBLIC_DATASET_REVISION_URL,
         width="stretch",
     )
     st.link_button(
-        "FinMycelium system",
+        "FinMycelium System",
         FINMYCELIUM_URL,
         width="stretch",
     )
     st.link_button(
-        "Reference EPG access",
+        "Reference EPGs (Gated)",
         GOLD_COMPANION_URL,
+        width="stretch",
+    )
+    st.link_button(
+        "Release Repository",
+        SOURCE_REPOSITORY_URL,
         width="stretch",
     )
 
@@ -256,9 +256,9 @@ with tabs[1]:
     )
 
     link_columns = st.columns(3 if draft_available else 2)
-    link_columns[0].link_button("Open dataset", event_links["public_dataset"], width="stretch")
+    link_columns[0].link_button("Open Public Dataset", event_links["public_dataset"], width="stretch")
     link_columns[1].link_button(
-        "Reference EPG access", event_links["reference_access"], width="stretch"
+        "Reference EPGs (Gated)", event_links["reference_access"], width="stretch"
     )
     if draft_available:
         link_columns[2].link_button(
@@ -323,11 +323,11 @@ with tabs[5]:
         f"""
 ### Release boundary
 
-- Project website: [H²EPR-Bench]({PROJECT_WEBSITE_URL}).
-- Source code: [`AgenticFinLab/H2EPR-Bench`]({SOURCE_REPOSITORY_URL}).
-- Public dataset: [`{PUBLIC_DATASET_REPO}`]({PUBLIC_DATASET_REVISION_URL}) at `{PUBLIC_DATASET_REVISION}`.
-- FinMycelium: [multi-agent event reconstruction system]({FINMYCELIUM_URL}).
-- Manual-gated reference EPG companion: [`{GOLD_COMPANION_REPO}`]({GOLD_COMPANION_URL}).
+- Project Website: [H²EPR-Bench]({PROJECT_WEBSITE_URL}).
+- Public Dataset: [`{PUBLIC_DATASET_REPO}`]({PUBLIC_DATASET_REVISION_URL}) at `{PUBLIC_DATASET_REVISION}`.
+- FinMycelium System: [multi-agent event reconstruction system]({FINMYCELIUM_URL}).
+- Reference EPGs (Gated): [`{GOLD_COMPANION_REPO}`]({GOLD_COMPANION_URL}).
+- Release Repository: [`AgenticFinLab/H2EPR-Bench`]({SOURCE_REPOSITORY_URL}).
 - Public Draft EPGs are sanitized FinMycelium construction artifacts, not scoring references.
 - Official benchmark scoring uses expert-adjudicated reference EPGs in the gated companion.
 - This Explorer loads neither reference EPGs nor frozen evidence packages.
