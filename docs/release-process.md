@@ -59,6 +59,11 @@ Only the public Dataset repository is read or written by this flow. A new
 revision requires an explicit release record and a coordinated source update
 that pins the new immutable revision.
 
+The public Dataset Card source is tracked at
+`datasets/h2epr_bench/huggingface/README.md`. A card-only promotion still
+requires a remote-HEAD check and records the prior/resulting Dataset revision;
+it does not modify or re-upload Dataset records.
+
 ## 5. Gold companion
 
 The public monorepo publishes no Gold-record workflow. It maintains only the
@@ -66,6 +71,10 @@ already-public reference schema, a local document validator, boundary
 documentation, and visibly synthetic tests. Real reference EPGs, evidence,
 adjudication artifacts, access review, and gated publication remain in a
 separate protected process.
+
+The already-public Gold Card source is tracked at
+`datasets/h2epr_bench_gold/huggingface/README.md`. Updating that README must not
+read, download, validate, or rewrite any gated record.
 
 ## 6. Release receipt
 

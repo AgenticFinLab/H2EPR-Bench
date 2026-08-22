@@ -44,6 +44,7 @@ jobs:
       - name: Validate website and public repository boundary
         run: |
           python scripts/validate_site_assets.py
+          python scripts/validate_public_resource_links.py
           python scripts/check_public_release_boundary.py
           python scripts/check_explorer_source_manifest.py
           python -m compileall -q scripts spaces datasets tests

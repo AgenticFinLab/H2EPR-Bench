@@ -60,6 +60,8 @@ REQUIRED_TEXT = [
     "https://huggingface.co/datasets/AgenticFinLab/H2EPR-Bench-Gold",
     "https://huggingface.co/spaces/AgenticFinLab/H2EPR-Bench-Explorer",
     "https://github.com/AgenticFinLab/H2EPR-Bench",
+    "https://github.com/AgenticFinLab/FinMycelium",
+    "https://agenticfinlab.github.io/",
     *GANTT_IDS,
 ]
 
@@ -69,6 +71,7 @@ FORBIDDEN_PUBLIC_TEXT = [
     "best QualityScore",
     "16 direct reconstruction",
     "1,000 benchmark events",
+    ">Website</a>",
 ]
 
 REQUIRED_MODEL_KEYS = {

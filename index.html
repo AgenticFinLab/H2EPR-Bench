@@ -28,10 +28,12 @@
       <a class="brand" href="#top">H²EPR-Bench</a>
       <div class="topbar-links">
         <span class="paper-status">Paper forthcoming</span>
-        <a href="https://huggingface.co/datasets/AgenticFinLab/H2EPR-Bench">Dataset</a>
-        <a href="https://huggingface.co/datasets/AgenticFinLab/H2EPR-Bench-Gold">Gold</a>
-        <a href="https://huggingface.co/spaces/AgenticFinLab/H2EPR-Bench-Explorer">Explorer</a>
-        <a href="https://github.com/AgenticFinLab/H2EPR-Bench">Website</a>
+        <a data-resource-id="public_dataset" href="https://huggingface.co/datasets/AgenticFinLab/H2EPR-Bench">Dataset</a>
+        <a data-resource-id="explorer" href="https://huggingface.co/spaces/AgenticFinLab/H2EPR-Bench-Explorer">Explorer</a>
+        <a data-resource-id="finmycelium" href="https://github.com/AgenticFinLab/FinMycelium">FinMycelium</a>
+        <a data-resource-id="code" href="https://github.com/AgenticFinLab/H2EPR-Bench">Code</a>
+        <a data-resource-id="gated_gold" href="https://huggingface.co/datasets/AgenticFinLab/H2EPR-Bench-Gold">Gated Gold</a>
+        <a data-resource-id="agenticfinlab" href="https://agenticfinlab.github.io/">AgenticFinLab</a>
       </div>
     </header>
 
@@ -46,9 +48,11 @@
 
           <div class="publication-links" aria-label="Primary links">
             <span class="link-chip disabled">Paper forthcoming</span>
-            <a class="link-chip" href="https://huggingface.co/datasets/AgenticFinLab/H2EPR-Bench">Public Dataset</a>
-            <a class="link-chip" href="https://huggingface.co/datasets/AgenticFinLab/H2EPR-Bench-Gold">Gated Gold</a>
-            <a class="link-chip" href="https://huggingface.co/spaces/AgenticFinLab/H2EPR-Bench-Explorer">Explorer</a>
+            <a class="link-chip dark" data-resource-id="public_dataset" href="https://huggingface.co/datasets/AgenticFinLab/H2EPR-Bench">Public Dataset</a>
+            <a class="link-chip" data-resource-id="explorer" href="https://huggingface.co/spaces/AgenticFinLab/H2EPR-Bench-Explorer">Explorer</a>
+            <a class="link-chip resource-system" data-resource-id="finmycelium" href="https://github.com/AgenticFinLab/FinMycelium">FinMycelium</a>
+            <a class="link-chip" data-resource-id="code" href="https://github.com/AgenticFinLab/H2EPR-Bench">Code</a>
+            <a class="link-chip" data-resource-id="gated_gold" href="https://huggingface.co/datasets/AgenticFinLab/H2EPR-Bench-Gold">Gated Gold</a>
             <a class="link-chip" href="#results">Leaderboard</a>
           </div>
 
@@ -503,17 +507,29 @@
         <div class="container reading">
           <h2 class="section-heading">Access</h2>
           <div class="access-list">
-            <a href="https://huggingface.co/datasets/AgenticFinLab/H2EPR-Bench">
+            <a data-resource-id="public_dataset" href="https://huggingface.co/datasets/AgenticFinLab/H2EPR-Bench">
               <span>Public Dataset</span>
-              <strong>Metadata, public tables, sanitized FinalCascade artifacts, Gantt views, schemas, and manifests.</strong>
+              <strong>Metadata, public tables, sanitized Draft EPG artifacts, Gantt views, schemas, and manifests.</strong>
             </a>
-            <a href="https://huggingface.co/datasets/AgenticFinLab/H2EPR-Bench-Gold">
-              <span>Gated Gold</span>
-              <strong>Official medium-granularity references for scoring and controlled benchmark use.</strong>
-            </a>
-            <a href="https://huggingface.co/spaces/AgenticFinLab/H2EPR-Bench-Explorer">
+            <a data-resource-id="explorer" href="https://huggingface.co/spaces/AgenticFinLab/H2EPR-Bench-Explorer">
               <span>Explorer</span>
-              <strong>Interactive browsing for event-level inspection.</strong>
+              <strong>Interactive browsing across all 3,000 events and 2,876 public Draft EPGs.</strong>
+            </a>
+            <a data-resource-id="finmycelium" href="https://github.com/AgenticFinLab/FinMycelium">
+              <span>FinMycelium</span>
+              <strong>The multi-agent event reconstruction system used to construct public Draft EPG artifacts.</strong>
+            </a>
+            <a data-resource-id="code" href="https://github.com/AgenticFinLab/H2EPR-Bench">
+              <span>Code</span>
+              <strong>Canonical public monorepo for the website, Explorer, release contracts, and validators.</strong>
+            </a>
+            <a data-resource-id="gated_gold" href="https://huggingface.co/datasets/AgenticFinLab/H2EPR-Bench-Gold">
+              <span>Gated Gold</span>
+              <strong>Official medium-granularity reference EPGs for scoring and controlled benchmark use.</strong>
+            </a>
+            <a data-resource-id="agenticfinlab" href="https://agenticfinlab.github.io/">
+              <span>AgenticFinLab</span>
+              <strong>Research group website and related public projects.</strong>
             </a>
           </div>
         </div>
@@ -534,7 +550,12 @@
 
     <footer class="site-footer">
       <div class="container">
-        <p>H²EPR-Bench Unified-3000 · AgenticFinLab</p>
+        <p>
+          H²EPR-Bench Unified-3000 ·
+          <a href="https://agenticfinlab.github.io/">AgenticFinLab</a> ·
+          <a href="https://github.com/AgenticFinLab/FinMycelium">FinMycelium</a> ·
+          <a href="https://github.com/AgenticFinLab/H2EPR-Bench">Source</a>
+        </p>
       </div>
     </footer>
 
