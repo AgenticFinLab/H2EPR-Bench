@@ -38,7 +38,8 @@ The deployable source is `spaces/h2epr_bench_explorer/`. Promotion must:
 3. keep the immutable Dataset revision in the release contract and Explorer source identical;
 4. use an isolated canary/staging target when available;
 5. validate build/runtime logs, health, desktop/mobile behavior, deep links,
-   filters/reset, three timeline modes, Draft preview/download for every event,
+   filters/reset, both calendar and relative-order timeline modes, all-event
+   Draft asset/path/hash closure, and sampled Draft preview/download behavior,
    external links, console errors, and page errors;
 6. create a rollback reference before production promotion; and
 7. update production only with an ordinary non-force operation after explicit

@@ -41,7 +41,9 @@ PRIVATE_PATTERNS = {
     ),
 }
 DATASET_PAYLOAD_SUFFIXES = {".csv", ".jsonl", ".parquet"}
-PUBLIC_PROSE_SUFFIXES = {".html", ".md"}
+# Machine-readable public manifests and scripts can also carry reader-facing
+# release wording, so the retired-partition guard covers them as well.
+PUBLIC_PROSE_SUFFIXES = {".html", ".js", ".json", ".md"}
 GOLD_ALLOWED_JSON = {
     "datasets/h2epr_bench_gold/schema/reference_epg.schema.json",
     "datasets/h2epr_bench_gold/synthetic_fixtures/reference_epg.synthetic.json",

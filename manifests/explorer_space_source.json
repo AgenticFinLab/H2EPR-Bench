@@ -1,11 +1,16 @@
 {
   "manifest_version": 2,
   "release_id": "h2epr-unified3000-v2",
-  "release_state": "dataset_published",
+  "release_state": "published",
   "deployment_root": "spaces/h2epr_bench_explorer",
   "dataset_repo": "AgenticFinLab/H2EPR-Bench",
   "dataset_revision": "6156a6bb3b838143401cb3e5709f708e5d6e802c",
-  "published_deployment": null,
+  "published_deployment": {
+    "dataset_revision": "6156a6bb3b838143401cb3e5709f708e5d6e802c",
+    "source_ledger_sha256": "ce47455ce680f59808713895642737ab11d765b136d1905e65a62958efa21f8a",
+    "space_commit": "2cc85fd27d832d429be72c4531ba832d70648046",
+    "space_tree": "88deb297c0ef39dd3324d1786eb4119026103e7c"
+  },
   "release_candidate": {
     "sha256sums_sha256": "9b30d71eacbfa0e07539a5805a3cf05065e76199dfcf0272ef1d135c1098960e",
     "tree_sha256": "9b30d71eacbfa0e07539a5805a3cf05065e76199dfcf0272ef1d135c1098960e"
@@ -13,8 +18,8 @@
   "rollback_baseline": {
     "role": "rollback_only",
     "dataset_revision": "1d01f3649ace0301ac3bbe9ee875eea660347a29",
-    "space_commit": "a1cf81783396bb52328ed0ebe7a43da32a447f46",
-    "space_tree": "ed1045bdfd3bb1d306f1e0e65cbbd7f79e474967"
+    "space_commit": "0f91d75dbed7f4ceddf185363d43b799b7b611e4",
+    "space_tree": "fb795f3ec09da6c858e018dc3ee0f5381d217f40"
   },
   "ledger_sha256": "ce47455ce680f59808713895642737ab11d765b136d1905e65a62958efa21f8a",
   "files": {
