@@ -1,7 +1,7 @@
 {
   "contract_version": "h2epr-unified3000-public-release-v2",
   "dataset_repo": "AgenticFinLab/H2EPR-Bench",
-  "dataset_revision": null,
+  "dataset_revision": "6156a6bb3b838143401cb3e5709f708e5d6e802c",
   "event_identity": {
     "pattern": "^H2EPR-[0-9]{4}$",
     "first": 1,

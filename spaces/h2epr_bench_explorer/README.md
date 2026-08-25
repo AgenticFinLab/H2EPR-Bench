@@ -48,22 +48,21 @@ binds every direct file to its canonical source-payload digest and sanitized
 record digest; the Explorer verifies both identities and the canonical JSON
 digest before displaying a graph.
 
-This release-candidate branch intentionally has no remote dataset revision.
-Remote reads and immutable per-file links fail closed until the publication
-workflow pins the resulting Hugging Face commit. It never falls back to a
-floating branch.
+Remote reads and immutable per-file links are pinned to Dataset commit
+`6156a6bb3b838143401cb3e5709f708e5d6e802c`. They fail closed if that fixed
+release cannot be resolved and never fall back to a floating branch.
 
 ## Local development
 
-The app can use the frozen local Unified-3000 release candidate without any
-network access:
+The app can use the frozen local Unified-3000 release tree without any network
+access:
 
 ```bash
 export H2EPR_EXPLORER_LOCAL_DATASET_DIR=/path/to/H2EPR-Bench
 streamlit run app.py
 ```
 
-During release-candidate verification,
-`H2EPR_EXPLORER_LOCAL_DATASET_DIR` is required. After publication, the source
-constant is updated once to the immutable dataset revision; the application
-exposes no runtime revision override, so one process cannot mix releases.
+For local verification, `H2EPR_EXPLORER_LOCAL_DATASET_DIR` is required. In the
+published Space, the source constant fixes the immutable Dataset revision; the
+application exposes no runtime revision override, so one process cannot mix
+releases.

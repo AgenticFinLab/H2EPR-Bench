@@ -62,9 +62,9 @@ EXPECTED_RESOURCE_LABELS = {
 }
 
 EXPECTED_CARD_SCOPES = {
-    "public_dataset_card": "unified3000_v2_release_candidate",
+    "public_dataset_card": "unified3000_v2_published_dataset",
     "gold_card": "uniform_release_wording",
-    "explorer_card": "unified3000_v2_explorer_candidate",
+    "explorer_card": "unified3000_v2_dataset_pinned_explorer",
 }
 EXPECTED_CARD_TARGET_REPOS = {
     "public_dataset_card": "AgenticFinLab/H2EPR-Bench",

@@ -33,6 +33,10 @@ RETIRED_AVAILABILITY_SCHEMA = (
     / "schema"
     / "draft_availability.schema.json"
 )
+DATASET_RELEASE_RECEIPT_PATH = (
+    REPO_ROOT / "manifests" / "unified3000_v2_dataset_release.json"
+)
+EXPECTED_DATASET_REVISION = "6156a6bb3b838143401cb3e5709f708e5d6e802c"
 ACTUAL_RC = (
     REPO_ROOT.parent.parent
     / "build"
@@ -364,10 +368,10 @@ class SyntheticPublicRelease:
 
 
 class PublicDatasetReleaseTests(unittest.TestCase):
-    def test_frozen_unified3000_candidate_contract(self):
+    def test_frozen_unified3000_published_contract(self):
         contract = json.loads(CONTRACT_PATH.read_text(encoding="utf-8"))
         self.assertEqual(contract["contract_version"], validator.CONTRACT_VERSION)
-        self.assertIsNone(contract["dataset_revision"])
+        self.assertEqual(contract["dataset_revision"], EXPECTED_DATASET_REVISION)
         self.assertEqual(
             contract["counts"],
             {
@@ -415,7 +419,7 @@ class PublicDatasetReleaseTests(unittest.TestCase):
         ]
         self.assertEqual(found, [])
 
-    def test_cache_preparer_uses_five_tables_and_fails_closed_before_publish(self):
+    def test_cache_preparer_uses_pinned_release_and_rejects_unbound_contract(self):
         self.assertEqual(
             {
                 path
@@ -443,14 +447,20 @@ class PublicDatasetReleaseTests(unittest.TestCase):
                 "draft_events/H2EPR-1000/draft_epg.json",
             },
         )
-        with self.assertRaisesRegex(SystemExit, "not pinned to an immutable 40-hex"):
-            cache_preparer.load_published_identity(CONTRACT_PATH)
+        self.assertEqual(
+            cache_preparer.load_published_identity(CONTRACT_PATH),
+            ("AgenticFinLab/H2EPR-Bench", EXPECTED_DATASET_REVISION),
+        )
         with tempfile.TemporaryDirectory() as directory:
             contract = copy.deepcopy(
                 json.loads(CONTRACT_PATH.read_text(encoding="utf-8"))
             )
-            contract["dataset_revision"] = "a" * 40
+            contract["dataset_revision"] = None
             path = Path(directory) / "contract.json"
+            path.write_text(json.dumps(contract), encoding="utf-8")
+            with self.assertRaisesRegex(SystemExit, "not pinned to an immutable 40-hex"):
+                cache_preparer.load_published_identity(path)
+            contract["dataset_revision"] = "a" * 40
             path.write_text(json.dumps(contract), encoding="utf-8")
             self.assertEqual(
                 cache_preparer.load_published_identity(path),
@@ -658,14 +668,37 @@ class PublicDatasetReleaseTests(unittest.TestCase):
                 validator.validate_release(release.root, release.contract_path)
 
     @unittest.skipUnless(ACTUAL_RC.is_dir(), "local Unified-3000 v2 RC is not present")
-    def test_actual_unified3000_v2_release_candidate_passes(self):
-        receipt = validator.validate_release(ACTUAL_RC, CONTRACT_PATH)
+    def test_actual_unified3000_v2_published_release_passes(self):
+        receipt = validator.validate_release(
+            ACTUAL_RC, CONTRACT_PATH, require_published=True
+        )
         self.assertTrue(receipt["all_checks_passed"])
-        self.assertEqual(receipt["publication_state"], "local_candidate")
+        self.assertEqual(receipt["publication_state"], "published")
+        self.assertEqual(receipt["dataset_revision"], EXPECTED_DATASET_REVISION)
+        self.assertTrue(receipt["immutable_revision_bound"])
         self.assertEqual(receipt["counts"]["events"], 3000)
         self.assertEqual(receipt["counts"]["draft_epgs"], 3000)
         self.assertEqual(receipt["graph_totals"]["stage_count"], 8843)
         self.assertEqual(receipt["package_checksum_entries"], 3072)
+
+    def test_dataset_publication_receipt_binds_release_and_rollback(self):
+        publication = json.loads(
+            DATASET_RELEASE_RECEIPT_PATH.read_text(encoding="utf-8")
+        )
+        contract = json.loads(CONTRACT_PATH.read_text(encoding="utf-8"))
+        self.assertEqual(publication["status"], "passed")
+        self.assertEqual(publication["resulting_revision"], EXPECTED_DATASET_REVISION)
+        self.assertEqual(publication["resulting_revision"], contract["dataset_revision"])
+        self.assertEqual(
+            publication["release_identity"]["sha256sums_sha256"],
+            contract["artifacts"]["package_checksums"]["sha256"],
+        )
+        self.assertEqual(
+            publication["rollback"]["peeled_dataset_commit"],
+            publication["prior_revision"],
+        )
+        self.assertEqual(publication["verification"]["draft_epg_count"], 3000)
+        self.assertEqual(publication["verification"]["retired_draft_asset_count"], 0)
 
 
 if __name__ == "__main__":

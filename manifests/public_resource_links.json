@@ -1,10 +1,10 @@
 {
   "manifest_version": 2,
-  "verified_on": "2026-08-22",
+  "verified_on": "2026-08-25",
   "release_identity": {
     "release_id": "h2epr-unified3000-v2",
-    "release_state": "candidate",
-    "dataset_revision": null,
+    "release_state": "dataset_published",
+    "dataset_revision": "6156a6bb3b838143401cb3e5709f708e5d6e802c",
     "sha256sums_sha256": "9b30d71eacbfa0e07539a5805a3cf05065e76199dfcf0272ef1d135c1098960e",
     "tree_sha256": "9b30d71eacbfa0e07539a5805a3cf05065e76199dfcf0272ef1d135c1098960e"
   },
@@ -152,11 +152,11 @@
       "target_path": "README.md",
       "rollback_baseline": {
         "role": "rollback_only",
-        "revision": "1d01f3649ace0301ac3bbe9ee875eea660347a29",
-        "readme_sha256": "f094009f9df385f7db24f0999ba2b0a3f5e61993b18b710cdd335efd1bce949d"
+        "revision": "f1e90230c7bee782d5037b04ffec778bf1053b94",
+        "readme_sha256": "eddcdf45193a50578c6856f264e28bdc208cc59668b461192084a289a3cc87c2"
       },
       "source_readme_sha256": "3ae76cda350945f5d1cad508dc3bf5648e0ecdea500b56cd99ba05bac8dbf692",
-      "change_scope": "unified3000_v2_release_candidate"
+      "change_scope": "unified3000_v2_published_dataset"
     },
     "gold_card": {
       "source_path": "datasets/h2epr_bench_gold/huggingface/README.md",
@@ -179,8 +179,8 @@
         "revision": "a1cf81783396bb52328ed0ebe7a43da32a447f46",
         "readme_sha256": "ac752d5cb99318c8992eb094a35ff4b34ad05cc3c29d230c6275cf4ea65a9e57"
       },
-      "source_readme_sha256": "68b23d9fc92174d784305c0c2616df304e4c119171307720906a8c6fe99c30e7",
-      "change_scope": "unified3000_v2_explorer_candidate"
+      "source_readme_sha256": "323cd1c9e915a435173d03bbd9fcf72ad94df9a917298a755bec354aa43e5fa2",
+      "change_scope": "unified3000_v2_dataset_pinned_explorer"
     }
   }
 }

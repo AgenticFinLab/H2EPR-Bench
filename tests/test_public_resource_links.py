@@ -15,6 +15,9 @@ from scripts.validate_public_resource_links import (
 )
 
 
+EXPECTED_DATASET_REVISION = "6156a6bb3b838143401cb3e5709f708e5d6e802c"
+
+
 class PublicResourceLinkTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
@@ -68,7 +71,7 @@ class PublicResourceLinkTests(unittest.TestCase):
         cards = self.manifest["hugging_face_card_sources"]
         self.assertEqual(
             cards["public_dataset_card"]["rollback_baseline"]["revision"],
-            "1d01f3649ace0301ac3bbe9ee875eea660347a29",
+            "f1e90230c7bee782d5037b04ffec778bf1053b94",
         )
         self.assertEqual(
             cards["gold_card"]["rollback_baseline"]["revision"],
@@ -85,31 +88,35 @@ class PublicResourceLinkTests(unittest.TestCase):
             )
         )
 
-    def test_candidate_identity_is_local_only_and_bound_to_rc(self):
+    def test_dataset_published_identity_is_pinned_and_bound_to_rc(self):
         identity = self.manifest["release_identity"]
-        self.assertEqual(identity["release_state"], "candidate")
-        self.assertIsNone(identity["dataset_revision"])
+        self.assertEqual(identity["release_state"], "dataset_published")
+        self.assertEqual(identity["dataset_revision"], EXPECTED_DATASET_REVISION)
         self.assertEqual(identity["tree_sha256"], EXPECTED_RC_TREE_SHA256)
         self.assertEqual(identity["sha256sums_sha256"], EXPECTED_RC_TREE_SHA256)
-        validate_release_identity(self.manifest, "local")
-        for gate in ("deployment", "published"):
-            with self.subTest(gate=gate), self.assertRaises(SystemExit):
+        for gate in ("local", "deployment"):
+            with self.subTest(gate=gate):
                 validate_release_identity(self.manifest, gate)
+        with self.assertRaises(SystemExit):
+            validate_release_identity(self.manifest, "published")
 
-    def test_explorer_candidate_identity_is_local_only(self):
+    def test_explorer_dataset_published_identity_is_pinned(self):
         # The Explorer validator reads its own manifest; use that authoritative object.
         from scripts.check_explorer_source_manifest import _load_json, MANIFEST_PATH
 
         source_manifest = _load_json(MANIFEST_PATH)
-        validate_explorer_release_identity(source_manifest, "local")
+        self.assertEqual(source_manifest["release_state"], "dataset_published")
+        self.assertEqual(source_manifest["dataset_revision"], EXPECTED_DATASET_REVISION)
         self.assertEqual(
             source_manifest["release_candidate"]["tree_sha256"], EXPECTED_RC_TREE_SHA256
         )
         self.assertIsNone(source_manifest["published_deployment"])
         self.assertEqual(source_manifest["rollback_baseline"]["role"], "rollback_only")
-        for gate in ("deployment", "published"):
-            with self.subTest(gate=gate), self.assertRaises(ValueError):
+        for gate in ("local", "deployment"):
+            with self.subTest(gate=gate):
                 validate_explorer_release_identity(source_manifest, gate)
+        with self.assertRaises(ValueError):
+            validate_explorer_release_identity(source_manifest, "published")
 
     def test_finmycelium_role_preserves_draft_gold_boundary(self):
         role = self.resources["finmycelium"]["role"]

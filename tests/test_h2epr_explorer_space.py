@@ -14,6 +14,7 @@ import pandas as pd
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 SPACE_ROOT = REPO_ROOT / "spaces" / "h2epr_bench_explorer"
+EXPECTED_DATASET_REVISION = "6156a6bb3b838143401cb3e5709f708e5d6e802c"
 if os.environ.get("H2EPR_TEST_DATASET_DIR"):
     DATASET_ROOT = Path(os.environ["H2EPR_TEST_DATASET_DIR"]).expanduser().resolve()
 else:
@@ -88,7 +89,7 @@ class H2EPRExplorerSpaceTests(unittest.TestCase):
         for dependency in ("streamlit", "pandas", "pyarrow", "plotly", "huggingface_hub"):
             self.assertIn(dependency, requirements)
 
-    def test_constants_bind_exact_candidate_assets_and_uniform_counts(self):
+    def test_constants_bind_exact_published_assets_and_uniform_counts(self):
         from h2epr_explorer.constants import (
             CATALOG_PARQUET,
             DEFAULT_PUBLIC_DATASET_REVISION,
@@ -103,8 +104,8 @@ class H2EPRExplorerSpaceTests(unittest.TestCase):
             STAGES_PARQUET,
         )
 
-        self.assertIsNone(DEFAULT_PUBLIC_DATASET_REVISION)
-        self.assertIsNone(PUBLIC_DATASET_REVISION)
+        self.assertEqual(DEFAULT_PUBLIC_DATASET_REVISION, EXPECTED_DATASET_REVISION)
+        self.assertEqual(PUBLIC_DATASET_REVISION, EXPECTED_DATASET_REVISION)
         self.assertEqual(EXPECTED_EVENT_COUNT, 3000)
         self.assertEqual(EXPECTED_STAGE_ROW_COUNT, 8843)
         expected_assets = (
@@ -513,17 +514,18 @@ class H2EPRExplorerSpaceTests(unittest.TestCase):
             with self.assertRaises(loader.DraftAssetMissing):
                 loader.load_event_graph("H2EPR-0001", release=self.release)
 
-    def test_remote_reads_fail_closed_before_hugging_face_call(self):
+    def test_unbound_remote_reads_fail_closed_before_hugging_face_call(self):
         import h2epr_explorer.data_loader as loader
         from h2epr_explorer.constants import CATALOG_PARQUET, LOCAL_DATASET_ENV
 
         with mock.patch.dict(os.environ, {LOCAL_DATASET_ENV: ""}):
-            with mock.patch.object(loader, "hf_hub_download") as download:
-                with self.assertRaises(loader.DatasetRevisionUnavailable):
-                    loader.resolve_dataset_file(CATALOG_PARQUET)
-                with self.assertRaises(loader.DatasetRevisionUnavailable):
-                    loader.load_event_graph("H2EPR-0001", release=self.release)
-        download.assert_not_called()
+            with mock.patch.object(loader, "PUBLIC_DATASET_REVISION", None):
+                with mock.patch.object(loader, "hf_hub_download") as download:
+                    with self.assertRaises(loader.DatasetRevisionUnavailable):
+                        loader.resolve_dataset_file(CATALOG_PARQUET)
+                    with self.assertRaises(loader.DatasetRevisionUnavailable):
+                        loader.load_event_graph("H2EPR-0001", release=self.release)
+            download.assert_not_called()
 
     def test_navigation_translates_only_inbound_legacy_links(self):
         from h2epr_explorer.navigation import normalize_query_event_id
@@ -554,7 +556,7 @@ class H2EPRExplorerSpaceTests(unittest.TestCase):
             with self.subTest(value=value):
                 self.assertTrue(query_param_event_id({"event_id": value}).unresolved)
 
-    def test_candidate_navigation_omits_unpinned_deep_links(self):
+    def test_published_navigation_uses_the_pinned_dataset_revision(self):
         import h2epr_explorer.navigation as navigation
 
         links = navigation.build_event_links("H2EPR-0001")
@@ -562,16 +564,32 @@ class H2EPRExplorerSpaceTests(unittest.TestCase):
             links["explorer"],
             "https://huggingface.co/spaces/AgenticFinLab/H2EPR-Bench-Explorer?event_id=H2EPR-0001",
         )
-        self.assertEqual(links["public_dataset"], navigation.PUBLIC_DATASET_URL)
-        self.assertNotIn("draft_epg", links)
-        self.assertNotIn("/tree/None", json.dumps(links))
-        self.assertNotIn("/blob/None", json.dumps(links))
-        with self.assertRaises(navigation.ImmutableDatasetLinkUnavailable):
-            navigation.build_immutable_dataset_link()
-        with self.assertRaises(navigation.ImmutableDatasetLinkUnavailable):
-            navigation.build_immutable_dataset_link("draft_events/H2EPR-0001/draft_epg.json")
+        self.assertEqual(
+            links["public_dataset"],
+            f"{navigation.PUBLIC_DATASET_URL}/tree/{EXPECTED_DATASET_REVISION}",
+        )
+        self.assertEqual(
+            links["draft_epg"],
+            f"{navigation.PUBLIC_DATASET_URL}/blob/{EXPECTED_DATASET_REVISION}/draft_events/H2EPR-0001/draft_epg.json",
+        )
         with self.assertRaises(ValueError):
             navigation.build_event_links("P1000-0001")
+
+    def test_unbound_navigation_still_fails_closed(self):
+        import h2epr_explorer.navigation as navigation
+
+        with mock.patch.object(navigation, "PUBLIC_DATASET_REVISION", None):
+            links = navigation.build_event_links("H2EPR-0001")
+            self.assertEqual(links["public_dataset"], navigation.PUBLIC_DATASET_URL)
+            self.assertNotIn("draft_epg", links)
+            self.assertNotIn("/tree/None", json.dumps(links))
+            self.assertNotIn("/blob/None", json.dumps(links))
+            with self.assertRaises(navigation.ImmutableDatasetLinkUnavailable):
+                navigation.build_immutable_dataset_link()
+            with self.assertRaises(navigation.ImmutableDatasetLinkUnavailable):
+                navigation.build_immutable_dataset_link(
+                    "draft_events/H2EPR-0001/draft_epg.json"
+                )
 
     def test_published_navigation_uses_one_immutable_revision_for_all_events(self):
         import h2epr_explorer.navigation as navigation

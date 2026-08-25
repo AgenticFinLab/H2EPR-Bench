@@ -13,10 +13,9 @@ this GitHub repository.
 
 The contract covers the continuous `H2EPR-0001` through `H2EPR-3000`
 namespace. Every event has one public sanitized Draft EPG, and the five viewer
-tables cover all 3,000 events and 8,843 ordered stages. Before publication,
-`dataset_revision` remains `null`; the publication gate requires the real
-immutable Hugging Face commit returned after the exact release tree is
-uploaded.
+tables cover all 3,000 events and 8,843 ordered stages. `dataset_revision` is
+pinned to the immutable Hugging Face commit returned after the exact release
+tree was uploaded and independently downloaded and validated.
 
 ## Validate a local release tree
 
