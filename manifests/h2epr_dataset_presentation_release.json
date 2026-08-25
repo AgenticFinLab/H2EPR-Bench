@@ -19,7 +19,8 @@
     "card_production_commit": "4ca29e764a09f33af8c5ef485e68d63ba13b8d84",
     "metadata_staging_branch": "public-presentation-polish-metadata-staging",
     "metadata_staging_commit": "6af03111675cace82ce56cfb792a7041c7cc8361",
-    "metadata_production_commit": "4b0f0f4000db3ba9b6e1a720e5b5cfbaae68353c"
+    "metadata_production_commit": "4b0f0f4000db3ba9b6e1a720e5b5cfbaae68353c",
+    "staging_cleanup_status": "deleted_after_production_verification"
   },
   "rollback": {
     "tag": "pre-public-presentation-polish-20260825",

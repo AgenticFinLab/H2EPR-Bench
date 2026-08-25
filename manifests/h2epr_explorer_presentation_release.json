@@ -1,0 +1,60 @@
+{
+  "schema_version": "h2epr-explorer-presentation-release-receipt-v1",
+  "release_id": "h2epr-bench-public-presentation",
+  "status": "passed",
+  "space_repo": "AgenticFinLab/H2EPR-Bench-Explorer",
+  "prior_revision": "2cc85fd27d832d429be72c4531ba832d70648046",
+  "prior_tree": "88deb297c0ef39dd3324d1786eb4119026103e7c",
+  "prior_source_ledger_sha256": "ce47455ce680f59808713895642737ab11d765b136d1905e65a62958efa21f8a",
+  "resulting_revision": "df537ed4909a5113a86e4ed89fe3c771c51745aa",
+  "resulting_tree": "b27af7bb8f9a9112666504c63297bc9613e8af52",
+  "published_at_utc": "2026-08-25T09:56:22+00:00",
+  "verified_at_utc": "2026-08-25T10:00:35Z",
+  "source": {
+    "github_repo": "AgenticFinLab/H2EPR-Bench",
+    "github_pull_request": 5,
+    "github_pr_merged_at_utc": "2026-08-25T09:52:46Z",
+    "github_merge_commit": "6d7cd625fd22585c34cef0eb102d22af4e7888b9",
+    "github_merge_tree": "92cdfa365307c7f57b39ab3bae7b8ad8a622a960",
+    "space_subtree_tree": "b27af7bb8f9a9112666504c63297bc9613e8af52"
+  },
+  "promotion": {
+    "force_push_used": false,
+    "mode": "clean_git_export_to_isolated_branch_then_parent_guarded_atomic_commit",
+    "parent_commit_guard": "2cc85fd27d832d429be72c4531ba832d70648046",
+    "clean_git_export_used": true,
+    "worktree_upload_used": false,
+    "staging_branch": "public-presentation-polish-staging",
+    "staging_commit": "2caf27eff84c08f7004a3a96c08cfe63750916f7",
+    "staging_cleanup_status": "deleted_after_production_verification"
+  },
+  "rollback": {
+    "tag": "pre-public-presentation-polish-20260825",
+    "peeled_space_commit": "2cc85fd27d832d429be72c4531ba832d70648046",
+    "tree": "88deb297c0ef39dd3324d1786eb4119026103e7c",
+    "source_ledger_sha256": "ce47455ce680f59808713895642737ab11d765b136d1905e65a62958efa21f8a",
+    "triggered": false
+  },
+  "release_identity": {
+    "dataset_revision": "4b0f0f4000db3ba9b6e1a720e5b5cfbaae68353c",
+    "dataset_sha256sums_sha256": "24f19b2eda8af998fa6e755c6dac8db62c40ad865815e6040cd83f6679cdbdb3",
+    "source_file_count": 11,
+    "source_ledger_sha256": "1d4c4df89adabbcdb557da23ed22869660c0b66585c62588d5fcb293e55d9962"
+  },
+  "verification": {
+    "staging_path_closure": "passed",
+    "staging_file_hashes": "passed",
+    "production_path_closure": "passed",
+    "production_file_hashes": "passed",
+    "production_tree_matches_github_subtree": true,
+    "runtime_sha": "df537ed4909a5113a86e4ed89fe3c771c51745aa",
+    "runtime_stage": "RUNNING",
+    "domain_stage": "READY",
+    "hardware": "cpu-basic",
+    "replicas": "1/1",
+    "health_http_status": 200,
+    "root_http_status": 200,
+    "local_explorer_test_count": 37,
+    "gold_records_accessed": false
+  }
+}

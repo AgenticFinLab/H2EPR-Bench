@@ -1,11 +1,16 @@
 {
   "manifest_version": 2,
   "release_id": "h2epr-unified3000-v2",
-  "release_state": "dataset_published",
+  "release_state": "published",
   "deployment_root": "spaces/h2epr_bench_explorer",
   "dataset_repo": "AgenticFinLab/H2EPR-Bench",
   "dataset_revision": "4b0f0f4000db3ba9b6e1a720e5b5cfbaae68353c",
-  "published_deployment": null,
+  "published_deployment": {
+    "dataset_revision": "4b0f0f4000db3ba9b6e1a720e5b5cfbaae68353c",
+    "source_ledger_sha256": "1d4c4df89adabbcdb557da23ed22869660c0b66585c62588d5fcb293e55d9962",
+    "space_commit": "df537ed4909a5113a86e4ed89fe3c771c51745aa",
+    "space_tree": "b27af7bb8f9a9112666504c63297bc9613e8af52"
+  },
   "release_candidate": {
     "sha256sums_sha256": "24f19b2eda8af998fa6e755c6dac8db62c40ad865815e6040cd83f6679cdbdb3",
     "tree_sha256": "24f19b2eda8af998fa6e755c6dac8db62c40ad865815e6040cd83f6679cdbdb3"
