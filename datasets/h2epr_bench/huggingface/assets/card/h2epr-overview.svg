@@ -1,0 +1,429 @@
+<?xml version="1.0"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="4397" height="2475" xml:space="preserve" overflow="hidden">
+  <defs>
+    <marker id="arrow-black" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5.2" markerHeight="5.2" orient="auto" markerUnits="strokeWidth">
+      <path d="M0 0L10 5L0 10Z" fill="#111111"/>
+    </marker>
+    <marker id="arrow-green" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5.2" markerHeight="5.2" orient="auto" markerUnits="strokeWidth">
+      <path d="M0 0L10 5L0 10Z" fill="#176C22"/>
+    </marker>
+    <marker id="arrow-purple" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5.2" markerHeight="5.2" orient="auto" markerUnits="strokeWidth">
+      <path d="M0 0L10 5L0 10Z" fill="#6F42A6"/>
+    </marker>
+    <clipPath id="clip0">
+      <rect x="3" y="0" width="4397" height="2475"/>
+    </clipPath>
+    <linearGradient x1="-30.3723" y1="88.412" x2="1402.37" y2="1403.59" gradientUnits="userSpaceOnUse" spreadMethod="reflect" id="fill1">
+      <stop offset="0" stop-color="#FFFFFF"/>
+      <stop offset="0.5" stop-color="#FBFCFD"/>
+      <stop offset="1" stop-color="#F8FAFC"/>
+    </linearGradient>
+    <linearGradient x1="235.059" y1="1354.65" x2="1130.94" y2="2600.35" gradientUnits="userSpaceOnUse" spreadMethod="reflect" id="fill2">
+      <stop offset="0" stop-color="#FFFFFF"/>
+      <stop offset="0.5" stop-color="#FBFCFD"/>
+      <stop offset="1" stop-color="#F8FAFC"/>
+    </linearGradient>
+    <linearGradient x1="75.0358" y1="1854.04" x2="181.964" y2="1964.96" gradientUnits="userSpaceOnUse" spreadMethod="reflect" id="fill3">
+      <stop offset="0" stop-color="#EDF6FF"/>
+      <stop offset="0.5" stop-color="#DAEAFB"/>
+      <stop offset="1" stop-color="#C8DEF7"/>
+    </linearGradient>
+    <linearGradient x1="329.036" y1="1854.04" x2="435.964" y2="1964.96" gradientUnits="userSpaceOnUse" spreadMethod="reflect" id="fill4">
+      <stop offset="0" stop-color="#EEF9EB"/>
+      <stop offset="0.5" stop-color="#DDF1DA"/>
+      <stop offset="1" stop-color="#CDE9C9"/>
+    </linearGradient>
+    <linearGradient x1="586.036" y1="1854.04" x2="692.964" y2="1964.96" gradientUnits="userSpaceOnUse" spreadMethod="reflect" id="fill5">
+      <stop offset="0" stop-color="#FFF9DD"/>
+      <stop offset="0.5" stop-color="#FAEBBF"/>
+      <stop offset="1" stop-color="#F6DEA1"/>
+    </linearGradient>
+    <linearGradient x1="842.521" y1="1854.52" x2="949.48" y2="1964.48" gradientUnits="userSpaceOnUse" spreadMethod="reflect" id="fill6">
+      <stop offset="0" stop-color="#FAF7FF"/>
+      <stop offset="0.5" stop-color="#ECE3FA"/>
+      <stop offset="1" stop-color="#DED0F6"/>
+    </linearGradient>
+    <linearGradient x1="1093.04" y1="1854.04" x2="1199.96" y2="1964.96" gradientUnits="userSpaceOnUse" spreadMethod="reflect" id="fill7">
+      <stop offset="0" stop-color="#FFF4F4"/>
+      <stop offset="0.5" stop-color="#FADFDF"/>
+      <stop offset="1" stop-color="#F6CACA"/>
+    </linearGradient>
+    <linearGradient x1="1720.76" y1="-209.158" x2="4095.24" y2="2684.16" gradientUnits="userSpaceOnUse" spreadMethod="reflect" id="fill8">
+      <stop offset="0" stop-color="#FFFFFF"/>
+      <stop offset="0.5" stop-color="#FBFCFD"/>
+      <stop offset="1" stop-color="#F8FAFC"/>
+    </linearGradient>
+    <linearGradient x1="2625.5" y1="414.502" x2="2750.5" y2="540.498" gradientUnits="userSpaceOnUse" spreadMethod="reflect" id="fill9">
+      <stop offset="0" stop-color="#EDF6FF"/>
+      <stop offset="0.5" stop-color="#DAEAFB"/>
+      <stop offset="1" stop-color="#C8DEF7"/>
+    </linearGradient>
+    <linearGradient x1="2889.5" y1="414.502" x2="3014.5" y2="540.498" gradientUnits="userSpaceOnUse" spreadMethod="reflect" id="fill10">
+      <stop offset="0" stop-color="#EDF6FF"/>
+      <stop offset="0.5" stop-color="#DAEAFB"/>
+      <stop offset="1" stop-color="#C8DEF7"/>
+    </linearGradient>
+    <linearGradient x1="3153.5" y1="414.502" x2="3278.5" y2="540.498" gradientUnits="userSpaceOnUse" spreadMethod="reflect" id="fill11">
+      <stop offset="0" stop-color="#EDF6FF"/>
+      <stop offset="0.5" stop-color="#DAEAFB"/>
+      <stop offset="1" stop-color="#C8DEF7"/>
+    </linearGradient>
+    <linearGradient x1="3417.5" y1="414.502" x2="3542.5" y2="540.498" gradientUnits="userSpaceOnUse" spreadMethod="reflect" id="fill12">
+      <stop offset="0" stop-color="#EDF6FF"/>
+      <stop offset="0.5" stop-color="#DAEAFB"/>
+      <stop offset="1" stop-color="#C8DEF7"/>
+    </linearGradient>
+    <linearGradient x1="1598.57" y1="1054.27" x2="1661.43" y2="1151.73" gradientUnits="userSpaceOnUse" spreadMethod="reflect" id="fill13">
+      <stop offset="0" stop-color="#EEF9EB"/>
+      <stop offset="0.5" stop-color="#DDF1DA"/>
+      <stop offset="1" stop-color="#CDE9C9"/>
+    </linearGradient>
+    <linearGradient x1="1578.54" y1="1195.54" x2="1684.46" y2="1305.46" gradientUnits="userSpaceOnUse" spreadMethod="reflect" id="fill14">
+      <stop offset="0" stop-color="#FFF9DD"/>
+      <stop offset="0.5" stop-color="#FAEBBF"/>
+      <stop offset="1" stop-color="#F6DEA1"/>
+    </linearGradient>
+    <linearGradient x1="1602.38" y1="1347.97" x2="1660.62" y2="1445.03" gradientUnits="userSpaceOnUse" spreadMethod="reflect" id="fill15">
+      <stop offset="0" stop-color="#FAF7FF"/>
+      <stop offset="0.5" stop-color="#ECE3FA"/>
+      <stop offset="1" stop-color="#DED0F6"/>
+    </linearGradient>
+    <linearGradient x1="2160.5" y1="788.502" x2="2305.5" y2="932.498" gradientUnits="userSpaceOnUse" spreadMethod="reflect" id="fill16">
+      <stop offset="0" stop-color="#EDF6FF"/>
+      <stop offset="0.5" stop-color="#DAEAFB"/>
+      <stop offset="1" stop-color="#C8DEF7"/>
+    </linearGradient>
+    <linearGradient x1="2161" y1="1310" x2="2305" y2="1454" gradientUnits="userSpaceOnUse" spreadMethod="reflect" id="fill17">
+      <stop offset="0" stop-color="#EDF6FF"/>
+      <stop offset="0.5" stop-color="#DAEAFB"/>
+      <stop offset="1" stop-color="#C8DEF7"/>
+    </linearGradient>
+    <linearGradient x1="3947.5" y1="810.502" x2="4092.5" y2="954.498" gradientUnits="userSpaceOnUse" spreadMethod="reflect" id="fill18">
+      <stop offset="0" stop-color="#EDF6FF"/>
+      <stop offset="0.5" stop-color="#DAEAFB"/>
+      <stop offset="1" stop-color="#C8DEF7"/>
+    </linearGradient>
+    <linearGradient x1="3948" y1="1335" x2="4092" y2="1479" gradientUnits="userSpaceOnUse" spreadMethod="reflect" id="fill19">
+      <stop offset="0" stop-color="#EDF6FF"/>
+      <stop offset="0.5" stop-color="#DAEAFB"/>
+      <stop offset="1" stop-color="#C8DEF7"/>
+    </linearGradient>
+    <linearGradient x1="2573.18" y1="780.352" x2="2665.82" y2="949.648" gradientUnits="userSpaceOnUse" spreadMethod="reflect" id="fill20">
+      <stop offset="0" stop-color="#EEF9EB"/>
+      <stop offset="0.5" stop-color="#DDF1DA"/>
+      <stop offset="1" stop-color="#CDE9C9"/>
+    </linearGradient>
+    <linearGradient x1="2869.23" y1="991.637" x2="2965.77" y2="1163.36" gradientUnits="userSpaceOnUse" spreadMethod="reflect" id="fill21">
+      <stop offset="0" stop-color="#EEF9EB"/>
+      <stop offset="0.5" stop-color="#DDF1DA"/>
+      <stop offset="1" stop-color="#CDE9C9"/>
+    </linearGradient>
+    <linearGradient x1="3464.35" y1="942.263" x2="3561.65" y2="1112.74" gradientUnits="userSpaceOnUse" spreadMethod="reflect" id="fill22">
+      <stop offset="0" stop-color="#EEF9EB"/>
+      <stop offset="0.5" stop-color="#DDF1DA"/>
+      <stop offset="1" stop-color="#CDE9C9"/>
+    </linearGradient>
+    <linearGradient x1="3309.3" y1="1336.94" x2="3402.7" y2="1505.06" gradientUnits="userSpaceOnUse" spreadMethod="reflect" id="fill23">
+      <stop offset="0" stop-color="#EEF9EB"/>
+      <stop offset="0.5" stop-color="#DDF1DA"/>
+      <stop offset="1" stop-color="#CDE9C9"/>
+    </linearGradient>
+    <linearGradient x1="3012.06" y1="739.135" x2="3151.94" y2="897.865" gradientUnits="userSpaceOnUse" spreadMethod="reflect" id="fill24">
+      <stop offset="0" stop-color="#FFF9DD"/>
+      <stop offset="0.5" stop-color="#FAEBBF"/>
+      <stop offset="1" stop-color="#F6DEA1"/>
+    </linearGradient>
+    <linearGradient x1="2919.17" y1="1287.27" x2="3059.83" y2="1448.73" gradientUnits="userSpaceOnUse" spreadMethod="reflect" id="fill25">
+      <stop offset="0" stop-color="#FFF9DD"/>
+      <stop offset="0.5" stop-color="#FAEBBF"/>
+      <stop offset="1" stop-color="#F6DEA1"/>
+    </linearGradient>
+    <linearGradient x1="3374.5" y1="746.639" x2="3459.5" y2="890.361" gradientUnits="userSpaceOnUse" spreadMethod="reflect" id="fill26">
+      <stop offset="0" stop-color="#FAF7FF"/>
+      <stop offset="0.5" stop-color="#ECE3FA"/>
+      <stop offset="1" stop-color="#DED0F6"/>
+    </linearGradient>
+    <linearGradient x1="3487.5" y1="1170.64" x2="3572.5" y2="1314.36" gradientUnits="userSpaceOnUse" spreadMethod="reflect" id="fill27">
+      <stop offset="0" stop-color="#FAF7FF"/>
+      <stop offset="0.5" stop-color="#ECE3FA"/>
+      <stop offset="1" stop-color="#DED0F6"/>
+    </linearGradient>
+    <linearGradient x1="2785.82" y1="1474.46" x2="2867.18" y2="1615.54" gradientUnits="userSpaceOnUse" spreadMethod="reflect" id="fill28">
+      <stop offset="0" stop-color="#FAF7FF"/>
+      <stop offset="0.5" stop-color="#ECE3FA"/>
+      <stop offset="1" stop-color="#DED0F6"/>
+    </linearGradient>
+  </defs>
+  <g clip-path="url(#clip0)" transform="translate(-3 0)">
+    <rect x="3.0001" y="0" width="4397" height="2475" fill="#F7F9FB"/>
+    <path d="M26.0001 62.9313C26.0001 43.0871 42.0871 27.0002 61.9313 27.0002L1310.07 27.0002C1329.91 27.0002 1346 43.0871 1346 62.9313L1346 1429.07C1346 1448.91 1329.91 1465 1310.07 1465L61.9313 1465C42.0871 1465 26.0001 1448.91 26.0001 1429.07Z" stroke="#CBD8E6" stroke-width="3.76844" stroke-miterlimit="8" fill="url(#fill1)" fill-rule="evenodd"/>
+    <text fill="#111111" font-family="Arial,Arial_MSFontService,sans-serif" font-weight="700" font-size="79" transform="matrix(1 0 0 1 274.833 147)">(a) Narrative summary</text>
+    <g id="narrative-summary-design">
+      <rect x="80" y="248" width="1186" height="410" rx="26" stroke="#AFC7E3" stroke-width="4" fill="#FBFDFF"/>
+      <path d="M80 274C80 259.64 91.64 248 106 248L1240 248C1254.36 248 1266 259.64 1266 274L1266 350 80 350Z" fill="#EAF2FF"/>
+      <rect x="119" y="278" width="74" height="48" rx="9" stroke="#276EF1" stroke-width="4" fill="#FFFFFF"/>
+      <path d="M119 294 193 294" stroke="#276EF1" stroke-width="4"/>
+      <circle cx="132" cy="286" r="4.5" fill="#276EF1"/>
+      <circle cx="148" cy="286" r="4.5" fill="#9ABAE2"/>
+      <text fill="#17375E" font-family="Arial,Arial_MSFontService,sans-serif" font-weight="700" font-size="48" x="225" y="316">Related documents</text>
+      <rect x="1004" y="277" width="210" height="50" rx="25" stroke="#7DA4D8" stroke-width="3" fill="#F7FBFF"/>
+      <text fill="#52677C" font-family="Arial,Arial_MSFontService,sans-serif" font-style="italic" font-weight="700" font-size="30" text-anchor="middle" x="1109" y="311">shared source</text>
+
+      <rect x="128" y="374" width="1090" height="72" rx="14" stroke="#C7D5E4" stroke-width="3" fill="#FFFFFF"/>
+      <rect x="128" y="374" width="14" height="72" rx="7" fill="#276EF1"/>
+      <text fill="#17375E" font-family="Arial,Arial_MSFontService,sans-serif" font-weight="700" font-size="38" x="178" y="421">Context</text>
+      <text fill="#52677C" font-family="Arial,Arial_MSFontService,sans-serif" font-weight="400" font-size="34" x="480" y="421">initial situation and key actors</text>
+
+      <rect x="128" y="470" width="1090" height="72" rx="14" stroke="#C7D5E4" stroke-width="3" fill="#FFFFFF"/>
+      <rect x="128" y="470" width="14" height="72" rx="7" fill="#2A8C7B"/>
+      <text fill="#175848" font-family="Arial,Arial_MSFontService,sans-serif" font-weight="700" font-size="38" x="178" y="517">Development</text>
+      <text fill="#52677C" font-family="Arial,Arial_MSFontService,sans-serif" font-weight="400" font-size="34" x="480" y="517">actions and responses</text>
+
+      <rect x="128" y="566" width="1090" height="72" rx="14" stroke="#C7D5E4" stroke-width="3" fill="#FFFFFF"/>
+      <rect x="128" y="566" width="14" height="72" rx="7" fill="#D79A20"/>
+      <text fill="#79550F" font-family="Arial,Arial_MSFontService,sans-serif" font-weight="700" font-size="38" x="178" y="613">Outcome</text>
+      <text fill="#52677C" font-family="Arial,Arial_MSFontService,sans-serif" font-weight="400" font-size="34" x="480" y="613">resulting state or change</text>
+
+      <path d="M673 672 673 748" stroke="#111111" stroke-width="4.71073" stroke-miterlimit="8" marker-end="url(#arrow-black)" fill="none"/>
+
+      <rect x="80" y="772" width="1186" height="595" rx="26" stroke="#3D78FF" stroke-width="4" fill="#F9FBFE"/>
+      <path d="M80 798C80 783.64 91.64 772 106 772L1240 772C1254.36 772 1266 783.64 1266 798L1266 874 80 874Z" fill="#EDF4FF"/>
+      <text fill="#17375E" font-family="Arial,Arial_MSFontService,sans-serif" font-weight="700" font-size="52" x="126" y="840">Fluent narrative</text>
+
+      <text fill="#243447" font-family="Arial,Arial_MSFontService,sans-serif" font-weight="400" font-size="40" x="128" y="940">
+        <tspan fill="#1267CC" font-weight="700">Participant A</tspan><tspan> initiated an </tspan><tspan fill="#286B47" font-weight="700">action</tspan><tspan>.</tspan>
+      </text>
+      <text fill="#243447" font-family="Arial,Arial_MSFontService,sans-serif" font-weight="400" font-size="40" x="128" y="998">
+        <tspan>After the event began, </tspan><tspan fill="#286B47" font-weight="700">further actions</tspan><tspan> followed.</tspan>
+      </text>
+      <text fill="#243447" font-family="Arial,Arial_MSFontService,sans-serif" font-weight="400" font-size="40" x="128" y="1056">
+        <tspan>These developments led to an </tspan><tspan fill="#A56B00" font-weight="700">outcome</tspan><tspan>.</tspan>
+      </text>
+      <text fill="#243447" font-family="Arial,Arial_MSFontService,sans-serif" font-weight="400" font-size="40" x="128" y="1114">Together, the facts form a readable, continuous account.</text>
+
+      <path d="M126 1166 1220 1166" stroke="#C8D5E3" stroke-width="3"/>
+      <path d="M673 1205 673 1326" stroke="#D4DEE8" stroke-width="3"/>
+      <text fill="#286B47" font-family="Arial,Arial_MSFontService,sans-serif" font-weight="700" font-size="38" x="128" y="1224">Synthesizes</text>
+      <text fill="#243447" font-family="Arial,Arial_MSFontService,sans-serif" font-weight="400" font-size="36" x="128" y="1280">key facts · overall account</text>
+      <text fill="#6B7280" font-family="Arial,Arial_MSFontService,sans-serif" font-weight="700" font-size="38" x="722" y="1224">Leaves implicit</text>
+      <text fill="#4B5563" font-family="Arial,Arial_MSFontService,sans-serif" font-weight="400" font-size="34" x="722" y="1278">hierarchy · typed relations</text>
+      <text fill="#4B5563" font-family="Arial,Arial_MSFontService,sans-serif" font-weight="400" font-size="34" x="722" y="1322">source-to-claim links</text>
+    </g>
+    <path d="M26.0001 1539.53C26.0001 1520.46 41.4597 1505 60.53 1505L1305.47 1505C1324.54 1505 1340 1520.46 1340 1539.53L1340 2415.47C1340 2434.54 1324.54 2450 1305.47 2450L60.53 2450C41.4597 2450 26.0001 2434.54 26.0001 2415.47Z" stroke="#CBD8E6" stroke-width="3.76844" stroke-miterlimit="8" fill="url(#fill2)" fill-rule="evenodd"/>
+    <text fill="#111111" font-family="Arial,Arial_MSFontService,sans-serif" font-weight="700" font-size="79" transform="matrix(1 0 0 1 264.188 1620)">(b) Sequential timeline</text>
+    <path d="M116.011 1677.19 116.011 1746.19" stroke="#333333" stroke-width="6.28097" stroke-miterlimit="8" fill="none" fill-rule="evenodd"/>
+    <path d="M122.012 1680.2 171.012 1693.09 122.012 1709.2Z" fill="#333333" fill-rule="evenodd"/>
+    <text fill="#111111" font-family="Arial,Arial_MSFontService,sans-serif" font-weight="400" font-size="41" transform="matrix(1 0 0 1 83.9894 1809)">Start</text>
+    <path d="M353.5 1712.5C353.5 1697.04 366.708 1684.5 383 1684.5 399.292 1684.5 412.5 1697.04 412.5 1712.5 412.5 1727.96 399.292 1740.5 383 1740.5 366.708 1740.5 353.5 1727.96 353.5 1712.5Z" stroke="#333333" stroke-width="12.5616" stroke-miterlimit="8" fill="none" fill-rule="evenodd"/>
+    <path d="M375 1712C375 1708.13 378.358 1705 382.5 1705 386.642 1705 390 1708.13 390 1712 390 1715.87 386.642 1719 382.5 1719 378.358 1719 375 1715.87 375 1712Z" fill="#FFFFFF" fill-rule="evenodd"/>
+    <path d="M383.044 1671.7 383.044 1687.47M383.044 1737.93 383.044 1753.7M340.544 1712.7 356.89 1712.7M409.198 1712.7 425.544 1712.7M353.621 1684.31 365.063 1695.35M412.467 1741.08 401.025 1730.04M412.467 1684.31 401.025 1695.35M353.621 1741.08 365.063 1730.04" stroke="#333333" stroke-width="9.4211" stroke-miterlimit="8" fill="none" fill-rule="evenodd"/>
+    <text fill="#111111" font-family="Arial,Arial_MSFontService,sans-serif" font-weight="400" font-size="41" transform="matrix(1 0 0 1 302.369 1814)">Milestone</text>
+    <path d="M623.329 1657.19 681.995 1657.19 708.069 1682.3 708.069 1767.05C708.069 1769.15 706.983 1770.19 704.81 1770.19L623.329 1770.19C621.156 1770.19 620.069 1769.15 620.069 1767.05L620.069 1660.33C620.069 1658.24 621.156 1657.19 623.329 1657.19Z" stroke="#111111" stroke-width="3.76844" stroke-miterlimit="8" fill="#F2F2F2" fill-rule="evenodd"/>
+    <path d="M669.069 1674.19 669.069 1699.19 695.069 1699.19" stroke="#111111" stroke-width="3.76844" stroke-miterlimit="8" fill="#FFFFFF" fill-rule="evenodd"/>
+    <path d="M626.57 1721.7 669.571 1721.7M626.57 1737.7 669.571 1737.7M626.57 1753.7 656.34 1753.7" stroke="#4B5560" stroke-width="3.14049" stroke-miterlimit="8" fill="none" fill-rule="evenodd"/>
+    <path d="M657.5 1750C657.5 1741.99 663.992 1735.5 672 1735.5 680.008 1735.5 686.5 1741.99 686.5 1750 686.5 1758.01 680.008 1764.5 672 1764.5 663.992 1764.5 657.5 1758.01 657.5 1750Z" stroke="#333333" stroke-width="3.14049" stroke-miterlimit="8" fill="#FFFFFF" fill-rule="evenodd"/>
+    <path d="M672.564 1742.69 672.564 1750.55 678.564 1753.69" stroke="#333333" stroke-width="3.14049" stroke-miterlimit="8" fill="none" fill-rule="evenodd"/>
+    <text fill="#111111" font-family="Arial,Arial_MSFontService,sans-serif" font-weight="400" font-size="41" transform="matrix(1 0 0 1 579.621 1814)">Milestone</text>
+    <path d="M883 1696.5C883 1689.6 888.82 1684 896 1684 903.18 1684 909 1689.6 909 1696.5 909 1703.4 903.18 1709 896 1709 888.82 1709 883 1703.4 883 1696.5Z" fill="#333333" fill-rule="evenodd"/>
+    <path d="M917 1699C917 1692.93 922.149 1688 928.5 1688 934.851 1688 940 1692.93 940 1699 940 1705.08 934.851 1710 928.5 1710 922.149 1710 917 1705.08 917 1699Z" fill="#333333" fill-rule="evenodd"/>
+    <path d="M873.1 1743.19C873.1 1718.46 886.167 1709.19 899.234 1709.19 912.301 1709.19 922.101 1718.46 922.101 1743.19Z" fill="#333333" fill-rule="evenodd"/>
+    <path d="M912.1 1743.19C913.725 1724.52 921.85 1715.19 931.6 1715.19 941.35 1715.19 947.85 1724.52 951.1 1743.19Z" fill="#333333" fill-rule="evenodd"/>
+    <text fill="#111111" font-family="Arial,Arial_MSFontService,sans-serif" font-weight="400" font-size="41" transform="matrix(1 0 0 1 833.278 1814)">Milestone</text>
+    <path d="M1134.12 1677.19 1134.12 1749.19" stroke="#333333" stroke-width="6.28097" stroke-miterlimit="8" fill="none" fill-rule="evenodd"/>
+    <path d="M1140.63 1680.69 1199.63 1680.69 1199.63 1718.69 1140.63 1718.69Z" stroke="#333333" stroke-width="3.14049" stroke-miterlimit="8" fill="#FFFFFF" fill-rule="evenodd"/>
+    <path d="M1140.13 1680.19 1159.8 1680.19 1159.8 1699.19 1140.13 1699.19ZM1179.46 1680.19 1199.13 1680.19 1199.13 1699.19 1179.46 1699.19ZM1159.8 1699.19 1179.46 1699.19 1179.46 1718.19 1159.8 1718.19Z" fill="#333333" fill-rule="evenodd"/>
+    <text fill="#111111" font-family="Arial,Arial_MSFontService,sans-serif" font-weight="400" font-size="41" transform="matrix(1 0 0 1 1123.27 1814)">End</text>
+    <path d="M126.5 1910.5 1267.5 1910.5" stroke="#222222" stroke-width="5.0247" stroke-miterlimit="8" marker-end="url(#arrow-black)" fill="none" fill-rule="evenodd"/>
+    <path d="M72.9999 1909.5C72.9999 1879.95 97.8481 1856 128.5 1856 159.152 1856 184 1879.95 184 1909.5 184 1939.05 159.152 1963 128.5 1963 97.8481 1963 72.9999 1939.05 72.9999 1909.5Z" stroke="#111111" stroke-width="3.92543" stroke-miterlimit="8" fill="url(#fill3)" fill-rule="evenodd"/>
+    <path d="M327 1909.5C327 1879.95 351.848 1856 382.5 1856 413.152 1856 438 1879.95 438 1909.5 438 1939.05 413.152 1963 382.5 1963 351.848 1963 327 1939.05 327 1909.5Z" stroke="#111111" stroke-width="3.92543" stroke-miterlimit="8" fill="url(#fill4)" fill-rule="evenodd"/>
+    <path d="M584 1909.5C584 1879.95 608.848 1856 639.5 1856 670.152 1856 695 1879.95 695 1909.5 695 1939.05 670.152 1963 639.5 1963 608.848 1963 584 1939.05 584 1909.5Z" stroke="#111111" stroke-width="3.92543" stroke-miterlimit="8" fill="url(#fill5)" fill-rule="evenodd"/>
+    <path d="M841 1909.5C841 1879.95 865.625 1856 896 1856 926.376 1856 951 1879.95 951 1909.5 951 1939.05 926.376 1963 896 1963 865.625 1963 841 1939.05 841 1909.5Z" stroke="#111111" stroke-width="3.92543" stroke-miterlimit="8" fill="url(#fill6)" fill-rule="evenodd"/>
+    <path d="M1091 1909.5C1091 1879.95 1115.85 1856 1146.5 1856 1177.15 1856 1202 1879.95 1202 1909.5 1202 1939.05 1177.15 1963 1146.5 1963 1115.85 1963 1091 1939.05 1091 1909.5Z" stroke="#111111" stroke-width="3.92543" stroke-miterlimit="8" fill="url(#fill7)" fill-rule="evenodd"/>
+    <text fill="#111111" font-family="Arial,Arial_MSFontService,sans-serif" font-weight="400" font-size="62" transform="matrix(1 0 0 1 111.337 1922)">1</text>
+    <text fill="#111111" font-family="Arial,Arial_MSFontService,sans-serif" font-weight="400" font-size="62" transform="matrix(1 0 0 1 364.977 1922)">2</text>
+    <text fill="#111111" font-family="Arial,Arial_MSFontService,sans-serif" font-weight="400" font-size="62" transform="matrix(1 0 0 1 621.867 1922)">3</text>
+    <text fill="#111111" font-family="Arial,Arial_MSFontService,sans-serif" font-weight="400" font-size="62" transform="matrix(1 0 0 1 878.758 1922)">4</text>
+    <text fill="#111111" font-family="Arial,Arial_MSFontService,sans-serif" font-weight="400" font-size="62" transform="matrix(1 0 0 1 1129.15 1922)">5</text>
+    <path d="M129 1972 129 2054 1147 2054 1147 1972" stroke="#747B84" stroke-width="3.76844" stroke-miterlimit="8" stroke-dasharray="16.958 11.3053" fill="none" fill-rule="evenodd"/>
+    <path d="M382 2054 382 1976M639 2054 639 1976M896 2054 896 1976" stroke="#747B84" stroke-width="3.76844" stroke-miterlimit="8" stroke-dasharray="16.958 11.3053" fill="none" fill-rule="evenodd"/>
+    <path d="M129 2054 129 1976M1147 2054 1147 1976" stroke="#747B84" stroke-width="3.76844" stroke-miterlimit="8" stroke-dasharray="16.958 11.3053" fill="none" fill-rule="evenodd"/>
+    <text fill="#111111" font-family="Arial,Arial_MSFontService,sans-serif" font-style="italic" font-weight="400" font-size="55" transform="matrix(1 0 0 1 413.771 2137)">ordered milestones</text>
+    <path d="M78.4999 2205.57C78.4999 2191.73 89.7258 2180.5 103.574 2180.5L1198.43 2180.5C1212.27 2180.5 1223.5 2191.73 1223.5 2205.57L1223.5 2365.43C1223.5 2379.27 1212.27 2390.5 1198.43 2390.5L103.574 2390.5C89.7258 2390.5 78.4999 2379.27 78.4999 2365.43Z" stroke="#CBD8E6" stroke-width="3.45446" stroke-miterlimit="8" fill="#F5F7FA" fill-rule="evenodd"/>
+    <text fill="#111111" font-family="Arial,Arial_MSFontService,sans-serif" font-weight="400" font-size="48" transform="matrix(1 0 0 1 137.369 2275)">Time order is visible, but actors, relations,</text>
+    <text fill="#111111" font-family="Arial,Arial_MSFontService,sans-serif" font-weight="400" font-size="48" transform="matrix(1 0 0 1 137.369 2344)">and evidence links are only weakly represented.</text>
+    <path d="M1433 61.5233C1433 42.4567 1448.46 27.0002 1467.52 27.0002L4348.48 27.0002C4367.54 27.0002 4383 42.4567 4383 61.5233L4383 2413.48C4383 2432.54 4367.54 2448 4348.48 2448L1467.52 2448C1448.46 2448 1433 2432.54 1433 2413.48Z" stroke="#CBD8E6" stroke-width="3.76844" stroke-miterlimit="8" fill="url(#fill8)" fill-rule="evenodd"/>
+    <text fill="#111111" font-family="Arial,Arial_MSFontService,sans-serif" font-weight="700" font-size="79" transform="matrix(1 0 0 1 2487.21 147)">(c) Event</text>
+    <text fill="#111111" font-family="Arial,Arial_MSFontService,sans-serif" font-weight="700" font-size="79" transform="matrix(1 0 0 1 2821.22 147)">-</text>
+    <text fill="#111111" font-family="Arial,Arial_MSFontService,sans-serif" font-weight="700" font-size="79" transform="matrix(1 0 0 1 2847.58 147)">process graph</text>
+    <text fill="#111111" font-family="Arial,Arial_MSFontService,sans-serif" font-weight="700" font-size="62" transform="matrix(1 0 0 1 1535.53 235)">Stage chain</text>
+    <g id="stage-chain-diagram" transform="translate(-250 -25)">
+    <text fill="#111111" font-family="Arial,Arial_MSFontService,sans-serif" font-weight="700" font-size="62" transform="matrix(1 0 0 1 2933.22 273)">Selected stage</text>
+    <path d="M1983 335.843C1983 325.436 1991.44 317 2001.84 317L2369.16 317C2379.56 317 2388 325.436 2388 335.843L2388 521.157C2388 531.564 2379.56 540 2369.16 540L2001.84 540C1991.44 540 1983 531.564 1983 521.157Z" stroke="#111111" stroke-width="4.2394" stroke-miterlimit="8" fill="#FFFFFF" fill-rule="evenodd"/>
+    <text fill="#111111" font-family="Arial,Arial_MSFontService,sans-serif" font-weight="400" font-size="58" transform="matrix(1 0 0 1 2093.66 408)">Stage 1</text>
+    <text fill="#657585" font-family="Arial,Arial_MSFontService,sans-serif" font-style="italic" font-weight="400" font-size="32" transform="matrix(1 0 0 1 2043 486)">episodes collapsed</text>
+    <path d="M2390.5 430.5 2569.5 430.5" stroke="#111111" stroke-width="4.71073" stroke-miterlimit="8" marker-end="url(#arrow-black)" fill="none" fill-rule="evenodd"/>
+    <path d="M2575.5 311.356C2575.5 300.942 2583.94 292.5 2594.36 292.5L3574.64 292.5C3585.06 292.5 3593.5 300.942 3593.5 311.356L3593.5 559.644C3593.5 570.058 3585.06 578.5 3574.64 578.5L2594.36 578.5C2583.94 578.5 2575.5 570.058 2575.5 559.644Z" stroke="#09196F" stroke-width="4.71073" stroke-miterlimit="8" fill="#FBFDFF" fill-rule="evenodd"/>
+    <text fill="#111111" font-family="Arial,Arial_MSFontService,sans-serif" font-weight="400" font-size="50" transform="matrix(1 0 0 1 2994 355)">Stage 2</text>
+    <text fill="#52677C" font-family="Arial,Arial_MSFontService,sans-serif" font-weight="400" font-size="31" transform="matrix(1 0 0 1 3018 400)">Episodes</text>
+    <path d="M2625 477.5C2625 442.982 2653.21 415 2688 415 2722.79 415 2751 442.982 2751 477.5 2751 512.018 2722.79 540 2688 540 2653.21 540 2625 512.018 2625 477.5Z" stroke="#111111" stroke-width="3.76844" stroke-miterlimit="8" fill="url(#fill9)" fill-rule="evenodd"/>
+    <path d="M2889 477.5C2889 442.982 2917.21 415 2952 415 2986.79 415 3015 442.982 3015 477.5 3015 512.018 2986.79 540 2952 540 2917.21 540 2889 512.018 2889 477.5Z" stroke="#0B4CCB" stroke-width="6" stroke-miterlimit="8" fill="#276EF1" fill-rule="evenodd"/>
+    <path d="M3153 477.5C3153 442.982 3181.21 415 3216 415 3250.79 415 3279 442.982 3279 477.5 3279 512.018 3250.79 540 3216 540 3181.21 540 3153 512.018 3153 477.5Z" stroke="#111111" stroke-width="3.76844" stroke-miterlimit="8" fill="url(#fill11)" fill-rule="evenodd"/>
+    <path d="M3417 477.5C3417 442.982 3445.21 415 3480 415 3514.79 415 3543 442.982 3543 477.5 3543 512.018 3514.79 540 3480 540 3445.21 540 3417 512.018 3417 477.5Z" stroke="#111111" stroke-width="3.76844" stroke-miterlimit="8" fill="url(#fill12)" fill-rule="evenodd"/>
+    <text fill="#111111" font-family="Arial,Arial_MSFontService,sans-serif" font-weight="400" font-size="62" transform="matrix(1 0 0 1 2658.89 486)">E</text>
+    <text fill="#111111" font-family="Arial,Arial_MSFontService,sans-serif" font-weight="400" font-size="41" transform="matrix(1 0 0 1 2700.14 508)">1</text>
+    <text fill="#FFFFFF" font-family="Arial,Arial_MSFontService,sans-serif" font-weight="700" font-size="62" transform="matrix(1 0 0 1 2922.73 486)">E</text>
+    <text fill="#FFFFFF" font-family="Arial,Arial_MSFontService,sans-serif" font-weight="700" font-size="41" transform="matrix(1 0 0 1 2963.98 508)">2</text>
+    <text fill="#111111" font-family="Arial,Arial_MSFontService,sans-serif" font-weight="400" font-size="62" transform="matrix(1 0 0 1 3186.56 486)">E</text>
+    <text fill="#111111" font-family="Arial,Arial_MSFontService,sans-serif" font-weight="400" font-size="41" transform="matrix(1 0 0 1 3227.81 508)">3</text>
+    <text fill="#111111" font-family="Arial,Arial_MSFontService,sans-serif" font-weight="400" font-size="62" transform="matrix(1 0 0 1 3450.39 486)">E</text>
+    <text fill="#111111" font-family="Arial,Arial_MSFontService,sans-serif" font-weight="400" font-size="41" transform="matrix(1 0 0 1 3491.64 508)">4</text>
+    <path d="M2751 477 2880 477" stroke="#111111" stroke-width="4.2394" stroke-miterlimit="8" marker-end="url(#arrow-black)" fill="none" fill-rule="evenodd"/>
+    <path d="M3015 477 3144 477" stroke="#111111" stroke-width="4.2394" stroke-miterlimit="8" marker-end="url(#arrow-black)" fill="none" fill-rule="evenodd"/>
+    <path d="M3279 477 3407 477" stroke="#111111" stroke-width="4.2394" stroke-miterlimit="8" marker-end="url(#arrow-black)" fill="none" fill-rule="evenodd"/>
+    <text fill="#0B4CCB" font-family="Arial,Arial_MSFontService,sans-serif" font-weight="700" font-size="40" text-anchor="middle" x="2952" y="620">Selected episode</text>
+    <path d="M3596.5 430.5 3725.5 430.5" stroke="#111111" stroke-width="4.71073" stroke-miterlimit="8" marker-end="url(#arrow-black)" fill="none" fill-rule="evenodd"/>
+    <path d="M3733 335.844C3733 325.437 3741.44 317 3751.84 317L4128.16 317C4138.56 317 4147 325.437 4147 335.844L4147 521.156C4147 531.563 4138.56 540 4128.16 540L3751.84 540C3741.44 540 3733 531.563 3733 521.156Z" stroke="#111111" stroke-width="4.2394" stroke-miterlimit="8" fill="#FFFFFF" fill-rule="evenodd"/>
+    <text fill="#111111" font-family="Arial,Arial_MSFontService,sans-serif" font-weight="400" font-size="58" transform="matrix(1 0 0 1 3849.4 408)">Stage 3</text>
+    <text fill="#657585" font-family="Arial,Arial_MSFontService,sans-serif" font-style="italic" font-weight="400" font-size="32" transform="matrix(1 0 0 1 3796 486)">episodes collapsed</text>
+    <path d="M4149.5 430.5 4251 430.5" stroke="#111111" stroke-width="4.71073" stroke-miterlimit="8" marker-end="url(#arrow-black)" fill="none" fill-rule="evenodd"/>
+    <text fill="#111111" font-family="Arial,Arial_MSFontService,sans-serif" font-weight="700" font-size="72" text-anchor="middle" x="4316" y="448">…</text>
+    </g>
+    <path d="M2658 510 2318.5 685.5" stroke="#276EF1" stroke-width="4.55374" stroke-miterlimit="8" stroke-dasharray="23.9071 13.6612" fill="none" fill-rule="evenodd"/>
+    <path d="M2746 510 3882.5 685.5" stroke="#276EF1" stroke-width="4.55374" stroke-miterlimit="8" stroke-dasharray="23.9071 13.6612" fill="none" fill-rule="evenodd"/>
+    <path d="M1488 716.549C1488 697.468 1503.47 682 1522.55 682L4283.45 682C4302.53 682 4318 697.468 4318 716.549L4318 1583.45C4318 1602.53 4302.53 1618 4283.45 1618L1522.55 1618C1503.47 1618 1488 1602.53 1488 1583.45Z" stroke="#D2DEEB" stroke-width="3.61145" stroke-miterlimit="8" fill="#FFFFFF" fill-rule="evenodd" fill-opacity="0.721569"/>
+    <text fill="#111111" font-family="Arial,Arial_MSFontService,sans-serif" font-weight="700" font-size="62" transform="matrix(1 0 0 1 1545.88 776)">Micro-level semantic graph</text>
+    <path d="M1539.5 892.898C1539.5 875.557 1553.56 861.5 1570.9 861.5L1957.1 861.5C1974.44 861.5 1988.5 875.557 1988.5 892.898L1988.5 1464.1C1988.5 1481.44 1974.44 1495.5 1957.1 1495.5L1570.9 1495.5C1553.56 1495.5 1539.5 1481.44 1539.5 1464.1Z" stroke="#CBD8E6" stroke-width="3.45446" stroke-miterlimit="8" fill="#FBFCFE" fill-rule="evenodd"/>
+    <path d="M1570 961C1570 926.206 1598.21 898 1633 898 1667.79 898 1696 926.206 1696 961 1696 995.794 1667.79 1024 1633 1024 1598.21 1024 1570 995.794 1570 961Z" stroke="#0B6BF2" stroke-width="4.39639" stroke-miterlimit="8" fill="none" fill-rule="evenodd"/>
+    <path d="M1616 942.5C1616 932.835 1623.61 925 1633 925 1642.39 925 1650 932.835 1650 942.5 1650 952.165 1642.39 960 1633 960 1623.61 960 1616 952.165 1616 942.5Z" fill="#1267CC" fill-rule="evenodd"/>
+    <path d="M1603.18 999.104C1606.34 975.241 1618.97 964.104 1633.18 964.104 1647.39 964.104 1660.02 975.241 1663.18 999.104Z" fill="#1267CC" fill-rule="evenodd"/>
+    <path d="M1586.5 961.5C1586.5 935.543 1607.54 914.5 1633.5 914.5 1659.46 914.5 1680.5 935.543 1680.5 961.5 1680.5 987.457 1659.46 1008.5 1633.5 1008.5 1607.54 1008.5 1586.5 987.457 1586.5 961.5Z" stroke="#D6E6FB" stroke-width="3.14049" stroke-miterlimit="8" fill="none" fill-rule="evenodd"/>
+    <text fill="#111111" font-family="Arial,Arial_MSFontService,sans-serif" font-weight="400" font-size="48" transform="matrix(1 0 0 1 1723.98 975)">participant</text>
+    <path d="M1576.5 1081.04C1576.5 1074.12 1582.12 1068.5 1589.04 1068.5L1670.95 1068.5C1677.88 1068.5 1683.5 1074.12 1683.5 1081.04L1683.5 1124.96C1683.5 1131.88 1677.88 1137.5 1670.95 1137.5L1589.04 1137.5C1582.12 1137.5 1576.5 1131.88 1576.5 1124.96Z" stroke="#111111" stroke-width="3.45446" stroke-miterlimit="8" fill="url(#fill13)" fill-rule="evenodd"/>
+    <text fill="#111111" font-family="Arial,Arial_MSFontService,sans-serif" font-weight="400" font-size="48" transform="matrix(1 0 0 1 1723.98 1125)">action</text>
+    <path d="M1604.79 1197.5 1661.36 1197.5 1686.5 1250.5 1658.21 1303.5 1604.79 1303.5 1576.5 1250.5Z" stroke="#111111" stroke-width="3.45446" stroke-miterlimit="8" fill="url(#fill14)" fill-rule="evenodd"/>
+    <text fill="#111111" font-family="Arial,Arial_MSFontService,sans-serif" font-weight="400" font-size="48" transform="matrix(1 0 0 1 1723.98 1270)">outcome</text>
+    <path d="M1576 1397 1686 1397" stroke="#6F42A6" stroke-width="5" stroke-miterlimit="8" stroke-dasharray="18 12" marker-end="url(#arrow-purple)" fill="none"/>
+    <text fill="#111111" font-family="Arial,Arial_MSFontService,sans-serif" font-weight="400" font-size="44" transform="matrix(1 0 0 1 1724 1388)">typed relation</text>
+    <text fill="#657585" font-family="Arial,Arial_MSFontService,sans-serif" font-weight="400" font-size="34" transform="matrix(1 0 0 1 1724 1438)">labeled edge</text>
+    <path d="M2057.5 813.5 2057.5 1558.5" stroke="#D8E2EC" stroke-width="3.14049" stroke-miterlimit="8" fill="none" fill-rule="evenodd"/>
+    <path d="M2161 860.5C2161 820.459 2193.24 788 2233 788 2272.76 788 2305 820.459 2305 860.5 2305 900.541 2272.76 933 2233 933 2193.24 933 2161 900.541 2161 860.5Z" stroke="#111111" stroke-width="3.76844" stroke-miterlimit="8" fill="url(#fill16)" fill-rule="evenodd"/>
+    <path d="M2214 835.5C2214 825.283 2222.51 817 2233 817 2243.49 817 2252 825.283 2252 835.5 2252 845.717 2243.49 854 2233 854 2222.51 854 2214 845.717 2214 835.5Z" fill="#146FD5" fill-rule="evenodd"/>
+    <path d="M2195.25 905.092C2198.37 876.707 2214 864.091 2232.75 864.091 2251.5 864.091 2267.12 876.707 2270.25 905.092Z" fill="#146FD5" fill-rule="evenodd"/>
+    <path d="M2176.5 861C2176.5 829.796 2201.8 804.5 2233 804.5 2264.2 804.5 2289.5 829.796 2289.5 861 2289.5 892.204 2264.2 917.5 2233 917.5 2201.8 917.5 2176.5 892.204 2176.5 861Z" stroke="#D7E9FB" stroke-width="3.14049" stroke-miterlimit="8" fill="none" fill-rule="evenodd"/>
+    <text fill="#111111" font-family="Arial,Arial_MSFontService,sans-serif" font-weight="400" font-size="55" transform="matrix(1 0 0 1 2202.07 1006)">P1</text>
+    <path d="M2161 1382C2161 1342.24 2193.24 1310 2233 1310 2272.76 1310 2305 1342.24 2305 1382 2305 1421.76 2272.76 1454 2233 1454 2193.24 1454 2161 1421.76 2161 1382Z" stroke="#111111" stroke-width="3.76844" stroke-miterlimit="8" fill="url(#fill17)" fill-rule="evenodd"/>
+    <path d="M2214 1357C2214 1346.51 2222.51 1338 2233 1338 2243.49 1338 2252 1346.51 2252 1357 2252 1367.49 2243.49 1376 2233 1376 2222.51 1376 2214 1367.49 2214 1357Z" fill="#146FD5" fill-rule="evenodd"/>
+    <path d="M2195.25 1426.15C2198.37 1397.77 2214 1385.15 2232.75 1385.15 2251.5 1385.15 2267.12 1397.77 2270.25 1426.15Z" fill="#146FD5" fill-rule="evenodd"/>
+    <path d="M2176.5 1382.5C2176.5 1351.02 2201.8 1325.5 2233 1325.5 2264.2 1325.5 2289.5 1351.02 2289.5 1382.5 2289.5 1413.98 2264.2 1439.5 2233 1439.5 2201.8 1439.5 2176.5 1413.98 2176.5 1382.5Z" stroke="#D7E9FB" stroke-width="3.14049" stroke-miterlimit="8" fill="none" fill-rule="evenodd"/>
+    <text fill="#111111" font-family="Arial,Arial_MSFontService,sans-serif" font-weight="400" font-size="55" transform="matrix(1 0 0 1 2202.07 1528)">P2</text>
+    <path d="M3948 882.5C3948 842.459 3980.24 810 4020 810 4059.76 810 4092 842.459 4092 882.5 4092 922.541 4059.76 955 4020 955 3980.24 955 3948 922.541 3948 882.5Z" stroke="#111111" stroke-width="3.76844" stroke-miterlimit="8" fill="url(#fill18)" fill-rule="evenodd"/>
+    <path d="M4001 857.5C4001 847.283 4009.51 839 4020 839 4030.49 839 4039 847.283 4039 857.5 4039 867.717 4030.49 876 4020 876 4009.51 876 4001 867.717 4001 857.5Z" fill="#146FD5" fill-rule="evenodd"/>
+    <path d="M3982.46 927.094C3985.62 898.709 4001.46 886.094 4020.46 886.094 4039.46 886.094 4055.29 898.709 4058.46 927.094Z" fill="#146FD5" fill-rule="evenodd"/>
+    <path d="M3963.5 883C3963.5 851.796 3988.8 826.5 4020 826.5 4051.2 826.5 4076.5 851.796 4076.5 883 4076.5 914.204 4051.2 939.5 4020 939.5 3988.8 939.5 3963.5 914.204 3963.5 883Z" stroke="#D7E9FB" stroke-width="3.14049" stroke-miterlimit="8" fill="none" fill-rule="evenodd"/>
+    <text fill="#111111" font-family="Arial,Arial_MSFontService,sans-serif" font-weight="400" font-size="55" transform="matrix(1 0 0 1 3989.22 1028)">P3</text>
+    <path d="M3948 1407C3948 1367.24 3980.24 1335 4020 1335 4059.76 1335 4092 1367.24 4092 1407 4092 1446.76 4059.76 1479 4020 1479 3980.24 1479 3948 1446.76 3948 1407Z" stroke="#111111" stroke-width="3.76844" stroke-miterlimit="8" fill="url(#fill19)" fill-rule="evenodd"/>
+    <path d="M4001 1382C4001 1371.51 4009.51 1363 4020 1363 4030.49 1363 4039 1371.51 4039 1382 4039 1392.49 4030.49 1401 4020 1401 4009.51 1401 4001 1392.49 4001 1382Z" fill="#146FD5" fill-rule="evenodd"/>
+    <path d="M3982.46 1451.15C3985.62 1422.77 4001.46 1410.15 4020.46 1410.15 4039.46 1410.15 4055.29 1422.77 4058.46 1451.15Z" fill="#146FD5" fill-rule="evenodd"/>
+    <path d="M3963.5 1408C3963.5 1376.8 3988.8 1351.5 4020 1351.5 4051.2 1351.5 4076.5 1376.8 4076.5 1408 4076.5 1439.2 4051.2 1464.5 4020 1464.5 3988.8 1464.5 3963.5 1439.2 3963.5 1408Z" stroke="#D7E9FB" stroke-width="3.14049" stroke-miterlimit="8" fill="none" fill-rule="evenodd"/>
+    <text fill="#111111" font-family="Arial,Arial_MSFontService,sans-serif" font-weight="400" font-size="55" transform="matrix(1 0 0 1 3989.22 1553)">P4</text>
+    <path d="M2519 825.714C2519 817.035 2526.04 810 2534.71 810L2704.29 810C2712.96 810 2720 817.035 2720 825.714L2720 904.286C2720 912.965 2712.96 920 2704.29 920L2534.71 920C2526.04 920 2519 912.965 2519 904.286Z" stroke="#111111" stroke-width="3.76844" stroke-miterlimit="8" fill="url(#fill20)" fill-rule="evenodd"/>
+    <text fill="#111111" font-family="Arial,Arial_MSFontService,sans-serif" font-weight="400" font-size="62" transform="matrix(1 0 0 1 2589.79 876)">A</text>
+    <text fill="#111111" font-family="Arial,Arial_MSFontService,sans-serif" font-weight="400" font-size="41" transform="matrix(1 0 0 1 2631.04 898)">1</text>
+    <path d="M2817 1036.69C2817 1028.03 2824.03 1021 2832.69 1021L3002.31 1021C3010.97 1021 3018 1028.03 3018 1036.69L3018 1118.31C3018 1126.97 3010.97 1134 3002.31 1134L2832.69 1134C2824.03 1134 2817 1126.97 2817 1118.31Z" stroke="#111111" stroke-width="3.76844" stroke-miterlimit="8" fill="url(#fill21)" fill-rule="evenodd"/>
+    <text fill="#111111" font-family="Arial,Arial_MSFontService,sans-serif" font-weight="400" font-size="62" transform="matrix(1 0 0 1 2888.18 1089)">A</text>
+    <text fill="#111111" font-family="Arial,Arial_MSFontService,sans-serif" font-weight="400" font-size="41" transform="matrix(1 0 0 1 2929.43 1111)">2</text>
+    <path d="M3414 986.694C3414 978.026 3421.03 971 3429.69 971L3596.31 971C3604.97 971 3612 978.026 3612 986.694L3612 1068.31C3612 1076.97 3604.97 1084 3596.31 1084L3429.69 1084C3421.03 1084 3414 1076.97 3414 1068.31Z" stroke="#111111" stroke-width="3.76844" stroke-miterlimit="8" fill="url(#fill22)" fill-rule="evenodd"/>
+    <text fill="#111111" font-family="Arial,Arial_MSFontService,sans-serif" font-weight="400" font-size="62" transform="matrix(1 0 0 1 3484.94 1039)">A</text>
+    <text fill="#111111" font-family="Arial,Arial_MSFontService,sans-serif" font-weight="400" font-size="41" transform="matrix(1 0 0 1 3526.19 1061)">3</text>
+    <path d="M3257 1381.71C3257 1373.04 3264.04 1366 3272.71 1366L3439.29 1366C3447.96 1366 3455 1373.04 3455 1381.71L3455 1460.29C3455 1468.96 3447.96 1476 3439.29 1476L3272.71 1476C3264.04 1476 3257 1468.96 3257 1460.29Z" stroke="#111111" stroke-width="3.76844" stroke-miterlimit="8" fill="url(#fill23)" fill-rule="evenodd"/>
+    <text fill="#111111" font-family="Arial,Arial_MSFontService,sans-serif" font-weight="400" font-size="62" transform="matrix(1 0 0 1 3327.9 1432)">A</text>
+    <text fill="#111111" font-family="Arial,Arial_MSFontService,sans-serif" font-weight="400" font-size="41" transform="matrix(1 0 0 1 3369.15 1454)">4</text>
+    <path d="M3039.65 748 3121.22 748 3162 816.933 3121.22 889 3039.65 889 3002 816.933Z" stroke="#111111" stroke-width="3.76844" stroke-miterlimit="8" fill="url(#fill24)" fill-rule="evenodd"/>
+    <text fill="#111111" font-family="Arial,Arial_MSFontService,sans-serif" font-weight="400" font-size="62" transform="matrix(1 0 0 1 3051.51 829)">O</text>
+    <text fill="#111111" font-family="Arial,Arial_MSFontService,sans-serif" font-weight="400" font-size="41" transform="matrix(1 0 0 1 3099.63 851)">1</text>
+    <path d="M2948.75 1297 3030.25 1297 3071 1369.58 3030.25 1439 2948.75 1439 2908 1369.58Z" stroke="#111111" stroke-width="3.76844" stroke-miterlimit="8" fill="url(#fill25)" fill-rule="evenodd"/>
+    <text fill="#111111" font-family="Arial,Arial_MSFontService,sans-serif" font-weight="400" font-size="62" transform="matrix(1 0 0 1 2957.28 1381)">O</text>
+    <text fill="#111111" font-family="Arial,Arial_MSFontService,sans-serif" font-weight="400" font-size="41" transform="matrix(1 0 0 1 3005.41 1403)">2</text>
+    <path d="M2305 864 2512 864" stroke="#111111" stroke-width="4.2394" stroke-miterlimit="8" marker-end="url(#arrow-black)" fill="none" fill-rule="evenodd"/>
+    <path d="M2720 867 2996 820" stroke="#111111" stroke-width="4.2394" stroke-miterlimit="8" marker-end="url(#arrow-black)" fill="none" fill-rule="evenodd"/>
+    <path d="M2305 895 2905 1329" stroke="#111111" stroke-width="4.2394" stroke-miterlimit="8" marker-end="url(#arrow-black)" fill="none" fill-rule="evenodd"/>
+    <path d="M2716 905 2811 1024" stroke="#111111" stroke-width="4.2394" stroke-miterlimit="8" marker-end="url(#arrow-black)" fill="none" fill-rule="evenodd"/>
+    <path d="M3018 1077 3404 1077" stroke="#111111" stroke-width="4.2394" stroke-miterlimit="8" marker-end="url(#arrow-black)" fill="none" fill-rule="evenodd"/>
+    <path d="M2918 1134 2974 1291" stroke="#111111" stroke-width="4.2394" stroke-miterlimit="8" marker-end="url(#arrow-black)" fill="none" fill-rule="evenodd"/>
+    <path d="M2305 1351 2808 1093" stroke="#111111" stroke-width="4.2394" stroke-miterlimit="8" marker-end="url(#arrow-black)" fill="none" fill-rule="evenodd"/>
+    <path d="M3612 1021 3945 908" stroke="#111111" stroke-width="4.2394" stroke-miterlimit="8" marker-end="url(#arrow-black)" fill="none" fill-rule="evenodd"/>
+    <path d="M3065 1382 3247 1413" stroke="#111111" stroke-width="4.2394" stroke-miterlimit="8" marker-end="url(#arrow-black)" fill="none" fill-rule="evenodd"/>
+    <path d="M3455 1420 3941 1420" stroke="#111111" stroke-width="4.2394" stroke-miterlimit="8" marker-end="url(#arrow-black)" fill="none" fill-rule="evenodd"/>
+    <path d="M3162 817C3410 748 3710 760 3947 856" stroke="#6F42A6" stroke-width="5" stroke-miterlimit="8" stroke-dasharray="20 13" marker-end="url(#arrow-purple)" fill="none"/>
+    <text fill="#6F42A6" font-family="Arial,Arial_MSFontService,sans-serif" font-style="italic" font-weight="700" font-size="40" transform="matrix(1 0 0 1 3505 765)">causal relation</text>
+    <path d="M3515 1084C3590 1185 3555 1305 3425 1363" stroke="#6F42A6" stroke-width="5" stroke-miterlimit="8" stroke-dasharray="20 13" marker-end="url(#arrow-purple)" fill="none"/>
+    <text fill="#6F42A6" font-family="Arial,Arial_MSFontService,sans-serif" font-style="italic" font-weight="700" font-size="40" transform="matrix(1 0 0 1 3565 1225)">temporal relation</text>
+    <path d="M2303 1415C2570 1592 3008 1590 3254 1462" stroke="#6F42A6" stroke-width="5" stroke-miterlimit="8" stroke-dasharray="20 13" marker-end="url(#arrow-purple)" fill="none"/>
+    <text fill="#6F42A6" stroke="#FFFFFF" stroke-width="12" paint-order="stroke" font-family="Arial,Arial_MSFontService,sans-serif" font-style="italic" font-weight="700" font-size="36" transform="matrix(1 0 0 1 2630 1518)">mechanistic relation</text>
+    <text fill="#111111" font-family="Arial,Arial_MSFontService,sans-serif" font-style="italic" font-weight="400" font-size="48" transform="matrix(1 0 0 1 3040.89 1227)">action–outcome link</text>
+    <path d="M3156.5 1234.5C3087.24 1243.24 3017.98 1253.91 2986.5 1267.5" stroke="#111111" stroke-width="3.45446" stroke-miterlimit="8" stroke-dasharray="12.9542 10.3634" fill="none" fill-rule="evenodd"/>
+    <path d="M1488.5 1671.5 4318 1671.5" stroke="#D8E2EC" stroke-width="3.14049" stroke-miterlimit="8" fill="none" fill-rule="evenodd"/>
+    <path d="M1488 1739.56C1488 1720.47 1503.47 1705 1522.56 1705L4283.44 1705C4302.52 1705 4318 1720.47 4318 1739.56L4318 2396.44C4318 2415.53 4302.52 2431 4283.44 2431L1522.56 2431C1503.47 2431 1488 2415.53 1488 2396.44Z" stroke="#D2DEEB" stroke-width="3.61145" stroke-miterlimit="8" fill="#FFFFFF" fill-rule="evenodd" fill-opacity="0.721569"/>
+    <text fill="#111111" font-family="Arial,Arial_MSFontService,sans-serif" font-weight="700" font-size="62" transform="matrix(1 0 0 1 1535.53 1802)">Evidence graph</text>
+    <g id="evidence-source-cards">
+      <rect x="1555" y="2030" width="620" height="290" rx="22" stroke="#AFC7E3" stroke-width="4" fill="#FBFDFF"/>
+      <rect x="2230" y="2030" width="620" height="290" rx="22" stroke="#A7CFBF" stroke-width="4" fill="#FBFEFC"/>
+      <rect x="2905" y="2030" width="620" height="290" rx="22" stroke="#B9B1DC" stroke-width="4" fill="#FCFBFF"/>
+      <rect x="3580" y="2030" width="620" height="290" rx="22" stroke="#E2C47D" stroke-width="4" fill="#FFFEF8"/>
+
+      <path d="M1865 1985C2010 1985 2140 1950 2175 1870C2200 1760 2205 1570 2215 1460" stroke="#176C22" stroke-width="4.55374" stroke-dasharray="23.9071 17.0765" marker-end="url(#arrow-green)" fill="none"/>
+      <path d="M1865 1985C2040 1990 2240 1940 2320 1830C2400 1700 2435 1570 2460 1505" stroke="#176C22" stroke-width="4.55374" stroke-dasharray="23.9071 17.0765" marker-end="url(#arrow-green)" fill="none"/>
+      <path d="M2540 1985C2590 1650 2760 1290 2917 1140" stroke="#176C22" stroke-width="4.55374" stroke-dasharray="23.9071 17.0765" marker-end="url(#arrow-green)" fill="none"/>
+      <path d="M2540 1985C2675 1735 2860 1530 2989 1445" stroke="#176C22" stroke-width="4.55374" stroke-dasharray="23.9071 17.0765" marker-end="url(#arrow-green)" fill="none"/>
+      <path d="M3215 1985C3235 1770 3295 1575 3355 1484" stroke="#176C22" stroke-width="4.55374" stroke-dasharray="23.9071 17.0765" marker-end="url(#arrow-green)" fill="none"/>
+      <path d="M3215 1985C3295 1670 3420 1410 3480 1315" stroke="#176C22" stroke-width="4.55374" stroke-dasharray="23.9071 17.0765" marker-end="url(#arrow-green)" fill="none"/>
+      <path d="M3830 2010C3745 1915 3710 1740 3730 1590C3742 1500 3780 1445 3820 1420" stroke="#176C22" stroke-width="4.55374" stroke-dasharray="23.9071 17.0765" marker-end="url(#arrow-green)" fill="none"/>
+
+      <path d="M1540 1848 1602 1848 1624 1870 1624 1914 1540 1914Z" stroke="#7DA4D8" stroke-width="3" stroke-linejoin="round" fill="#EAF2FF"/>
+      <path d="M1602 1848 1602 1870 1624 1870" stroke="#7DA4D8" stroke-width="3" fill="#FFFFFF"/>
+      <path d="M1558 1860 1620 1860 1642 1882 1642 1926 1558 1926Z" stroke="#69A999" stroke-width="3" stroke-linejoin="round" fill="#EAF7F3"/>
+      <path d="M1620 1860 1620 1882 1642 1882" stroke="#69A999" stroke-width="3" fill="#FFFFFF"/>
+      <path d="M1576 1872 1638 1872 1660 1894 1660 1938 1576 1938Z" stroke="#D7A33A" stroke-width="3" stroke-linejoin="round" fill="#FFF5D9"/>
+      <path d="M1638 1872 1638 1894 1660 1894" stroke="#D7A33A" stroke-width="3" fill="#FFFFFF"/>
+      <path d="M1594 1904 1638 1904M1594 1919 1627 1919" stroke="#52677C" stroke-width="4" stroke-linecap="round"/>
+      <text fill="#243447" font-family="Arial,Arial_MSFontService,sans-serif" font-weight="700" font-size="40" x="1692" y="1911">Multi-source evidence</text>
+      <path d="M3820 1812 3960 1812" stroke="#176C22" stroke-width="4.55374" stroke-dasharray="23.9071 17.0765" marker-end="url(#arrow-green)" fill="none"/>
+      <text fill="#176C22" font-family="Arial,Arial_MSFontService,sans-serif" font-style="italic" font-weight="700" font-size="38" x="3990" y="1798">evidence</text>
+      <text fill="#176C22" font-family="Arial,Arial_MSFontService,sans-serif" font-style="italic" font-weight="700" font-size="38" x="3990" y="1842">support</text>
+
+      <rect x="1805" y="1982" width="120" height="56" rx="12" stroke="#176C22" stroke-width="4" fill="#DDF2E3"/>
+      <path d="M1828 2001 1902 2001M1828 2018 1884 2018" stroke="#176C22" stroke-width="4" stroke-linecap="round"/>
+      <rect x="2480" y="1982" width="120" height="56" rx="12" stroke="#176C22" stroke-width="4" fill="#DDF2E3"/>
+      <path d="M2503 2001 2577 2001M2503 2018 2559 2018" stroke="#176C22" stroke-width="4" stroke-linecap="round"/>
+      <rect x="3155" y="1982" width="120" height="56" rx="12" stroke="#176C22" stroke-width="4" fill="#DDF2E3"/>
+      <path d="M3178 2001 3252 2001M3178 2018 3234 2018" stroke="#176C22" stroke-width="4" stroke-linecap="round"/>
+      <rect x="3830" y="1982" width="120" height="56" rx="12" stroke="#176C22" stroke-width="4" fill="#DDF2E3"/>
+      <path d="M3853 2001 3927 2001M3853 2018 3909 2018" stroke="#176C22" stroke-width="4" stroke-linecap="round"/>
+
+      <rect x="1600" y="2090" width="104" height="74" rx="10" stroke="#276EF1" stroke-width="4" fill="#FFFFFF"/>
+      <path d="M1600 2114 1704 2114" stroke="#276EF1" stroke-width="4"/>
+      <circle cx="1617" cy="2102" r="5" fill="#276EF1"/>
+      <circle cx="1634" cy="2102" r="5" fill="#9ABAE2"/>
+      <path d="M1618 2133 1686 2133M1618 2151 1670 2151" stroke="#7A8FA5" stroke-width="5" stroke-linecap="round"/>
+      <text fill="#17375E" font-family="Arial,Arial_MSFontService,sans-serif" font-weight="700" font-size="40" x="1735" y="2126">News article</text>
+      <text fill="#52677C" font-family="Arial,Arial_MSFontService,sans-serif" font-weight="400" font-size="34" x="1735" y="2180">dated account</text>
+
+      <path d="M2280 2122 2335 2100 2335 2152 2280 2134Z" stroke="#2A8C7B" stroke-width="4" stroke-linejoin="round" fill="#E6F5F0"/>
+      <path d="M2335 2110C2360 2117 2360 2135 2335 2142M2292 2135 2292 2161" stroke="#2A8C7B" stroke-width="5" fill="none"/>
+      <text fill="#175848" font-family="Arial,Arial_MSFontService,sans-serif" font-weight="700" font-size="40" x="2390" y="2126">Public announcement</text>
+      <text fill="#52677C" font-family="Arial,Arial_MSFontService,sans-serif" font-weight="400" font-size="34" x="2390" y="2180">official statement</text>
+
+      <path d="M2960 2122 3010 2092 3060 2122Z" stroke="#6F42A6" stroke-width="4" stroke-linejoin="round" fill="#F1EBFA"/>
+      <path d="M2974 2122 2974 2162M2998 2122 2998 2162M3022 2122 3022 2162M3046 2122 3046 2162M2956 2162 3064 2162" stroke="#6F42A6" stroke-width="6"/>
+      <text fill="#54317F" font-family="Arial,Arial_MSFontService,sans-serif" font-weight="700" font-size="40" x="3095" y="2126">Public record</text>
+      <text fill="#52677C" font-family="Arial,Arial_MSFontService,sans-serif" font-weight="400" font-size="34" x="3095" y="2180">rule / decision</text>
+
+      <rect x="3635" y="2092" width="92" height="72" rx="8" stroke="#D79A20" stroke-width="4" fill="#FFF9E9"/>
+      <rect x="3653" y="2137" width="12" height="17" fill="#D79A20"/>
+      <rect x="3675" y="2121" width="12" height="33" fill="#D79A20"/>
+      <rect x="3697" y="2107" width="12" height="47" fill="#D79A20"/>
+      <text fill="#79550F" font-family="Arial,Arial_MSFontService,sans-serif" font-weight="700" font-size="40" x="3760" y="2126">Report</text>
+      <text fill="#52677C" font-family="Arial,Arial_MSFontService,sans-serif" font-weight="400" font-size="34" x="3760" y="2180">analysis + figures</text>
+    </g>
+  </g>
+</svg>

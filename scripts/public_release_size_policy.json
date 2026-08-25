@@ -15,16 +15,16 @@
       "sha256": "491ecff00fd333577492312b0b79e44e08b949433ccff3f0bd3c30b2f24423e1"
     },
     "assets/usecases/analysis.png": {
-      "bytes": 1200753,
-      "sha256": "1b18bfccc9fe0e48be50cff192a5ff79ad3d34e2f20aae3a3fa18ef78dd1f39a"
+      "bytes": 1147718,
+      "sha256": "b43f8c353567557ea97b24b7c39d2d73526da2ee5054d37ebee6d535901973f3"
     },
     "assets/usecases/prediction-simulation.png": {
-      "bytes": 1212559,
-      "sha256": "6bd56e3d06484b306d75b07446bfe2e013183527b10e2abdfd6aa294179dbb60"
+      "bytes": 1295938,
+      "sha256": "7f9a638126e7bf8e5232e82b69d46a32207efc1c1824a0005e8309ce0e8722c7"
     },
     "assets/usecases/reconstruction.png": {
-      "bytes": 1068622,
-      "sha256": "4fc6cc85bae6ab42f70bff376f5f5d38e05db9a1ab1d84570e103b489a6540cd"
+      "bytes": 1225086,
+      "sha256": "ffdd21e2ded17f4df2c026e7b356d039ebf4e1c3e03714209f69bc771e5718a3"
     },
     "assets/usecases/societal-world-model.png": {
       "bytes": 1456129,

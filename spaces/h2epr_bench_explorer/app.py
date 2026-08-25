@@ -21,7 +21,6 @@ from h2epr_explorer.constants import (
     PUBLIC_DATASET_REPO,
     PUBLIC_DATASET_REVISION_URL,
     PROJECT_WEBSITE_URL,
-    RELEASE_BOUNDARY_NOTICE,
     SOURCE_REPOSITORY_URL,
 )
 from h2epr_explorer.data_loader import (
@@ -111,10 +110,9 @@ div[data-testid="stMetric"] {
 st.markdown('<div class="h2epr-kicker">H²EPR-Bench · public release explorer</div>', unsafe_allow_html=True)
 st.markdown('<div class="h2epr-title">Event-process graph browser</div>', unsafe_allow_html=True)
 st.markdown(
-    '<div class="h2epr-subtitle">Browse 3,000 public event records, Draft EPG summaries, and stage timelines from one validated Unified-3000 release.</div>',
+    '<div class="h2epr-subtitle">Search 3,000 real-world events, inspect their process structure, and open every public Draft EPG.</div>',
     unsafe_allow_html=True,
 )
-st.info(RELEASE_BOUNDARY_NOTICE)
 
 try:
     release = load_release()
@@ -224,7 +222,7 @@ event_links = build_event_links(selected_event)
 st.caption(filter_summary_text(len(filtered_rows), len(catalog_rows)))
 
 tabs = st.tabs(
-    ["Catalog", "Event detail", "Timeline", "Stages", "Draft EPG JSON", "Access and boundary"]
+    ["Catalog", "Event detail", "Timeline", "Stages", "Draft EPG JSON", "About"]
 )
 
 with tabs[0]:
@@ -309,15 +307,16 @@ with tabs[4]:
 with tabs[5]:
     st.markdown(
         f"""
-### Release boundary
+### About H²EPR-Bench
 
 - Project Website: [H²EPR-Bench]({PROJECT_WEBSITE_URL}).
 - Public Dataset: [`{PUBLIC_DATASET_REPO}`]({PUBLIC_DATASET_REVISION_URL}).
 - FinMycelium System: [multi-agent event reconstruction system]({FINMYCELIUM_URL}).
 - Reference EPGs (Gated): [`{GOLD_COMPANION_REPO}`]({GOLD_COMPANION_URL}).
 - Release Repository: [`AgenticFinLab/H2EPR-Bench`]({SOURCE_REPOSITORY_URL}).
-- Public Draft EPGs are sanitized FinMycelium construction artifacts, not scoring references.
-- Official benchmark scoring uses expert-adjudicated reference EPGs in the gated companion.
-- This Explorer loads neither reference EPGs nor frozen evidence packages.
+
+The Explorer presents FinMycelium Draft EPGs for browsing and method
+development. Official benchmark scoring uses the expert-finalized reference
+EPGs in the gated companion.
 """
     )

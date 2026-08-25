@@ -1,4 +1,4 @@
-# H2EPR-Bench Gold public interface
+# H²EPR-Bench reference EPG interface
 
 [Project Website](https://agenticfinlab.github.io/H2EPR-Bench/) ·
 [Public Dataset](https://huggingface.co/datasets/AgenticFinLab/H2EPR-Bench) ·
@@ -6,14 +6,11 @@
 [FinMycelium System](https://github.com/AgenticFinLab/FinMycelium) ·
 [Release Repository](https://github.com/AgenticFinLab/H2EPR-Bench)
 
-This directory contains only the public schema and offline validation
-interface for H2EPR-Bench reference EPGs. It contains no real reference EPG,
-evidence record, adjudication artifact, access credential, or download client.
-
-Official reference EPG records remain in the manual-gated Hugging Face
-companion, `AgenticFinLab/H2EPR-Bench-Gold`. Possessing this schema does not
-grant access to those records. Public Draft EPGs are separate FinMycelium
-construction artifacts and must not be treated as Gold.
+This directory provides the public schema and offline document validator for
+H²EPR-Bench reference EPGs. The expert-finalized collection is hosted in the
+manual-gated Hugging Face companion,
+`AgenticFinLab/H2EPR-Bench-Gold`; the included synthetic fixture demonstrates
+the interface without reproducing a benchmark record.
 
 Validate an explicitly supplied local document with:
 
@@ -21,9 +18,8 @@ Validate an explicitly supplied local document with:
 python datasets/h2epr_bench_gold/validators/validate_reference_epg.py path/to/document.json
 ```
 
-The validator performs no network calls and has no default Dataset or Gold
-path. Repository tests use only the visibly synthetic fixture in
-`synthetic_fixtures/`.
+The validator runs locally against the path supplied by the user. Repository
+tests use the synthetic fixture in `synthetic_fixtures/`.
 
 Code in this directory is Apache-2.0. The schema, documentation, and fixture
 are CC BY-NC 4.0; see the repository licensing notice.

@@ -19,10 +19,14 @@ RELEASE_CONTRACT_PATH = (
     ROOT / "datasets" / "h2epr_bench" / "manifests" / "unified3000_release_contract.json"
 )
 EXPECTED_RELEASE_ID = "h2epr-unified3000-v2"
-EXPECTED_RC_TREE_SHA256 = "9b30d71eacbfa0e07539a5805a3cf05065e76199dfcf0272ef1d135c1098960e"
+EXPECTED_RC_TREE_SHA256 = "24f19b2eda8af998fa6e755c6dac8db62c40ad865815e6040cd83f6679cdbdb3"
 HEX40 = re.compile(r"^[0-9a-f]{40}$")
 HEX64 = re.compile(r"^[0-9a-f]{64}$")
 GATES = {"local", "deployment", "published"}
+PUBLIC_VERSION_LABEL = re.compile(
+    r"\bUnified[- ]?3000\b|(?<![-_\w])v(?:0\.)?\d+(?:\.\d+)*\b",
+    re.IGNORECASE,
+)
 
 SURFACE_PATHS: dict[str, tuple[Path, ...]] = {
     "website": (ROOT / "index.html",),
@@ -62,15 +66,19 @@ EXPECTED_RESOURCE_LABELS = {
 }
 
 EXPECTED_CARD_SCOPES = {
-    "public_dataset_card": "unified3000_v2_published_dataset",
-    "gold_card": "uniform_release_wording",
-    "explorer_card": "unified3000_v2_dataset_pinned_explorer",
+    "public_dataset_card": "public_presentation_polish",
+    "gold_card": "reference_presentation_polish",
+    "explorer_card": "dataset_pinned_explorer_presentation",
 }
 EXPECTED_CARD_TARGET_REPOS = {
     "public_dataset_card": "AgenticFinLab/H2EPR-Bench",
     "gold_card": "AgenticFinLab/H2EPR-Bench-Gold",
     "explorer_card": "AgenticFinLab/H2EPR-Bench-Explorer",
 }
+EXPECTED_PUBLIC_DATASET_CARD_IMAGES = (
+    "assets/card/h2epr-benchmark-overview.svg",
+    "assets/card/h2epr-overview.svg",
+)
 
 
 class _AnchorCollector(HTMLParser):
@@ -203,6 +211,10 @@ def validate_surfaces(manifest: dict, resources: dict[str, dict]) -> None:
         if missing:
             raise SystemExit(f"missing public-resource surface files: {missing}")
         text = "\n".join(path.read_text(encoding="utf-8") for path in paths)
+        if match := PUBLIC_VERSION_LABEL.search(text):
+            raise SystemExit(
+                f"{surface} contains a public-facing release-version label: {match.group(0)!r}"
+            )
         if "FinMycelium_O1" in text:
             raise SystemExit(f"non-canonical FinMycelium_O1 link found in {surface}")
         labels = manifest["surface_labels"][surface]
@@ -290,6 +302,20 @@ def validate_card_sources(manifest: dict) -> None:
             raise SystemExit(f"Hugging Face card source hash mismatch for {surface}")
         if card.get("change_scope") != EXPECTED_CARD_SCOPES[surface]:
             raise SystemExit(f"unexpected reviewed change_scope for {surface}")
+        if surface == "public_dataset_card":
+            text = source.read_text(encoding="utf-8")
+            images = tuple(re.findall(r'<img src="([^"]+)"', text))
+            if images != EXPECTED_PUBLIC_DATASET_CARD_IMAGES:
+                raise SystemExit(
+                    "public Dataset Card must use the two approved visuals in narrative order"
+                )
+            missing = [
+                relative
+                for relative in images
+                if not (source.parent / relative).is_file()
+            ]
+            if missing:
+                raise SystemExit(f"public Dataset Card images are missing: {missing}")
 
 
 def parse_args() -> argparse.Namespace:

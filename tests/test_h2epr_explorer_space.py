@@ -14,15 +14,15 @@ import pandas as pd
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 SPACE_ROOT = REPO_ROOT / "spaces" / "h2epr_bench_explorer"
-EXPECTED_DATASET_REVISION = "6156a6bb3b838143401cb3e5709f708e5d6e802c"
+EXPECTED_DATASET_REVISION = "4b0f0f4000db3ba9b6e1a720e5b5cfbaae68353c"
 if os.environ.get("H2EPR_TEST_DATASET_DIR"):
     DATASET_ROOT = Path(os.environ["H2EPR_TEST_DATASET_DIR"]).expanduser().resolve()
 else:
     candidates = (
-        REPO_ROOT / "build" / "hf_unified3000_v2_rc_v2" / "H2EPR-Bench",
+        REPO_ROOT / "build" / "hf_h2epr_bench_release_candidate" / "H2EPR-Bench",
         REPO_ROOT.parents[1]
         / "build"
-        / "hf_unified3000_v2_rc_v2"
+        / "hf_h2epr_bench_release_candidate"
         / "H2EPR-Bench",
     )
     DATASET_ROOT = next((candidate for candidate in candidates if candidate.is_dir()), candidates[0])
@@ -53,25 +53,23 @@ class H2EPRExplorerSpaceTests(unittest.TestCase):
         from h2epr_explorer.data_loader import clear_caches, load_release
 
         if not DATASET_ROOT.is_dir():
-            raise RuntimeError(f"Unified-3000 release candidate is missing: {DATASET_ROOT}")
+            raise RuntimeError(f"H²EPR-Bench release candidate is missing: {DATASET_ROOT}")
         clear_caches()
         cls.release = load_release(DATASET_ROOT)
 
-    def test_space_readme_declares_uniform_release_and_boundary(self):
+    def test_space_readme_presents_the_complete_benchmark(self):
         readme = (SPACE_ROOT / "README.md").read_text(encoding="utf-8")
 
         self.assertIn("sdk: docker", readme)
         self.assertIn("license: apache-2.0", readme)
-        self.assertIn("Streamlit", readme)
-        self.assertIn("Unified-3000", readme)
         self.assertIn("3,000", readme)
         self.assertIn("Draft EPG", readme)
         self.assertIn("reference EPG", readme)
-        self.assertIn("manual-gated companion", readme)
         self.assertIn("draft_events/<H2EPR-ID>/draft_epg.json", readme)
-        self.assertIn("manifests/draft_source_hashes.csv", readme)
-        self.assertIn("fail closed", readme)
+        self.assertIn(EXPECTED_DATASET_REVISION, readme)
+        self.assertIn("verified", readme)
         for forbidden in (
+            "Unified-3000",
             "2," + "876",
             "1" + "24 catalog",
             "draft_" + "availability",
@@ -131,7 +129,6 @@ class H2EPRExplorerSpaceTests(unittest.TestCase):
             PROJECT_WEBSITE_URL,
             PUBLIC_DATASET_REPO,
             PUBLIC_DATASET_URL,
-            RELEASE_BOUNDARY_NOTICE,
             SOURCE_REPOSITORY_URL,
         )
 
@@ -155,8 +152,6 @@ class H2EPRExplorerSpaceTests(unittest.TestCase):
                 "stage_count",
             ),
         )
-        self.assertIn("Draft EPGs", RELEASE_BOUNDARY_NOTICE)
-        self.assertIn("reference EPGs", RELEASE_BOUNDARY_NOTICE)
 
     def test_explorer_exposes_canonical_project_links(self):
         app = (SPACE_ROOT / "app.py").read_text(encoding="utf-8")

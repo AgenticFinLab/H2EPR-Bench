@@ -36,11 +36,15 @@ RETIRED_AVAILABILITY_SCHEMA = (
 DATASET_RELEASE_RECEIPT_PATH = (
     REPO_ROOT / "manifests" / "unified3000_v2_dataset_release.json"
 )
-EXPECTED_DATASET_REVISION = "6156a6bb3b838143401cb3e5709f708e5d6e802c"
+PRESENTATION_RELEASE_RECEIPT_PATH = (
+    REPO_ROOT / "manifests" / "h2epr_dataset_presentation_release.json"
+)
+EXPECTED_DATASET_REVISION = "4b0f0f4000db3ba9b6e1a720e5b5cfbaae68353c"
+PREVIOUS_DATASET_REVISION = "6156a6bb3b838143401cb3e5709f708e5d6e802c"
 ACTUAL_RC = (
     REPO_ROOT.parent.parent
     / "build"
-    / "hf_unified3000_v2_rc_v2"
+    / "hf_h2epr_bench_release_candidate"
     / "H2EPR-Bench"
 )
 
@@ -401,7 +405,7 @@ class PublicDatasetReleaseTests(unittest.TestCase):
             contract["artifacts"]["package_checksums"],
             {
                 "path": "SHA256SUMS",
-                "sha256": "9b30d71eacbfa0e07539a5805a3cf05065e76199dfcf0272ef1d135c1098960e",
+                "sha256": "24f19b2eda8af998fa6e755c6dac8db62c40ad865815e6040cd83f6679cdbdb3",
                 "entries": 3072,
             },
         )
@@ -667,8 +671,8 @@ class PublicDatasetReleaseTests(unittest.TestCase):
             ):
                 validator.validate_release(release.root, release.contract_path)
 
-    @unittest.skipUnless(ACTUAL_RC.is_dir(), "local Unified-3000 v2 RC is not present")
-    def test_actual_unified3000_v2_published_release_passes(self):
+    @unittest.skipUnless(ACTUAL_RC.is_dir(), "local H2EPR-Bench release candidate is not present")
+    def test_actual_published_release_passes(self):
         receipt = validator.validate_release(
             ACTUAL_RC, CONTRACT_PATH, require_published=True
         )
@@ -681,12 +685,30 @@ class PublicDatasetReleaseTests(unittest.TestCase):
         self.assertEqual(receipt["graph_totals"]["stage_count"], 8843)
         self.assertEqual(receipt["package_checksum_entries"], 3072)
 
-    def test_dataset_publication_receipt_binds_release_and_rollback(self):
+    def test_historical_dataset_publication_receipt_remains_immutable(self):
         publication = json.loads(
             DATASET_RELEASE_RECEIPT_PATH.read_text(encoding="utf-8")
         )
+        self.assertEqual(publication["status"], "passed")
+        self.assertEqual(publication["resulting_revision"], PREVIOUS_DATASET_REVISION)
+        self.assertEqual(
+            publication["release_identity"]["sha256sums_sha256"],
+            "9b30d71eacbfa0e07539a5805a3cf05065e76199dfcf0272ef1d135c1098960e",
+        )
+        self.assertEqual(
+            publication["rollback"]["peeled_dataset_commit"],
+            publication["prior_revision"],
+        )
+        self.assertEqual(publication["verification"]["draft_epg_count"], 3000)
+        self.assertEqual(publication["verification"]["retired_draft_asset_count"], 0)
+
+    def test_presentation_release_receipt_binds_current_contract(self):
+        publication = json.loads(
+            PRESENTATION_RELEASE_RECEIPT_PATH.read_text(encoding="utf-8")
+        )
         contract = json.loads(CONTRACT_PATH.read_text(encoding="utf-8"))
         self.assertEqual(publication["status"], "passed")
+        self.assertEqual(publication["prior_revision"], PREVIOUS_DATASET_REVISION)
         self.assertEqual(publication["resulting_revision"], EXPECTED_DATASET_REVISION)
         self.assertEqual(publication["resulting_revision"], contract["dataset_revision"])
         self.assertEqual(
@@ -697,8 +719,13 @@ class PublicDatasetReleaseTests(unittest.TestCase):
             publication["rollback"]["peeled_dataset_commit"],
             publication["prior_revision"],
         )
+        self.assertFalse(publication["promotion"]["force_push_used"])
+        self.assertFalse(publication["change_scope"]["data_records_changed"])
+        self.assertFalse(publication["change_scope"]["viewer_tables_changed"])
+        self.assertFalse(publication["change_scope"]["draft_epgs_changed"])
+        self.assertEqual(publication["verification"]["event_count"], 3000)
         self.assertEqual(publication["verification"]["draft_epg_count"], 3000)
-        self.assertEqual(publication["verification"]["retired_draft_asset_count"], 0)
+        self.assertFalse(publication["verification"]["gold_records_accessed"])
 
 
 if __name__ == "__main__":

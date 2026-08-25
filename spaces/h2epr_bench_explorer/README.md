@@ -8,61 +8,56 @@ license: apache-2.0
 ---
 
 [![Project Website](https://img.shields.io/badge/Project_Website-Visit-176B70?style=flat-square)](https://agenticfinlab.github.io/H2EPR-Bench/)
-[![Public Dataset](https://img.shields.io/badge/Public_Dataset-Unified--3000-176B70?style=flat-square)](https://huggingface.co/datasets/AgenticFinLab/H2EPR-Bench)
+[![Public Dataset](https://img.shields.io/badge/Public_Dataset-3%2C000_events-176B70?style=flat-square)](https://huggingface.co/datasets/AgenticFinLab/H2EPR-Bench)
 [![FinMycelium System](https://img.shields.io/badge/FinMycelium-System-176B70?style=flat-square)](https://github.com/AgenticFinLab/FinMycelium)
 [![Reference EPGs (Gated)](https://img.shields.io/badge/Reference_EPGs-Gated-176B70?style=flat-square)](https://huggingface.co/datasets/AgenticFinLab/H2EPR-Bench-Gold)
 [![Release Repository](https://img.shields.io/badge/Release_Repository-Source-176B70?style=flat-square)](https://github.com/AgenticFinLab/H2EPR-Bench)
 
 # H²EPR-Bench Explorer
 
-H²EPR-Bench Explorer is the interactive browsing layer for the Unified-3000
-release of `AgenticFinLab/H2EPR-Bench`. The existing Docker Space runs a
-Streamlit interface for searching all 3,000 catalog events, inspecting current
-Draft EPG summaries and stage timelines, and previewing or downloading the
-public per-event Draft EPG for every event.
+Explore 3,000 real-world event processes without navigating raw Dataset files.
+Search by title, domain, category, or keyword; inspect graph statistics and
+ordered stages; open an interactive timeline; and preview or download the
+public Draft EPG for any event.
 
-**Release boundary:** public Draft EPGs are sanitized FinMycelium construction
-artifacts. Official benchmark scoring uses expert-adjudicated reference EPGs in
-the [manual-gated companion](https://huggingface.co/datasets/AgenticFinLab/H2EPR-Bench-Gold).
-The Explorer does not load reference EPGs or frozen evidence packages.
+## What you can explore
 
-The Explorer source code is Apache-2.0. Dataset content displayed by the app,
-including public Draft EPGs, remains CC BY-NC 4.0 under the Dataset release.
+- **3,000 event profiles** spanning six domains and 26 categories
+- **8,843 ordered stages** with temporal and graph-level summaries
+- **Interactive timelines** for calendar-based and relative-order processes
+- **Draft EPG JSON** with participants, actions, outcomes, and typed relations
+- **Direct links** to the Dataset and gated reference collection
 
-## Public data contract
+The Explorer presents the public FinMycelium Draft EPGs. Expert-finalized
+reference EPGs for official scoring are available through the
+[gated companion](https://huggingface.co/datasets/AgenticFinLab/H2EPR-Bench-Gold).
 
-The Explorer validates five Parquet tables from one release identity:
+## Data connection
+
+The app reads five Parquet views from
+[AgenticFinLab/H2EPR-Bench](https://huggingface.co/datasets/AgenticFinLab/H2EPR-Bench):
 
 | Table | Role |
 |---|---|
-| `event_gallery.parquet` | Lightweight event discovery metadata |
-| `event_catalog.parquet` | Stable event discovery metadata |
-| `event_instances.parquet` | Public artifact-access fields |
-| `finalcascade_summary.parquet` | Draft graph counts and event-level temporal summary |
-| `event_stages.parquet` | Ordered stage rows for every Draft EPG |
+| `event_gallery.parquet` | Lightweight event discovery |
+| `event_catalog.parquet` | Complete event registry |
+| `event_instances.parquet` | Metadata and artifact access fields |
+| `finalcascade_summary.parquet` | Event-level graph and temporal summaries |
+| `event_stages.parquet` | Ordered Draft-EPG stages |
 
-Selected Draft EPGs are loaded directly from
-`draft_events/<H2EPR-ID>/draft_epg.json`. The path is derived only after the
-canonical event ID has been validated. `manifests/draft_source_hashes.csv`
-binds every direct file to its canonical source-payload digest and sanitized
-record digest; the Explorer verifies both identities and the canonical JSON
-digest before displaying a graph.
-
-Remote reads and immutable per-file links are pinned to Dataset commit
-`6156a6bb3b838143401cb3e5709f708e5d6e802c`. They fail closed if that fixed
-release cannot be resolved and never fall back to a floating branch.
+Event-level graphs are loaded from
+`draft_events/<H2EPR-ID>/draft_epg.json`. Remote reads are pinned to Dataset
+commit `4b0f0f4000db3ba9b6e1a720e5b5cfbaae68353c`, and each file is verified
+against the release hash registry before display.
 
 ## Local development
 
-The app can use the frozen local Unified-3000 release tree without any network
-access:
+Point the app at a complete local Dataset tree:
 
-```bash
+~~~bash
 export H2EPR_EXPLORER_LOCAL_DATASET_DIR=/path/to/H2EPR-Bench
 streamlit run app.py
-```
+~~~
 
-For local verification, `H2EPR_EXPLORER_LOCAL_DATASET_DIR` is required. In the
-published Space, the source constant fixes the immutable Dataset revision; the
-application exposes no runtime revision override, so one process cannot mix
-releases.
+The Explorer source is Apache-2.0. Dataset content displayed by the app is
+released under CC BY-NC 4.0.

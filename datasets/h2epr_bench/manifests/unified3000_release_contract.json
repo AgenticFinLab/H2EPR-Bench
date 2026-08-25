@@ -1,7 +1,7 @@
 {
   "contract_version": "h2epr-unified3000-public-release-v2",
   "dataset_repo": "AgenticFinLab/H2EPR-Bench",
-  "dataset_revision": "6156a6bb3b838143401cb3e5709f708e5d6e802c",
+  "dataset_revision": "4b0f0f4000db3ba9b6e1a720e5b5cfbaae68353c",
   "event_identity": {
     "pattern": "^H2EPR-[0-9]{4}$",
     "first": 1,
@@ -40,7 +40,7 @@
     },
     "package_checksums": {
       "path": "SHA256SUMS",
-      "sha256": "9b30d71eacbfa0e07539a5805a3cf05065e76199dfcf0272ef1d135c1098960e",
+      "sha256": "24f19b2eda8af998fa6e755c6dac8db62c40ad865815e6040cd83f6679cdbdb3",
       "entries": 3072
     }
   },

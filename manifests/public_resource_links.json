@@ -3,10 +3,10 @@
   "verified_on": "2026-08-25",
   "release_identity": {
     "release_id": "h2epr-unified3000-v2",
-    "release_state": "published",
-    "dataset_revision": "6156a6bb3b838143401cb3e5709f708e5d6e802c",
-    "sha256sums_sha256": "9b30d71eacbfa0e07539a5805a3cf05065e76199dfcf0272ef1d135c1098960e",
-    "tree_sha256": "9b30d71eacbfa0e07539a5805a3cf05065e76199dfcf0272ef1d135c1098960e"
+    "release_state": "dataset_published",
+    "dataset_revision": "4b0f0f4000db3ba9b6e1a720e5b5cfbaae68353c",
+    "sha256sums_sha256": "24f19b2eda8af998fa6e755c6dac8db62c40ad865815e6040cd83f6679cdbdb3",
+    "tree_sha256": "24f19b2eda8af998fa6e755c6dac8db62c40ad865815e6040cd83f6679cdbdb3"
   },
   "paper": {
     "label": "Paper forthcoming",
@@ -32,7 +32,7 @@
       "id": "public_dataset",
       "label": "Public Dataset",
       "url": "https://huggingface.co/datasets/AgenticFinLab/H2EPR-Bench",
-      "role": "Public Unified-3000 Dataset distribution",
+      "role": "Public H2EPR-Bench dataset distribution",
       "tier": "primary"
     },
     {
@@ -152,11 +152,11 @@
       "target_path": "README.md",
       "rollback_baseline": {
         "role": "rollback_only",
-        "revision": "f1e90230c7bee782d5037b04ffec778bf1053b94",
-        "readme_sha256": "eddcdf45193a50578c6856f264e28bdc208cc59668b461192084a289a3cc87c2"
+        "revision": "6156a6bb3b838143401cb3e5709f708e5d6e802c",
+        "readme_sha256": "3ae76cda350945f5d1cad508dc3bf5648e0ecdea500b56cd99ba05bac8dbf692"
       },
-      "source_readme_sha256": "3ae76cda350945f5d1cad508dc3bf5648e0ecdea500b56cd99ba05bac8dbf692",
-      "change_scope": "unified3000_v2_published_dataset"
+      "source_readme_sha256": "040889e25460bc038ca1ff2622ed9fd9229121bacab9c8f53f9ad64b71c600bd",
+      "change_scope": "public_presentation_polish"
     },
     "gold_card": {
       "source_path": "datasets/h2epr_bench_gold/huggingface/README.md",
@@ -164,11 +164,11 @@
       "target_path": "README.md",
       "rollback_baseline": {
         "role": "rollback_only",
-        "revision": "48041e35e000e036b85dfd0d8f1273a85d027159",
-        "readme_sha256": "369edfffd8456d0f53b085f208b623d2db04c0faa5b4d0568d5d84b92f9716b0"
+        "revision": "aee3792af5e266ced65c44b8c3736436d62edf28",
+        "readme_sha256": "c8d639cdcd93dc63b507075f7fff17f8b5bddb0228cd0fca7f02e33a090065a2"
       },
-      "source_readme_sha256": "1acab42e7b6ff7671ddd158df5ec7d6384477d032d5d2c1fdb87ceaa0678293a",
-      "change_scope": "uniform_release_wording"
+      "source_readme_sha256": "1ce2a551fe1d8f48cf3db5a7cc6f78ab03062f63e5f29d47b987b273f461ff6b",
+      "change_scope": "reference_presentation_polish"
     },
     "explorer_card": {
       "source_path": "spaces/h2epr_bench_explorer/README.md",
@@ -176,11 +176,11 @@
       "target_path": "README.md",
       "rollback_baseline": {
         "role": "rollback_only",
-        "revision": "0f91d75dbed7f4ceddf185363d43b799b7b611e4",
-        "readme_sha256": "42770432c3f831f4a7e1977768cf19c7c50e60a48d29e2333c2b05e65df9892c"
+        "revision": "2cc85fd27d832d429be72c4531ba832d70648046",
+        "readme_sha256": "323cd1c9e915a435173d03bbd9fcf72ad94df9a917298a755bec354aa43e5fa2"
       },
-      "source_readme_sha256": "323cd1c9e915a435173d03bbd9fcf72ad94df9a917298a755bec354aa43e5fa2",
-      "change_scope": "unified3000_v2_dataset_pinned_explorer"
+      "source_readme_sha256": "d59893989d096f4d3003378e36b3b997530f609901e7bf294c33268f4612d522",
+      "change_scope": "dataset_pinned_explorer_presentation"
     }
   }
 }

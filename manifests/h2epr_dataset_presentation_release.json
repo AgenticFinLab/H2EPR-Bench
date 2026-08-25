@@ -1,0 +1,82 @@
+{
+  "schema_version": "h2epr-dataset-presentation-release-receipt-v1",
+  "release_id": "h2epr-bench-public-presentation",
+  "status": "passed",
+  "dataset_repo": "AgenticFinLab/H2EPR-Bench",
+  "prior_revision": "6156a6bb3b838143401cb3e5709f708e5d6e802c",
+  "resulting_revision": "4b0f0f4000db3ba9b6e1a720e5b5cfbaae68353c",
+  "published_at_utc": "2026-08-25T09:44:09+00:00",
+  "verified_at_utc": "2026-08-25T09:46:05Z",
+  "promotion": {
+    "force_push_used": false,
+    "mode": "two_isolated_staging_branches_then_parent_guarded_atomic_commits",
+    "parent_commit_guards": [
+      "6156a6bb3b838143401cb3e5709f708e5d6e802c",
+      "4ca29e764a09f33af8c5ef485e68d63ba13b8d84"
+    ],
+    "card_staging_branch": "public-presentation-polish-staging",
+    "card_staging_commit": "a17a2deb619139482f688ca1fc537e81453050b3",
+    "card_production_commit": "4ca29e764a09f33af8c5ef485e68d63ba13b8d84",
+    "metadata_staging_branch": "public-presentation-polish-metadata-staging",
+    "metadata_staging_commit": "6af03111675cace82ce56cfb792a7041c7cc8361",
+    "metadata_production_commit": "4b0f0f4000db3ba9b6e1a720e5b5cfbaae68353c"
+  },
+  "rollback": {
+    "tag": "pre-public-presentation-polish-20260825",
+    "peeled_dataset_commit": "6156a6bb3b838143401cb3e5709f708e5d6e802c",
+    "triggered": false
+  },
+  "release_identity": {
+    "aggregate_sha256": "2825f10a70212aa52e7a08bfe5e642f37eb965578f2c52f648a0b81f823aa7ff",
+    "dataset_card_sha256": "040889e25460bc038ca1ff2622ed9fd9229121bacab9c8f53f9ad64b71c600bd",
+    "dataset_card_asset_provenance_sha256": "050e3f7af485bee531876adf00600a4c75dcddeeeac1b193c7efdca011e5d083",
+    "package_manifest_sha256": "281ee69a7e517271b24af067a37b8bbeadf2796648a57c03732aa8c971db29cb",
+    "sha256sums_sha256": "24f19b2eda8af998fa6e755c6dac8db62c40ad865815e6040cd83f6679cdbdb3",
+    "source_registry_sha256": "29f8c3af1641b4b7031cb0d21021177e5eda6816b57b82adbd3d4d7952f76d1d"
+  },
+  "change_scope": {
+    "data_records_changed": false,
+    "viewer_tables_changed": false,
+    "draft_epgs_changed": false,
+    "added_paths": [
+      "assets/card/h2epr-benchmark-overview.svg",
+      "assets/card/h2epr-overview.svg",
+      "assets/charts/category-distribution.png",
+      "assets/charts/domain-distribution.png",
+      "assets/charts/draft-stage-distribution.png",
+      "manifests/redaction_report.json"
+    ],
+    "removed_paths": [
+      "assets/card/h2epr_epg_overview.png",
+      "assets/card/unified3000_benchmark_profile.png",
+      "assets/charts/unified3000_category_distribution.png",
+      "assets/charts/unified3000_domain_distribution.png",
+      "assets/charts/unified3000_draft_stage_distribution.png",
+      "manifests/redaction_report_unified3000.json"
+    ],
+    "updated_paths": [
+      "README.md",
+      "LICENSE.md",
+      "SHA256SUMS",
+      "data/statistics/benchmark_totals.json",
+      "manifests/dataset_card_asset_provenance.json",
+      "manifests/package_manifest.json",
+      "manifests/source_identities.json",
+      "manifests/validation_report.json",
+      "scripts/generate_dataset_card_charts.py"
+    ]
+  },
+  "verification": {
+    "event_count": 3000,
+    "draft_epg_count": 3000,
+    "stage_count": 8843,
+    "package_file_count": 3073,
+    "release_candidate_validator": "passed",
+    "staging_changed_file_hashes": "passed",
+    "production_changed_file_hashes": "passed",
+    "production_path_delta": "passed",
+    "production_public_and_ungated": true,
+    "svg_http_content_type": "image/svg+xml",
+    "gold_records_accessed": false
+  }
+}
