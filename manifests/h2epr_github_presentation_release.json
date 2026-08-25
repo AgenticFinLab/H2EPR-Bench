@@ -1,0 +1,31 @@
+{
+  "schema_version": "h2epr-github-presentation-release-receipt-v1",
+  "release_id": "h2epr-bench-public-presentation",
+  "status": "passed",
+  "github_repo": "AgenticFinLab/H2EPR-Bench",
+  "pull_request": 5,
+  "source_commit": "f197c7871438b33403b3cc0d023b32c1e1e2367d",
+  "merge_commit": "6d7cd625fd22585c34cef0eb102d22af4e7888b9",
+  "merge_tree": "92cdfa365307c7f57b39ab3bae7b8ad8a622a960",
+  "merged_at_utc": "2026-08-25T09:52:46Z",
+  "verified_at_utc": "2026-08-25T10:00:35Z",
+  "rollback": {
+    "tag": "pre-public-presentation-polish-github-20260825",
+    "annotated_tag_object": "ecad9d2d8e72eb41d3e215300c3ebb01d59975d9",
+    "peeled_commit": "3fd27cc1019d1ecff46f64b4ea03e6f7569a08fb",
+    "triggered": false
+  },
+  "verification": {
+    "pull_request_ci_run": 32834184243,
+    "pull_request_ci_conclusion": "success",
+    "main_ci_run": 32834295458,
+    "main_ci_conclusion": "success",
+    "pages_run": 32834294350,
+    "pages_conclusion": "success",
+    "pages_completed_at_utc": "2026-08-25T09:53:33Z",
+    "pages_index_sha256": "6be0fbda8d8c68b9c969877b6841494ac9b29499c2a0b080440173bb47c5120e",
+    "pages_index_matches_merge_commit": true,
+    "usecase_assets_match_merge_commit": true,
+    "gold_records_accessed": false
+  }
+}

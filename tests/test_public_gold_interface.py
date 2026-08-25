@@ -12,6 +12,9 @@ GOLD_ROOT = REPO_ROOT / "datasets" / "h2epr_bench_gold"
 VALIDATOR_PATH = GOLD_ROOT / "validators" / "validate_reference_epg.py"
 SCHEMA_PATH = GOLD_ROOT / "schema" / "reference_epg.schema.json"
 FIXTURE_PATH = GOLD_ROOT / "synthetic_fixtures" / "reference_epg.synthetic.json"
+PRESENTATION_RELEASE_RECEIPT_PATH = (
+    REPO_ROOT / "manifests" / "h2epr_reference_presentation_release.json"
+)
 
 SPEC = importlib.util.spec_from_file_location("h2epr_reference_validator", VALIDATOR_PATH)
 validator = importlib.util.module_from_spec(SPEC)
@@ -71,6 +74,22 @@ class PublicGoldInterfaceTests(unittest.TestCase):
             json_files,
             ["reference_epg.schema.json", "reference_epg.synthetic.json"],
         )
+
+    def test_reference_card_release_receipt_is_readme_only(self):
+        receipt = json.loads(
+            PRESENTATION_RELEASE_RECEIPT_PATH.read_text(encoding="utf-8")
+        )
+        self.assertEqual(receipt["status"], "passed")
+        self.assertEqual(
+            receipt["resulting_revision"],
+            "9674f25aa57c8323497d50caa093d19db22f571f",
+        )
+        self.assertEqual(receipt["source"]["github_pull_request"], 5)
+        self.assertEqual(receipt["verification"]["change_scope"], "README.md only")
+        self.assertEqual(receipt["verification"]["repository_gated"], "manual")
+        self.assertFalse(receipt["promotion"]["force_push_used"])
+        self.assertFalse(receipt["rollback"]["triggered"])
+        self.assertFalse(receipt["verification"]["gold_records_accessed"])
 
     def test_rejects_unknown_fields_and_out_of_range_identity(self):
         extra = copy.deepcopy(self.fixture)

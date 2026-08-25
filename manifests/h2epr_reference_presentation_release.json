@@ -1,0 +1,38 @@
+{
+  "schema_version": "h2epr-reference-presentation-release-receipt-v1",
+  "release_id": "h2epr-bench-public-presentation",
+  "status": "passed",
+  "dataset_repo": "AgenticFinLab/H2EPR-Bench-Gold",
+  "prior_revision": "aee3792af5e266ced65c44b8c3736436d62edf28",
+  "resulting_revision": "9674f25aa57c8323497d50caa093d19db22f571f",
+  "published_at_utc": "2026-08-25T09:54:40+00:00",
+  "verified_at_utc": "2026-08-25T10:00:35Z",
+  "source": {
+    "github_repo": "AgenticFinLab/H2EPR-Bench",
+    "github_pull_request": 5,
+    "github_merge_commit": "6d7cd625fd22585c34cef0eb102d22af4e7888b9",
+    "path": "datasets/h2epr_bench_gold/huggingface/README.md",
+    "sha256": "1ce2a551fe1d8f48cf3db5a7cc6f78ab03062f63e5f29d47b987b273f461ff6b"
+  },
+  "promotion": {
+    "force_push_used": false,
+    "mode": "isolated_branch_then_parent_guarded_atomic_commit",
+    "parent_commit_guard": "aee3792af5e266ced65c44b8c3736436d62edf28",
+    "staging_branch": "public-presentation-polish-staging",
+    "staging_commit": "54b64ae26361104e0bb9f05741bdd157ed9fdb28",
+    "staging_cleanup_status": "deleted_after_production_verification"
+  },
+  "rollback": {
+    "tag": "pre-public-presentation-polish-20260825",
+    "peeled_dataset_commit": "aee3792af5e266ced65c44b8c3736436d62edf28",
+    "triggered": false
+  },
+  "verification": {
+    "change_scope": "README.md only",
+    "production_readme_sha256_match": true,
+    "repository_file_count": 3020,
+    "repository_private": false,
+    "repository_gated": "manual",
+    "gold_records_accessed": false
+  }
+}

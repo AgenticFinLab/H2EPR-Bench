@@ -21,16 +21,25 @@ from scripts.validate_public_resource_links import (
 
 EXPECTED_DATASET_REVISION = "4b0f0f4000db3ba9b6e1a720e5b5cfbaae68353c"
 EXPECTED_PREVIOUS_DATASET_REVISION = "6156a6bb3b838143401cb3e5709f708e5d6e802c"
-EXPECTED_SPACE_COMMIT = "2cc85fd27d832d429be72c4531ba832d70648046"
-EXPECTED_SPACE_TREE = "88deb297c0ef39dd3324d1786eb4119026103e7c"
-EXPECTED_SPACE_LEDGER = "ce47455ce680f59808713895642737ab11d765b136d1905e65a62958efa21f8a"
-EXPECTED_SPACE_PRIOR_COMMIT = "0f91d75dbed7f4ceddf185363d43b799b7b611e4"
-EXPECTED_SPACE_PRIOR_TREE = "fb795f3ec09da6c858e018dc3ee0f5381d217f40"
-EXPECTED_SPACE_PRIOR_LEDGER = "ea11fbb05e7266218cbb34ae934244f33a707be6351e2fca7338979b976d275e"
+EXPECTED_SPACE_COMMIT = "df537ed4909a5113a86e4ed89fe3c771c51745aa"
+EXPECTED_SPACE_TREE = "b27af7bb8f9a9112666504c63297bc9613e8af52"
+EXPECTED_SPACE_LEDGER = "1d4c4df89adabbcdb557da23ed22869660c0b66585c62588d5fcb293e55d9962"
+EXPECTED_PREVIOUS_SPACE_COMMIT = "2cc85fd27d832d429be72c4531ba832d70648046"
+EXPECTED_PREVIOUS_SPACE_TREE = "88deb297c0ef39dd3324d1786eb4119026103e7c"
+EXPECTED_PREVIOUS_SPACE_LEDGER = "ce47455ce680f59808713895642737ab11d765b136d1905e65a62958efa21f8a"
+EXPECTED_HISTORICAL_SPACE_PRIOR_COMMIT = "0f91d75dbed7f4ceddf185363d43b799b7b611e4"
+EXPECTED_HISTORICAL_SPACE_PRIOR_TREE = "fb795f3ec09da6c858e018dc3ee0f5381d217f40"
+EXPECTED_HISTORICAL_SPACE_PRIOR_LEDGER = "ea11fbb05e7266218cbb34ae934244f33a707be6351e2fca7338979b976d275e"
 EXPECTED_SPACE_ROLLBACK_TAG_OBJECT = "5d6e7bc3cc65fa48d30076dc028fd903e47a824b"
 REPO_ROOT = Path(__file__).resolve().parents[1]
 SPACE_RELEASE_RECEIPT_PATH = (
     REPO_ROOT / "manifests" / "unified3000_v2_space_release.json"
+)
+PRESENTATION_SPACE_RELEASE_RECEIPT_PATH = (
+    REPO_ROOT / "manifests" / "h2epr_explorer_presentation_release.json"
+)
+GITHUB_PRESENTATION_RELEASE_RECEIPT_PATH = (
+    REPO_ROOT / "manifests" / "h2epr_github_presentation_release.json"
 )
 
 
@@ -95,7 +104,7 @@ class PublicResourceLinkTests(unittest.TestCase):
         )
         self.assertEqual(
             cards["explorer_card"]["rollback_baseline"]["revision"],
-            EXPECTED_SPACE_COMMIT,
+            EXPECTED_PREVIOUS_SPACE_COMMIT,
         )
         self.assertEqual(
             cards["explorer_card"]["rollback_baseline"]["readme_sha256"],
@@ -117,29 +126,35 @@ class PublicResourceLinkTests(unittest.TestCase):
         self.assertNotIn("h2epr_epg_overview.png", card)
         self.assertNotIn("unified3000_benchmark_profile.png", card)
 
-    def test_dataset_published_identity_is_pinned_and_bound_to_release(self):
+    def test_published_identity_is_pinned_and_bound_to_release(self):
         identity = self.manifest["release_identity"]
-        self.assertEqual(identity["release_state"], "dataset_published")
+        self.assertEqual(identity["release_state"], "published")
         self.assertEqual(identity["dataset_revision"], EXPECTED_DATASET_REVISION)
         self.assertEqual(identity["tree_sha256"], EXPECTED_RC_TREE_SHA256)
         self.assertEqual(identity["sha256sums_sha256"], EXPECTED_RC_TREE_SHA256)
-        for gate in ("local", "deployment"):
+        for gate in ("local", "deployment", "published"):
             with self.subTest(gate=gate):
                 validate_release_identity(self.manifest, gate)
-        with self.assertRaises(SystemExit):
-            validate_release_identity(self.manifest, "published")
 
-    def test_explorer_source_is_ready_for_deployment(self):
+    def test_explorer_published_identity_is_pinned(self):
         # The Explorer validator reads its own manifest; use that authoritative object.
         from scripts.check_explorer_source_manifest import _load_json, MANIFEST_PATH
 
         source_manifest = _load_json(MANIFEST_PATH)
-        self.assertEqual(source_manifest["release_state"], "dataset_published")
+        self.assertEqual(source_manifest["release_state"], "published")
         self.assertEqual(source_manifest["dataset_revision"], EXPECTED_DATASET_REVISION)
         self.assertEqual(
             source_manifest["release_candidate"]["tree_sha256"], EXPECTED_RC_TREE_SHA256
         )
-        self.assertIsNone(source_manifest["published_deployment"])
+        self.assertEqual(
+            source_manifest["published_deployment"],
+            {
+                "dataset_revision": EXPECTED_DATASET_REVISION,
+                "source_ledger_sha256": EXPECTED_SPACE_LEDGER,
+                "space_commit": EXPECTED_SPACE_COMMIT,
+                "space_tree": EXPECTED_SPACE_TREE,
+            },
+        )
         self.assertEqual(source_manifest["rollback_baseline"]["role"], "rollback_only")
         self.assertEqual(
             source_manifest["rollback_baseline"]["dataset_revision"],
@@ -147,17 +162,15 @@ class PublicResourceLinkTests(unittest.TestCase):
         )
         self.assertEqual(
             source_manifest["rollback_baseline"]["space_commit"],
-            EXPECTED_SPACE_COMMIT,
+            EXPECTED_PREVIOUS_SPACE_COMMIT,
         )
         self.assertEqual(
             source_manifest["rollback_baseline"]["space_tree"],
-            EXPECTED_SPACE_TREE,
+            EXPECTED_PREVIOUS_SPACE_TREE,
         )
-        for gate in ("local", "deployment"):
+        for gate in ("local", "deployment", "published"):
             with self.subTest(gate=gate):
                 validate_explorer_release_identity(source_manifest, gate)
-        with self.assertRaises(ValueError):
-            validate_explorer_release_identity(source_manifest, "published")
 
     def test_historical_space_release_receipt_remains_immutable(self):
         from scripts.check_explorer_source_manifest import _load_json, MANIFEST_PATH
@@ -180,19 +193,19 @@ class PublicResourceLinkTests(unittest.TestCase):
         self.assertLessEqual(pr_merged_at, published_at)
         self.assertLessEqual(published_at, logs_checked_at)
         self.assertLessEqual(logs_checked_at, verified_at)
-        self.assertEqual(receipt["resulting_revision"], EXPECTED_SPACE_COMMIT)
-        self.assertEqual(receipt["resulting_tree"], EXPECTED_SPACE_TREE)
+        self.assertEqual(receipt["resulting_revision"], EXPECTED_PREVIOUS_SPACE_COMMIT)
+        self.assertEqual(receipt["resulting_tree"], EXPECTED_PREVIOUS_SPACE_TREE)
         self.assertEqual(
             receipt["release_identity"]["dataset_revision"],
             EXPECTED_PREVIOUS_DATASET_REVISION,
         )
         self.assertEqual(
             receipt["release_identity"]["source_ledger_sha256"],
-            EXPECTED_SPACE_LEDGER,
+            EXPECTED_PREVIOUS_SPACE_LEDGER,
         )
         self.assertEqual(
             receipt["source_commits"]["payload_space_subtree_tree"],
-            EXPECTED_SPACE_TREE,
+            EXPECTED_PREVIOUS_SPACE_TREE,
         )
         self.assertEqual(
             receipt["source_commits"]["payload_repository_tree"],
@@ -219,7 +232,9 @@ class PublicResourceLinkTests(unittest.TestCase):
         self.assertFalse(receipt["promotion"]["worktree_upload_used"])
         self.assertFalse(receipt["promotion"]["pull_request_used"])
         self.assertTrue(receipt["promotion"]["pull_request_disposition"])
-        self.assertEqual(receipt["promotion"]["staging_tree"], EXPECTED_SPACE_TREE)
+        self.assertEqual(
+            receipt["promotion"]["staging_tree"], EXPECTED_PREVIOUS_SPACE_TREE
+        )
         self.assertEqual(
             sorted(receipt["promotion"]["allow_patterns"]),
             sorted(source_manifest["files"]),
@@ -227,9 +242,13 @@ class PublicResourceLinkTests(unittest.TestCase):
         self.assertEqual(
             receipt["rollback"]["peeled_space_commit"], receipt["prior_revision"]
         )
-        self.assertEqual(receipt["prior_tree"], EXPECTED_SPACE_PRIOR_TREE)
         self.assertEqual(
-            receipt["prior_source_ledger_sha256"], EXPECTED_SPACE_PRIOR_LEDGER
+            receipt["prior_revision"], EXPECTED_HISTORICAL_SPACE_PRIOR_COMMIT
+        )
+        self.assertEqual(receipt["prior_tree"], EXPECTED_HISTORICAL_SPACE_PRIOR_TREE)
+        self.assertEqual(
+            receipt["prior_source_ledger_sha256"],
+            EXPECTED_HISTORICAL_SPACE_PRIOR_LEDGER,
         )
         self.assertEqual(
             receipt["rollback"]["annotated_tag_object"],
@@ -239,23 +258,23 @@ class PublicResourceLinkTests(unittest.TestCase):
             receipt["rollback"]["tag"],
             "pre-unified-3000-v2-explorer-20260825",
         )
-        self.assertEqual(receipt["rollback"]["tree"], EXPECTED_SPACE_PRIOR_TREE)
+        self.assertEqual(
+            receipt["rollback"]["tree"], EXPECTED_HISTORICAL_SPACE_PRIOR_TREE
+        )
         self.assertEqual(
             receipt["rollback"]["source_ledger_sha256"],
-            EXPECTED_SPACE_PRIOR_LEDGER,
-        )
-        self.assertEqual(
-            source_manifest["rollback_baseline"]["space_commit"],
-            receipt["resulting_revision"],
+            EXPECTED_HISTORICAL_SPACE_PRIOR_LEDGER,
         )
         self.assertFalse(receipt["rollback"]["triggered"])
-        self.assertEqual(receipt["verification"]["runtime_sha"], EXPECTED_SPACE_COMMIT)
+        self.assertEqual(
+            receipt["verification"]["runtime_sha"], EXPECTED_PREVIOUS_SPACE_COMMIT
+        )
         self.assertEqual(receipt["verification"]["runtime_stage"], "RUNNING")
         self.assertEqual(receipt["verification"]["domain_stage"], "READY")
         self.assertEqual(receipt["verification"]["health_http_status"], 200)
         self.assertEqual(receipt["release_identity"]["source_file_count"], 11)
         self.assertEqual(
-            receipt["release_identity"]["space_tree"], EXPECTED_SPACE_TREE
+            receipt["release_identity"]["space_tree"], EXPECTED_PREVIOUS_SPACE_TREE
         )
         self.assertEqual(receipt["verification"]["exhaustive_event_count"], 3000)
         self.assertEqual(
@@ -273,6 +292,73 @@ class PublicResourceLinkTests(unittest.TestCase):
         self.assertFalse(
             receipt["verification"]["browser_screenshot_artifacts_retained"]
         )
+        self.assertFalse(receipt["verification"]["gold_records_accessed"])
+
+    def test_explorer_presentation_receipt_closes_current_deployment(self):
+        from scripts.check_explorer_source_manifest import _load_json, MANIFEST_PATH
+
+        receipt = json.loads(
+            PRESENTATION_SPACE_RELEASE_RECEIPT_PATH.read_text(encoding="utf-8")
+        )
+        source_manifest = _load_json(MANIFEST_PATH)
+        deployment = source_manifest["published_deployment"]
+        self.assertEqual(receipt["status"], "passed")
+        self.assertEqual(receipt["resulting_revision"], EXPECTED_SPACE_COMMIT)
+        self.assertEqual(receipt["resulting_tree"], EXPECTED_SPACE_TREE)
+        self.assertEqual(receipt["resulting_revision"], deployment["space_commit"])
+        self.assertEqual(receipt["resulting_tree"], deployment["space_tree"])
+        self.assertEqual(
+            receipt["release_identity"]["dataset_revision"],
+            EXPECTED_DATASET_REVISION,
+        )
+        self.assertEqual(
+            receipt["release_identity"]["source_ledger_sha256"],
+            EXPECTED_SPACE_LEDGER,
+        )
+        self.assertEqual(
+            receipt["source"]["space_subtree_tree"], EXPECTED_SPACE_TREE
+        )
+        self.assertEqual(receipt["source"]["github_pull_request"], 5)
+        self.assertEqual(
+            receipt["source"]["github_merge_commit"],
+            "6d7cd625fd22585c34cef0eb102d22af4e7888b9",
+        )
+        self.assertEqual(
+            receipt["promotion"]["parent_commit_guard"],
+            EXPECTED_PREVIOUS_SPACE_COMMIT,
+        )
+        self.assertTrue(receipt["promotion"]["clean_git_export_used"])
+        self.assertFalse(receipt["promotion"]["worktree_upload_used"])
+        self.assertFalse(receipt["promotion"]["force_push_used"])
+        self.assertEqual(
+            receipt["rollback"]["peeled_space_commit"],
+            EXPECTED_PREVIOUS_SPACE_COMMIT,
+        )
+        self.assertFalse(receipt["rollback"]["triggered"])
+        self.assertEqual(receipt["verification"]["runtime_stage"], "RUNNING")
+        self.assertEqual(receipt["verification"]["domain_stage"], "READY")
+        self.assertEqual(receipt["verification"]["health_http_status"], 200)
+        self.assertTrue(
+            receipt["verification"]["production_tree_matches_github_subtree"]
+        )
+        self.assertFalse(receipt["verification"]["gold_records_accessed"])
+
+    def test_github_presentation_receipt_binds_pages_to_merge(self):
+        receipt = json.loads(
+            GITHUB_PRESENTATION_RELEASE_RECEIPT_PATH.read_text(encoding="utf-8")
+        )
+        self.assertEqual(receipt["status"], "passed")
+        self.assertEqual(receipt["pull_request"], 5)
+        self.assertEqual(
+            receipt["merge_commit"],
+            "6d7cd625fd22585c34cef0eb102d22af4e7888b9",
+        )
+        self.assertEqual(receipt["verification"]["pull_request_ci_conclusion"], "success")
+        self.assertEqual(receipt["verification"]["main_ci_conclusion"], "success")
+        self.assertEqual(receipt["verification"]["pages_conclusion"], "success")
+        self.assertTrue(receipt["verification"]["pages_index_matches_merge_commit"])
+        self.assertTrue(receipt["verification"]["usecase_assets_match_merge_commit"])
+        self.assertFalse(receipt["rollback"]["triggered"])
         self.assertFalse(receipt["verification"]["gold_records_accessed"])
 
     def test_finmycelium_role_preserves_draft_gold_boundary(self):
