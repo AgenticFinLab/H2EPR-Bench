@@ -1,23 +1,33 @@
 {
-  "manifest_version": 1,
+  "manifest_version": 2,
+  "release_id": "h2epr-unified3000-v2",
+  "release_state": "dataset_published",
   "deployment_root": "spaces/h2epr_bench_explorer",
-  "dataset_revision": "1d01f3649ace0301ac3bbe9ee875eea660347a29",
-  "production_baseline": {
-    "commit": "a1cf81783396bb52328ed0ebe7a43da32a447f46",
-    "tree": "ed1045bdfd3bb1d306f1e0e65cbbd7f79e474967"
+  "dataset_repo": "AgenticFinLab/H2EPR-Bench",
+  "dataset_revision": "6156a6bb3b838143401cb3e5709f708e5d6e802c",
+  "published_deployment": null,
+  "release_candidate": {
+    "sha256sums_sha256": "9b30d71eacbfa0e07539a5805a3cf05065e76199dfcf0272ef1d135c1098960e",
+    "tree_sha256": "9b30d71eacbfa0e07539a5805a3cf05065e76199dfcf0272ef1d135c1098960e"
   },
-  "ledger_sha256": "ea11fbb05e7266218cbb34ae934244f33a707be6351e2fca7338979b976d275e",
+  "rollback_baseline": {
+    "role": "rollback_only",
+    "dataset_revision": "1d01f3649ace0301ac3bbe9ee875eea660347a29",
+    "space_commit": "a1cf81783396bb52328ed0ebe7a43da32a447f46",
+    "space_tree": "ed1045bdfd3bb1d306f1e0e65cbbd7f79e474967"
+  },
+  "ledger_sha256": "ce47455ce680f59808713895642737ab11d765b136d1905e65a62958efa21f8a",
   "files": {
     ".gitattributes": "11ad7efa24975ee4b0c3c3a38ed18737f0658a5f75a0a96787b576a78a023361",
     "Dockerfile": "f46b0f618303aea4d07728c85046cd8fdd073bad7c206b1a92983e5164446ee5",
-    "README.md": "42770432c3f831f4a7e1977768cf19c7c50e60a48d29e2333c2b05e65df9892c",
-    "app.py": "4f0d8b4309fc060363de452cf0f987d4b14d767b0b1797e22ba8ecb82ba79352",
+    "README.md": "323cd1c9e915a435173d03bbd9fcf72ad94df9a917298a755bec354aa43e5fa2",
+    "app.py": "8d9c40fd19f3490c3a36273f754fdae994b719d399cc567cd8254d280426c68f",
     "requirements.txt": "81e65bcc8d92080de1a37eed52c6148158d1162e9b1d8613510dd4f1db45c2d2",
     "src/h2epr_explorer/__init__.py": "a08b52b24c7c34954c6db96f4ca3c818bc276ab632d6a3b99ece865a79776e1b",
-    "src/h2epr_explorer/constants.py": "e8d47d8fe48834b5e5e93c8827552424c9c1ccb3f0d7b328426746670202ed5a",
-    "src/h2epr_explorer/data_loader.py": "acb066d1d10a9898c04cf2fac0dfd06bf8a0b7edc8364e7c85db01ebaef9e4a0",
+    "src/h2epr_explorer/constants.py": "c022eff526b50951f8dffd8fa7b726cbdbf08075f37c3a49487f270c73834385",
+    "src/h2epr_explorer/data_loader.py": "e4039bb871ee733061ba95486687f5758b3c8d6a36e6a65ed6e3f3bedc271b11",
     "src/h2epr_explorer/filters.py": "eec4c34cd20037eba23bbcaa40d4485f0347b1334248cfd3a6739c2e6f250963",
-    "src/h2epr_explorer/navigation.py": "d6981e3ae5ac93ab92e0e5a59e4c9a060962d2d9a55e910fc897d64b722dd80b",
+    "src/h2epr_explorer/navigation.py": "7108cf6a6af051f1dd613c0642e6093bf1355430aeb216f4a1b0952c4ef1ea7a",
     "src/h2epr_explorer/render_gantt.py": "fd84496f3d75f02c8059b2680e3f73db69c2cdee3c9fd6d587ab6f8c488f5c76"
   }
 }

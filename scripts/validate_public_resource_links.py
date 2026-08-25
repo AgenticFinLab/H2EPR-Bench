@@ -3,6 +3,7 @@
 
 from __future__ import annotations
 
+import argparse
 from html.parser import HTMLParser
 import hashlib
 import json
@@ -13,6 +14,15 @@ from urllib.parse import urlparse
 
 ROOT = Path(__file__).resolve().parents[1]
 MANIFEST_PATH = ROOT / "manifests" / "public_resource_links.json"
+EXPLORER_SOURCE_MANIFEST_PATH = ROOT / "manifests" / "explorer_space_source.json"
+RELEASE_CONTRACT_PATH = (
+    ROOT / "datasets" / "h2epr_bench" / "manifests" / "unified3000_release_contract.json"
+)
+EXPECTED_RELEASE_ID = "h2epr-unified3000-v2"
+EXPECTED_RC_TREE_SHA256 = "9b30d71eacbfa0e07539a5805a3cf05065e76199dfcf0272ef1d135c1098960e"
+HEX40 = re.compile(r"^[0-9a-f]{40}$")
+HEX64 = re.compile(r"^[0-9a-f]{64}$")
+GATES = {"local", "deployment", "published"}
 
 SURFACE_PATHS: dict[str, tuple[Path, ...]] = {
     "website": (ROOT / "index.html",),
@@ -51,6 +61,17 @@ EXPECTED_RESOURCE_LABELS = {
     "gated_gold": "Reference EPGs (Gated)",
 }
 
+EXPECTED_CARD_SCOPES = {
+    "public_dataset_card": "unified3000_v2_published_dataset",
+    "gold_card": "uniform_release_wording",
+    "explorer_card": "unified3000_v2_dataset_pinned_explorer",
+}
+EXPECTED_CARD_TARGET_REPOS = {
+    "public_dataset_card": "AgenticFinLab/H2EPR-Bench",
+    "gold_card": "AgenticFinLab/H2EPR-Bench-Gold",
+    "explorer_card": "AgenticFinLab/H2EPR-Bench-Explorer",
+}
+
 
 class _AnchorCollector(HTMLParser):
     def __init__(self) -> None:
@@ -74,9 +95,62 @@ class _AnchorCollector(HTMLParser):
 
 def load_manifest() -> dict:
     manifest = json.loads(MANIFEST_PATH.read_text(encoding="utf-8"))
-    if manifest.get("manifest_version") != 1:
+    if manifest.get("manifest_version") != 2:
         raise SystemExit("unexpected public-resource manifest version")
     return manifest
+
+
+def validate_release_identity(manifest: dict, gate: str = "local") -> None:
+    if gate not in GATES:
+        raise SystemExit(f"invalid public-resource gate: {gate!r}")
+    identity = manifest.get("release_identity")
+    if not isinstance(identity, dict) or identity.get("release_id") != EXPECTED_RELEASE_ID:
+        raise SystemExit("public-resource manifest is not bound to Unified-3000 v2")
+    state = identity.get("release_state")
+    if state not in {"candidate", "dataset_published", "published"}:
+        raise SystemExit(f"invalid public-resource release_state: {state!r}")
+    revision = identity.get("dataset_revision")
+    if revision is not None and not HEX40.fullmatch(revision):
+        raise SystemExit("public-resource dataset_revision must be null or lowercase 40-hex")
+    if state == "candidate" and revision is not None:
+        raise SystemExit("candidate public resources must not claim a published dataset revision")
+    if state != "candidate" and revision is None:
+        raise SystemExit("post-candidate public resources must pin a dataset revision")
+    for key in ("sha256sums_sha256", "tree_sha256"):
+        value = identity.get(key)
+        if not isinstance(value, str) or not HEX64.fullmatch(value):
+            raise SystemExit(f"release_identity.{key} must be lowercase 64-hex")
+        if value != EXPECTED_RC_TREE_SHA256:
+            raise SystemExit(f"release_identity.{key} is not the audited release candidate")
+    if identity["sha256sums_sha256"] != identity["tree_sha256"]:
+        raise SystemExit("public-resource RC SHA256SUMS and package tree differ")
+
+    explorer = json.loads(EXPLORER_SOURCE_MANIFEST_PATH.read_text(encoding="utf-8"))
+    contract = json.loads(RELEASE_CONTRACT_PATH.read_text(encoding="utf-8"))
+    if any(
+        (
+            explorer.get("manifest_version") != 2,
+            explorer.get("release_id") != identity["release_id"],
+            explorer.get("release_state") != state,
+            explorer.get("dataset_revision") != revision,
+            explorer.get("release_candidate", {}).get("sha256sums_sha256")
+            != identity["sha256sums_sha256"],
+            explorer.get("release_candidate", {}).get("tree_sha256") != identity["tree_sha256"],
+            contract.get("contract_version") != "h2epr-unified3000-public-release-v2",
+            contract.get("dataset_repo") != "AgenticFinLab/H2EPR-Bench",
+            contract.get("dataset_revision") != revision,
+            contract.get("artifacts", {}).get("package_checksums", {}).get("sha256")
+            != identity["tree_sha256"],
+        )
+    ):
+        raise SystemExit("public-resource, contract, and Explorer release identities differ")
+
+    if gate in {"deployment", "published"} and state not in {"dataset_published", "published"}:
+        raise SystemExit(f"{gate} gate rejects an unpublished release candidate")
+    if gate == "published" and state != "published":
+        raise SystemExit("published gate requires release_state=published")
+    if gate == "published" and not isinstance(explorer.get("published_deployment"), dict):
+        raise SystemExit("published gate requires a bound Explorer Space deployment identity")
 
 
 def validate_manifest(manifest: dict) -> dict[str, dict]:
@@ -183,32 +257,56 @@ def validate_surfaces(manifest: dict, resources: dict[str, dict]) -> None:
 
 
 def validate_card_sources(manifest: dict) -> None:
-    for surface, card in manifest.get("hugging_face_card_sources", {}).items():
-        if surface not in {"public_dataset_card", "gold_card", "explorer_card"}:
-            raise SystemExit(f"unexpected Hugging Face card surface: {surface}")
+    cards = manifest.get("hugging_face_card_sources", {})
+    if set(cards) != set(EXPECTED_CARD_SCOPES):
+        raise SystemExit("Hugging Face card source set does not match the release contract")
+    for surface, card in cards.items():
         source = ROOT / card["source_path"]
-        if source != SURFACE_PATHS[surface][0] or card.get("target_path") != "README.md":
+        if (
+            source != SURFACE_PATHS[surface][0]
+            or card.get("target_repo") != EXPECTED_CARD_TARGET_REPOS[surface]
+            or card.get("target_path") != "README.md"
+        ):
             raise SystemExit(f"invalid Hugging Face card source mapping for {surface}")
-        revision = card.get("baseline_revision", "")
-        if len(revision) != 40 or any(character not in "0123456789abcdef" for character in revision):
-            raise SystemExit(f"invalid baseline revision for {surface}")
+        rollback = card.get("rollback_baseline")
+        if not isinstance(rollback, dict) or rollback.get("role") != "rollback_only":
+            raise SystemExit(f"card baseline must be explicitly rollback_only for {surface}")
+        revision = rollback.get("revision", "")
+        baseline_hash = rollback.get("readme_sha256", "")
+        if not HEX40.fullmatch(revision):
+            raise SystemExit(f"invalid rollback revision for {surface}")
+        if not HEX64.fullmatch(baseline_hash):
+            raise SystemExit(f"invalid rollback README SHA-256 for {surface}")
+        if (
+            surface == "public_dataset_card"
+            and manifest["release_identity"]["dataset_revision"] is not None
+            and revision == manifest["release_identity"]["dataset_revision"]
+        ):
+            raise SystemExit(
+                "rollback-only Dataset revision cannot identify Unified-3000 v2"
+            )
         source_hash = hashlib.sha256(source.read_bytes()).hexdigest()
         if source_hash != card.get("source_readme_sha256"):
             raise SystemExit(f"Hugging Face card source hash mismatch for {surface}")
-        if card.get("change_scope") == "badge_block_only":
-            lines = source.read_text(encoding="utf-8").splitlines(keepends=True)
-            yaml_end = next(index for index in range(1, len(lines)) if lines[index].strip() == "---")
-            heading = next(
-                index for index in range(yaml_end + 1, len(lines)) if lines[index].startswith("# ")
-            )
-            without_badges = "".join(lines[: yaml_end + 1] + ["\n"] + lines[heading:])
-            baseline_hash = hashlib.sha256(without_badges.encode("utf-8")).hexdigest()
-            if baseline_hash != card.get("baseline_readme_sha256"):
-                raise SystemExit(f"non-badge Dataset Card drift found for {surface}")
+        if card.get("change_scope") != EXPECTED_CARD_SCOPES[surface]:
+            raise SystemExit(f"unexpected reviewed change_scope for {surface}")
+
+
+def parse_args() -> argparse.Namespace:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument(
+        "--gate",
+        choices=("local", "deployment", "published"),
+        default="local",
+        help="local accepts candidate links; deployment/published require a pinned dataset revision",
+    )
+    return parser.parse_args()
 
 
 def main() -> int:
+    args = parse_args()
     manifest = load_manifest()
+    validate_release_identity(manifest, args.gate)
     resources = validate_manifest(manifest)
     validate_surfaces(manifest, resources)
     validate_card_sources(manifest)
@@ -218,6 +316,8 @@ def main() -> int:
                 "resources": len(resources),
                 "surfaces": len(SURFACE_PATHS),
                 "paper_status": manifest["paper"]["status"],
+                "gate": args.gate,
+                "release_state": manifest["release_identity"]["release_state"],
                 "status": "pass",
             },
             indent=2,

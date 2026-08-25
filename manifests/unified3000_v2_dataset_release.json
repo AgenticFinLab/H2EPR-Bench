@@ -1,0 +1,47 @@
+{
+  "schema_version": "h2epr-unified3000-v2-dataset-release-receipt-v1",
+  "release_id": "h2epr-unified3000-v2",
+  "status": "passed",
+  "dataset_repo": "AgenticFinLab/H2EPR-Bench",
+  "prior_revision": "f1e90230c7bee782d5037b04ffec778bf1053b94",
+  "resulting_revision": "6156a6bb3b838143401cb3e5709f708e5d6e802c",
+  "published_at_utc": "2026-08-25T06:21:15+00:00",
+  "verified_at_utc": "2026-08-25T06:37:30Z",
+  "promotion": {
+    "force_push_used": false,
+    "mode": "isolated_branch_then_parent_guarded_atomic_commit",
+    "parent_commit_guard": "f1e90230c7bee782d5037b04ffec778bf1053b94",
+    "pull_request_used": false,
+    "pull_request_disposition": "The Hub Discussions endpoint did not authorize the release token; an isolated release branch supplied the equivalent pre-production review boundary.",
+    "staging_branch": "release-unified3000-v2-rc-20260825",
+    "staging_commit": "8a2fd9c7fe722f33dd4d846a625226aba87b8e73",
+    "staging_cleanup_status": "retained_through_coordinated_source_and_space_release"
+  },
+  "rollback": {
+    "annotated_tag_object": "6dd313c28b92f44f072f4b41fc10eb174a154a40",
+    "peeled_dataset_commit": "f1e90230c7bee782d5037b04ffec778bf1053b94",
+    "tag": "pre-unified-3000-v2-20260825"
+  },
+  "release_identity": {
+    "aggregate_sha256": "2825f10a70212aa52e7a08bfe5e642f37eb965578f2c52f648a0b81f823aa7ff",
+    "dataset_card_sha256": "3ae76cda350945f5d1cad508dc3bf5648e0ecdea500b56cd99ba05bac8dbf692",
+    "offline_release_gate_sha256": "21c8d8396edc14198800bc601dd75b0e9abdb1b76151b8b1d2590d51f9f87d0e",
+    "package_manifest_sha256": "3d49b684931c042c3371a4d85be43b03eab73d718ec08672b2c8b22daa228d93",
+    "sha256sums_sha256": "9b30d71eacbfa0e07539a5805a3cf05065e76199dfcf0272ef1d135c1098960e",
+    "source_registry_sha256": "29f8c3af1641b4b7031cb0d21021177e5eda6816b57b82adbd3d4d7952f76d1d"
+  },
+  "verification": {
+    "draft_epg_count": 3000,
+    "event_count": 3000,
+    "gold_records_accessed": false,
+    "package_file_count": 3073,
+    "production_full_download_byte_identical": "passed",
+    "production_path_closure": "passed",
+    "production_validator": "passed",
+    "retired_draft_asset_count": 0,
+    "stage_count": 8843,
+    "staging_full_download_byte_identical": "passed",
+    "staging_path_closure": "passed",
+    "staging_validator": "passed"
+  }
+}

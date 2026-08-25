@@ -41,9 +41,55 @@ PRIVATE_PATTERNS = {
     ),
 }
 DATASET_PAYLOAD_SUFFIXES = {".csv", ".jsonl", ".parquet"}
+PUBLIC_PROSE_SUFFIXES = {".html", ".md"}
 GOLD_ALLOWED_JSON = {
     "datasets/h2epr_bench_gold/schema/reference_epg.schema.json",
     "datasets/h2epr_bench_gold/synthetic_fixtures/reference_epg.synthetic.json",
+}
+
+# These guards target reader-facing descriptions of retired release partitions.
+# They intentionally do not match bare integers or canonical IDs such as H2EPR-2876.
+FORBIDDEN_PUBLIC_WORDING_PATTERNS = {
+    "partial Draft EPG count": re.compile(
+        r"(?:\b(?:only\s+|just\s+|currently\s+|previously\s+|initial\s+|original\s+|"
+        r"first\s+|base\s+)?(?<!H2EPR-)(?:2,876|2876)\s+"
+        r"(?:public\s+)?(?:per-event\s+)?(?:events?|drafts?|draft\s+epg(?:s|\s+files)?|"
+        r"event\s+directories|entries|records)\b|\b(?:drafts?|draft\s+epgs?|event\s+directories)"
+        r"[^.\n|]{0,32}\|?\s*(?<!H2EPR-)(?:2,876|2876)\b)",
+        re.IGNORECASE,
+    ),
+    "numeric release split": re.compile(
+        r"(?<!H2EPR-)\b(?:2,876|2876)\s*(?:/|\+|and)\s*124\b|"
+        r"\b124\s*/\s*3,?000\b",
+        re.IGNORECASE,
+    ),
+    "remaining-event partition": re.compile(
+        r"\b(?:the\s+)?(?:other|remaining|missing|failed|unavailable|added|new|final|"
+        r"last|supplemental|"
+        r"recovered)\s+124(?:\s+(?:catalog\s+)?(?:events?|drafts?|draft\s+epgs?))?\b",
+        re.IGNORECASE,
+    ),
+    "unavailable 124-event partition": re.compile(
+        r"\b124\s+(?:catalog\s+)?(?:events?|drafts?|draft\s+epgs?)\s+"
+        r"(?:remain|remained|were|are|had|have|without|missing|unavailable|failed|"
+        r"recovered|added)\b",
+        re.IGNORECASE,
+    ),
+    "retired named partition": re.compile(r"\b(?:core[- ]?1000|gap[- ]?124)\b", re.IGNORECASE),
+    "Draft EPG availability partition": re.compile(
+        r"\b(?:draft[_ -]?unavailable|unavailable\s+drafts?|draft\s+availability\s+split)\b",
+        re.IGNORECASE,
+    ),
+    "release-history partition": re.compile(
+        r"\b(?:historical|legacy|previous|prior|old|earlier)\s+(?:public\s+)?"
+        r"(?:release\s+)?(?:cohort|subset|split|batch|stage|draft\s+group)\b",
+        re.IGNORECASE,
+    ),
+    "recovery partition": re.compile(
+        r"\b(?:recovery|backfill|supplemental|supplementary)\s+"
+        r"(?:batch|attempt|cohort|subset|events?|drafts?)\b",
+        re.IGNORECASE,
+    ),
 }
 
 
@@ -69,12 +115,26 @@ def _is_fixture(relative: str) -> bool:
     return any(part in {"fixtures", "synthetic_fixtures"} for part in Path(relative).parts)
 
 
+def public_wording_violations(relative: str, text: str) -> list[str]:
+    """Return retired partition descriptions found in a public prose asset."""
+
+    if Path(relative).suffix.lower() not in PUBLIC_PROSE_SUFFIXES:
+        return []
+    normalized = " ".join(text.split())
+    return [
+        f"{label} in {relative}: {match.group(0)!r}"
+        for label, pattern in FORBIDDEN_PUBLIC_WORDING_PATTERNS.items()
+        if (match := pattern.search(normalized)) is not None
+    ]
+
+
 def main() -> int:
     policy = json.loads(POLICY_PATH.read_text(encoding="utf-8"))
     tracked = _tracked_files()
     errors: list[str] = []
     total_bytes = 0
     fixture_bytes = 0
+    public_prose_files = 0
     legacy = policy["legacy_oversize_files"]
 
     required_governance = {
@@ -136,6 +196,9 @@ def main() -> int:
             for label, pattern in PRIVATE_PATTERNS.items():
                 if pattern.search(text):
                     errors.append(f"{label} found in {relative}")
+            if path.suffix.lower() in PUBLIC_PROSE_SUFFIXES:
+                public_prose_files += 1
+                errors.extend(public_wording_violations(relative, text))
 
     if fixture_bytes > policy["fixture_total_max_bytes"]:
         errors.append(f"fixtures exceed aggregate limit: {fixture_bytes}")
@@ -155,6 +218,7 @@ def main() -> int:
                 "fixture_bytes": fixture_bytes,
                 "legacy_oversize_files": len(legacy),
                 "real_gold_records": 0,
+                "public_prose_files": public_prose_files,
                 "status": "pass",
             },
             indent=2,

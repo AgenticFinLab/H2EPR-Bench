@@ -132,5 +132,4 @@ EPGs, expose reference answers in prompts or public examples, or use them
 for model training or fine-tuning unless separately permitted in writing.
 
 See [`TERMS_OF_USE.md`](TERMS_OF_USE.md) and [`LICENSE.md`](LICENSE.md).
-Citation metadata is provided in [`CITATION.cff`](CITATION.cff). The historical
-Core-1000 state remains preserved under the `core-1000-v1` tag.
+Citation metadata is provided in [`CITATION.cff`](CITATION.cff).

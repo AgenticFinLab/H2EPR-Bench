@@ -35,11 +35,11 @@ The deployable source is `spaces/h2epr_bench_explorer/`. Promotion must:
 
 1. start from an exact reviewed Git commit, never an unfrozen worktree;
 2. record the source subtree manifest and resulting Space commit/tree;
-3. keep Dataset revision `1d01f3649ace0301ac3bbe9ee875eea660347a29` fixed;
+3. keep the immutable Dataset revision in the release contract and Explorer source identical;
 4. use an isolated canary/staging target when available;
 5. validate build/runtime logs, health, desktop/mobile behavior, deep links,
-   filters/reset, three timeline modes, Draft preview/download, unavailable
-   state, external links, console errors, and page errors;
+   filters/reset, three timeline modes, Draft preview/download for every event,
+   external links, console errors, and page errors;
 6. create a rollback reference before production promotion; and
 7. update production only with an ordinary non-force operation after explicit
    deployment authorization.
@@ -51,13 +51,20 @@ tree. Canary deletion and production promotion are separate lifecycle actions.
 
 The GitHub contract fixes the currently accepted public revision, but merging
 source does not publish Dataset records. A Dataset release has an independent
-manual gate that validates a sanitized staging tree, six mirror schemas and
-hashes, all cardinalities and joins, 2,876 direct Draft EPGs, 124 unavailable
-markers, content hashes, the Dataset card, and the CC BY-NC 4.0 boundary.
+manual gate that validates a sanitized staging tree, five mirror schemas and
+hashes, all cardinalities and joins, all 3,000 direct Draft EPGs, aggregate and
+source-hash closure, the Dataset card, and the CC BY-NC 4.0 boundary.
 
 Only the public Dataset repository is read or written by this flow. A new
 revision requires an explicit release record and a coordinated source update
 that pins the new immutable revision.
+
+An unpublished candidate keeps `dataset_revision` set to `null` and is frozen
+and reviewed locally; it is not pushed as a GitHub PR tip. The exact Dataset
+tree is uploaded first, its resulting immutable 40-hex commit is written into
+the contract and Explorer source, and all published gates are rerun before the
+pinned source branch is pushed for review. CI deliberately rejects an unbound
+candidate.
 
 The public Dataset Card source is tracked at
 `datasets/h2epr_bench/huggingface/README.md`. A card-only promotion still

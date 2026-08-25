@@ -7,6 +7,11 @@ import json
 import re
 from pathlib import Path
 
+try:
+    from scripts.check_public_release_boundary import public_wording_violations
+except ModuleNotFoundError:  # Direct execution from scripts/.
+    from check_public_release_boundary import public_wording_violations
+
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -79,7 +84,6 @@ REQUIRED_TEXT = [
 ]
 
 FORBIDDEN_PUBLIC_TEXT = [
-    "Core-1000",
     "P1000-",
     "best QualityScore",
     "16 direct reconstruction",
@@ -137,6 +141,9 @@ def main() -> None:
     forbidden = [text for text in FORBIDDEN_PUBLIC_TEXT if text.lower() in html.lower()]
     if forbidden:
         raise SystemExit(f"stale public wording found: {forbidden}")
+    partition_wording = public_wording_violations("index.html", html)
+    if partition_wording:
+        raise SystemExit(f"retired release-partition wording found: {partition_wording}")
     css = (ROOT / "static" / "css" / "site.css").read_text(encoding="utf-8")
     if ".link-chip.dark" in css or ".link-chip.resource-system" in css:
         raise SystemExit("resource buttons still contain mixed fill-style variants")
