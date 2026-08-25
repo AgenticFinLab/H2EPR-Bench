@@ -11,26 +11,47 @@ GOLD_COMPANION_URL = "https://huggingface.co/datasets/AgenticFinLab/H2EPR-Bench-
 SOURCE_REPOSITORY_URL = "https://github.com/AgenticFinLab/H2EPR-Bench"
 AGENTICFINLAB_URL = "https://agenticfinlab.github.io/"
 
-DEFAULT_PUBLIC_DATASET_REVISION = "1d01f3649ace0301ac3bbe9ee875eea660347a29"
+DEFAULT_PUBLIC_DATASET_REVISION: str | None = None
 PUBLIC_DATASET_REVISION = DEFAULT_PUBLIC_DATASET_REVISION
-PUBLIC_DATASET_REVISION_URL = f"{PUBLIC_DATASET_URL}/tree/{PUBLIC_DATASET_REVISION}"
+PUBLIC_DATASET_REVISION_URL = (
+    f"{PUBLIC_DATASET_URL}/tree/{PUBLIC_DATASET_REVISION}"
+    if PUBLIC_DATASET_REVISION
+    else PUBLIC_DATASET_URL
+)
 LOCAL_DATASET_ENV = "H2EPR_EXPLORER_LOCAL_DATASET_DIR"
 
 EVENT_ID_PATTERN = r"^H2EPR-[0-9]{4}$"
 EVENT_ID_MIN = 1
 EVENT_ID_MAX = 3000
 
+EVENT_GALLERY_PARQUET = "data/viewer_mirrors/event_gallery.parquet"
 CATALOG_PARQUET = "data/viewer_mirrors/event_catalog.parquet"
 EVENT_INSTANCES_PARQUET = "data/viewer_mirrors/event_instances.parquet"
 FINALCASCADE_SUMMARY_PARQUET = "data/viewer_mirrors/finalcascade_summary.parquet"
-DRAFT_AVAILABILITY_PARQUET = "data/viewer_mirrors/draft_availability.parquet"
 STAGES_PARQUET = "data/viewer_mirrors/event_stages.parquet"
+DRAFT_SOURCE_HASHES_CSV = "manifests/draft_source_hashes.csv"
 DRAFT_EPG_PATH_TEMPLATE = "draft_events/{event_id}/draft_epg.json"
 
+RELEASE_ASSET_SHA256 = {
+    EVENT_GALLERY_PARQUET: "be68b57e42cfc0cde97c949b5dcfe14cc4ec80397d428f1f27d88b39e88a9b53",
+    CATALOG_PARQUET: "2a478a96aa2713b3b3894a222a511aaaadd06327c90498d03405ad1860a33ac0",
+    EVENT_INSTANCES_PARQUET: "ba258780091c10c46508684d90bebd5f34285a61cc4bc4c6600c75fa380817a8",
+    STAGES_PARQUET: "eeab17e56ceb14a99ffc6a64e8508f9b98bd5ea9d260b14cbf95a42374dc8db8",
+    FINALCASCADE_SUMMARY_PARQUET: "273fedfdc74aba8f00669b7e82d45ec4a312b16aaa98f7c28182a06d9c6f471f",
+    DRAFT_SOURCE_HASHES_CSV: "29f8c3af1641b4b7031cb0d21021177e5eda6816b57b82adbd3d4d7952f76d1d",
+}
+
 EXPECTED_EVENT_COUNT = 3000
-EXPECTED_AVAILABLE_DRAFT_COUNT = 2876
-EXPECTED_UNAVAILABLE_DRAFT_COUNT = 124
-EXPECTED_STAGE_ROW_COUNT = 8500
+EXPECTED_STAGE_ROW_COUNT = 8843
+
+EVENT_GALLERY_SCHEMA = (
+    "public_event_id",
+    "title",
+    "domain",
+    "category",
+    "event_descriptor",
+    "schema_version",
+)
 
 CATALOG_SCHEMA = (
     "public_event_id",
@@ -41,11 +62,10 @@ CATALOG_SCHEMA = (
     "domain",
     "category",
     "keywords",
-    "release_split",
-    "version",
-    "schema_version",
-    "draft_status",
     "has_gold_reference",
+    "stage_count",
+    "episode_count",
+    "schema_version",
 )
 
 EVENT_INSTANCES_SCHEMA = (
@@ -57,15 +77,11 @@ EVENT_INSTANCES_SCHEMA = (
     "domain",
     "category",
     "keywords",
-    "release_split",
-    "version",
-    "schema_version",
-    "has_finalcascade",
-    "draft_status",
     "has_gold_reference",
     "finalcascade_access_level",
     "gold_reference_access_level",
     "evidence_context_access_level",
+    "schema_version",
 )
 
 FINALCASCADE_SUMMARY_SCHEMA = (
@@ -74,7 +90,6 @@ FINALCASCADE_SUMMARY_SCHEMA = (
     "title",
     "domain",
     "category",
-    "draft_status",
     "stage_count",
     "episode_count",
     "participant_count",
@@ -87,18 +102,14 @@ FINALCASCADE_SUMMARY_SCHEMA = (
     "known_action_time_anchor_count",
     "known_action_time_anchors",
     "relative_order_available",
+    "schema_version",
 )
 
-DRAFT_AVAILABILITY_SCHEMA = (
+DRAFT_SOURCE_HASHES_SCHEMA = (
     "public_event_id",
-    "draft_status",
-    "draft_source_kind",
-    "draft_schema",
-    "draft_asset",
-    "draft_record_index",
-    "draft_sha256",
     "source_payload_sha256",
-    "has_reference_epg",
+    "sanitized_record_sha256",
+    "draft_record_index",
 )
 
 STAGES_SCHEMA = (
@@ -118,10 +129,20 @@ STAGES_SCHEMA = (
     "known_action_time_anchor_count",
     "known_action_time_anchors",
     "relative_order_available",
-    "release_split",
-    "version",
     "schema_version",
 )
+
+TABLE_SCHEMA_VERSIONS = {
+    "event_gallery": "h2epr-public-event-gallery-v3",
+    "event_catalog": "h2epr-public-event-catalog-v3",
+    "event_instances": "h2epr-public-event-instances-v3",
+    "event_stages": "h2epr-public-event-stages-v3",
+    "finalcascade_summary": "h2epr-public-finalcascade-summary-v3",
+}
+
+FINALCASCADE_ACCESS_LEVEL = "public_sanitized_full_graph"
+GOLD_REFERENCE_ACCESS_LEVEL = "manual_gated_companion"
+EVIDENCE_CONTEXT_ACCESS_LEVEL = "not_included_in_this_release"
 
 GRAPH_COUNT_COLUMNS = (
     "stage_count",
@@ -137,16 +158,13 @@ ARROW_INT64_COLUMNS = frozenset(
         *GRAPH_COUNT_COLUMNS,
         "stage_index",
         "known_action_time_anchor_count",
-        "draft_record_index",
     }
 )
 
 ARROW_BOOL_COLUMNS = frozenset(
     {
         "has_gold_reference",
-        "has_finalcascade",
         "relative_order_available",
-        "has_reference_epg",
     }
 )
 
@@ -171,8 +189,6 @@ PROFILE_COLUMNS = (
     "gold_reference_access_level",
     "finalcascade_access_level",
 )
-
-DRAFT_UNAVAILABLE_MESSAGE = "No public Draft EPG is available for this event in this release."
 
 RELEASE_BOUNDARY_NOTICE = (
     "Public Draft EPGs are FinMycelium construction artifacts. Official benchmark "

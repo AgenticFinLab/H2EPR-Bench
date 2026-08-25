@@ -11,10 +11,12 @@ the H2EPR-Bench Unified-3000 Dataset release. The released tables and Draft
 EPG records remain on Hugging Face and are intentionally not duplicated in
 this GitHub repository.
 
-The contract is fixed to public Dataset revision
-`1d01f3649ace0301ac3bbe9ee875eea660347a29`. It covers all 3,000 catalog
-events, including 2,876 public Draft EPGs and 124 events whose Draft EPG is
-unavailable in this release.
+The contract covers the continuous `H2EPR-0001` through `H2EPR-3000`
+namespace. Every event has one public sanitized Draft EPG, and the five viewer
+tables cover all 3,000 events and 8,843 ordered stages. Before publication,
+`dataset_revision` remains `null`; the publication gate requires the real
+immutable Hugging Face commit returned after the exact release tree is
+uploaded.
 
 ## Validate a local release tree
 
@@ -26,9 +28,9 @@ python datasets/h2epr_bench/scripts/validate_release.py /path/to/H2EPR-Bench
 
 The command is local-only: it takes an explicit Dataset root, performs no
 download or upload, and never opens the gated Gold repository. It checks the
-six frozen viewer mirrors, joined identity and count invariants, stage-level
-closure, direct per-event Draft paths, Draft identities and canonical hashes,
-and neutral unavailable markers.
+five frozen viewer mirrors, joined identity and count invariants, stage-level
+closure, the 3,000 direct Draft paths, the source-hash registry, the aggregate
+JSONL, Draft identities and hashes, and release-tree integrity.
 
 Direct Draft paths are always derived from a validated H2EPR ID:
 
@@ -36,7 +38,8 @@ Direct Draft paths are always derived from a validated H2EPR ID:
 draft_events/<H2EPR-ID>/draft_epg.json
 ```
 
-The `draft_asset` metadata field is provenance, not a path resolver.
+Every path is derived from the validated public event identity; no path is read
+from event metadata.
 
 ## Release boundary
 

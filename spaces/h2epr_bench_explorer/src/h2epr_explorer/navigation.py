@@ -86,18 +86,36 @@ def resolve_selected_event_index(rows: list[dict[str, Any]], requested_event_id:
     return 0
 
 
-def build_event_links(event_id: str, *, draft_available: bool = False) -> dict[str, str]:
+class ImmutableDatasetLinkUnavailable(RuntimeError):
+    """A content link cannot be built until the published revision is known."""
+
+
+def build_immutable_dataset_link(path: str | None = None) -> str:
+    if not PUBLIC_DATASET_REVISION:
+        raise ImmutableDatasetLinkUnavailable(
+            "No immutable public dataset revision is assigned to this release candidate"
+        )
+    if path is None:
+        return f"{PUBLIC_DATASET_URL}/tree/{PUBLIC_DATASET_REVISION}"
+    normalized = path.strip("/")
+    if not normalized or ".." in normalized.split("/"):
+        raise ValueError(f"Invalid public dataset path: {path!r}")
+    return f"{PUBLIC_DATASET_URL}/blob/{PUBLIC_DATASET_REVISION}/{normalized}"
+
+
+def build_event_links(event_id: str) -> dict[str, str]:
     canonical = _canonical_id(event_id.strip())
     if not canonical:
         raise ValueError(f"Cannot build current-release links for event ID: {event_id!r}")
     links = {
         "explorer": f"{SPACE_URL}?event_id={canonical}",
-        "public_dataset": f"{PUBLIC_DATASET_URL}/tree/{PUBLIC_DATASET_REVISION}",
+        "public_dataset": PUBLIC_DATASET_URL,
         "reference_access": GOLD_COMPANION_URL,
     }
-    if draft_available:
+    if PUBLIC_DATASET_REVISION:
+        links["public_dataset"] = build_immutable_dataset_link()
         draft_path = DRAFT_EPG_PATH_TEMPLATE.format(event_id=canonical)
-        links["draft_epg"] = f"{PUBLIC_DATASET_URL}/blob/{PUBLIC_DATASET_REVISION}/{draft_path}"
+        links["draft_epg"] = build_immutable_dataset_link(draft_path)
     return links
 
 

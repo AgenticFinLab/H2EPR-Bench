@@ -38,10 +38,6 @@ configs:
   data_files:
   - split: benchmark
     path: data/viewer_mirrors/finalcascade_summary.parquet
-- config_name: draft_availability
-  data_files:
-  - split: benchmark
-    path: data/viewer_mirrors/draft_availability.parquet
 ---
 
 [![Project Website](https://img.shields.io/badge/Project_Website-Visit-176B70?style=flat-square)](https://agenticfinlab.github.io/H2EPR-Bench/)
@@ -106,13 +102,15 @@ complexity.
 | Asset class | Coverage | Access | Interpretation |
 |---|---:|---|---|
 | Event catalog and normalized metadata | 3,000 | Public | Event identity, scope, domain, and category |
-| Sanitized FinMycelium FinalCascade drafts | 2,876 | Public | High-granularity construction artifacts, not scoring references |
+| Sanitized FinMycelium FinalCascade drafts | 3,000 | Public | High-granularity construction artifacts, not scoring references |
 | Representative Gantt previews | 30 | Public | Visualizations derived from FinMycelium drafts |
 | Frozen evidence packages | 3,000 | Not included in this release | Benchmark input boundary described in the paper |
 | Reference EPGs | 3,000 | [Gated companion repository](https://huggingface.co/datasets/AgenticFinLab/H2EPR-Bench-Gold) | Official scoring references |
 
 FinMycelium drafts are intermediate construction artifacts and must not be used
-as scoring references.
+as scoring references. Every `H2EPR-0001` through
+`H2EPR-3000` directory contains exactly one `draft_epg.json`.
+The aggregate JSONL closes byte-for-byte over those 3,000 event files.
 
 ## Dataset distribution
 
@@ -145,10 +143,9 @@ The chart generator is included at
 |---|---:|---|
 | [`event_gallery`](data/viewer_mirrors/event_gallery.parquet) | 3,000 | Concise event browsing |
 | [`event_catalog`](data/viewer_mirrors/event_catalog.parquet) | 3,000 | Complete benchmark event registry |
-| [`event_instances`](data/viewer_mirrors/event_instances.parquet) | 3,000 | Normalized metadata and access state |
-| [`event_stages`](data/viewer_mirrors/event_stages.parquet) | 8,500 | Ordered stage rows from available drafts |
+| [`event_instances`](data/viewer_mirrors/event_instances.parquet) | 3,000 | Normalized metadata and uniform repository access levels |
+| [`event_stages`](data/viewer_mirrors/event_stages.parquet) | 8,843 | Ordered stage rows from all Draft EPGs |
 | [`finalcascade_summary`](data/viewer_mirrors/finalcascade_summary.parquet) | 3,000 | Draft graph-size and temporal summary |
-| [`draft_availability`](data/viewer_mirrors/draft_availability.parquet) | 3,000 | Per-event draft asset status |
 
 CSV and Parquet mirrors are row- and cell-equivalent. Field types,
 requiredness and conditional-null rules are documented in
@@ -203,7 +200,7 @@ All 30 selected previews are available under
 | Asset | Role |
 |---|---|
 | [`finmycelium_finalcascade_public.jsonl`](data/finmycelium_finalcascade_public.jsonl) | Consolidated sanitized draft EPGs |
-| [`draft_events/`](draft_events/) | Event-local draft assets and status records |
+| [`draft_events/`](draft_events/) | Exactly one sanitized Draft EPG for every public event |
 | [`benchmark_totals.json`](data/statistics/benchmark_totals.json) | Frozen release totals |
 | [`draft_graph_summary.csv`](data/statistics/draft_graph_summary.csv) | Aggregate draft graph statistics |
 | [`validation_report.json`](manifests/validation_report.json) | Release acceptance report |
@@ -223,6 +220,6 @@ error-free historical truth records. Users should review
 [`ETHICS_AND_LIMITATIONS.md`](ETHICS_AND_LIMITATIONS.md), and
 [`TERMS_OF_USE.md`](TERMS_OF_USE.md) before reuse.
 
-Citation metadata is provided in [`CITATION.cff`](CITATION.cff). The previous
-Core-1000 release remains preserved under the `core-1000-v1` tag; the default
-3,000-event release uses only the `H2EPR-0001` through `H2EPR-3000` namespace.
+Citation metadata is provided in [`CITATION.cff`](CITATION.cff). This public
+release uses one continuous `H2EPR-0001` through
+`H2EPR-3000` namespace.

@@ -1,7 +1,7 @@
 {
-  "contract_version": "h2epr-unified3000-public-release-v1",
+  "contract_version": "h2epr-unified3000-public-release-v2",
   "dataset_repo": "AgenticFinLab/H2EPR-Bench",
-  "dataset_revision": "1d01f3649ace0301ac3bbe9ee875eea660347a29",
+  "dataset_revision": null,
   "event_identity": {
     "pattern": "^H2EPR-[0-9]{4}$",
     "first": 1,
@@ -9,22 +9,46 @@
   },
   "counts": {
     "events": 3000,
-    "draft_available": 2876,
-    "draft_unavailable": 124,
-    "stage_rows": 8500,
-    "stage_events": 2876
+    "draft_epgs": 3000,
+    "stage_rows": 8843,
+    "stage_events": 3000,
+    "episodes": 16108,
+    "participants": 42205,
+    "actions": 46418,
+    "transactions": 4748,
+    "relations": 21337
   },
   "paths": {
-    "draft_epg": "draft_events/{event_id}/draft_epg.json",
-    "draft_unavailable": "draft_events/{event_id}/draft_unavailable.json"
+    "draft_epg": "draft_events/{event_id}/draft_epg.json"
+  },
+  "artifacts": {
+    "aggregate_drafts": {
+      "path": "data/finmycelium_finalcascade_public.jsonl",
+      "sha256": "2825f10a70212aa52e7a08bfe5e642f37eb965578f2c52f648a0b81f823aa7ff",
+      "rows": 3000
+    },
+    "draft_source_hashes": {
+      "path": "manifests/draft_source_hashes.csv",
+      "sha256": "29f8c3af1641b4b7031cb0d21021177e5eda6816b57b82adbd3d4d7952f76d1d",
+      "rows": 3000,
+      "columns": [
+        "public_event_id",
+        "source_payload_sha256",
+        "sanitized_record_sha256",
+        "draft_record_index"
+      ]
+    },
+    "package_checksums": {
+      "path": "SHA256SUMS",
+      "sha256": "9b30d71eacbfa0e07539a5805a3cf05065e76199dfcf0272ef1d135c1098960e",
+      "entries": 3072
+    }
   },
   "arrow_types": {
     "default": "string",
     "bool": [
       "has_gold_reference",
-      "has_finalcascade",
-      "relative_order_available",
-      "has_reference_epg"
+      "relative_order_available"
     ],
     "int64": [
       "stage_count",
@@ -34,28 +58,29 @@
       "transaction_count",
       "relation_count",
       "stage_index",
-      "known_action_time_anchor_count",
-      "draft_record_index"
+      "known_action_time_anchor_count"
     ]
   },
   "tables": {
     "event_gallery": {
       "path": "data/viewer_mirrors/event_gallery.parquet",
-      "sha256": "df7527429ea3b66c6cf28e9ac79d6a398653ed94363b527a1a3887cc4c6504e5",
+      "sha256": "be68b57e42cfc0cde97c949b5dcfe14cc4ec80397d428f1f27d88b39e88a9b53",
       "rows": 3000,
+      "schema_version": "h2epr-public-event-gallery-v3",
       "columns": [
         "public_event_id",
         "title",
         "domain",
         "category",
         "event_descriptor",
-        "draft_status"
+        "schema_version"
       ]
     },
     "event_catalog": {
       "path": "data/viewer_mirrors/event_catalog.parquet",
-      "sha256": "07a5d888f00a0793468877c02069b118e6a0e0cc80b45a8d960501ccb3180c7e",
+      "sha256": "2a478a96aa2713b3b3894a222a511aaaadd06327c90498d03405ad1860a33ac0",
       "rows": 3000,
+      "schema_version": "h2epr-public-event-catalog-v3",
       "columns": [
         "public_event_id",
         "event_id",
@@ -65,17 +90,17 @@
         "domain",
         "category",
         "keywords",
-        "release_split",
-        "version",
-        "schema_version",
-        "draft_status",
-        "has_gold_reference"
+        "has_gold_reference",
+        "stage_count",
+        "episode_count",
+        "schema_version"
       ]
     },
     "event_instances": {
       "path": "data/viewer_mirrors/event_instances.parquet",
-      "sha256": "b6a5413ca553cfc72e768d4589753534f7c4828b7ca2d5ab31d72bb4abd6728e",
+      "sha256": "ba258780091c10c46508684d90bebd5f34285a61cc4bc4c6600c75fa380817a8",
       "rows": 3000,
+      "schema_version": "h2epr-public-event-instances-v3",
       "columns": [
         "public_event_id",
         "event_id",
@@ -85,21 +110,18 @@
         "domain",
         "category",
         "keywords",
-        "release_split",
-        "version",
-        "schema_version",
-        "has_finalcascade",
-        "draft_status",
         "has_gold_reference",
         "finalcascade_access_level",
         "gold_reference_access_level",
-        "evidence_context_access_level"
+        "evidence_context_access_level",
+        "schema_version"
       ]
     },
     "event_stages": {
       "path": "data/viewer_mirrors/event_stages.parquet",
-      "sha256": "c0114c5009f6f1b9e9f8c1af5e77ce35482f704c4b03ab66d1bb72bf5944020c",
-      "rows": 8500,
+      "sha256": "eeab17e56ceb14a99ffc6a64e8508f9b98bd5ea9d260b14cbf95a42374dc8db8",
+      "rows": 8843,
+      "schema_version": "h2epr-public-event-stages-v3",
       "columns": [
         "public_event_id",
         "event_id",
@@ -117,22 +139,20 @@
         "known_action_time_anchor_count",
         "known_action_time_anchors",
         "relative_order_available",
-        "release_split",
-        "version",
         "schema_version"
       ]
     },
     "finalcascade_summary": {
       "path": "data/viewer_mirrors/finalcascade_summary.parquet",
-      "sha256": "1ae9d720066bfb55bb5bafc60f0e4a4b8fa17e73497259a074a7aa63f96d58fe",
+      "sha256": "273fedfdc74aba8f00669b7e82d45ec4a312b16aaa98f7c28182a06d9c6f471f",
       "rows": 3000,
+      "schema_version": "h2epr-public-finalcascade-summary-v3",
       "columns": [
         "public_event_id",
         "event_id",
         "title",
         "domain",
         "category",
-        "draft_status",
         "stage_count",
         "episode_count",
         "participant_count",
@@ -144,23 +164,8 @@
         "event_boundary_time_status",
         "known_action_time_anchor_count",
         "known_action_time_anchors",
-        "relative_order_available"
-      ]
-    },
-    "draft_availability": {
-      "path": "data/viewer_mirrors/draft_availability.parquet",
-      "sha256": "b2af0370739c66069c8f2a377b375b7bb962eb6e7da4d35ac5fb4b9c32dfa2ac",
-      "rows": 3000,
-      "columns": [
-        "public_event_id",
-        "draft_status",
-        "draft_source_kind",
-        "draft_schema",
-        "draft_asset",
-        "draft_record_index",
-        "draft_sha256",
-        "source_payload_sha256",
-        "has_reference_epg"
+        "relative_order_available",
+        "schema_version"
       ]
     }
   }

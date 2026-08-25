@@ -22,7 +22,7 @@ internal construction log.
 | --- | --- |
 | `index.html`, `assets/`, `data/`, `static/` | Existing GitHub Pages website and aggregate public presentation assets |
 | `spaces/h2epr_bench_explorer/` | Complete Docker Space source for the Unified-3000 Explorer |
-| `datasets/h2epr_bench/` | Public Dataset contract, card source, schema, local-only validator, and release identity |
+| `datasets/h2epr_bench/` | Public Dataset contract, card source, local-only validator, and release identity |
 | `datasets/h2epr_bench_gold/` | Public Gold card source, reference-EPG schema, local-only interface, and synthetic tests only |
 | `scripts/` | Website and repository validation/build tools |
 | `tests/` | Credential-free public verification suite |
@@ -40,11 +40,11 @@ in `manifests/public_resource_links.json`.
 - Reference EPGs (Gated): https://huggingface.co/datasets/AgenticFinLab/H2EPR-Bench-Gold
 - Paper: forthcoming; no public URL is asserted yet.
 
-The public Dataset contract is fixed to revision
-`1d01f3649ace0301ac3bbe9ee875eea660347a29`. It covers all 3,000 events,
-including 2,876 public Draft EPGs and 124 neutral Draft-unavailable states.
-Draft EPGs are sanitized FinMycelium construction artifacts; they are not the
-reference EPGs used for official scoring.
+The Unified-3000 Dataset contract covers one continuous namespace of 3,000
+events. Every event has one public sanitized FinMycelium Draft EPG, for 3,000
+Draft EPGs and 8,843 ordered stages in total. These construction artifacts are
+not the reference EPGs used for official scoring. A published release and the
+Explorer must bind the same immutable Hugging Face Dataset commit.
 
 ## Local validation
 
@@ -56,14 +56,17 @@ python scripts/validate_site_assets.py
 python scripts/check_public_release_boundary.py
 ```
 
-Explorer integration tests require only public files from the pinned Dataset
-revision. Prepare an ignored local cache and run them with:
+Explorer integration tests can run against an explicit complete local Dataset
+tree without network access:
 
 ```bash
-python scripts/prepare_public_dataset_test_cache.py --output .cache/h2epr-public-dataset
-H2EPR_TEST_DATASET_DIR=.cache/h2epr-public-dataset \
+H2EPR_TEST_DATASET_DIR=/path/to/H2EPR-Bench \
   python -m unittest tests/test_h2epr_explorer_space.py
 ```
+
+After the release contract contains an immutable published Dataset revision,
+`scripts/prepare_public_dataset_test_cache.py` can prepare the ignored public
+test cache from that exact revision. It refuses an unbound revision.
 
 To validate a complete local public Dataset release tree, see
 `datasets/h2epr_bench/README.md`.

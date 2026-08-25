@@ -54,8 +54,9 @@ reviewed URL.
 ## Release boundary
 
 Public Dataset links may point at the stable repository landing page for
-discovery. Reproducibility and runtime data-loading links retain the immutable
-Dataset revision `1d01f3649ace0301ac3bbe9ee875eea660347a29`.
+discovery. Reproducibility and runtime data-loading links use the same
+immutable Dataset revision recorded in the release contract and Explorer
+source. Publication is blocked while that revision is unbound.
 
 The Hugging Face card sources tracked in this monorepo are public metadata
 only. The Gold card source contains no Gold record and creates no mechanism for

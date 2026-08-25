@@ -14,13 +14,11 @@ import streamlit as st
 
 from h2epr_explorer.constants import (
     CATALOG_COLUMNS,
-    DRAFT_UNAVAILABLE_MESSAGE,
     FINMYCELIUM_URL,
     GOLD_COMPANION_REPO,
     GOLD_COMPANION_URL,
     PROFILE_COLUMNS,
     PUBLIC_DATASET_REPO,
-    PUBLIC_DATASET_REVISION,
     PUBLIC_DATASET_REVISION_URL,
     PROJECT_WEBSITE_URL,
     RELEASE_BOUNDARY_NOTICE,
@@ -30,7 +28,6 @@ from h2epr_explorer.data_loader import (
     DatasetTransportError,
     DraftAssetMissing,
     DraftIntegrityError,
-    DraftUnavailable,
     ReleaseContractError,
     load_event_graph,
     load_release,
@@ -114,7 +111,7 @@ div[data-testid="stMetric"] {
 st.markdown('<div class="h2epr-kicker">H²EPR-Bench · public release explorer</div>', unsafe_allow_html=True)
 st.markdown('<div class="h2epr-title">Event-process graph browser</div>', unsafe_allow_html=True)
 st.markdown(
-    '<div class="h2epr-subtitle">Browse 3,000 public event records, Draft EPG summaries, and stage timelines from one pinned Unified-3000 release.</div>',
+    '<div class="h2epr-subtitle">Browse 3,000 public event records, Draft EPG summaries, and stage timelines from one validated Unified-3000 release.</div>',
     unsafe_allow_html=True,
 )
 st.info(RELEASE_BOUNDARY_NOTICE)
@@ -222,8 +219,7 @@ event_row = release.event_row(selected_event)
 event_record = event_row.to_dict()
 event_stages = release.stage_frame(selected_event)
 stage_records = _as_records(event_stages)
-draft_available = event_record["draft_status"] == "draft_available"
-event_links = build_event_links(selected_event, draft_available=draft_available)
+event_links = build_event_links(selected_event)
 
 st.caption(filter_summary_text(len(filtered_rows), len(catalog_rows)))
 
@@ -255,12 +251,12 @@ with tabs[1]:
         width="stretch",
     )
 
-    link_columns = st.columns(3 if draft_available else 2)
+    link_columns = st.columns(3 if "draft_epg" in event_links else 2)
     link_columns[0].link_button("Open Public Dataset", event_links["public_dataset"], width="stretch")
     link_columns[1].link_button(
         "Reference EPGs (Gated)", event_links["reference_access"], width="stretch"
     )
-    if draft_available:
+    if "draft_epg" in event_links:
         link_columns[2].link_button(
             "Open Draft EPG file", event_links["draft_epg"], width="stretch"
         )
@@ -282,41 +278,33 @@ with tabs[1]:
 with tabs[2]:
     figure = build_timeline_figure(stage_records, selected_event)
     if figure is None:
-        st.info(DRAFT_UNAVAILABLE_MESSAGE)
+        st.error("The validated stage rows could not be rendered as a timeline.")
     else:
         st.plotly_chart(figure, width="stretch")
 
 with tabs[3]:
-    if event_stages.empty:
-        st.info(DRAFT_UNAVAILABLE_MESSAGE)
-    else:
-        st.dataframe(event_stages, width="stretch", height=520)
+    st.dataframe(event_stages, width="stretch", height=520)
 
 with tabs[4]:
-    if not draft_available:
-        st.info(DRAFT_UNAVAILABLE_MESSAGE)
+    try:
+        graph_result = load_event_graph(selected_event, release=release)
+    except DatasetTransportError as exc:
+        st.error(f"The selected Draft EPG could not be retrieved. Please retry. Details: {exc}")
+    except DraftAssetMissing as exc:
+        st.error(f"The selected Draft EPG file is missing: {exc}")
+    except DraftIntegrityError as exc:
+        st.error(f"The selected Draft EPG failed integrity validation and was not shown: {exc}")
     else:
-        try:
-            graph_result = load_event_graph(selected_event, release=release)
-        except DatasetTransportError as exc:
-            st.error(f"The selected Draft EPG could not be retrieved. Please retry. Details: {exc}")
-        except DraftAssetMissing as exc:
-            st.error(f"The selected event is marked available but its Draft EPG file is missing: {exc}")
-        except DraftIntegrityError as exc:
-            st.error(f"The selected Draft EPG failed integrity validation and was not shown: {exc}")
-        else:
-            if isinstance(graph_result, DraftUnavailable):
-                st.info(graph_result.message)
-            else:
-                graph_json = json.dumps(graph_result, ensure_ascii=False, indent=2)
-                st.download_button(
-                    "Download selected Draft EPG JSON",
-                    data=graph_json,
-                    file_name=f"{selected_event}_draft_epg.json",
-                    mime="application/json",
-                )
-                st.link_button("Open exact public file", event_links["draft_epg"])
-                st.json(graph_result, expanded=False)
+        graph_json = json.dumps(graph_result, ensure_ascii=False, indent=2)
+        st.download_button(
+            "Download selected Draft EPG JSON",
+            data=graph_json,
+            file_name=f"{selected_event}_draft_epg.json",
+            mime="application/json",
+        )
+        if "draft_epg" in event_links:
+            st.link_button("Open exact public file", event_links["draft_epg"])
+        st.json(graph_result, expanded=False)
 
 with tabs[5]:
     st.markdown(
@@ -324,7 +312,7 @@ with tabs[5]:
 ### Release boundary
 
 - Project Website: [H²EPR-Bench]({PROJECT_WEBSITE_URL}).
-- Public Dataset: [`{PUBLIC_DATASET_REPO}`]({PUBLIC_DATASET_REVISION_URL}) at `{PUBLIC_DATASET_REVISION}`.
+- Public Dataset: [`{PUBLIC_DATASET_REPO}`]({PUBLIC_DATASET_REVISION_URL}).
 - FinMycelium System: [multi-agent event reconstruction system]({FINMYCELIUM_URL}).
 - Reference EPGs (Gated): [`{GOLD_COMPANION_REPO}`]({GOLD_COMPANION_URL}).
 - Release Repository: [`AgenticFinLab/H2EPR-Bench`]({SOURCE_REPOSITORY_URL}).

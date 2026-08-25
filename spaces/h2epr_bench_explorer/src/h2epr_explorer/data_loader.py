@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import csv
 from dataclasses import dataclass
 from functools import lru_cache
 import hashlib
@@ -19,27 +20,31 @@ from .constants import (
     ARROW_INT64_COLUMNS,
     CATALOG_PARQUET,
     CATALOG_SCHEMA,
-    DRAFT_AVAILABILITY_PARQUET,
-    DRAFT_AVAILABILITY_SCHEMA,
     DRAFT_EPG_PATH_TEMPLATE,
-    DRAFT_UNAVAILABLE_MESSAGE,
+    DRAFT_SOURCE_HASHES_CSV,
+    DRAFT_SOURCE_HASHES_SCHEMA,
+    EVENT_GALLERY_PARQUET,
+    EVENT_GALLERY_SCHEMA,
     EVENT_ID_MAX,
     EVENT_ID_MIN,
     EVENT_ID_PATTERN,
     EVENT_INSTANCES_PARQUET,
     EVENT_INSTANCES_SCHEMA,
-    EXPECTED_AVAILABLE_DRAFT_COUNT,
+    EVIDENCE_CONTEXT_ACCESS_LEVEL,
     EXPECTED_EVENT_COUNT,
     EXPECTED_STAGE_ROW_COUNT,
-    EXPECTED_UNAVAILABLE_DRAFT_COUNT,
+    FINALCASCADE_ACCESS_LEVEL,
     FINALCASCADE_SUMMARY_PARQUET,
     FINALCASCADE_SUMMARY_SCHEMA,
+    GOLD_REFERENCE_ACCESS_LEVEL,
     GRAPH_COUNT_COLUMNS,
     LOCAL_DATASET_ENV,
     PUBLIC_DATASET_REPO,
     PUBLIC_DATASET_REVISION,
+    RELEASE_ASSET_SHA256,
     STAGES_PARQUET,
     STAGES_SCHEMA,
+    TABLE_SCHEMA_VERSIONS,
 )
 
 
@@ -51,12 +56,16 @@ class DatasetTransportError(ExplorerDataError):
     """A pinned public dataset asset could not be retrieved."""
 
 
+class DatasetRevisionUnavailable(DatasetTransportError):
+    """Remote reads are disabled until an immutable release revision is set."""
+
+
 class ReleaseContractError(ExplorerDataError):
     """The loaded files do not form the expected Unified-3000 release."""
 
 
 class DraftAssetMissing(ExplorerDataError):
-    """An available event is missing its required direct Draft EPG file."""
+    """A required per-event Draft EPG file is missing."""
 
 
 class DraftIntegrityError(ExplorerDataError):
@@ -67,18 +76,12 @@ class InvalidEventId(ValueError):
     """An identifier is not a canonical Unified-3000 event ID."""
 
 
-@dataclass(frozen=True)
-class DraftUnavailable:
-    event_id: str
-    message: str = DRAFT_UNAVAILABLE_MESSAGE
-
-
 @dataclass
 class ExplorerRelease:
     events: pd.DataFrame
     stages: pd.DataFrame
     stages_by_event: dict[str, pd.DataFrame]
-    revision: str = PUBLIC_DATASET_REVISION
+    revision: str | None = PUBLIC_DATASET_REVISION
 
     def event_row(self, event_id: str) -> pd.Series:
         validate_event_id(event_id)
@@ -93,7 +96,7 @@ class ExplorerRelease:
         self.event_row(event_id)
         frame = self.stages_by_event.get(event_id)
         if frame is None:
-            return self.stages.iloc[0:0].copy()
+            raise ReleaseContractError(f"Validated release has no stage rows for {event_id}")
         return frame.copy()
 
 
@@ -123,6 +126,13 @@ def resolve_dataset_file(filename: str, local_dataset_dir: Path | str | None = N
             raise FileNotFoundError(path)
         return path
 
+    if PUBLIC_DATASET_REVISION is None:
+        raise DatasetRevisionUnavailable(
+            "Remote Explorer reads are disabled for this release candidate because no "
+            "immutable Hugging Face dataset revision has been assigned. Set "
+            f"{LOCAL_DATASET_ENV} to the validated local release root."
+        )
+
     try:
         return Path(
             hf_hub_download(
@@ -141,23 +151,25 @@ def resolve_dataset_file(filename: str, local_dataset_dir: Path | str | None = N
         ) from exc
 
 
-def _read_required_parquet(
-    filename: str,
-    expected_schema: tuple[str, ...],
-    local_dataset_dir: Path | str | None = None,
-) -> pd.DataFrame:
-    try:
-        path = resolve_dataset_file(filename, local_dataset_dir=local_dataset_dir)
-        arrow_schema = parquet.read_schema(path)
-        frame = pd.read_parquet(path)
-    except DatasetTransportError:
-        raise
-    except Exception as exc:
-        raise ReleaseContractError(f"Unable to read required Parquet table: {filename}") from exc
+def _file_sha256(path: Path) -> str:
+    digest = hashlib.sha256()
+    with path.open("rb") as handle:
+        for chunk in iter(lambda: handle.read(1024 * 1024), b""):
+            digest.update(chunk)
+    return digest.hexdigest()
 
-    observed = tuple(frame.columns)
-    observed_arrow = tuple((field.name, str(field.type)) for field in arrow_schema)
-    expected_arrow = tuple(
+
+def _require_release_asset_digest(path: Path, filename: str) -> None:
+    expected = RELEASE_ASSET_SHA256[filename]
+    observed = _file_sha256(path)
+    if observed != expected:
+        raise ReleaseContractError(
+            f"Release asset digest mismatch for {filename}: expected {expected}, observed {observed}"
+        )
+
+
+def _expected_arrow_schema(expected_schema: tuple[str, ...]) -> tuple[tuple[str, str], ...]:
+    return tuple(
         (
             column,
             "int64"
@@ -168,10 +180,64 @@ def _read_required_parquet(
         )
         for column in expected_schema
     )
-    if observed != expected_schema or observed_arrow != expected_arrow:
+
+
+def _read_required_parquet(
+    filename: str,
+    expected_schema: tuple[str, ...],
+    local_dataset_dir: Path | str | None = None,
+) -> pd.DataFrame:
+    try:
+        path = resolve_dataset_file(filename, local_dataset_dir=local_dataset_dir)
+    except (DatasetTransportError, FileNotFoundError):
+        raise
+    except Exception as exc:
+        raise ReleaseContractError(f"Unable to resolve required Parquet table: {filename}") from exc
+
+    _require_release_asset_digest(path, filename)
+    try:
+        table = parquet.read_table(path)
+        frame = table.to_pandas()
+    except Exception as exc:
+        raise ReleaseContractError(f"Unable to read required Parquet table: {filename}") from exc
+
+    observed_columns = tuple(frame.columns)
+    observed_arrow = tuple((field.name, str(field.type)) for field in table.schema)
+    expected_arrow = _expected_arrow_schema(expected_schema)
+    if observed_columns != expected_schema or observed_arrow != expected_arrow:
         raise ReleaseContractError(
             f"Schema mismatch for {filename}: expected {expected_arrow}, observed {observed_arrow}"
         )
+    return frame
+
+
+def _read_source_hash_registry(
+    local_dataset_dir: Path | str | None = None,
+) -> pd.DataFrame:
+    try:
+        path = resolve_dataset_file(DRAFT_SOURCE_HASHES_CSV, local_dataset_dir=local_dataset_dir)
+    except (DatasetTransportError, FileNotFoundError):
+        raise
+    except Exception as exc:
+        raise ReleaseContractError("Unable to resolve Draft EPG source-hash registry") from exc
+
+    _require_release_asset_digest(path, DRAFT_SOURCE_HASHES_CSV)
+    try:
+        with path.open("r", encoding="utf-8", newline="") as handle:
+            reader = csv.DictReader(handle)
+            if tuple(reader.fieldnames or ()) != DRAFT_SOURCE_HASHES_SCHEMA:
+                raise ReleaseContractError("Schema mismatch for draft_source_hashes")
+            rows = list(reader)
+    except ReleaseContractError:
+        raise
+    except Exception as exc:
+        raise ReleaseContractError("Unable to read Draft EPG source-hash registry") from exc
+
+    frame = pd.DataFrame(rows, columns=DRAFT_SOURCE_HASHES_SCHEMA)
+    try:
+        frame["draft_record_index"] = frame["draft_record_index"].map(int).astype("int64")
+    except (TypeError, ValueError) as exc:
+        raise ReleaseContractError("draft_record_index must contain decimal integers") from exc
     return frame
 
 
@@ -187,6 +253,23 @@ def _require_unique(frame: pd.DataFrame, columns: list[str], table_name: str) ->
         raise ReleaseContractError(f"{table_name} has duplicate identity rows for {columns}")
 
 
+def _require_no_nulls(frame: pd.DataFrame, table_name: str) -> None:
+    columns = frame.columns[frame.isna().any()].tolist()
+    if columns:
+        raise ReleaseContractError(f"{table_name} contains null values in {columns}")
+
+
+def _expected_event_ids() -> list[str]:
+    return [f"H2EPR-{index:04d}" for index in range(EVENT_ID_MIN, EVENT_ID_MAX + 1)]
+
+
+def _require_exact_event_order(frame: pd.DataFrame, column: str, table_name: str) -> None:
+    if frame[column].tolist() != _expected_event_ids():
+        raise ReleaseContractError(
+            f"{table_name} does not contain the exact numeric Unified-3000 event order"
+        )
+
+
 def _require_equal_ids(frame: pd.DataFrame, table_name: str) -> None:
     if not frame["event_id"].equals(frame["public_event_id"]):
         raise ReleaseContractError(f"{table_name} event_id/public_event_id mismatch")
@@ -197,79 +280,159 @@ def _require_semantic_equality(
     other: pd.DataFrame,
     columns: tuple[str, ...],
     other_name: str,
+    *,
+    catalog_id: str = "event_id",
+    other_id: str = "event_id",
 ) -> None:
-    left = catalog.set_index("event_id").sort_index()
-    right = other.set_index("event_id").sort_index()
+    left = catalog.set_index(catalog_id)
+    right = other.set_index(other_id)
     for column in columns:
         if not left[column].equals(right[column]):
             raise ReleaseContractError(f"{column} disagrees between catalog and {other_name}")
 
 
+def _require_schema_version(frame: pd.DataFrame, table_name: str) -> None:
+    expected = TABLE_SCHEMA_VERSIONS[table_name]
+    if not frame["schema_version"].eq(expected).all():
+        raise ReleaseContractError(f"{table_name} schema_version must be {expected}")
+
+
+def _require_integer_range(
+    frame: pd.DataFrame,
+    columns: tuple[str, ...],
+    table_name: str,
+    *,
+    minimum: int,
+) -> None:
+    def invalid_integer(value: Any) -> bool:
+        try:
+            return bool(pd.isna(value)) or int(value) != value or int(value) < minimum
+        except (TypeError, ValueError):
+            return True
+
+    for column in columns:
+        invalid = frame[column].map(invalid_integer)
+        if invalid.any():
+            raise ReleaseContractError(
+                f"{table_name}.{column} must contain integers greater than or equal to {minimum}"
+            )
+
+
+def _validate_source_hash_registry(source_hashes: pd.DataFrame) -> None:
+    if tuple(source_hashes.columns) != DRAFT_SOURCE_HASHES_SCHEMA:
+        raise ReleaseContractError("Schema mismatch for draft_source_hashes")
+    _require_row_count(source_hashes, EXPECTED_EVENT_COUNT, "draft_source_hashes")
+    _require_no_nulls(source_hashes, "draft_source_hashes")
+    _require_unique(source_hashes, ["public_event_id"], "draft_source_hashes")
+    _require_exact_event_order(source_hashes, "public_event_id", "draft_source_hashes")
+    if source_hashes["draft_record_index"].tolist() != list(
+        range(1, EXPECTED_EVENT_COUNT + 1)
+    ):
+        raise ReleaseContractError("draft_source_hashes has a non-canonical record index")
+    sha_pattern = re.compile(r"[0-9a-f]{64}")
+    for column in ("source_payload_sha256", "sanitized_record_sha256"):
+        if not source_hashes[column].map(
+            lambda value: isinstance(value, str) and bool(sha_pattern.fullmatch(value))
+        ).all():
+            raise ReleaseContractError(f"draft_source_hashes has malformed {column} values")
+        if source_hashes[column].duplicated().any():
+            raise ReleaseContractError(f"draft_source_hashes has duplicate {column} values")
+
+
 def build_explorer_view(
+    gallery: pd.DataFrame,
     catalog: pd.DataFrame,
     instances: pd.DataFrame,
     summary: pd.DataFrame,
-    availability: pd.DataFrame,
+    source_hashes: pd.DataFrame,
 ) -> pd.DataFrame:
-    """Build the validated one-row-per-event Unified-3000 Explorer view."""
+    """Build the exact one-row-per-event Unified-3000 Explorer view."""
 
-    for frame, schema, name in (
-        (catalog, CATALOG_SCHEMA, "event_catalog"),
-        (instances, EVENT_INSTANCES_SCHEMA, "event_instances"),
-        (summary, FINALCASCADE_SUMMARY_SCHEMA, "finalcascade_summary"),
-        (availability, DRAFT_AVAILABILITY_SCHEMA, "draft_availability"),
-    ):
+    tables = (
+        (gallery, EVENT_GALLERY_SCHEMA, "event_gallery", "public_event_id"),
+        (catalog, CATALOG_SCHEMA, "event_catalog", "event_id"),
+        (instances, EVENT_INSTANCES_SCHEMA, "event_instances", "event_id"),
+        (summary, FINALCASCADE_SUMMARY_SCHEMA, "finalcascade_summary", "event_id"),
+    )
+    for frame, schema, name, order_column in tables:
         if tuple(frame.columns) != schema:
             raise ReleaseContractError(f"Schema mismatch for {name}")
         _require_row_count(frame, EXPECTED_EVENT_COUNT, name)
+        _require_no_nulls(frame, name)
+        _require_unique(frame, [order_column], name)
+        _require_exact_event_order(frame, order_column, name)
+        _require_schema_version(frame, name)
 
-    expected_ids = {f"H2EPR-{index:04d}" for index in range(EVENT_ID_MIN, EVENT_ID_MAX + 1)}
-    _require_unique(catalog, ["public_event_id", "event_id"], "event_catalog")
-    _require_unique(instances, ["public_event_id", "event_id"], "event_instances")
-    _require_unique(summary, ["public_event_id", "event_id"], "finalcascade_summary")
-    _require_unique(availability, ["public_event_id"], "draft_availability")
-    _require_equal_ids(catalog, "event_catalog")
-    _require_equal_ids(instances, "event_instances")
-    _require_equal_ids(summary, "finalcascade_summary")
-    if set(catalog["event_id"]) != expected_ids:
-        raise ReleaseContractError("event_catalog does not contain the exact Unified-3000 ID set")
-    if set(instances["event_id"]) != expected_ids or set(summary["event_id"]) != expected_ids:
-        raise ReleaseContractError("instance/summary event identity does not match the catalog")
-    if set(availability["public_event_id"]) != expected_ids:
-        raise ReleaseContractError("availability identity does not match the catalog")
+    _validate_source_hash_registry(source_hashes)
+    for frame, name in (
+        (catalog, "event_catalog"),
+        (instances, "event_instances"),
+        (summary, "finalcascade_summary"),
+    ):
+        _require_equal_ids(frame, name)
+
+    _require_integer_range(
+        catalog,
+        ("stage_count", "episode_count"),
+        "event_catalog",
+        minimum=1,
+    )
+    _require_integer_range(summary, GRAPH_COUNT_COLUMNS, "finalcascade_summary", minimum=0)
+    if not summary["stage_count"].gt(0).all() or not summary["episode_count"].gt(0).all():
+        raise ReleaseContractError("Every Draft EPG must contain stages and episodes")
+    _require_integer_range(
+        summary,
+        ("known_action_time_anchor_count",),
+        "finalcascade_summary",
+        minimum=0,
+    )
 
     _require_semantic_equality(
-        catalog, instances, ("domain", "category", "draft_status"), "event_instances"
+        catalog,
+        gallery,
+        ("title", "domain", "category", "event_descriptor"),
+        "event_gallery",
+        other_id="public_event_id",
     )
     _require_semantic_equality(
-        catalog, summary, ("domain", "category", "draft_status"), "finalcascade_summary"
+        catalog,
+        instances,
+        (
+            "title",
+            "display_name",
+            "event_descriptor",
+            "domain",
+            "category",
+            "keywords",
+            "has_gold_reference",
+        ),
+        "event_instances",
     )
-    catalog_status = catalog.set_index("public_event_id")["draft_status"].sort_index()
-    availability_status = availability.set_index("public_event_id")["draft_status"].sort_index()
-    if not catalog_status.equals(availability_status):
-        raise ReleaseContractError("draft_status disagrees between catalog and availability")
+    _require_semantic_equality(
+        catalog,
+        summary,
+        ("title", "domain", "category", "stage_count", "episode_count"),
+        "finalcascade_summary",
+    )
 
-    status_counts = availability["draft_status"].value_counts(dropna=False).to_dict()
-    expected_status_counts = {
-        "draft_available": EXPECTED_AVAILABLE_DRAFT_COUNT,
-        "draft_unavailable": EXPECTED_UNAVAILABLE_DRAFT_COUNT,
+    if not catalog["has_gold_reference"].eq(True).all():
+        raise ReleaseContractError("event_catalog has_gold_reference must be true for every event")
+    required_access = {
+        "finalcascade_access_level": FINALCASCADE_ACCESS_LEVEL,
+        "gold_reference_access_level": GOLD_REFERENCE_ACCESS_LEVEL,
+        "evidence_context_access_level": EVIDENCE_CONTEXT_ACCESS_LEVEL,
     }
-    if status_counts != expected_status_counts:
-        raise ReleaseContractError(
-            f"Draft availability mismatch: expected {expected_status_counts}, observed {status_counts}"
-        )
+    for column, expected in required_access.items():
+        if not instances[column].eq(expected).all():
+            raise ReleaseContractError(f"event_instances.{column} must be {expected}")
 
-    access_fields = [
-        "public_event_id",
-        "event_id",
-        "has_finalcascade",
-        "finalcascade_access_level",
-        "gold_reference_access_level",
-        "evidence_context_access_level",
-    ]
+    access_fields = ["event_id", *required_access]
     summary_fields = [
         "event_id",
-        *GRAPH_COUNT_COLUMNS,
+        "participant_count",
+        "action_count",
+        "transaction_count",
+        "relation_count",
         "event_start_time",
         "event_end_time",
         "event_boundary_time_status",
@@ -277,106 +440,77 @@ def build_explorer_view(
         "known_action_time_anchors",
         "relative_order_available",
     ]
-    availability_fields = [
-        "public_event_id",
-        "draft_source_kind",
-        "draft_schema",
-        "draft_asset",
-        "draft_record_index",
-        "draft_sha256",
-        "source_payload_sha256",
-        "has_reference_epg",
-    ]
-
     try:
         joined = catalog.merge(
-            instances[access_fields],
-            on=["public_event_id", "event_id"],
-            how="left",
-            validate="one_to_one",
+            instances[access_fields], on="event_id", how="left", validate="one_to_one"
         )
         joined = joined.merge(
             summary[summary_fields], on="event_id", how="left", validate="one_to_one"
         )
         joined = joined.merge(
-            availability[availability_fields],
-            on="public_event_id",
-            how="left",
-            validate="one_to_one",
+            source_hashes, on="public_event_id", how="left", validate="one_to_one"
         )
     except Exception as exc:
         raise ReleaseContractError("Unified-3000 Explorer join multiplicity failure") from exc
 
     _require_row_count(joined, EXPECTED_EVENT_COUNT, "joined Explorer view")
+    _require_no_nulls(joined, "joined Explorer view")
     _require_unique(joined, ["public_event_id", "event_id"], "joined Explorer view")
-    if joined[access_fields[2:] + availability_fields[1:]].isna().all(axis=1).any():
-        raise ReleaseContractError("Joined Explorer view contains unmatched access/availability rows")
-
-    available = joined["draft_status"].eq("draft_available")
-    unavailable = joined["draft_status"].eq("draft_unavailable")
-    if joined.loc[available, list(GRAPH_COUNT_COLUMNS)].isna().any().any():
-        raise ReleaseContractError("Available drafts have null graph counts")
-    if not joined.loc[unavailable, list(GRAPH_COUNT_COLUMNS)].isna().all().all():
-        raise ReleaseContractError("Unavailable drafts contain observed graph counts")
-    if not joined.loc[available, "has_finalcascade"].eq(True).all():
-        raise ReleaseContractError("Available draft rows disagree with has_finalcascade")
-    if not joined.loc[unavailable, "has_finalcascade"].eq(False).all():
-        raise ReleaseContractError("Unavailable draft rows disagree with has_finalcascade")
-    return joined.sort_values("event_id", kind="stable").reset_index(drop=True)
+    _require_exact_event_order(joined, "event_id", "joined Explorer view")
+    return joined.reset_index(drop=True)
 
 
 def _validate_stages(stages: pd.DataFrame, events: pd.DataFrame) -> None:
     if tuple(stages.columns) != STAGES_SCHEMA:
         raise ReleaseContractError("Schema mismatch for event_stages")
     _require_row_count(stages, EXPECTED_STAGE_ROW_COUNT, "event_stages")
+    _require_no_nulls(stages, "event_stages")
     _require_equal_ids(stages, "event_stages")
+    _require_schema_version(stages, "event_stages")
     if stages[["event_id", "stage_id"]].duplicated().any():
         raise ReleaseContractError("event_stages contains duplicate stage identity")
     if stages[["event_id", "stage_index"]].duplicated().any():
         raise ReleaseContractError("event_stages contains duplicate stage_index")
-    invalid_stage_index = stages["stage_index"].map(
-        lambda value: pd.isna(value) or int(value) != value or int(value) <= 0
+    _require_integer_range(stages, ("stage_index",), "event_stages", minimum=1)
+    _require_integer_range(
+        stages,
+        (*GRAPH_COUNT_COLUMNS[1:], "known_action_time_anchor_count"),
+        "event_stages",
+        minimum=0,
     )
-    if invalid_stage_index.any():
-        raise ReleaseContractError("event_stages stage_index values must be positive integers")
-    if not stages["event_id"].map(
-        lambda value: isinstance(value, str) and bool(re.fullmatch(EVENT_ID_PATTERN, value))
-    ).all():
-        raise ReleaseContractError("event_stages contains a malformed event ID")
-    available_ids = set(events.loc[events["draft_status"].eq("draft_available"), "event_id"])
-    if set(stages["event_id"]) != available_ids:
-        raise ReleaseContractError("Stage coverage does not equal the draft-available event set")
+    if not stages["episode_count"].gt(0).all():
+        raise ReleaseContractError("Every stage must contain at least one episode")
 
-    available_summary = events.loc[
-        events["draft_status"].eq("draft_available"),
-        ["event_id", *GRAPH_COUNT_COLUMNS],
-    ].set_index("event_id")
-    for event_id in sorted(available_ids):
-        event_stages = stages.loc[stages["event_id"].eq(event_id)]
-        expected_stage_count = available_summary.at[event_id, "stage_count"]
-        if (
-            pd.isna(expected_stage_count)
-            or int(expected_stage_count) != expected_stage_count
-            or int(expected_stage_count) <= 0
-            or len(event_stages) != int(expected_stage_count)
-        ):
+    expected_ids = _expected_event_ids()
+    observed_event_order = list(dict.fromkeys(stages["event_id"].tolist()))
+    if observed_event_order != expected_ids:
+        raise ReleaseContractError("event_stages does not cover all events in numeric order")
+
+    event_summary = events.set_index("event_id")
+    for event_id, event_stages in stages.groupby("event_id", sort=False):
+        expected_stage_count = int(event_summary.at[event_id, "stage_count"])
+        if len(event_stages) != expected_stage_count:
             raise ReleaseContractError(f"stage_count closure mismatch for {event_id}")
-
-        observed_indices = sorted(int(value) for value in event_stages["stage_index"])
-        expected_indices = list(range(1, int(expected_stage_count) + 1))
+        observed_indices = event_stages["stage_index"].astype(int).tolist()
+        expected_indices = list(range(1, expected_stage_count + 1))
         if observed_indices != expected_indices:
             raise ReleaseContractError(f"Non-contiguous stage_index values for {event_id}")
-
         for column in GRAPH_COUNT_COLUMNS[1:]:
-            expected_count = available_summary.at[event_id, column]
-            observed_count = event_stages[column].sum(min_count=1)
-            if pd.isna(expected_count) or pd.isna(observed_count) or observed_count != expected_count:
+            observed_count = int(event_stages[column].sum())
+            expected_count = int(event_summary.at[event_id, column])
+            if observed_count != expected_count:
                 raise ReleaseContractError(f"{column} closure mismatch for {event_id}")
+        expected_relative_order = bool(event_summary.at[event_id, "relative_order_available"])
+        if not event_stages["relative_order_available"].eq(expected_relative_order).all():
+            raise ReleaseContractError(
+                f"relative_order_available disagrees between event and stages for {event_id}"
+            )
 
 
 @lru_cache(maxsize=8)
 def _load_release_cached(local_root_value: str | None) -> ExplorerRelease:
     local_root = Path(local_root_value) if local_root_value else None
+    gallery = _read_required_parquet(EVENT_GALLERY_PARQUET, EVENT_GALLERY_SCHEMA, local_root)
     catalog = _read_required_parquet(CATALOG_PARQUET, CATALOG_SCHEMA, local_root)
     instances = _read_required_parquet(
         EVENT_INSTANCES_PARQUET, EVENT_INSTANCES_SCHEMA, local_root
@@ -384,13 +518,10 @@ def _load_release_cached(local_root_value: str | None) -> ExplorerRelease:
     summary = _read_required_parquet(
         FINALCASCADE_SUMMARY_PARQUET, FINALCASCADE_SUMMARY_SCHEMA, local_root
     )
-    availability = _read_required_parquet(
-        DRAFT_AVAILABILITY_PARQUET, DRAFT_AVAILABILITY_SCHEMA, local_root
-    )
     stages = _read_required_parquet(STAGES_PARQUET, STAGES_SCHEMA, local_root)
-    events = build_explorer_view(catalog, instances, summary, availability)
+    source_hashes = _read_source_hash_registry(local_root)
+    events = build_explorer_view(gallery, catalog, instances, summary, source_hashes)
     _validate_stages(stages, events)
-    stages = stages.sort_values(["event_id", "stage_index", "stage_id"], kind="stable")
     stages_by_event = {
         event_id: group.reset_index(drop=True)
         for event_id, group in stages.groupby("event_id", sort=False)
@@ -434,8 +565,8 @@ def _validate_graph(payload: Any, event_id: str, event_row: pd.Series) -> dict[s
         raise DraftIntegrityError(f"Nested Draft EPG identity mismatch for {event_id}")
     if payload.get("source_payload_sha256") != event_row.get("source_payload_sha256"):
         raise DraftIntegrityError(f"Draft EPG source payload digest mismatch for {event_id}")
-    if _canonical_graph_sha256(payload) != event_row.get("draft_sha256"):
-        raise DraftIntegrityError(f"Draft EPG canonical digest mismatch for {event_id}")
+    if _canonical_graph_sha256(payload) != event_row.get("sanitized_record_sha256"):
+        raise DraftIntegrityError(f"Draft EPG sanitized record digest mismatch for {event_id}")
     return payload
 
 
@@ -444,14 +575,14 @@ def _load_event_graph_cached(
     event_id: str,
     local_root_value: str | None,
     expected_source_sha256: str,
-    expected_draft_sha256: str,
+    expected_sanitized_sha256: str,
 ) -> dict[str, Any]:
     filename = DRAFT_EPG_PATH_TEMPLATE.format(event_id=event_id)
     local_root = Path(local_root_value) if local_root_value else None
     try:
         path = resolve_dataset_file(filename, local_dataset_dir=local_root)
     except FileNotFoundError as exc:
-        raise DraftAssetMissing(f"Available Draft EPG file is missing: {filename}") from exc
+        raise DraftAssetMissing(f"Required Draft EPG file is missing: {filename}") from exc
     try:
         with path.open("r", encoding="utf-8") as handle:
             payload = json.load(handle)
@@ -460,7 +591,7 @@ def _load_event_graph_cached(
     expected = pd.Series(
         {
             "source_payload_sha256": expected_source_sha256,
-            "draft_sha256": expected_draft_sha256,
+            "sanitized_record_sha256": expected_sanitized_sha256,
         }
     )
     return _validate_graph(payload, event_id, expected)
@@ -471,21 +602,16 @@ def load_event_graph(
     *,
     release: ExplorerRelease | None = None,
     local_dataset_dir: Path | str | None = None,
-) -> dict[str, Any] | DraftUnavailable:
-    """Load one direct public Draft EPG after catalog and availability checks."""
+) -> dict[str, Any]:
+    """Load one direct public Draft EPG after release and digest validation."""
 
     validate_event_id(event_id)
     selected_release = release or load_release(local_dataset_dir=local_dataset_dir)
     event_row = selected_release.event_row(event_id)
-    if event_row["draft_status"] == "draft_unavailable":
-        return DraftUnavailable(event_id)
-    if event_row["draft_status"] != "draft_available":
-        raise ReleaseContractError(f"Unknown draft_status for {event_id}")
-
     local_root = _as_local_root(local_dataset_dir)
     return _load_event_graph_cached(
         event_id,
         str(local_root) if local_root is not None else None,
         str(event_row["source_payload_sha256"]),
-        str(event_row["draft_sha256"]),
+        str(event_row["sanitized_record_sha256"]),
     )
