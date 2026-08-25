@@ -92,6 +92,13 @@ FORBIDDEN_PUBLIC_WORDING_PATTERNS = {
         r"(?:batch|attempt|cohort|subset|events?|drafts?)\b",
         re.IGNORECASE,
     ),
+    "staged collection history": re.compile(
+        r"\b(?:first|initial(?:ly)?|original(?:ly)?)"
+        r"(?:\s+(?:contained|included|released|covered|had|started\s+with))?"
+        r"\s+(?:1,?000|2,?000)\b|"
+        r"\b1,?000\b[^.\n]{0,48}\b(?:then|followed by|expanded to)\s+\b2,?000\b",
+        re.IGNORECASE,
+    ),
 }
 
 

@@ -77,7 +77,7 @@
           <h1>H²EPR-<wbr>Bench</h1>
           <p class="subtitle">An evidence-traceable benchmark for event-process reconstruction.</p>
           <p class="hero-summary">
-            H²EPR-Bench evaluates real-world event understanding across summarization, event-process reconstruction, prediction, and simulation from fixed evidence contexts.
+            Given the same fixed, multi-source evidence, can a model reconstruct how a complex event actually unfolded? H²EPR-Bench evaluates the process structure behind the facts.
           </p>
 
           <div class="publication-links resource-actions-primary" aria-label="Primary actions">
@@ -113,45 +113,45 @@
             <div><strong>3,000</strong><span>event instances</span></div>
             <div><strong>6</strong><span>domains</span></div>
             <div><strong>26</strong><span>event categories</span></div>
-            <div><strong>11,333</strong><span>reference stages</span></div>
-            <div><strong>21</strong><span>direct LLM systems</span></div>
-            <div class="spec-line-note"><strong>Ongoing</strong><span>expansion and follow-up studies</span></div>
+            <div><strong>25,814</strong><span>verified documents</span></div>
+            <div><strong>3,000</strong><span>reference EPGs</span></div>
+            <div><strong>21</strong><span>LLMs evaluated</span></div>
           </div>
 
           <figure class="hero-overview-figure" aria-label="H2EPR-Bench overview">
-            <img src="assets/hero/h2epr-benchmark-overview.png" alt="Overview of H2EPR-Bench supporting reconstruction evaluation, event-process analysis, prediction, simulation, and longer-term world-model construction">
+            <img src="assets/hero/h2epr-benchmark-overview.png" alt="H2EPR-Bench connects fixed evidence to event-process graphs, reconstruction evaluation, analysis, and future research directions">
           </figure>
 
           <div class="hero-findings" aria-labelledby="hero-findings-title">
             <h2 id="hero-findings-title">Key Findings</h2>
             <div class="findings-grid" aria-label="H2EPR-Bench key findings">
               <article class="finding-card">
-                <span>Frontier gap</span>
-                <h3>Even frontier LLMs fall short.</h3>
-                <p>With the same evidence context, strong LLMs still fail to reliably reconstruct complex events as structured Event-Process Graphs.</p>
+                <span>Best overall score</span>
+                <h3>53.00 H²EPRScore</h3>
+                <p>The leading system still leaves substantial headroom on complete event-process reconstruction.</p>
               </article>
               <article class="finding-card">
-                <span>Weak event logic</span>
-                <h3>Complete outputs can miss real understanding.</h3>
-                <p>LLMs may gather the right facts and write fluent accounts, yet fail to infer the temporal and causal logic that makes an event coherent.</p>
+                <span>Strongest capabilities</span>
+                <h3>Facts and coarse order</h3>
+                <p>Source attribution and stage-order scores exceed 82, showing that models often identify the right material.</p>
               </article>
               <article class="finding-card">
-                <span>Process bottleneck</span>
-                <h3>Process reasoning is the hard part.</h3>
-                <p>Models mention facts, but lose stage order, actor actions, and action-result logic across long event sources.</p>
+                <span>Weakest capabilities</span>
+                <h3>Relations remain below 19</h3>
+                <p>Action–outcome, causal, and explicit temporal relations are much harder to reconstruct.</p>
               </article>
               <article class="finding-card">
-                <span>Agent-ready substrate</span>
-                <h3>Structured events are easier to use than raw text.</h3>
-                <p>H²EPR-Bench turns scattered evidence into staged event graphs for analysis, prediction, and market/social simulation.</p>
+                <span>Mechanism bottleneck</span>
+                <h3>9.83% path retention</h3>
+                <p>Mediated mechanism paths are rarely preserved, pinpointing the gap between event facts and event logic.</p>
               </article>
             </div>
           </div>
 
           <div class="teaser-banner">
             <p>
-              <span class="teaser-line-main">H²EPR-Bench maps real-world events into hierarchical heterogeneous Event-Process Graphs for</span>
-              <span class="teaser-line-focus">reconstruction, analysis, prediction, and simulation.</span>
+              <span class="teaser-line-main">H²EPR-Bench measures the difference between knowing event facts and reconstructing</span>
+              <span class="teaser-line-focus">the process that connects them.</span>
             </p>
           </div>
         </div>
@@ -184,7 +184,7 @@
             H²EPR-Bench treats events as structured process objects. Starting from fixed evidence contexts, each event is represented as a hierarchical heterogeneous Event-Process Graph that makes stage progression, actor interactions, temporal dependencies, action-result logic, and evidence links explicit.
           </p>
           <p>
-            This representation makes the benchmark useful beyond leaderboard scoring. It can evaluate event-process reconstruction, support analysis of recurring event patterns, and provide structured event substrates for prediction and simulation settings, such as masking future stages, continuing partially observed events, or connecting multiple events into larger market or social-process scenarios.
+            H²EPR-Bench centers on reconstruction, while the EPG representation also creates a common substrate for cross-event analysis, continuation, prediction, and simulation research.
           </p>
 
           <div class="background-usecase-switcher" aria-label="H²EPR-Bench downstream use-case switcher">
@@ -199,8 +199,8 @@
               </p>
               <div class="usecase-button-row" role="list" aria-label="Switch use-case panel">
                 <button class="usecase-switch is-active" type="button" role="listitem" data-view="reconstruction" data-src="assets/usecases/reconstruction.png" data-alt="Reconstruction evaluation with evidence, graph recovery, and diagnostic scoring" data-kicker="Use case 01" data-title="Reconstruction Evaluation" data-copy="Evaluate whether a system can recover the staged event process, actor actions, temporal order, action-result logic, and evidence links from fixed evidence.">Reconstruction</button>
-                <button class="usecase-switch" type="button" role="listitem" data-view="analysis" data-src="assets/usecases/analysis.png" data-alt="Event-process analysis across domains, categories, and graph patterns" data-kicker="Use case 02" data-title="Event-Process Analysis" data-copy="Compare structured event patterns across domains, categories, and recurring market or social processes without flattening events into one narrative paragraph.">Analysis</button>
-                <button class="usecase-switch" type="button" role="listitem" data-view="prediction" data-src="assets/usecases/prediction-simulation.png" data-alt="Prediction and simulation scenarios from partially observed event-process graphs" data-kicker="Use case 03" data-title="Prediction and Simulation" data-copy="Use partially observed or linked event graphs to define controlled continuation, prediction, and simulation scenarios.">Prediction / Simulation</button>
+                <button class="usecase-switch" type="button" role="listitem" data-view="analysis" data-src="assets/usecases/analysis.png" data-alt="Event-process analysis across domains, categories, and graph patterns" data-kicker="Use case 02" data-title="Event-Process Analysis" data-copy="Align processes across events, trace typed pathways, and discover recurring participant–action patterns across domains and categories.">Analysis</button>
+                <button class="usecase-switch" type="button" role="listitem" data-view="prediction" data-src="assets/usecases/prediction-simulation.png" data-alt="Prediction and simulation scenarios from partially observed event-process graphs" data-kicker="Use case 03" data-title="Prediction and Simulation" data-copy="Start from an observed process and explore plausible continuations or alternative scenarios in a structured event space.">Prediction / Simulation</button>
               </div>
             </aside>
           </div>
@@ -230,45 +230,45 @@
               <span class="contrib-label">Task</span>
               <div>
                 <h3>Fixed-evidence reconstruction</h3>
-                <p>Each system receives an event descriptor and a fixed public evidence context, then returns a structured Event-Process Graph.</p>
+                <p>Each system receives an event descriptor and the same fixed evidence package, then returns a structured Event-Process Graph.</p>
               </div>
             </div>
             <div class="contrib-row">
               <span class="contrib-label">Reference</span>
               <div>
-                <h3>Medium-granularity Gold</h3>
-                <p>Official scores are computed against gated Gold references. Public artifacts support browsing, presentation, and reuse.</p>
+                <h3>Expert-finalized references</h3>
+                <p>Agent–expert review, human adjudication, and final sign-off produce one consistent medium-granularity reference EPG per event.</p>
               </div>
             </div>
             <div class="contrib-row">
               <span class="contrib-label">Graph</span>
               <div>
                 <h3>Hierarchical heterogeneous representation</h3>
-                <p>The target representation covers macro stages, stage-internal structure, participants, actions, relations, temporal anchors, and evidence links.</p>
+                <p>The target representation connects macro stages, meso episodes, micro-level participants, actions, outcomes, relations, and evidence support.</p>
               </div>
             </div>
             <div class="contrib-row">
               <span class="contrib-label">Scoring</span>
               <div>
                 <h3>Diagnostic graph matching</h3>
-                <p>Evaluation compares structural fidelity, temporal consistency, action-result logic, and evidence traceability.</p>
+                <p>Evaluation reports structural, temporal, causal, and evidence fidelity, together with a unified H²EPRScore.</p>
               </div>
             </div>
           </div>
 
           <div class="boundary-showcase">
-            <div class="boundary-strip" aria-label="Release asset roles">
-              <span>Public release</span>
-              <strong>catalog · stages · FinalCascade · Gantt views</strong>
+            <div class="boundary-strip" aria-label="Reference EPG construction">
+              <span>FinMycelium Draft EPG</span>
+              <strong>broad process coverage</strong>
               <b aria-hidden="true">→</b>
-              <span>Reference EPGs (Gated)</span>
-              <strong>official scoring references</strong>
+              <span>Expert finalization</span>
+              <strong>consistent evaluation reference</strong>
             </div>
             <figure class="figure-block construction-boundary-figure">
-              <img src="assets/release-boundary.png" alt="Public artifacts and gated Gold release boundary">
+              <img src="assets/release-boundary.png" alt="FinMycelium Draft EPG refined through agent–expert review and human adjudication into an expert-finalized reference EPG">
             </figure>
             <p class="boundary-copy">
-              The public repository is designed for browsing, reuse, and inspection. Official benchmark scoring is tied to the gated Gold references, so release artifacts remain useful without exposing answer keys in the open dataset.
+              FinMycelium enables graph construction at scale; expert review then aligns scope, process relevance, and evidence support before each reference EPG is finalized.
             </p>
           </div>
 
@@ -279,23 +279,23 @@
         <div class="container reading-wide">
           <h2 class="section-heading">Dataset Overview</h2>
           <p>
-            Unified-3000 covers 3,000 events from 1629 to 2025 across six domains and twenty-six categories. Its frozen evidence packages retain 25,814 verified documents from 84,693 candidate source records, with public artifacts aligned by canonical event IDs.
+            H²EPR-Bench covers 3,000 events from 1629 to 2025 across six domains and twenty-six categories. Its evidence packages retain 25,814 verified documents from 84,693 retrieved source records, with every artifact aligned by a stable event ID.
           </p>
           <figure class="figure-block figure-large summary-panel">
-            <img src="assets/summary/dataset-summary-panel.png" alt="Dataset summary panel for Unified-3000, including event count, domain mix, category distribution, graph scale, reference EPGs, and LLM systems">
+            <img src="assets/summary/dataset-summary-panel.png" alt="H²EPR-Bench summary panel with event count, domain mix, category distribution, graph scale, reference EPGs, and evaluated models">
             <figcaption>Dataset summary panel.</figcaption>
           </figure>
           <div class="figure-grid figure-grid-three">
             <figure class="figure-block">
-              <img src="assets/charts/domain-distribution.png" alt="Domain distribution for Unified-3000">
+              <img src="assets/charts/domain-distribution.png" alt="H²EPR-Bench domain distribution">
               <figcaption>Domain distribution.</figcaption>
             </figure>
             <figure class="figure-block">
-              <img src="assets/charts/category-distribution-top12.png" alt="Top event categories in Unified-3000">
+              <img src="assets/charts/category-distribution-top12.png" alt="Top H²EPR-Bench event categories">
               <figcaption>Top event categories.</figcaption>
             </figure>
             <figure class="figure-block">
-              <img src="assets/charts/stage-count-distribution.png" alt="Stage-count distribution in Unified-3000 reference EPGs">
+              <img src="assets/charts/stage-count-distribution.png" alt="Stage-count distribution in H²EPR-Bench reference EPGs">
               <figcaption>Stage-count distribution.</figcaption>
             </figure>
           </div>
@@ -330,7 +330,7 @@
       <section class="section" id="events">
         <div class="container reading-wide">
           <h2 class="section-heading">Representative Event Processes</h2>
-          <p class="section-lead">FinMycelium draft-EPG timelines from the Unified-3000 event collection.</p>
+          <p class="section-lead">Representative FinMycelium Draft-EPG timelines from the 3,000-event collection.</p>
 
           <div class="gantt-hd-gallery" aria-label="Representative Gantt timeline gallery">
             <figure class="figure-block event-figure event-figure-primary">
@@ -395,12 +395,12 @@
             <div class="framework-step">
               <span>03</span>
               <strong>Schema gate</strong>
-              <p>Invalid normalized outputs remain part of the official all-instance score.</p>
+              <p>Every benchmark instance contributes to the official score after schema normalization.</p>
             </div>
             <div class="framework-step">
               <span>04</span>
               <strong>Graph matching</strong>
-              <p>Outputs are compared against gated medium-granularity Gold references.</p>
+              <p>Outputs are aligned with expert-finalized reference EPGs.</p>
             </div>
             <div class="framework-step">
               <span>05</span>
@@ -412,7 +412,7 @@
           <div class="result-snapshot" aria-label="Direct reconstruction result snapshot">
             <div>
               <strong>21</strong>
-              <span>direct LLM systems</span>
+              <span>language models evaluated</span>
             </div>
             <div>
               <strong>3,000</strong>
@@ -581,7 +581,7 @@
             </a>
             <a data-resource-id="release_repository" href="https://github.com/AgenticFinLab/H2EPR-Bench">
               <span>Release Repository</span>
-              <strong>Canonical public source for the website, Explorer, release contracts, and validators—not the experimental system codebase.</strong>
+              <strong>Public source for the website, Explorer, schemas, validators, and release tooling.</strong>
             </a>
           </div>
         </div>
@@ -603,7 +603,7 @@
     <footer class="site-footer">
       <div class="container">
         <p>
-          H²EPR-Bench Unified-3000 ·
+          H²EPR-Bench ·
           <a href="https://agenticfinlab.github.io/">AgenticFinLab</a> ·
           <a href="https://github.com/AgenticFinLab/FinMycelium">FinMycelium System</a> ·
           <a href="https://github.com/AgenticFinLab/H2EPR-Bench">Release Repository</a>

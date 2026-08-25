@@ -11,7 +11,7 @@ GOLD_COMPANION_URL = "https://huggingface.co/datasets/AgenticFinLab/H2EPR-Bench-
 SOURCE_REPOSITORY_URL = "https://github.com/AgenticFinLab/H2EPR-Bench"
 AGENTICFINLAB_URL = "https://agenticfinlab.github.io/"
 
-DEFAULT_PUBLIC_DATASET_REVISION: str | None = "6156a6bb3b838143401cb3e5709f708e5d6e802c"
+DEFAULT_PUBLIC_DATASET_REVISION: str | None = "4b0f0f4000db3ba9b6e1a720e5b5cfbaae68353c"
 PUBLIC_DATASET_REVISION = DEFAULT_PUBLIC_DATASET_REVISION
 PUBLIC_DATASET_REVISION_URL = (
     f"{PUBLIC_DATASET_URL}/tree/{PUBLIC_DATASET_REVISION}"
@@ -188,10 +188,4 @@ PROFILE_COLUMNS = (
     "known_action_time_anchors",
     "gold_reference_access_level",
     "finalcascade_access_level",
-)
-
-RELEASE_BOUNDARY_NOTICE = (
-    "Public Draft EPGs are FinMycelium construction artifacts. Official benchmark "
-    "scoring uses reference EPGs in the manual-gated companion repository; this "
-    "Explorer loads neither reference EPGs nor frozen evidence packages."
 )

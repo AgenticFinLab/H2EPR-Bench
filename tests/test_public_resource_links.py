@@ -9,6 +9,7 @@ from scripts.check_explorer_source_manifest import (
 )
 from scripts.check_public_release_boundary import public_wording_violations
 from scripts.validate_public_resource_links import (
+    EXPECTED_PUBLIC_DATASET_CARD_IMAGES,
     SURFACE_PATHS,
     load_manifest,
     validate_card_sources,
@@ -18,7 +19,8 @@ from scripts.validate_public_resource_links import (
 )
 
 
-EXPECTED_DATASET_REVISION = "6156a6bb3b838143401cb3e5709f708e5d6e802c"
+EXPECTED_DATASET_REVISION = "4b0f0f4000db3ba9b6e1a720e5b5cfbaae68353c"
+EXPECTED_PREVIOUS_DATASET_REVISION = "6156a6bb3b838143401cb3e5709f708e5d6e802c"
 EXPECTED_SPACE_COMMIT = "2cc85fd27d832d429be72c4531ba832d70648046"
 EXPECTED_SPACE_TREE = "88deb297c0ef39dd3324d1786eb4119026103e7c"
 EXPECTED_SPACE_LEDGER = "ce47455ce680f59808713895642737ab11d765b136d1905e65a62958efa21f8a"
@@ -85,19 +87,19 @@ class PublicResourceLinkTests(unittest.TestCase):
         cards = self.manifest["hugging_face_card_sources"]
         self.assertEqual(
             cards["public_dataset_card"]["rollback_baseline"]["revision"],
-            "f1e90230c7bee782d5037b04ffec778bf1053b94",
+            EXPECTED_PREVIOUS_DATASET_REVISION,
         )
         self.assertEqual(
             cards["gold_card"]["rollback_baseline"]["revision"],
-            "48041e35e000e036b85dfd0d8f1273a85d027159",
+            "aee3792af5e266ced65c44b8c3736436d62edf28",
         )
         self.assertEqual(
             cards["explorer_card"]["rollback_baseline"]["revision"],
-            EXPECTED_SPACE_PRIOR_COMMIT,
+            EXPECTED_SPACE_COMMIT,
         )
         self.assertEqual(
             cards["explorer_card"]["rollback_baseline"]["readme_sha256"],
-            "42770432c3f831f4a7e1977768cf19c7c50e60a48d29e2333c2b05e65df9892c",
+            "323cd1c9e915a435173d03bbd9fcf72ad94df9a917298a755bec354aa43e5fa2",
         )
         self.assertTrue(
             all(
@@ -106,51 +108,62 @@ class PublicResourceLinkTests(unittest.TestCase):
             )
         )
 
-    def test_published_identity_is_pinned_and_bound_to_rc(self):
+    def test_public_dataset_card_uses_the_two_approved_visuals(self):
+        card = SURFACE_PATHS["public_dataset_card"][0].read_text(encoding="utf-8")
+        positions = [card.index(f'src="{path}"') for path in EXPECTED_PUBLIC_DATASET_CARD_IMAGES]
+        self.assertEqual(positions, sorted(positions))
+        for relative in EXPECTED_PUBLIC_DATASET_CARD_IMAGES:
+            self.assertTrue((SURFACE_PATHS["public_dataset_card"][0].parent / relative).is_file())
+        self.assertNotIn("h2epr_epg_overview.png", card)
+        self.assertNotIn("unified3000_benchmark_profile.png", card)
+
+    def test_dataset_published_identity_is_pinned_and_bound_to_release(self):
         identity = self.manifest["release_identity"]
-        self.assertEqual(identity["release_state"], "published")
+        self.assertEqual(identity["release_state"], "dataset_published")
         self.assertEqual(identity["dataset_revision"], EXPECTED_DATASET_REVISION)
         self.assertEqual(identity["tree_sha256"], EXPECTED_RC_TREE_SHA256)
         self.assertEqual(identity["sha256sums_sha256"], EXPECTED_RC_TREE_SHA256)
-        for gate in ("local", "deployment", "published"):
+        for gate in ("local", "deployment"):
             with self.subTest(gate=gate):
                 validate_release_identity(self.manifest, gate)
+        with self.assertRaises(SystemExit):
+            validate_release_identity(self.manifest, "published")
 
-    def test_explorer_published_identity_is_pinned(self):
+    def test_explorer_source_is_ready_for_deployment(self):
         # The Explorer validator reads its own manifest; use that authoritative object.
         from scripts.check_explorer_source_manifest import _load_json, MANIFEST_PATH
 
         source_manifest = _load_json(MANIFEST_PATH)
-        self.assertEqual(source_manifest["release_state"], "published")
+        self.assertEqual(source_manifest["release_state"], "dataset_published")
         self.assertEqual(source_manifest["dataset_revision"], EXPECTED_DATASET_REVISION)
         self.assertEqual(
             source_manifest["release_candidate"]["tree_sha256"], EXPECTED_RC_TREE_SHA256
         )
-        self.assertEqual(
-            source_manifest["published_deployment"],
-            {
-                "dataset_revision": EXPECTED_DATASET_REVISION,
-                "source_ledger_sha256": EXPECTED_SPACE_LEDGER,
-                "space_commit": EXPECTED_SPACE_COMMIT,
-                "space_tree": EXPECTED_SPACE_TREE,
-            },
-        )
+        self.assertIsNone(source_manifest["published_deployment"])
         self.assertEqual(source_manifest["rollback_baseline"]["role"], "rollback_only")
         self.assertEqual(
-            source_manifest["rollback_baseline"]["space_commit"],
-            EXPECTED_SPACE_PRIOR_COMMIT,
+            source_manifest["rollback_baseline"]["dataset_revision"],
+            EXPECTED_PREVIOUS_DATASET_REVISION,
         )
-        for gate in ("local", "deployment", "published"):
+        self.assertEqual(
+            source_manifest["rollback_baseline"]["space_commit"],
+            EXPECTED_SPACE_COMMIT,
+        )
+        self.assertEqual(
+            source_manifest["rollback_baseline"]["space_tree"],
+            EXPECTED_SPACE_TREE,
+        )
+        for gate in ("local", "deployment"):
             with self.subTest(gate=gate):
                 validate_explorer_release_identity(source_manifest, gate)
+        with self.assertRaises(ValueError):
+            validate_explorer_release_identity(source_manifest, "published")
 
-    def test_space_release_receipt_closes_the_published_identity(self):
+    def test_historical_space_release_receipt_remains_immutable(self):
         from scripts.check_explorer_source_manifest import _load_json, MANIFEST_PATH
 
         receipt = json.loads(SPACE_RELEASE_RECEIPT_PATH.read_text(encoding="utf-8"))
         source_manifest = _load_json(MANIFEST_PATH)
-        deployment = source_manifest["published_deployment"]
-
         self.assertEqual(
             receipt["schema_version"],
             "h2epr-unified3000-v2-space-release-receipt-v1",
@@ -169,14 +182,13 @@ class PublicResourceLinkTests(unittest.TestCase):
         self.assertLessEqual(logs_checked_at, verified_at)
         self.assertEqual(receipt["resulting_revision"], EXPECTED_SPACE_COMMIT)
         self.assertEqual(receipt["resulting_tree"], EXPECTED_SPACE_TREE)
-        self.assertEqual(receipt["resulting_revision"], deployment["space_commit"])
-        self.assertEqual(receipt["resulting_tree"], deployment["space_tree"])
         self.assertEqual(
-            receipt["release_identity"]["dataset_revision"], EXPECTED_DATASET_REVISION
+            receipt["release_identity"]["dataset_revision"],
+            EXPECTED_PREVIOUS_DATASET_REVISION,
         )
         self.assertEqual(
             receipt["release_identity"]["source_ledger_sha256"],
-            deployment["source_ledger_sha256"],
+            EXPECTED_SPACE_LEDGER,
         )
         self.assertEqual(
             receipt["source_commits"]["payload_space_subtree_tree"],
@@ -234,7 +246,7 @@ class PublicResourceLinkTests(unittest.TestCase):
         )
         self.assertEqual(
             source_manifest["rollback_baseline"]["space_commit"],
-            receipt["prior_revision"],
+            receipt["resulting_revision"],
         )
         self.assertFalse(receipt["rollback"]["triggered"])
         self.assertEqual(receipt["verification"]["runtime_sha"], EXPECTED_SPACE_COMMIT)
@@ -279,6 +291,8 @@ class PublicWordingGuardTests(unittest.TestCase):
             "The historical Core-1000 subset is preserved.",
             "A recovery batch supplied missing drafts.",
             "Rows use draft_unavailable status.",
+            "The collection first contained 1,000 events.",
+            "We released 1,000 events, then expanded to 2,000.",
         )
         for phrase in phrases:
             with self.subTest(phrase=phrase):

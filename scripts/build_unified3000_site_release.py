@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build the Unified-3000 data and chart assets used by the static website."""
+"""Build the H²EPR-Bench data and chart assets used by the static website."""
 
 from __future__ import annotations
 
@@ -235,12 +235,12 @@ def build_result_data() -> list[dict[str, object]]:
     nonempty = [row for row in rows if row["candidate_terminal_count"]]
     payload = {
         "meta": {
-            "release": "Unified-3000",
+            "release": "H²EPR-Bench",
             "system_count": 21,
             "events_per_system": 3000,
             "evaluation_slots": 63000,
             "primary_threshold": 0.18,
-            "score": "Discriminative H2EPRScore v7",
+            "score": "H²EPRScore",
             "nonempty_system_count": len(nonempty),
         },
         "models": rows,
@@ -290,7 +290,7 @@ def build_dataset_charts() -> None:
     values = [int(row["event_count"]) for row in domains]
     fig, ax = plt.subplots(figsize=(9.2, 4.8))
     bars = ax.barh(labels, values, color=PALETTE[: len(values)])
-    ax.set_title("Unified-3000 domain distribution", loc="left", fontsize=17, fontweight="bold")
+    ax.set_title("H²EPR-Bench domain distribution", loc="left", fontsize=17, fontweight="bold")
     ax.set_xlabel("Events")
     ax.bar_label(bars, padding=5, fontsize=10)
     ax.spines[["top", "right", "left"]].set_visible(False)
@@ -473,8 +473,8 @@ def build_summary_panel() -> None:
     categories = sorted(read_csv(CATEGORY_DISTRIBUTION), key=lambda row: int(row["event_count"]), reverse=True)[:5]
     canvas = Image.new("RGB", (2400, 920), BG)
     draw = ImageDraw.Draw(canvas)
-    draw.text((76, 52), "Unified-3000 event-process benchmark", font=image_font(52, bold=True), fill=INK)
-    draw.text((78, 116), "Evidence-traceable resources for reconstruction, analysis, prediction, and simulation", font=image_font(27), fill=MUTED)
+    draw.text((76, 52), "H²EPR-Bench", font=image_font(52, bold=True), fill=INK)
+    draw.text((78, 116), "Evidence-traceable evaluation of how complex events unfold", font=image_font(27), fill=MUTED)
 
     rounded_panel(draw, (78, 188, 444, 502))
     draw.rectangle((78, 188, 88, 502), fill=BLUE)
@@ -530,15 +530,15 @@ def build_summary_panel() -> None:
         draw.text((x + 22, 252), label, font=image_font(17, bold=True), fill=INK_2)
 
     rounded_panel(draw, (1570, 336, 2318, 502))
-    draw.text((1594, 354), "Downstream workflows", font=image_font(19, bold=True), fill=TEAL)
+    draw.text((1594, 354), "Research directions", font=image_font(19, bold=True), fill=TEAL)
     draw.text((1700, 418), "Analysis  →  Prediction  →  Simulation", font=image_font(29, bold=True), fill=INK)
 
     rounded_panel(draw, (78, 568, 2318, 840))
-    draw.text((110, 596), "Release structure", font=image_font(25, bold=True), fill=INK)
+    draw.text((110, 596), "Benchmark ecosystem", font=image_font(25, bold=True), fill=INK)
     columns = [
-        ("Public dataset", "Catalog, public draft EPGs, Gantt views, schemas, and release manifests.", BLUE),
-        ("Gated Gold", "3,000 medium-granularity reference EPGs for controlled benchmark scoring.", TEAL),
-        ("Explorer", "Interactive browsing for event metadata, timelines, and public graph summaries.", GOLD),
+        ("Public Dataset", "Catalog, 3,000 Draft EPGs, stage views, timelines, schemas, and manifests.", BLUE),
+        ("Reference EPGs", "3,000 expert-finalized graphs for official benchmark scoring.", TEAL),
+        ("Event Explorer", "Interactive browsing for event metadata, timelines, and graph summaries.", GOLD),
     ]
     for index, (title, body, color) in enumerate(columns):
         x = 110 + index * 736
@@ -575,7 +575,7 @@ def main() -> None:
     build_dataset_charts()
     build_diagnostic_charts(rows)
     build_summary_panel()
-    print("Built Unified-3000 website data and visual assets.")
+    print("Built H²EPR-Bench website data and visual assets.")
 
 
 if __name__ == "__main__":

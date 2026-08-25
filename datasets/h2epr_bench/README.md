@@ -1,4 +1,4 @@
-# H2EPR-Bench public Dataset release contract
+# H²EPR-Bench public Dataset contract
 
 [Project Website](https://agenticfinlab.github.io/H2EPR-Bench/) ·
 [Event Explorer](https://huggingface.co/spaces/AgenticFinLab/H2EPR-Bench-Explorer) ·
@@ -6,10 +6,9 @@
 [Reference EPGs (Gated)](https://huggingface.co/datasets/AgenticFinLab/H2EPR-Bench-Gold) ·
 [Release Repository](https://github.com/AgenticFinLab/H2EPR-Bench)
 
-This directory maintains the public source contract and local validator for
-the H2EPR-Bench Unified-3000 Dataset release. The released tables and Draft
-EPG records remain on Hugging Face and are intentionally not duplicated in
-this GitHub repository.
+This directory maintains the source contract, Dataset Card, and local
+validator for the 3,000-event H²EPR-Bench Dataset. Released tables and Draft
+EPG records are hosted on Hugging Face.
 
 The contract covers the continuous `H2EPR-0001` through `H2EPR-3000`
 namespace. Every event has one public sanitized Draft EPG, and the five viewer
@@ -40,12 +39,11 @@ draft_events/<H2EPR-ID>/draft_epg.json
 Every path is derived from the validated public event identity; no path is read
 from event metadata.
 
-## Release boundary
+## Draft and reference EPGs
 
-A public Draft EPG is a sanitized FinMycelium construction artifact. It is
-not a reference EPG (Gold) and must never be presented as one. Official
-reference EPG records remain in the manual-gated Hugging Face companion and
-are not required by this validator.
+The public Dataset includes one sanitized FinMycelium Draft EPG per event.
+Expert-finalized EPGs used for official scoring are available through the
+gated Hugging Face companion.
 
 Code in this directory is Apache-2.0. The released Dataset, documentation,
 and content are CC BY-NC 4.0; see the repository licensing notice.

@@ -61,7 +61,7 @@ class DatasetRevisionUnavailable(DatasetTransportError):
 
 
 class ReleaseContractError(ExplorerDataError):
-    """The loaded files do not form the expected Unified-3000 release."""
+    """The loaded files do not form the expected H²EPR-Bench release."""
 
 
 class DraftAssetMissing(ExplorerDataError):
@@ -73,7 +73,7 @@ class DraftIntegrityError(ExplorerDataError):
 
 
 class InvalidEventId(ValueError):
-    """An identifier is not a canonical Unified-3000 event ID."""
+    """An identifier is not a canonical H²EPR-Bench event ID."""
 
 
 @dataclass
@@ -87,7 +87,7 @@ class ExplorerRelease:
         validate_event_id(event_id)
         rows = self.events.loc[self.events["event_id"].eq(event_id)]
         if rows.empty:
-            raise InvalidEventId(f"Unknown Unified-3000 event ID: {event_id}")
+            raise InvalidEventId(f"Unknown H²EPR-Bench event ID: {event_id}")
         if len(rows) != 1:
             raise ReleaseContractError(f"Duplicate event identity in joined view: {event_id}")
         return rows.iloc[0]
@@ -109,10 +109,10 @@ def _as_local_root(local_dataset_dir: Path | str | None = None) -> Path | None:
 
 def validate_event_id(event_id: str) -> str:
     if not isinstance(event_id, str) or not re.fullmatch(EVENT_ID_PATTERN, event_id):
-        raise InvalidEventId(f"Invalid Unified-3000 event ID: {event_id!r}")
+        raise InvalidEventId(f"Invalid H²EPR-Bench event ID: {event_id!r}")
     number = int(event_id.rsplit("-", 1)[1])
     if not EVENT_ID_MIN <= number <= EVENT_ID_MAX:
-        raise InvalidEventId(f"Unified-3000 event ID is out of range: {event_id}")
+        raise InvalidEventId(f"H²EPR-Bench event ID is out of range: {event_id}")
     return event_id
 
 
@@ -266,7 +266,7 @@ def _expected_event_ids() -> list[str]:
 def _require_exact_event_order(frame: pd.DataFrame, column: str, table_name: str) -> None:
     if frame[column].tolist() != _expected_event_ids():
         raise ReleaseContractError(
-            f"{table_name} does not contain the exact numeric Unified-3000 event order"
+            f"{table_name} does not contain the exact numeric H²EPR-Bench event order"
         )
 
 
@@ -346,7 +346,7 @@ def build_explorer_view(
     summary: pd.DataFrame,
     source_hashes: pd.DataFrame,
 ) -> pd.DataFrame:
-    """Build the exact one-row-per-event Unified-3000 Explorer view."""
+    """Build the exact one-row-per-event H²EPR-Bench Explorer view."""
 
     tables = (
         (gallery, EVENT_GALLERY_SCHEMA, "event_gallery", "public_event_id"),
@@ -451,7 +451,7 @@ def build_explorer_view(
             source_hashes, on="public_event_id", how="left", validate="one_to_one"
         )
     except Exception as exc:
-        raise ReleaseContractError("Unified-3000 Explorer join multiplicity failure") from exc
+        raise ReleaseContractError("H²EPR-Bench Explorer join multiplicity failure") from exc
 
     _require_row_count(joined, EXPECTED_EVENT_COUNT, "joined Explorer view")
     _require_no_nulls(joined, "joined Explorer view")

@@ -1,0 +1,306 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1515" height="941" viewBox="70 0 1515 941">
+  <title>H²EPR-Bench evidence-to-EPG overview</title>
+  <desc>Fixed public evidence is organized as a hierarchical Event-Process Graph for reconstruction, analysis, prediction, and simulation.</desc>
+  <defs>
+    <linearGradient id="navyGrad" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#083b6f"/><stop offset="1" stop-color="#00538b"/></linearGradient>
+    <linearGradient id="blueGrad" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4f91db"/><stop offset="1" stop-color="#1f67bb"/></linearGradient>
+    <linearGradient id="tealGrad" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#399d9a"/><stop offset="1" stop-color="#187675"/></linearGradient>
+    <linearGradient id="orangeGrad" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f0bd52"/><stop offset="1" stop-color="#e4941d"/></linearGradient>
+    <linearGradient id="salmonGrad" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f38d72"/><stop offset="1" stop-color="#dd5b46"/></linearGradient>
+    <linearGradient id="cardWash" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#fbfcfd"/></linearGradient>
+    <filter id="shadow" x="-18%" y="-18%" width="136%" height="145%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="7" result="blur"/>
+      <feOffset in="blur" dx="0" dy="4" result="offsetBlur"/>
+      <feColorMatrix in="offsetBlur" type="matrix" values="0 0 0 0 0.086  0 0 0 0 0.176  0 0 0 0 0.275  0 0 0 .16 0" result="shadowColor"/>
+      <feMerge><feMergeNode in="shadowColor"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="softShadow" x="-20%" y="-20%" width="140%" height="145%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="3" result="blur"/>
+      <feOffset in="blur" dx="0" dy="2" result="offsetBlur"/>
+      <feColorMatrix in="offsetBlur" type="matrix" values="0 0 0 0 0.094  0 0 0 0 0.204  0 0 0 0 0.318  0 0 0 .17 0" result="shadowColor"/>
+      <feMerge><feMergeNode in="shadowColor"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <marker id="arrowNavy" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="9" markerHeight="9" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="#073b70"/></marker>
+    <marker id="arrowBlue" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="#337fc5"/></marker>
+    <marker id="arrowGreen" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="#2f8d3c"/></marker>
+    <marker id="arrowPurple" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="#762e9b"/></marker>
+    <style>
+      .serif{font-family:Georgia,'Times New Roman',serif;fill:#082f61}.sans{font-family:Arial,Helvetica,sans-serif}.panel{fill:url(#cardWash);stroke:#d0d5da;stroke-width:1.3}.thin{stroke:#d8dde2;stroke-width:1}.navyStroke{stroke:#073b70;stroke-width:2.25;fill:none}.flow{stroke:#073b70;stroke-width:2.2;fill:none;marker-end:url(#arrowNavy)}.smallflow{stroke:#144a75;stroke-width:1.65;fill:none;marker-end:url(#arrowNavy)}.label{font-family:Georgia,'Times New Roman',serif;fill:#092f61}.muted{fill:#a9adb1}.docline{stroke:#d5d7d8;stroke-width:5;stroke-linecap:square}.mini-line{stroke:#d7d9da;stroke-width:3}.node-line{stroke:#9da8b1;stroke-width:1.25;fill:none}.dash{stroke-dasharray:6 6}.center{text-anchor:middle;dominant-baseline:middle}
+    </style>
+  </defs>
+
+  <rect width="1672" height="941" fill="#fdfefe"/>
+
+  <!-- Fixed-evidence document cards: original editorial style, simplified. -->
+  <g id="fixed-evidence">
+    <rect x="88" y="80" width="180" height="748" rx="12" class="panel" filter="url(#shadow)"/>
+    <text x="178" y="103" class="serif" font-size="22" font-weight="700" text-anchor="middle"><tspan x="178">Fixed</tspan><tspan x="178" dy="26">Evidence</tspan></text>
+
+    <g id="fixed-evidence-sources" transform="translate(17 14)">
+
+    <g id="news-card" transform="translate(0 16)" filter="url(#softShadow)">
+      <path d="M108 125H212L226 139V223Q226 235 214 235H108Q96 235 96 223V137Q96 125 108 125Z" fill="#FFFFFF" stroke="#CFD5DA" stroke-width="1.3"/>
+      <path d="M212 125V140H226Z" fill="#D8DADB"/>
+      <text x="161" y="153" class="serif" font-size="14" font-weight="700" text-anchor="middle">NEWS</text>
+      <g id="news-editorial-illustration" transform="translate(134 169) scale(.65)" stroke="#17324D" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M6 5H55L65 15V43H77V53Q77 64 67 64H18Q6 64 6 52Z" fill="#E8EDF4"/>
+        <path d="M55 5V15H65Z" fill="#C9D3E0"/>
+        <path d="M65 43H77V53Q77 64 67 64Q65 60 65 53Z" fill="#B8C5D6"/>
+        <rect x="15" y="15" width="32" height="13" rx="2" fill="#6C89C6" stroke="none"/>
+        <path d="M15 35H55M15 58H56" fill="none"/>
+        <rect x="15" y="41" width="16" height="12" rx="1" fill="#6C89C6" stroke="none"/>
+        <path d="M38 42H56M38 49H56" fill="none"/>
+      </g>
+    </g>
+
+    <g id="announcement-card" transform="translate(0 6)" filter="url(#softShadow)">
+      <path d="M108 300H212L226 314V398Q226 410 214 410H108Q96 410 96 398V312Q96 300 108 300Z" fill="#FFFFFF" stroke="#C7DAD6" stroke-width="1.3"/>
+      <path d="M212 300V315H226Z" fill="#CFE2DF"/>
+      <text x="161" y="322" font-family="Georgia,'Times New Roman',serif" font-size="11" font-weight="700" fill="#0B716F" text-anchor="middle"><tspan x="161">PUBLIC</tspan><tspan x="161" dy="14">ANNOUNCEMENT</tspan></text>
+      <g id="announcement-editorial-illustration" transform="translate(133 348) scale(.60)" stroke="#0C7375" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M8 22H29C45 22 56 17 68 8V54C56 45 45 40 29 40H8Q3 40 3 35V27Q3 22 8 22Z" fill="#E9F3F3"/>
+        <path d="M29 22V40" fill="none"/>
+        <path d="M18 41V60Q18 64 14 64H11Q7 64 7 60V41" fill="#CFE2DF"/>
+        <path d="M75 20L84 12M77 31H89M75 42L84 50" fill="none"/>
+      </g>
+    </g>
+
+    <g id="report-card" transform="translate(0 -4)" filter="url(#softShadow)">
+      <path d="M108 475H212L226 489V573Q226 585 214 585H108Q96 585 96 573V487Q96 475 108 475Z" fill="#FFFFFF" stroke="#CFD5DA" stroke-width="1.3"/>
+      <path d="M212 475V490H226Z" fill="#D9DBDC"/>
+      <text x="161" y="503" class="serif" font-size="14" font-weight="700" text-anchor="middle">REPORT</text>
+      <g id="report-editorial-illustration" transform="translate(134 516) scale(.62)" stroke="#17324D" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="10" y="34" width="13" height="27" rx="1" fill="#F06A61"/>
+        <rect x="36" y="23" width="13" height="38" rx="1" fill="#F0C96A"/>
+        <rect x="62" y="11" width="13" height="50" rx="1" fill="#65B5E9"/>
+        <path d="M7 28C27 24 43 16 58 3" fill="none"/>
+        <path d="M48 4L60 2L58 14" fill="none"/>
+        <path d="M6 66H80" fill="none"/>
+      </g>
+    </g>
+
+    <g id="regulatory-card" transform="translate(0 -14)" filter="url(#softShadow)">
+      <path d="M108 650H212L226 664V748Q226 760 214 760H108Q96 760 96 748V662Q96 650 108 650Z" fill="#FFFFFF" stroke="#E6BEB5" stroke-width="1.3"/>
+      <path d="M212 650V665H226Z" fill="#F3B2A1"/>
+      <text x="161" y="672" font-family="Georgia,'Times New Roman',serif" font-size="11" font-weight="700" fill="#D62E18" text-anchor="middle"><tspan x="161">REGULATORY</tspan><tspan x="161" dy="14">MATERIAL</tspan></text>
+      <g id="regulatory-editorial-illustration" transform="translate(135 700) scale(.55)" stroke="#D95540" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M5 29L49 6L93 29Z" fill="#FFF1ED"/>
+        <rect x="10" y="29" width="78" height="8" fill="#F3B2A1"/>
+        <path d="M16 37V58M31 37V58M49 37V58M67 37V58M82 37V58" fill="none"/>
+        <rect x="10" y="58" width="78" height="8" fill="#F3B2A1"/>
+        <path d="M5 66H93V72H2V67Q2 66 5 66Z" fill="#FFF1ED"/>
+        <path d="M49 6V-3" fill="none"/>
+        <path d="M49 -3H69V7H49Z" fill="#E6654F"/>
+      </g>
+    </g>
+    </g>
+    <path d="M268 454H296" class="flow"/>
+  </g>
+
+  <!-- Event-Process Graph and downstream uses -->
+  <g id="epg-and-applications" transform="matrix(1 0 0 1 -90 0)">
+  <!-- Central Event-Process Graph -->
+  <g id="event-process-graph" transform="matrix(1.2 0 0 1.2 -121.2 -156.4)">
+    <rect x="426" y="197" width="589" height="624" rx="14" class="panel" filter="url(#shadow)"/>
+    <text x="720.5" y="232" class="serif" font-size="29" font-weight="700" text-anchor="middle">Event-Process Graph</text>
+    <rect x="437" y="263" width="566" height="543" rx="8" fill="#fff" stroke="#cbd4dd" stroke-width="1.2"/>
+    <line x1="437" y1="357" x2="1003" y2="357" class="thin"/>
+    <line x1="437" y1="458" x2="1003" y2="458" class="thin"/>
+    <line x1="437" y1="656" x2="1003" y2="656" class="thin"/>
+
+    <!-- Stages row -->
+    <text x="454" y="314" class="label" font-size="18">Stages</text>
+    <rect x="540" y="286" width="107" height="44" rx="11" fill="#f9fafb" stroke="#90a8c1" stroke-width="1.4"/>
+    <text x="593.5" y="310" class="label center" font-size="20" font-weight="700">Stage 1</text>
+    <path d="M652 308H693" class="smallflow"/>
+    <rect x="701" y="286" width="110" height="44" rx="10" fill="url(#navyGrad)" stroke="#073768" stroke-width="1.3" filter="url(#softShadow)"/>
+    <text x="756" y="310" fill="#fff" font-family="Georgia,'Times New Roman',serif" font-size="20" font-weight="700" class="center">Stage 2</text>
+    <path d="M817 308H859" class="smallflow"/>
+    <rect x="867" y="286" width="108" height="44" rx="11" fill="#f9fafb" stroke="#90a8c1" stroke-width="1.4"/>
+    <text x="921" y="310" class="label center" font-size="20" font-weight="700">Stage 3</text>
+    <path d="M755 332V384" stroke="#3984ca" stroke-width="1.8" stroke-dasharray="6 5" marker-end="url(#arrowBlue)"/>
+
+    <!-- Episodes row -->
+    <text x="446" y="416" class="label" font-size="18">Episodes</text>
+    <rect x="540" y="386" width="107" height="43" rx="10" fill="#f9fafb" stroke="#90a8c1" stroke-width="1.4"/>
+    <text x="593.5" y="410" class="label center" font-size="19" font-weight="700">Episode 1</text>
+    <path d="M652 408H693" class="smallflow"/>
+    <rect x="701" y="386" width="110" height="43" rx="10" fill="url(#blueGrad)" stroke="#286db7" stroke-width="1.3" filter="url(#softShadow)"/>
+    <text x="756" y="410" fill="#fff" font-family="Georgia,'Times New Roman',serif" font-size="19" font-weight="700" class="center">Episode 2</text>
+    <path d="M817 408H859" class="smallflow"/>
+    <rect x="867" y="386" width="108" height="43" rx="10" fill="#f9fafb" stroke="#90a8c1" stroke-width="1.4"/>
+    <text x="921" y="410" class="label center" font-size="19" font-weight="700">Episode 3</text>
+    <path d="M755 430V497" stroke="#3984ca" stroke-width="1.8" stroke-dasharray="6 5"/>
+
+    <!-- Micro graph row label -->
+    <text x="482" y="531" class="label" font-size="16" text-anchor="middle"><tspan x="482">Micro-level</tspan><tspan x="482" dy="23">Semantic</tspan><tspan x="482" dy="23">Graph</tspan></text>
+
+    <!-- Participant 1 -->
+    <circle cx="558" cy="520" r="26" fill="#fff" stroke="#2b79c2" stroke-width="1.8"/>
+    <circle cx="558" cy="512" r="7" fill="#3b81c4"/><path d="M546 532v-7q0-8 12-8t12 8v7Z" fill="#3b81c4"/>
+    <text x="558" y="574" class="label" font-size="15" text-anchor="middle">Participant A</text>
+    <path d="M585 520H612" class="smallflow"/>
+
+    <!-- Actions -->
+    <rect x="617" y="500" width="69" height="41" rx="7" fill="#eef8f4" stroke="#278d74" stroke-width="1.2"/>
+    <text x="651.5" y="522" font-family="Georgia,'Times New Roman',serif" font-size="15" fill="#075c4d" class="center">Action 1</text>
+    <path d="M687 520H714" class="smallflow"/>
+    <rect x="720" y="500" width="69" height="41" rx="7" fill="#eef8f4" stroke="#278d74" stroke-width="1.2"/>
+    <text x="754.5" y="522" font-family="Georgia,'Times New Roman',serif" font-size="15" fill="#075c4d" class="center">Action 2</text>
+    <path d="M790 520H816" class="smallflow"/>
+
+    <!-- Outcome -->
+    <path d="M834 493H886L903 521L886 549H834L817 521Z" fill="#fff9ed" stroke="#e7a119" stroke-width="1.3"/>
+    <text x="860" y="522" font-family="Georgia,'Times New Roman',serif" font-size="16" fill="#a54f00" class="center">Outcome</text>
+    <path d="M939 520H906" class="smallflow"/>
+
+    <!-- Participant 2 -->
+    <circle cx="958" cy="520" r="26" fill="#fff" stroke="#2b79c2" stroke-width="1.8"/>
+    <circle cx="958" cy="512" r="7" fill="#3b81c4"/><path d="M946 532v-7q0-8 12-8t12 8v7Z" fill="#3b81c4"/>
+    <text x="958" y="574" class="label" font-size="15" text-anchor="middle">Participant B</text>
+
+    <!-- Typed relation -->
+    <path d="M755 565L806 599L755 633L704 599Z" fill="#fbf5ff" stroke="#7939a1" stroke-width="1.3"/>
+    <text x="755" y="592" font-family="Georgia,'Times New Roman',serif" font-size="15" fill="#532172" text-anchor="middle"><tspan x="755">Typed</tspan><tspan x="755" dy="18">Relation</tspan></text>
+    <path d="M704 599H650V547" stroke="#762e9b" stroke-width="1.4" fill="none" marker-end="url(#arrowPurple)"/>
+    <path d="M806 599H861V551" stroke="#762e9b" stroke-width="1.4" fill="none" marker-end="url(#arrowPurple)"/>
+    <path d="M755 565V545" stroke="#2f8d3c" stroke-width="1.5" marker-end="url(#arrowGreen)"/>
+
+    <!-- Evidence support row -->
+    <text x="477" y="725" class="label" font-size="17" text-anchor="middle"><tspan x="477">Evidence</tspan><tspan x="477" dy="24">Support</tspan></text>
+    <g id="evidence-support-passages">
+      <rect x="559" y="710" width="76" height="50" rx="10" fill="#f2fbf9" stroke="#168b7c" stroke-width="1.5"/>
+      <text x="597" y="736" font-family="Georgia,'Times New Roman',serif" font-size="20" fill="#126f63" class="center">e₁</text>
+      <rect x="716" y="710" width="76" height="50" rx="10" fill="#f3f8fd" stroke="#3784d1" stroke-width="1.5"/>
+      <text x="754" y="736" font-family="Georgia,'Times New Roman',serif" font-size="20" fill="#2f70b1" class="center">e₂</text>
+      <rect x="873" y="710" width="76" height="50" rx="10" fill="#fff9ee" stroke="#dc8a00" stroke-width="1.5"/>
+      <text x="911" y="736" font-family="Georgia,'Times New Roman',serif" font-size="20" fill="#b06e00" class="center">e₃</text>
+    </g>
+    <circle cx="597" cy="697" r="4.5" fill="#2f8d3c"/><circle cx="754" cy="697" r="4.5" fill="#2f8d3c"/><circle cx="911" cy="697" r="4.5" fill="#2f8d3c"/>
+    <path d="M597 697V665Q597 655 608 648L635 632Q649 623 649 610V545" stroke="#2f8d3c" stroke-width="1.4" fill="none" stroke-dasharray="6 5" marker-end="url(#arrowGreen)"/>
+    <path d="M754 697V638" stroke="#2f8d3c" stroke-width="1.4" fill="none" stroke-dasharray="6 5" marker-end="url(#arrowGreen)"/>
+    <path d="M911 697V665Q911 655 900 648L874 632Q861 624 861 611V553" stroke="#2f8d3c" stroke-width="1.4" fill="none" stroke-dasharray="6 5" marker-end="url(#arrowGreen)"/>
+  </g>
+
+  <!-- Output routing from central graph -->
+  <path d="M1098 454H1114" class="navyStroke"/>
+  <path d="M1114 454V210Q1114 198 1126 198H1144" class="flow"/>
+  <path d="M1114 454H1144" class="flow"/>
+  <path d="M1114 454V698Q1114 710 1126 710H1144" class="flow"/>
+
+  <!-- Right panels -->
+  <g id="applications" transform="translate(0 -34)">
+    <!-- Reconstruction -->
+    <g id="reconstruction-panel">
+      <rect x="1146" y="114" width="497" height="236" rx="12" class="panel" filter="url(#shadow)"/>
+      <text x="1394.5" y="153" class="serif" font-size="28" font-weight="700" text-anchor="middle">Reconstruction</text>
+      <!-- document stack -->
+      <g transform="translate(1166 178)" filter="url(#softShadow)">
+        <rect x="0" y="0" width="73" height="124" rx="4" fill="#fff" stroke="#d7dbdf"/>
+        <rect x="7" y="7" width="73" height="124" rx="4" fill="#fff" stroke="#d7dbdf"/>
+        <rect x="14" y="14" width="76" height="125" rx="4" fill="#fff" stroke="#cfd4d8"/>
+        <g transform="translate(22 23)"><rect width="15" height="19" rx="2" fill="#edf4fa" stroke="#3b6d9f"/><path d="M4 4h7M4 7h7M4 10h7M4 13h5" stroke="#3b6d9f" stroke-width="1"/><path d="M25 3h40M25 9h31M25 15h39" stroke="#cad8e5" stroke-width="2"/></g>
+        <g transform="translate(22 56)"><rect width="65" height="24" rx="2" fill="#edf4fa"/><path d="M3 21l14-13 10 9 11-12 24 16Z" fill="#7ca7d2"/></g>
+        <g transform="translate(24 95)" stroke="#f0cbc4" stroke-width="2"><path d="M0 0h60M0 7h47M0 14h57"/></g>
+        <g transform="translate(21 104)" fill="none" stroke="#e45e47" stroke-width="1.5"><path d="M0 10L8 4l8 6M2 11h12M3 22h10M4 12v9M8 12v9M12 12v9"/></g>
+      </g>
+      <path d="M1274 244H1311" class="flow"/>
+      <!-- reconstruction mini graph -->
+      <g transform="translate(1317 193)">
+        <g class="node-line"><path d="M23 18L76 2L134 35L126 83L55 94L20 55L84 55L134 35M76 2L84 55L55 94M23 18L20 55M84 55L126 83" stroke-dasharray="6 4"/></g>
+        <circle cx="23" cy="18" r="9" fill="#7ca7d3"/>
+        <circle cx="76" cy="2" r="10" fill="#fff" stroke="#2e77bd" stroke-width="2"/><circle cx="76" cy="-1" r="3" fill="#2e77bd"/><path d="M70 7q6-9 12 0" fill="#2e77bd"/>
+        <rect x="14" y="46" width="19" height="19" rx="2" fill="#2e76b8" stroke="#1d568b"/>
+        <rect x="74" y="46" width="20" height="20" rx="2" fill="#e9ad3b" stroke="#bd7f10"/>
+        <rect x="125" y="26" width="19" height="19" rx="2" fill="#2a8583" stroke="#176666"/>
+        <rect x="126" y="74" width="19" height="19" rx="2" fill="#ef7961" stroke="#c8503e"/>
+        <path d="M14 87l9-9 9 9-9 9Z" fill="#aaa" stroke="#777"/>
+        <circle cx="55" cy="94" r="9" fill="#437eb9"/>
+        <circle cx="126" cy="101" r="10" fill="#fff" stroke="#2e77bd" stroke-width="2"/><circle cx="126" cy="98" r="3" fill="#2e77bd"/><path d="M120 107q6-9 12 0" fill="#2e77bd"/>
+      </g>
+      <line x1="1492" y1="177" x2="1492" y2="327" stroke="#d7d7d7" stroke-width="1.2"/>
+      <!-- gauge -->
+      <g transform="translate(1571 242)">
+        <path d="M-45 1A45 45 0 0 1 45 1" fill="none" stroke="#b5b7b8" stroke-width="9" stroke-linecap="round"/>
+        <path d="M-45 1A45 45 0 0 1 25-36" fill="none" stroke="#177c7e" stroke-width="9" stroke-linecap="round"/>
+        <circle r="8" fill="#16787b"/><path d="M0 0L23-30" stroke="#16787b" stroke-width="4" stroke-linecap="round"/>
+      </g>
+      <text x="1211" y="327" class="sans" font-size="15" font-weight="700" fill="#5f7185" text-anchor="middle">Evidence</text>
+      <text x="1393" y="327" class="sans" font-size="15" font-weight="700" fill="#5f7185" text-anchor="middle">Candidate EPG</text>
+      <text x="1571" y="327" class="sans" font-size="15" font-weight="700" fill="#5f7185" text-anchor="middle">Evaluation</text>
+    </g>
+
+    <!-- Analysis -->
+    <g id="analysis-panel">
+      <rect x="1146" y="370" width="497" height="236" rx="12" class="panel" filter="url(#shadow)"/>
+      <text x="1394.5" y="409" class="serif" font-size="28" font-weight="700" text-anchor="middle">Analysis</text>
+      <!-- analysis mini graph -->
+      <g transform="translate(1165 430)">
+        <g class="node-line"><path d="M17 18L79 18L142 20L79 65L17 62L56 111L79 65L115 119L79 65L142 92M142 20L142 92M79 18L79 65" stroke-dasharray="5 4"/></g>
+        <circle cx="17" cy="18" r="9" fill="#7ca7d3"/>
+        <circle cx="79" cy="18" r="10" fill="#fff" stroke="#2e77bd" stroke-width="2"/><circle cx="79" cy="15" r="3" fill="#2e77bd"/><path d="M73 24q6-9 12 0" fill="#2e77bd"/>
+        <path d="M142 10l10 10-10 10-10-10Z" fill="#3d9994"/><circle cx="142" cy="20" r="3" fill="#fff"/>
+        <path d="M142 39l10 10-10 10-10-10Z" fill="#2b8a86"/><circle cx="142" cy="49" r="3" fill="#fff"/>
+        <rect x="8" y="53" width="19" height="19" rx="2" fill="#2e76b8"/>
+        <rect x="69" y="55" width="20" height="20" rx="2" fill="#e9ad3b"/>
+        <rect x="133" y="83" width="19" height="19" rx="2" fill="#ef7961"/>
+        <path d="M8 107l9-9 9 9-9 9Z" fill="#aaa" stroke="#777"/>
+        <circle cx="56" cy="111" r="9" fill="#366fa8"/>
+        <circle cx="115" cy="119" r="10" fill="#fff" stroke="#2e77bd" stroke-width="2"/><circle cx="115" cy="116" r="3" fill="#2e77bd"/><path d="M109 125q6-9 12 0" fill="#2e77bd"/>
+      </g>
+      <line x1="1358" y1="434" x2="1358" y2="578" stroke="#d7d7d7" stroke-width="1.2"/>
+      <!-- Heatmap -->
+      <g transform="translate(1394 438)">
+        <rect width="97" height="98" fill="#f9fbfd" stroke="#9db6d1"/>
+        <g stroke="#b5c7d9" stroke-width=".6"><path d="M16 0v98M32 0v98M48 0v98M64 0v98M80 0v98M0 16h97M0 32h97M0 48h97M0 64h97M0 80h97"/></g>
+        <g fill="#4c83ba"><rect x="1" y="1" width="15" height="15" opacity=".25"/><rect x="17" y="17" width="15" height="15" opacity=".8"/><rect x="33" y="33" width="15" height="15" opacity=".9"/><rect x="49" y="49" width="15" height="15" opacity=".75"/><rect x="65" y="65" width="15" height="15" opacity=".62"/><rect x="81" y="81" width="15" height="16" opacity=".82"/><rect x="17" y="1" width="15" height="15" opacity=".15"/><rect x="33" y="17" width="15" height="15" opacity=".18"/><rect x="49" y="33" width="15" height="15" opacity=".2"/><rect x="65" y="49" width="15" height="15" opacity=".25"/><rect x="81" y="65" width="15" height="15" opacity=".25"/></g>
+      </g>
+      <line x1="1522" y1="434" x2="1522" y2="578" stroke="#d7d7d7" stroke-width="1.2"/>
+      <!-- bar charts -->
+      <g transform="translate(1540 447)"><line x1="0" y1="72" x2="80" y2="72" stroke="#c9cdcf"/><rect x="3" y="43" width="10" height="29" fill="#3d9994"/><rect x="19" y="27" width="10" height="45" fill="#2e8583"/><rect x="35" y="46" width="10" height="26" fill="#3d9994"/><rect x="51" y="26" width="10" height="46" fill="#2e8583"/><rect x="67" y="15" width="10" height="57" fill="#6e8f91"/></g>
+      <text x="1244" y="590" class="sans" font-size="15" font-weight="700" fill="#5f7185" text-anchor="middle">Structure</text>
+      <text x="1442" y="590" class="sans" font-size="15" font-weight="700" fill="#5f7185" text-anchor="middle">Relations</text>
+      <text x="1580" y="590" class="sans" font-size="15" font-weight="700" fill="#5f7185" text-anchor="middle">Patterns</text>
+    </g>
+
+    <!-- Prediction / Simulation -->
+    <g id="prediction-panel">
+      <rect x="1146" y="626" width="497" height="236" rx="12" class="panel" filter="url(#shadow)"/>
+      <text x="1394.5" y="665" class="serif" font-size="28" font-weight="700" text-anchor="middle">Prediction / Simulation</text>
+      <text x="1250" y="697" class="sans" font-size="15" font-weight="700" fill="#5f7185" text-anchor="middle">Observed process</text>
+      <text x="1500" y="697" class="sans" font-size="15" font-weight="700" fill="#5f7185" text-anchor="middle">Alternative futures</text>
+      <line x1="1390" y1="710" x2="1390" y2="845" stroke="#D7D7D7" stroke-width="1.2"/>
+      <path d="M1314.5 735.2H1390" stroke="#7D8790" stroke-width="1.35" fill="none"/>
+      <path d="M1315 796H1390" stroke="#7D8790" stroke-width="1.35" fill="none"/>
+      <!-- observed graph -->
+      <g transform="translate(1175 710) scale(.9)">
+        <g class="node-line"><path d="M17 18L62 18L99 54L62 101L17 62L17 18M62 18L62 101L109 119L99 54L155 28L155 96L109 119"/></g>
+        <circle cx="17" cy="18" r="9" fill="#7ca7d3"/>
+        <circle cx="62" cy="18" r="10" fill="#fff" stroke="#6da3c4"/><circle cx="62" cy="15" r="3" fill="#4c95a6"/><path d="M56 24q6-9 12 0" fill="#4c95a6"/>
+        <rect x="8" y="53" width="19" height="19" rx="2" fill="#2e76b8"/>
+        <rect x="52" y="55" width="20" height="20" rx="2" fill="#e9ad3b"/>
+        <path d="M8 107l9-9 9 9-9 9Z" fill="#aaa" stroke="#777"/>
+        <circle cx="62" cy="101" r="9" fill="#366fa8"/>
+        <circle cx="109" cy="119" r="9" fill="#fff" stroke="#2e77bd"/><circle cx="109" cy="116" r="3" fill="#2e77bd"/><path d="M103 125q6-9 12 0" fill="#2e77bd"/>
+        <circle cx="155" cy="28" r="9" fill="#237b79"/>
+        <rect x="146" y="86" width="19" height="19" rx="2" fill="#e86650"/>
+      </g>
+      <!-- branching futures -->
+      <g transform="translate(1390 714) scale(.9)">
+        <g stroke="#59626a" stroke-width="1.35" fill="none" stroke-dasharray="6 6"><path d="M0 23L78 15L151 10M0 23L78 15L151 62M0 90L78 72L151 62M0 90L78 72L151 117M151 10L205 10M151 62L205 14M151 62L205 66M151 117L205 115"/></g>
+        <rect x="-10" y="13" width="20" height="20" rx="2" fill="#4a9a97" stroke="#297b79"/>
+        <rect x="-10" y="80" width="20" height="20" rx="2" fill="#A7A9AA" stroke="#808487"/>
+        <path d="M68 15l10-10 10 10-10 10Z" fill="#e4a331" stroke="#b98019"/>
+        <rect x="68" y="62" width="20" height="20" rx="2" fill="#aaa" stroke="#888"/>
+        <rect x="141" y="52" width="20" height="20" rx="2" fill="#ef7961" stroke="#c8503e"/>
+        <circle cx="151" cy="10" r="9" fill="#fff" stroke="#3e9791"/><circle cx="151" cy="7" r="3" fill="#3e9791"/><path d="M145 16q6-9 12 0" fill="#3e9791"/>
+        <circle cx="151" cy="117" r="9" fill="#fff" stroke="#3e9791"/><circle cx="151" cy="114" r="3" fill="#3e9791"/><path d="M145 123q6-9 12 0" fill="#3e9791"/>
+        <rect x="196" y="0" width="19" height="19" rx="3" fill="#74aaa7" stroke="#3a8582"/>
+        <circle cx="205" cy="66" r="10" fill="#fff" stroke="#3b7fbd"/><circle cx="205" cy="63" r="3" fill="#3b7fbd"/><path d="M199 72q6-9 12 0" fill="#3b7fbd"/>
+        <path d="M205 6c7 0 11 6 8 13l-8 12-8-12c-3-7 1-13 8-13Z" fill="#e4a127" transform="translate(0 35)"/><circle cx="205" cy="51" r="3" fill="#fff"/>
+        <path d="M205 103c7 0 11 6 8 13l-8 12-8-12c-3-7 1-13 8-13Z" fill="#ef7c66"/><circle cx="205" cy="115" r="11" fill="none" stroke="#d65e4b" stroke-dasharray="2 2"/>
+      </g>
+    </g>
+  </g>
+  </g>
+</svg>

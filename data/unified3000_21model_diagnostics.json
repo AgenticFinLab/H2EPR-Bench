@@ -1,11 +1,11 @@
 {
   "meta": {
-    "release": "Unified-3000",
+    "release": "H²EPR-Bench",
     "system_count": 21,
     "events_per_system": 3000,
     "evaluation_slots": 63000,
     "primary_threshold": 0.18,
-    "score": "Discriminative H2EPRScore v7",
+    "score": "H²EPRScore",
     "nonempty_system_count": 20
   },
   "models": [

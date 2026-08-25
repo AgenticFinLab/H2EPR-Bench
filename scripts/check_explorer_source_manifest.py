@@ -22,7 +22,7 @@ CONSTANTS_PATH = (
 )
 EXPECTED_RELEASE_ID = "h2epr-unified3000-v2"
 EXPECTED_DATASET_REPO = "AgenticFinLab/H2EPR-Bench"
-EXPECTED_RC_TREE_SHA256 = "9b30d71eacbfa0e07539a5805a3cf05065e76199dfcf0272ef1d135c1098960e"
+EXPECTED_RC_TREE_SHA256 = "24f19b2eda8af998fa6e755c6dac8db62c40ad865815e6040cd83f6679cdbdb3"
 RELEASE_STATES = {"candidate", "dataset_published", "published"}
 GATES = {"local", "deployment", "published"}
 HEX40 = re.compile(r"^[0-9a-f]{40}$")

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Validate the self-contained Unified-3000 static website release."""
+"""Validate the self-contained H²EPR-Bench static website release."""
 
 from __future__ import annotations
 
@@ -48,11 +48,9 @@ REQUIRED_FILES = [
 REQUIRED_TEXT = [
     "H²EPR-Bench",
     "3,000",
-    "11,333",
     "25,814 verified documents",
-    "84,693 candidate source records",
+    "84,693 retrieved source records",
     "21",
-    "Unified-3000",
     "Background &amp; Motivation",
     "Benchmark Construction",
     "Interactive Explorer",
@@ -169,11 +167,11 @@ def main() -> None:
     meta = diagnostics.get("meta", {})
     models = diagnostics.get("models", [])
     if meta.get("system_count") != 21 or meta.get("events_per_system") != 3000 or meta.get("evaluation_slots") != 63000:
-        raise SystemExit("unexpected Unified-3000 diagnostics metadata")
+        raise SystemExit("unexpected H²EPR-Bench diagnostics metadata")
     if models != rows:
         raise SystemExit("diagnostic and leaderboard model rows differ")
 
-    print("Unified-3000 site validation passed")
+    print("H²EPR-Bench site validation passed")
 
 
 if __name__ == "__main__":

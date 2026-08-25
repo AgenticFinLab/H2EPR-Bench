@@ -311,7 +311,7 @@ def validate_reference_epg(document: Any) -> dict[str, Any]:
         raise ReferenceValidationError("public_event_id must match H2EPR-NNNN")
     number = int(event_id.rsplit("-", 1)[1])
     if not 1 <= number <= 3000:
-        raise ReferenceValidationError("public_event_id is outside Unified-3000")
+        raise ReferenceValidationError("public_event_id is outside H²EPR-Bench")
 
     _validate_canonical_event(payload["canonical_event"])
     _validate_scope(payload["scope_boundary"])

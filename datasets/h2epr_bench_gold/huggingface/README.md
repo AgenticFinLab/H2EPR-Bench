@@ -25,21 +25,20 @@ configs:
 ---
 
 [![Project Website](https://img.shields.io/badge/Project_Website-Visit-176B70?style=flat-square)](https://agenticfinlab.github.io/H2EPR-Bench/)
-[![Public Dataset](https://img.shields.io/badge/Public_Dataset-Unified--3000-176B70?style=flat-square)](https://huggingface.co/datasets/AgenticFinLab/H2EPR-Bench)
+[![Public Dataset](https://img.shields.io/badge/Public_Dataset-3%2C000_events-176B70?style=flat-square)](https://huggingface.co/datasets/AgenticFinLab/H2EPR-Bench)
 [![Event Explorer](https://img.shields.io/badge/Event_Explorer-Browse-176B70?style=flat-square)](https://huggingface.co/spaces/AgenticFinLab/H2EPR-Bench-Explorer)
 [![FinMycelium System](https://img.shields.io/badge/FinMycelium-System-176B70?style=flat-square)](https://github.com/AgenticFinLab/FinMycelium)
 [![Release Repository](https://img.shields.io/badge/Release_Repository-Source-176B70?style=flat-square)](https://github.com/AgenticFinLab/H2EPR-Bench)
 
 # H²EPR-Bench Reference EPGs
 
-This gated companion repository contains all 3,000 medium-granularity reference
-EPGs used to score fixed-evidence event-process reconstruction in
-H²EPR-Bench. The reference namespace is `H2EPR-0001` through `H2EPR-3000`.
+This gated companion contains the 3,000 expert-finalized reference EPGs used
+for official H²EPR-Bench scoring. Together, they provide a consistent
+medium-granularity view of every benchmark event.
 
-Reference EPGs were constructed from the same frozen evidence packages used in
-benchmark evaluation, using FinMycelium draft generation followed by
-agent–expert verification, expert adjudication and final sign-off. Public
-FinMycelium drafts remain separate intermediate construction artifacts.
+Each reference EPG was constructed from the same fixed evidence package used
+in benchmark evaluation. FinMycelium draft generation was followed by
+agent–expert verification, expert adjudication, and final sign-off.
 
 ## Quick facts
 
@@ -56,8 +55,8 @@ FinMycelium drafts remain separate intermediate construction artifacts.
 
 ## Reference graph composition
 
-The aggregate node distribution is disclosed for benchmark transparency; the
-per-event reference graphs remain controlled evaluation targets.
+The collection contains 104,027 nodes and 68,153 evidence-support edges,
+capturing both process structure and source-level traceability.
 
 <p align="center">
   <img src="assets/card/reference_node_composition.png" width="980" alt="H²EPR-Bench domain and reference EPG node composition">
@@ -79,18 +78,14 @@ per-event reference graphs remain controlled evaluation targets.
 
 ## Access and intended use
 
-Request access only when official scoring references are needed for benchmark
-evaluation, independent reproduction, or controlled audit of reported
-H²EPR-Bench results. The reference repository is not intended for general data
-collection, pretraining, benchmark memorization or redistribution.
+Request access for benchmark scoring, independent reproduction, or controlled
+audit of reported H²EPR-Bench results. The
+[public Dataset](https://huggingface.co/datasets/AgenticFinLab/H2EPR-Bench)
+and [Event Explorer](https://huggingface.co/spaces/AgenticFinLab/H2EPR-Bench-Explorer)
+provide the event catalog, public Draft EPGs, stage views, and representative
+timelines for open exploration.
 
-The reference EPGs are standardized, medium-granularity scoring targets rather
-than exhaustive historical truth records. Raw search records, full evidence
-text, and internal construction metadata are excluded from this release.
-
-The companion [public repository](https://huggingface.co/datasets/AgenticFinLab/H2EPR-Bench)
-provides the complete event catalog, sanitized FinMycelium drafts
-and representative Gantt previews.
+Access is reviewed manually to preserve the benchmark's evaluation setting.
 
 ## Loading tabular configs
 
@@ -127,9 +122,8 @@ manifests and [`SHA256SUMS`](SHA256SUMS).
 
 ## Usage restrictions
 
-Use this repository for research evaluation only. Do not redistribute reference
-EPGs, expose reference answers in prompts or public examples, or use them
-for model training or fine-tuning unless separately permitted in writing.
+Use this repository for research evaluation. Redistribution, model training,
+and public disclosure of reference answers require separate written permission.
 
 See [`TERMS_OF_USE.md`](TERMS_OF_USE.md) and [`LICENSE.md`](LICENSE.md).
 Citation metadata is provided in [`CITATION.cff`](CITATION.cff).

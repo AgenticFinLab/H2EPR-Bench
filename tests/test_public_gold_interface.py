@@ -83,7 +83,7 @@ class PublicGoldInterfaceTests(unittest.TestCase):
         out_of_range = copy.deepcopy(self.fixture)
         out_of_range["public_event_id"] = "H2EPR-9999"
         with self.assertRaisesRegex(
-            validator.ReferenceValidationError, "outside Unified-3000"
+            validator.ReferenceValidationError, "outside H²EPR-Bench"
         ):
             validator.validate_reference_epg(out_of_range)
 

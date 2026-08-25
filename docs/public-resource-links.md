@@ -12,7 +12,7 @@ The canonical reader-facing names are:
 
 1. `Project Website` for the project overview;
 2. `Event Explorer` (or the action label `Explore Events`) for interactive browsing;
-3. `Public Dataset` for the Unified-3000 distribution;
+3. `Public Dataset` for the 3,000-event distribution;
 4. `FinMycelium System` for the multi-agent reconstruction system;
 5. `Reference EPGs (Gated)` for the controlled scoring references; and
 6. `Release Repository` for the canonical public source monorepo.
@@ -51,7 +51,7 @@ reviewed URL.
 - Mobile layouts may wrap or stack buttons, but may not hide a required public
   resource.
 
-## Release boundary
+## Resource roles
 
 Public Dataset links may point at the stable repository landing page for
 discovery. Reproducibility and runtime data-loading links use the same

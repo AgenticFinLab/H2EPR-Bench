@@ -1,36 +1,31 @@
 {
   "manifest_version": 2,
   "release_id": "h2epr-unified3000-v2",
-  "release_state": "published",
+  "release_state": "dataset_published",
   "deployment_root": "spaces/h2epr_bench_explorer",
   "dataset_repo": "AgenticFinLab/H2EPR-Bench",
-  "dataset_revision": "6156a6bb3b838143401cb3e5709f708e5d6e802c",
-  "published_deployment": {
-    "dataset_revision": "6156a6bb3b838143401cb3e5709f708e5d6e802c",
-    "source_ledger_sha256": "ce47455ce680f59808713895642737ab11d765b136d1905e65a62958efa21f8a",
-    "space_commit": "2cc85fd27d832d429be72c4531ba832d70648046",
-    "space_tree": "88deb297c0ef39dd3324d1786eb4119026103e7c"
-  },
+  "dataset_revision": "4b0f0f4000db3ba9b6e1a720e5b5cfbaae68353c",
+  "published_deployment": null,
   "release_candidate": {
-    "sha256sums_sha256": "9b30d71eacbfa0e07539a5805a3cf05065e76199dfcf0272ef1d135c1098960e",
-    "tree_sha256": "9b30d71eacbfa0e07539a5805a3cf05065e76199dfcf0272ef1d135c1098960e"
+    "sha256sums_sha256": "24f19b2eda8af998fa6e755c6dac8db62c40ad865815e6040cd83f6679cdbdb3",
+    "tree_sha256": "24f19b2eda8af998fa6e755c6dac8db62c40ad865815e6040cd83f6679cdbdb3"
   },
   "rollback_baseline": {
     "role": "rollback_only",
-    "dataset_revision": "1d01f3649ace0301ac3bbe9ee875eea660347a29",
-    "space_commit": "0f91d75dbed7f4ceddf185363d43b799b7b611e4",
-    "space_tree": "fb795f3ec09da6c858e018dc3ee0f5381d217f40"
+    "dataset_revision": "6156a6bb3b838143401cb3e5709f708e5d6e802c",
+    "space_commit": "2cc85fd27d832d429be72c4531ba832d70648046",
+    "space_tree": "88deb297c0ef39dd3324d1786eb4119026103e7c"
   },
-  "ledger_sha256": "ce47455ce680f59808713895642737ab11d765b136d1905e65a62958efa21f8a",
+  "ledger_sha256": "1d4c4df89adabbcdb557da23ed22869660c0b66585c62588d5fcb293e55d9962",
   "files": {
     ".gitattributes": "11ad7efa24975ee4b0c3c3a38ed18737f0658a5f75a0a96787b576a78a023361",
     "Dockerfile": "f46b0f618303aea4d07728c85046cd8fdd073bad7c206b1a92983e5164446ee5",
-    "README.md": "323cd1c9e915a435173d03bbd9fcf72ad94df9a917298a755bec354aa43e5fa2",
-    "app.py": "8d9c40fd19f3490c3a36273f754fdae994b719d399cc567cd8254d280426c68f",
+    "README.md": "d59893989d096f4d3003378e36b3b997530f609901e7bf294c33268f4612d522",
+    "app.py": "9a30dc3a52111bf8e262fb0f9a46777f9643c09aba8ba78a556eaaeccafc14ad",
     "requirements.txt": "81e65bcc8d92080de1a37eed52c6148158d1162e9b1d8613510dd4f1db45c2d2",
     "src/h2epr_explorer/__init__.py": "a08b52b24c7c34954c6db96f4ca3c818bc276ab632d6a3b99ece865a79776e1b",
-    "src/h2epr_explorer/constants.py": "c022eff526b50951f8dffd8fa7b726cbdbf08075f37c3a49487f270c73834385",
-    "src/h2epr_explorer/data_loader.py": "e4039bb871ee733061ba95486687f5758b3c8d6a36e6a65ed6e3f3bedc271b11",
+    "src/h2epr_explorer/constants.py": "3949e6125c011055dd4ec9cfaf06078bac87c0ff70de886b7abde7572c7b22fb",
+    "src/h2epr_explorer/data_loader.py": "4caab93d580dd57e4104a8436ce6802b3d754e2b5974e0ba6bc347c0eceab837",
     "src/h2epr_explorer/filters.py": "eec4c34cd20037eba23bbcaa40d4485f0347b1334248cfd3a6739c2e6f250963",
     "src/h2epr_explorer/navigation.py": "7108cf6a6af051f1dd613c0642e6093bf1355430aeb216f4a1b0952c4ef1ea7a",
     "src/h2epr_explorer/render_gantt.py": "fd84496f3d75f02c8059b2680e3f73db69c2cdee3c9fd6d587ab6f8c488f5c76"
